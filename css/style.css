@@ -81,10 +81,15 @@ img {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 24px 48px;
+  padding: 18px 48px;
   font-size: 12px;
   color: var(--text-light);
-  position: relative;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 0.5px solid var(--border);
+  z-index: 100;
+  transition: background-color var(--transition), border-color var(--transition);
 }
 
 .nav-name {
@@ -1693,3 +1698,57 @@ a.evidence-item {
     padding: 6px 8px;
   }
 }
+
+/* Strengths 하단 서사 문서 딥링크 버튼 */
+.strengths-footer-link {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.strengths-story-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 0.5px solid var(--border);
+  border-radius: 2px;
+  color: var(--text-mid);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.strengths-story-btn:hover {
+  border-color: var(--text);
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] .strengths-story-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.strengths-story-btn svg {
+  transition: transform var(--transition);
+}
+
+.strengths-story-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* 탭 칩 활성화 상태 인터랙션 고도화 */
+.story-nav-chip {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-nav-chip.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+

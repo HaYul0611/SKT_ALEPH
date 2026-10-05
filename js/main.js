@@ -5,8 +5,17 @@
   var toggle = document.getElementById('themeToggle');
   var stored = localStorage.getItem('theme');
 
+  function updateAriaLabel(isDark) {
+    if (toggle) {
+      toggle.setAttribute('aria-label', isDark ? '라이트 모드로 전환' : '다크 모드로 전환');
+    }
+  }
+
   if (stored === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
+    updateAriaLabel(true);
+  } else {
+    updateAriaLabel(false);
   }
 
   if (toggle) {
@@ -15,9 +24,11 @@
       if (current === 'dark') {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
+        updateAriaLabel(false);
       } else {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
+        updateAriaLabel(true);
       }
     });
   }
@@ -97,25 +108,109 @@
 })();
 
 /* ===========================
-   Narrative Document Modal (서사 문서 모달)
+   Narrative Document Modal & ScrollSpy (서사 문서 모달 및 실시간 스크롤스파이)
    =========================== */
 (function initStoryModal() {
   var openBtns = [
     document.getElementById('storyBtn'),
-    document.getElementById('aboutStoryBtn')
+    document.getElementById('aboutStoryBtn'),
+    document.getElementById('strengthsStoryBtn')
   ];
   var modal = document.getElementById('storyModal');
   var closeBtn = document.getElementById('storyClose');
   var navChips = document.querySelectorAll('.story-nav-chip');
+  var modalBody = modal ? modal.querySelector('.story-modal-body') : null;
+  var sections = modal ? modal.querySelectorAll('.story-section') : [];
   var lastFocused = null;
+  var isClickScrolling = false;
+  var scrollTimer = null;
 
-  if (!modal) return;
+  if (!modal || !modalBody) return;
 
-  function openModal() {
+  // 특정 탭 활성화 및 탭 바 가로 스크롤 동기화
+  function setActiveChip(targetId) {
+    var activeChip = null;
+    navChips.forEach(function (chip) {
+      if (chip.getAttribute('data-target') === targetId) {
+        chip.classList.add('active');
+        activeChip = chip;
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+
+    if (activeChip && !isClickScrolling) {
+      activeChip.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    }
+  }
+
+  // 실시간 스크롤 감지 및 현재 섹션 추적
+  function updateScrollSpy() {
+    if (isClickScrolling || !sections.length) return;
+
+    var bodyRect = modalBody.getBoundingClientRect();
+    // 상단 탭 바로 아래 위치(오프셋 80px)를 기준점으로 설정
+    var triggerLine = bodyRect.top + 80;
+
+    // 맨 아래 도달 체크
+    if (modalBody.scrollHeight - modalBody.scrollTop <= modalBody.clientHeight + 25) {
+      setActiveChip(sections[sections.length - 1].id);
+      return;
+    }
+
+    var currentId = sections[0].id;
+    for (var i = 0; i < sections.length; i++) {
+      var sec = sections[i];
+      var secRect = sec.getBoundingClientRect();
+      if (secRect.top <= triggerLine) {
+        currentId = sec.id;
+      } else {
+        break;
+      }
+    }
+
+    setActiveChip(currentId);
+  }
+
+  function scrollToSection(targetId, smooth) {
+    var targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    setActiveChip(targetId);
+    isClickScrolling = true;
+    clearTimeout(scrollTimer);
+
+    var bodyRect = modalBody.getBoundingClientRect();
+    var targetRect = targetEl.getBoundingClientRect();
+    var offset = targetRect.top - bodyRect.top + modalBody.scrollTop - 10;
+
+    modalBody.scrollTo({
+      top: Math.max(0, offset),
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+
+    scrollTimer = setTimeout(function () {
+      isClickScrolling = false;
+      updateScrollSpy();
+    }, smooth ? 600 : 50);
+  }
+
+  function openModal(defaultTargetId) {
     lastFocused = document.activeElement;
     modal.hidden = false;
-    if (closeBtn) closeBtn.focus();
     document.body.style.overflow = 'hidden';
+
+    var target = (typeof defaultTargetId === 'string' && defaultTargetId) ? defaultTargetId : 'story-sec-1';
+    modalBody.scrollTop = 0;
+    setActiveChip(target);
+
+    if (target !== 'story-sec-1') {
+      setTimeout(function () {
+        scrollToSection(target, false);
+      }, 30);
+    }
+
+    if (closeBtn) closeBtn.focus();
   }
 
   function closeModal() {
@@ -128,36 +223,31 @@
 
   openBtns.forEach(function (btn) {
     if (btn) {
-      btn.addEventListener('click', openModal);
+      btn.addEventListener('click', function () {
+        var targetSection = btn.getAttribute('data-story-target') || 'story-sec-1';
+        openModal(targetSection);
+      });
     }
   });
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
   modal.addEventListener('click', function (e) {
-    if (e.target === modal) {
-      closeModal();
-    }
+    if (e.target === modal) closeModal();
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hidden) {
-      closeModal();
-    }
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
   });
 
-  // 탭 네비게이션 부드러운 스크롤
+  // 스크롤 이벤트 리스너 등록 (ScrollSpy 실시간 반영)
+  modalBody.addEventListener('scroll', updateScrollSpy, { passive: true });
+
+  // 탭 클릭 시 해당 섹션으로 부드러운 이동
   navChips.forEach(function (chip) {
     chip.addEventListener('click', function () {
-      navChips.forEach(function (c) { c.classList.remove('active'); });
-      chip.classList.add('active');
       var targetId = chip.getAttribute('data-target');
-      var targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      scrollToSection(targetId, true);
     });
   });
 })();
