@@ -4,19 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>오하율 — Portfolio 2026</title>
-  <meta name="description" content="채용 담당자에게 보여주는 오하율의 포트폴리오 페이지">
+  <title>오하율 | Portfolio</title>
+  <meta name="description" content="오하율의 포트폴리오 — IT 인프라, 보안 엔지니어링, 웹 풀스택 및 연구 서사">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
     rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E">
-  <meta property="og:title" content="오하율 — Portfolio 2026 | 인프라 · 보안 엔지니어">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111111'/%3E%3Ctext x='16' y='22' font-family='-apple-system, BlinkMacSystemFont, %22Segoe UI%22, sans-serif' font-size='16' font-weight='800' fill='%23ffffff' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+  <meta property="og:title" content="오하율 | Portfolio — IT 인프라 · 보안 · 풀스택">
   <meta property="og:description" content="병원 행정 중간관리자에서 웹 풀스택, 인프라 보안 엔지니어로의 전환. 오하율의 포트폴리오 및 서사 문서.">
   <meta property="og:image" content="assets/profile.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=20261006_03">
+  <link rel="stylesheet" href="css/style.css?v=20261009_paper">
 </head>
 
 <body>
@@ -27,6 +28,7 @@
     <div class="nav-right">
       <a href="#timeline">Infrastructure</a>
       <a href="#vision">Security</a>
+      <a href="#research">Research</a>
       <a href="#projects">Web Development</a>
     </div>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드 전환">
@@ -70,6 +72,12 @@
           <p class="about-value">
             <button type="button" class="about-story-btn" id="aboutStoryBtn" aria-label="서사 문서 열람">
               나를 말하는 서사 문서
+            </button>
+          </p>
+          <p class="about-label">Research</p>
+          <p class="about-value">
+            <button type="button" class="about-story-btn about-paper-btn" id="aboutPaperBtn" aria-label="학술 연구 논문 열람">
+              학술 논문 (HIS·공공연계)
             </button>
           </p>
           <p class="about-label">GitHub</p>
@@ -224,7 +232,8 @@
             <span class="sar-number" aria-hidden="true">01</span>
             <span class="sar-name">문제 해결력</span>
             <span class="sar-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
@@ -251,7 +260,8 @@
             <span class="sar-number" aria-hidden="true">02</span>
             <span class="sar-name">업무 프로세스 개선</span>
             <span class="sar-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
@@ -278,7 +288,8 @@
             <span class="sar-number" aria-hidden="true">03</span>
             <span class="sar-name">커뮤니케이션</span>
             <span class="sar-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
@@ -303,9 +314,11 @@
       </div>
 
       <div class="strengths-footer-link">
-        <button type="button" class="strengths-story-btn" id="strengthsStoryBtn" data-story-target="story-sec-2" aria-label="서사 문서의 강점 지도 및 동료 리추얼 관찰 기록 열람">
+        <button type="button" class="strengths-story-btn" id="strengthsStoryBtn" data-story-target="story-sec-2"
+          aria-label="서사 문서의 강점 지도 및 동료 리추얼 관찰 기록 열람">
           <span>서사 문서의 강점 지도 &amp; 동료 리추얼 관찰 기록 보기</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" width="14" height="14" aria-hidden="true">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
@@ -332,7 +345,13 @@
           <span class="project-num" aria-hidden="true">01</span>
           <h3 class="project-name">
             <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
-              rel="noopener noreferrer">Fastival-management<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+              rel="noopener noreferrer">Fastival-management<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg></a>
           </h3>
           <p class="project-desc">축제 올인원 O2O 통합 플랫폼</p>
           <p class="project-tag">팀 프로젝트</p>
@@ -341,7 +360,13 @@
           <span class="project-num" aria-hidden="true">02</span>
           <h3 class="project-name">
             <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank"
-              rel="noopener noreferrer">WeddingPlatform<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+              rel="noopener noreferrer">WeddingPlatform<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg></a>
           </h3>
           <p class="project-desc">웨딩 올인원 통합 플랫폼</p>
           <p class="project-meta">컨설팅 · 모바일 청첩장 · 뷰티/헬스케어 · CRM</p>
@@ -349,10 +374,104 @@
         <div class="project-item" data-category="platform">
           <span class="project-num" aria-hidden="true">03</span>
           <h3 class="project-name">
-            <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer">VARO<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+            <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer">VARO<svg
+                class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg></a>
           </h3>
           <p class="project-desc">남성 패션 커뮤니티 쇼핑몰</p>
           <p class="project-meta">Node.js · Express · MySQL · JWT</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 학술 연구 논문 섹션 -->
+    <section class="research-section" id="research" aria-label="학술 연구 논문">
+      <div class="research-header-wrap">
+        <div>
+          <h2 class="section-title">Research</h2>
+          <p class="section-slash" aria-hidden="true">/</p>
+        </div>
+        <span class="research-sub-label">Academic Paper · Domain Expertise</span>
+      </div>
+
+      <div class="research-container">
+        <div class="research-main-info">
+          <div class="research-tags">
+            <span class="research-tag">병원정보시스템 (HIS)</span>
+            <span class="research-tag">원무행정 도메인</span>
+            <span class="research-tag">공공행정정보 연계</span>
+            <span class="research-tag">개인정보보호법</span>
+          </div>
+
+          <h3 class="research-title">
+            의료기관 진료비 미식별 입금 및 사망환자 미수령 환불금의<br>공공관리체계 구축 방안
+          </h3>
+          <p class="research-subtitle">
+            A Study on Establishing a Public Management System for Unidentified Medical Payment Deposits and Unclaimed
+            Refunds of Deceased Patients
+          </p>
+
+          <div class="research-meta-row">
+            <span class="meta-item">저자: 오하율 (개인 연구자)</span>
+            <span class="meta-dot" aria-hidden="true">·</span>
+            <span class="meta-item">작성일: 2026. 10. 09</span>
+            <span class="meta-dot" aria-hidden="true">·</span>
+            <span class="meta-item">분야: 병원정보시스템(HIS) · 공공인프라 연계</span>
+          </div>
+
+          <p class="research-summary">
+            진료비 수납·정산 과정에서 발생하는 타인명의 대납·개명 등으로 인한 <strong>미식별 입금</strong>과, 퇴원 후 사후 환불금 중 환자 사망으로 상속 권리자를 확인하지 못해 장기
+            잔류하는 <strong>미수령 환불금</strong> 문제를 다룹니다. 병원 내부 정보시스템의 한계를 극복하기 위해 <strong>의료기관 내부 확인 ➔ 다차원 교차검증 ➔ 예외대상 분류 ➔
+              공공행정정보(정부24 안심상속 등) 연계 ➔ 적법 후속처리</strong>로 이어지는 단계적 공공관리 모형을 설계하고, 개인정보 보호 및 법제도적 실현 방향을 제시한 연구입니다.
+          </p>
+
+          <div class="research-actions">
+            <button type="button" class="research-btn primary" id="paperMainOpenBtn" aria-label="논문 전문 뷰어 열람">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <span>논문 전문 뷰어 열람</span>
+            </button>
+            <a href="논문_오하율_261009.docx" download class="research-btn" aria-label="논문 DOCX 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>DOCX 다운로드</span>
+            </a>
+            <a href="논문_오하율_261009.pdf" download class="research-btn" aria-label="논문 PDF 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+              <span>PDF 다운로드</span>
+            </a>
+            <a href="research_paper/재현패키지_오하율.zip" download class="research-btn" aria-label="재현 패키지 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+              <span>재현 패키지 (.zip)</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -393,7 +512,8 @@
               <span class="detail-badge" id="visionStepBadge">STEP 02 · 핵심 아키텍처</span>
               <h4 class="detail-title" id="visionStepTitle">AI 실시간 분석 (Real-time Anomaly Detection)</h4>
             </div>
-            <p class="detail-desc" id="visionStepDesc">수집된 패킷 및 시스템 로그 벡터를 사전 학습된 머신러닝 이상치 탐지 모델(Isolation Forest / AutoEncoder)로 실시간 추론하여 제로데이 공격 및 비정상 접근 패턴을 즉시 식별합니다.</p>
+            <p class="detail-desc" id="visionStepDesc">수집된 패킷 및 시스템 로그 벡터를 사전 학습된 머신러닝 이상치 탐지 모델(Isolation Forest /
+              AutoEncoder)로 실시간 추론하여 제로데이 공격 및 비정상 접근 패턴을 즉시 식별합니다.</p>
             <div class="detail-tags" id="visionStepTags">
               <span class="detail-tag">Machine Learning</span>
               <span class="detail-tag">Anomaly Detection</span>
@@ -425,9 +545,13 @@
           <span class="evidence-label">수료증</span>
           <span class="evidence-desc">웹풀스택 과정 이수</span>
         </button>
-        <button class="evidence-item story-evidence-item" type="button" id="storyBtn" aria-label="나를 말하는 서사 문서 보기">
-          <span class="evidence-label">서사 문서 <span class="evidence-badge">NEW</span></span>
+        <button class="evidence-item" type="button" id="storyBtn" aria-label="나를 말하는 서사 문서 보기">
+          <span class="evidence-label">서사 문서 <span class="dynamic-badge" data-created="2026-10-06" hidden></span></span>
           <span class="evidence-desc">나를 말하는 서사 · 강점 지도</span>
+        </button>
+        <button class="evidence-item" type="button" id="paperEvidenceBtn" aria-label="학술 연구 논문 보기">
+          <span class="evidence-label">학술 논문 <span class="dynamic-badge" data-created="2026-10-09" hidden></span></span>
+          <span class="evidence-desc">의료기관 예외정산 공공관리체계</span>
         </button>
       </div>
 
@@ -435,7 +559,8 @@
       <div class="modal-overlay" id="certModal" hidden aria-modal="true" role="dialog" aria-label="수료증">
         <div class="modal-content">
           <button class="modal-close" type="button" id="certClose" aria-label="닫기">
-            <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -445,7 +570,8 @@
       </div>
 
       <!-- 서사 문서 모달 -->
-      <div class="story-modal-overlay" id="storyModal" hidden aria-modal="true" role="dialog" aria-label="오하율 — 나를 말하는 서사 문서">
+      <div class="story-modal-overlay" id="storyModal" hidden aria-modal="true" role="dialog"
+        aria-label="오하율 — 나를 말하는 서사 문서">
         <div class="story-modal-dialog">
           <div class="story-modal-header">
             <div class="story-header-title-wrap">
@@ -453,8 +579,9 @@
               <h3 class="story-modal-title">오하율 — 나를 말하는 서사 문서</h3>
             </div>
             <div class="story-header-actions">
-              <a href="오하율_서사문서%20(최종).md" target="_blank" download class="story-raw-link" title="마크다운 원문 파일 다운로드/열기">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <a href="오하율_서사문서.md" target="_blank" download class="story-raw-link" title="마크다운 원문 파일 다운로드/열기">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
                   <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -464,7 +591,8 @@
                 <span>원문 MD 열기</span>
               </a>
               <button class="story-modal-close" type="button" id="storyClose" aria-label="서사 문서 닫기">
-                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -577,7 +705,8 @@
                     <tbody>
                       <tr>
                         <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
-                        <td><strong>2026-09-28:</strong> 연휴 전날 늦은 시간까지 학원에 홀로 남아 프로젝트 정리를 마무리했다. 아무도 없는 교실에서 혼자 화면을 보며 팀 전체의 흐름을 다시 정리했다.</td>
+                        <td><strong>2026-09-28:</strong> 연휴 전날 늦은 시간까지 학원에 홀로 남아 프로젝트 정리를 마무리했다. 아무도 없는 교실에서 혼자 화면을 보며 팀
+                          전체의 흐름을 다시 정리했다.</td>
                       </tr>
                       <tr>
                         <td style="font-weight: 600;">동료의 평가</td>
@@ -585,7 +714,8 @@
                       </tr>
                       <tr>
                         <td style="font-weight: 600;">내가 본 나</td>
-                        <td>"잠자는 시간 줄여가면서 끊임없이 AI에게 질문하고 통신이 원활하게 이뤄질 수 있게 하기 위해 노력한 나의 노력과 끈기에 아낌없는 리스펙을 보낸다" (09-27)</td>
+                        <td>"잠자는 시간 줄여가면서 끊임없이 AI에게 질문하고 통신이 원활하게 이뤄질 수 있게 하기 위해 노력한 나의 노력과 끈기에 아낌없는 리스펙을 보낸다" (09-27)
+                        </td>
                       </tr>
                       <tr>
                         <td style="font-weight: 600;">지킨 가치</td>
@@ -610,11 +740,13 @@
                     <tbody>
                       <tr>
                         <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
-                        <td><strong>2026-08-14:</strong> 쉬는 시간마다 수업 내용을 상기시키고 몸에 익혀두기 위해 반복 학습을 실천했다. 틈날 때마다 캡처해둔 화면을 꺼내보며 자기만의 연상기법으로 내용을 소화했다.</td>
+                        <td><strong>2026-08-14:</strong> 쉬는 시간마다 수업 내용을 상기시키고 몸에 익혀두기 위해 반복 학습을 실천했다. 틈날 때마다 캡처해둔 화면을
+                          꺼내보며 자기만의 연상기법으로 내용을 소화했다.</td>
                       </tr>
                       <tr>
                         <td style="font-weight: 600;">동료의 평가</td>
-                        <td>"남들 쉴 때 성실하게 반복학습해서 자기 껄로 만드는 모습이 보기 좋음" (08-14), "잘 안되는 부분 반복해서 영상 보며 스스로 해결해보려고 노력한다" (09-01)</td>
+                        <td>"남들 쉴 때 성실하게 반복학습해서 자기 껄로 만드는 모습이 보기 좋음" (08-14), "잘 안되는 부분 반복해서 영상 보며 스스로 해결해보려고 노력한다"
+                          (09-01)</td>
                       </tr>
                       <tr>
                         <td style="font-weight: 600;">내가 본 나</td>
@@ -643,11 +775,13 @@
                     <tbody>
                       <tr>
                         <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
-                        <td><strong>2026-09-17:</strong> 정해진 시간 안에 게임을 완성하고 팀에 공유했다. 동료가 "만드시고 공유해주신 게임 퀄리티가 인상적이었다"고 말했다.</td>
+                        <td><strong>2026-09-17:</strong> 정해진 시간 안에 게임을 완성하고 팀에 공유했다. 동료가 "만드시고 공유해주신 게임 퀄리티가 인상적이었다"고
+                          말했다.</td>
                       </tr>
                       <tr>
                         <td style="font-weight: 600;">동료의 평가</td>
-                        <td>"팀프로젝트에서 주도적이고 자료를 공유해주는 모습이 좋았습니다" (10-02). 만들어 공유한 사과게임을 보고 수강생들이 쉬는 시간에 점수 내기 경쟁을 벌이기도 함.</td>
+                        <td>"팀프로젝트에서 주도적이고 자료를 공유해주는 모습이 좋았습니다" (10-02). 만들어 공유한 사과게임을 보고 수강생들이 쉬는 시간에 점수 내기 경쟁을 벌이기도 함.
+                        </td>
                       </tr>
                       <tr>
                         <td style="font-weight: 600;">내가 본 나</td>
@@ -672,14 +806,26 @@
               <h4 class="story-sec-title">3. 나의 이야기 — 고난에서 더 나아진 나</h4>
               <div class="story-prose-block">
                 <p><strong>2025년, 대전.</strong></p>
-                <p>나는 병원 원무 · 행정 중간관리자로 일하고 있었다. 응급실 인수인계가 구두로만 이루어져 누락이 반복되는 문제를 발견하고 구글 스프레드시트를 도입했고, 5개 파트의 업무 매뉴얼을 혼자 정리했다. 그런데 아무도 관심을 갖지 않았다. 프로세스를 바꿔보자고 제안해도 동료들은 시큰둥했고, 환자와 보호자, 다른 부서 직원들에게는 "일반 사무직"으로 비춰졌다. 발전된 모습을 기대하기 어려운 곳에서 혼자 벽을 밀고 있는 느낌이었다.</p>
-                <p style="margin-top: 10px;">같은 해, 친할머니의 건강이 급격히 악화되어 세상을 떠나셨다. 더 잘해드리고 싶었던 마음, 잘못된 방법으로 해결하려 했던 죄책감, 가족과 주변 관계를 원만하게 만들지 못했다는 기대의 책임감이 겹쳤다. 2025년은 나에게 방황과 혼란의 해였다.</p>
-                <p style="margin-top: 10px;">그 와중에도 나는 한 가지를 알아차렸다. 병원 전산실을 오가며 다른 직원의 도움을 기다리는 동안, 내가 직접 문제를 해결하는 것이 더 빠른 서비스를 제공하고 신뢰감을 준다는 것을. AI를 활용할 줄 알아야 하는 시대가 왔다는 것도 보였고, 활용능력이 능숙한 인재를 원하는 사회가 되어가는 것이 보였다. 그래서 퇴사를 결심했다. 2025년 말, 바이브코딩 AI 기반 웹풀스택 개발 과정에 등록했다.</p>
-                <p style="margin-top: 10px;">6개월간 웹 개발을 배우면서, 병원에서 혼자 벽을 밀던 습관이 그대로 드러났다. 다만 이번에는 벽이 밀려났다. 축제 O2O 플랫폼, 웨딩 통합 플랫폼, 쇼핑몰을 만들며 "시작했으면 끝을 본다"는 내 성격이 코드 위에서도 작동했다.</p>
-                <p style="margin-top: 10px;">2026년 8월, SKT ALEPH 인프라/보안 과정에 들어왔다. 첫날부터 아침 리추얼에 이렇게 적었다. "옛날 수업방식처럼 필기에 집착하지 않아서 변화되고 있는 거 같아." 변화를 인지하는 사람은, 이미 변하고 있는 사람이다.</p>
-                <p style="margin-top: 10px;">13주 동안의 기록에는 같은 힘이 되풀이되었다. 쉬는 시간마다 캡처한 화면을 꺼내보며 반복 학습을 했고(08-14), 안 되는 부분을 영상을 돌려보며 스스로 해결하려 했고(09-01), 연휴 전날 홀로 남아 프로젝트를 정리했다(09-28). 동료는 말했다. "항상 옳고 그름을 올곧은 자세로 수업과 과제에 임하는 자세가 멋있다."</p>
-                <p style="margin-top: 10px;">나는 지금, 인프라 보안 엔지니어를 목표로 준비하고 있다. AI 기반 실시간 보안 감지 시스템을 기업 환경에 맞게 구축하는 것이 꿈이다. 병원에서 프로세스를 정리하고 공유하던 습관은, 팀 프로젝트에서 자료를 정리해 공유하는 주도성으로 이어졌다. 병원에서 혼자 문제를 해결하려 했던 습관은, 이제 팀과 함께 문제를 해결하고 결과물을 공유하는 모습으로 이어지고 있다.</p>
-                <p style="margin-top: 10px; font-weight: 600;">넘어지지 않은 사람이 아니다. 2025년의 방황을 지나, 매일 아침 호흡을 고르고 저녁에 하루를 돌아보며 한 걸음씩 더 나아지고 있는 사람이다.</p>
+                <p>나는 병원 원무 · 행정 중간관리자로 일하고 있었다. 응급실 인수인계가 구두로만 이루어져 누락이 반복되는 문제를 발견하고 구글 스프레드시트를 도입했고, 5개 파트의 업무 매뉴얼을
+                  혼자 정리했다. 그런데 아무도 관심을 갖지 않았다. 프로세스를 바꿔보자고 제안해도 동료들은 시큰둥했고, 환자와 보호자, 다른 부서 직원들에게는 "일반 사무직"으로 비춰졌다. 발전된
+                  모습을 기대하기 어려운 곳에서 혼자 벽을 밀고 있는 느낌이었다.</p>
+                <p style="margin-top: 10px;">같은 해, 친할머니의 건강이 급격히 악화되어 세상을 떠나셨다. 더 잘해드리고 싶었던 마음, 잘못된 방법으로 해결하려 했던 죄책감,
+                  가족과 주변 관계를 원만하게 만들지 못했다는 기대의 책임감이 겹쳤다. 2025년은 나에게 방황과 혼란의 해였다.</p>
+                <p style="margin-top: 10px;">그 와중에도 나는 한 가지를 알아차렸다. 병원 전산실을 오가며 다른 직원의 도움을 기다리는 동안, 내가 직접 문제를 해결하는 것이 더
+                  빠른 서비스를 제공하고 신뢰감을 준다는 것을. AI를 활용할 줄 알아야 하는 시대가 왔다는 것도 보였고, 활용능력이 능숙한 인재를 원하는 사회가 되어가는 것이 보였다. 그래서 퇴사를
+                  결심했다. 2025년 말, 바이브코딩 AI 기반 웹풀스택 개발 과정에 등록했다.</p>
+                <p style="margin-top: 10px;">6개월간 웹 개발을 배우면서, 병원에서 혼자 벽을 밀던 습관이 그대로 드러났다. 다만 이번에는 벽이 밀려났다. 축제 O2O 플랫폼,
+                  웨딩 통합 플랫폼, 쇼핑몰을 만들며 "시작했으면 끝을 본다"는 내 성격이 코드 위에서도 작동했다.</p>
+                <p style="margin-top: 10px;">2026년 8월, SKT ALEPH 인프라/보안 과정에 들어왔다. 첫날부터 아침 리추얼에 이렇게 적었다. "옛날 수업방식처럼 필기에
+                  집착하지 않아서 변화되고 있는 거 같아." 변화를 인지하는 사람은, 이미 변하고 있는 사람이다.</p>
+                <p style="margin-top: 10px;">13주 동안의 기록에는 같은 힘이 되풀이되었다. 쉬는 시간마다 캡처한 화면을 꺼내보며 반복 학습을 했고(08-14), 안 되는 부분을
+                  영상을 돌려보며 스스로 해결하려 했고(09-01), 연휴 전날 홀로 남아 프로젝트를 정리했다(09-28). 동료는 말했다. "항상 옳고 그름을 올곧은 자세로 수업과 과제에 임하는
+                  자세가 멋있다."</p>
+                <p style="margin-top: 10px;">나는 지금, 인프라 보안 엔지니어를 목표로 준비하고 있다. AI 기반 실시간 보안 감지 시스템을 기업 환경에 맞게 구축하는 것이
+                  꿈이다. 병원에서 프로세스를 정리하고 공유하던 습관은, 팀 프로젝트에서 자료를 정리해 공유하는 주도성으로 이어졌다. 병원에서 혼자 문제를 해결하려 했던 습관은, 이제 팀과 함께 문제를
+                  해결하고 결과물을 공유하는 모습으로 이어지고 있다.</p>
+                <p style="margin-top: 10px; font-weight: 600;">넘어지지 않은 사람이 아니다. 2025년의 방황을 지나, 매일 아침 호흡을 고르고 저녁에 하루를
+                  돌아보며 한 걸음씩 더 나아지고 있는 사람이다.</p>
               </div>
             </section>
 
@@ -697,13 +843,16 @@
               <div class="peer-answer-box">
                 <strong>동료 B</strong>
                 <p><strong>나 같은 느낌이 드는가?</strong> 80~90% 정도는 맞는 거 같아요.</p>
-                <p><strong>지어낸 느낌이 있는 곳은?</strong> 늦게까지 남아 공부하거나 프로젝트를 정리하고, 자료를 만들어 공유했던 장면들은 실제로 봤던 모습과 가까워서 진정성이 느껴집니다.</p>
+                <p><strong>지어낸 느낌이 있는 곳은?</strong> 늦게까지 남아 공부하거나 프로젝트를 정리하고, 자료를 만들어 공유했던 장면들은 실제로 봤던 모습과 가까워서 진정성이
+                  느껴집니다.</p>
               </div>
 
               <div class="peer-answer-box">
                 <strong>동료 C</strong>
-                <p><strong>나 같은 느낌이 드는가?</strong> 전체적으로 평소 모습이 잘 드러나는 것 같다. 특히 수업이 끝난 뒤에도 남아서 부족한 부분을 계속 공부하거나, 팀 프로젝트에서 필요한 자료를 정리하는 것을 실제로 자주 봐서 하율이형 다운 내용입니다.</p>
-                <p><strong>지어낸 느낌이 있는 곳은?</strong> 팀원들에게 자료를 공유하고 프로젝트를 주도적으로 정리하는 모습을 생각하면 내용 자체가 과장됐다고 느껴지지는 않았습니다.</p>
+                <p><strong>나 같은 느낌이 드는가?</strong> 전체적으로 평소 모습이 잘 드러나는 것 같다. 특히 수업이 끝난 뒤에도 남아서 부족한 부분을 계속 공부하거나, 팀 프로젝트에서
+                  필요한 자료를 정리하는 것을 실제로 자주 봐서 하율이형 다운 내용입니다.</p>
+                <p><strong>지어낸 느낌이 있는 곳은?</strong> 팀원들에게 자료를 공유하고 프로젝트를 주도적으로 정리하는 모습을 생각하면 내용 자체가 과장됐다고 느껴지지는 않았습니다.
+                </p>
               </div>
 
               <div class="peer-answer-box">
@@ -716,13 +865,21 @@
             <section class="story-section" id="story-sec-5">
               <h4 class="story-sec-title">5. 자기소개서</h4>
               <div class="story-quote">
-                <p>병원 원무·행정 중간관리자로 일하며 응급실 인수인계 시스템을 디지털로 전환하고, 5개 파트의 업무 매뉴얼을 문서화한 경험이 있습니다. 반복되는 업무 비효율을 발견하고 직접 정리하고 개선하는 과정에서, 주어진 업무를 처리하는 것보다 문제의 원인을 찾고 해결하는 일에 더 큰 흥미를 느꼈습니다. 특히 병원 전산 업무를 직접 해결하며 기술을 통해 업무의 효율을 높일 수 있다는 것을 경험했고, 이를 계기로 IT 분야에 도전하게 되었습니다.</p>
-                <p style="margin-top: 12px;">2025년 퇴사 후 웹 풀스택 개발 과정을 통해 소프트웨어가 만들어지고 동작하는 과정을 배웠습니다. 축제 O2O 플랫폼, 웨딩 통합 플랫폼, 쇼핑몰 등을 직접 구현하며 새로운 기술을 반복해서 익히고 문제를 해결하는 경험을 쌓았습니다. 개발을 배우면서 네트워크와 서버, 보안 분야로 관심이 넓어졌고, 보다 근본적으로 IT 환경을 이해하고 문제를 해결하는 역량을 갖추고 싶다는 목표가 생겼습니다. 현재는 SKT ALEPH에서 인프라와 보안을 배우며 새로운 분야에 도전하고 있습니다.</p>
+                <p>병원 원무·행정 중간관리자로 일하며 응급실 인수인계 시스템을 디지털로 전환하고, 5개 파트의 업무 매뉴얼을 문서화한 경험이 있습니다. 반복되는 업무 비효율을 발견하고 직접 정리하고
+                  개선하는 과정에서, 주어진 업무를 처리하는 것보다 문제의 원인을 찾고 해결하는 일에 더 큰 흥미를 느꼈습니다. 특히 병원 전산 업무를 직접 해결하며 기술을 통해 업무의 효율을 높일 수
+                  있다는 것을 경험했고, 이를 계기로 IT 분야에 도전하게 되었습니다.</p>
+                <p style="margin-top: 12px;">2025년 퇴사 후 웹 풀스택 개발 과정을 통해 소프트웨어가 만들어지고 동작하는 과정을 배웠습니다. 축제 O2O 플랫폼, 웨딩 통합
+                  플랫폼, 쇼핑몰 등을 직접 구현하며 새로운 기술을 반복해서 익히고 문제를 해결하는 경험을 쌓았습니다. 개발을 배우면서 네트워크와 서버, 보안 분야로 관심이 넓어졌고, 보다 근본적으로
+                  IT 환경을 이해하고 문제를 해결하는 역량을 갖추고 싶다는 목표가 생겼습니다. 현재는 SKT ALEPH에서 인프라와 보안을 배우며 새로운 분야에 도전하고 있습니다.</p>
                 <p style="margin-top: 12px;">그 과정에서 저는 세 가지 강점을 확인했습니다.<br>
-                첫째, <strong>끝까지 남아서 해내는 책임감</strong>입니다. 연휴 전날 홀로 남아 팀 프로젝트를 정리하고, 새벽까지 통신이 원활하게 이뤄질 수 있도록 반복 테스트를 했습니다.<br>
-                둘째, <strong>반복 학습으로 자기 것으로 만드는 성실함</strong>입니다. 쉬는 시간마다 수업 내용을 다시 확인하고, 이해되지 않는 부분은 영상을 반복해서 보며 직접 해결했습니다.<br>
-                셋째, <strong>정리하고 공유하며 함께 해결하는 주도성</strong>입니다. 문제가 발생하면 원인을 분석하고 필요한 정보를 체계화해 팀과 공유하며, 동일한 기준으로 문제를 이해하고 해결하는 것을 중요하게 생각합니다.</p>
-                <p style="margin-top: 12px;">저는 문제를 발견하면 그대로 지나치기보다 원인을 찾고 해결 방법을 정리해 직접 행동하는 사람입니다. 앞으로도 이러한 강점을 바탕으로 IT 인프라와 보안 분야에서 문제의 원인을 정확하게 파악하고, 해결 과정을 체계화하며 팀과 함께 안정적인 IT 환경을 만들어가는 엔지니어로 성장하겠습니다.</p>
+                  첫째, <strong>끝까지 남아서 해내는 책임감</strong>입니다. 연휴 전날 홀로 남아 팀 프로젝트를 정리하고, 새벽까지 통신이 원활하게 이뤄질 수 있도록 반복 테스트를
+                  했습니다.<br>
+                  둘째, <strong>반복 학습으로 자기 것으로 만드는 성실함</strong>입니다. 쉬는 시간마다 수업 내용을 다시 확인하고, 이해되지 않는 부분은 영상을 반복해서 보며 직접
+                  해결했습니다.<br>
+                  셋째, <strong>정리하고 공유하며 함께 해결하는 주도성</strong>입니다. 문제가 발생하면 원인을 분석하고 필요한 정보를 체계화해 팀과 공유하며, 동일한 기준으로 문제를
+                  이해하고 해결하는 것을 중요하게 생각합니다.</p>
+                <p style="margin-top: 12px;">저는 문제를 발견하면 그대로 지나치기보다 원인을 찾고 해결 방법을 정리해 직접 행동하는 사람입니다. 앞으로도 이러한 강점을 바탕으로
+                  IT 인프라와 보안 분야에서 문제의 원인을 정확하게 파악하고, 해결 과정을 체계화하며 팀과 함께 안정적인 IT 환경을 만들어가는 엔지니어로 성장하겠습니다.</p>
               </div>
             </section>
 
@@ -797,11 +954,14 @@
                     </tr>
                     <tr>
                       <td style="font-weight: 600;">내가 직접 판단한 일</td>
-                      <td>리추얼 기록에서 대목 12개 직접 고르기, 에이전트 규칙 5개를 내 언어로 쓰기, 우선순위 결정, 과정 이전 고난(2025년) 내용 직접 제공, 본인 성격("성실하고 차분하면서 완벽을 추구하는 자기객관화") 방향 설정, 강점 지도에서 표현 5건 수정, 3인칭 초안을 1인칭으로 직접 수정, 자기소개서 첫 문장과 마지막 문장 직접 작성</td>
+                      <td>리추얼 기록에서 대목 12개 직접 고르기, 에이전트 규칙 5개를 내 언어로 쓰기, 우선순위 결정, 과정 이전 고난(2025년) 내용 직접 제공, 본인 성격("성실하고
+                        차분하면서 완벽을 추구하는 자기객관화") 방향 설정, 강점 지도에서 표현 5건 수정, 3인칭 초안을 1인칭으로 직접 수정, 자기소개서 첫 문장과 마지막 문장 직접 작성
+                      </td>
                     </tr>
                     <tr>
                       <td style="font-weight: 600;">AI 제안을 따르지 않은 일</td>
-                      <td>강점 지도에서 총 5건 수정 ("박수를 보낸다" → "리스펙을 보낸다", "1이라도" → "하나라도 더", "완벽하지 않아도" → "완벽하지 않더라도 한 걸음씩", 관련 과제에 기업 IT 인프라 SI 프로젝트 추가, 사과게임 점수 경쟁 에피소드 추가)</td>
+                      <td>강점 지도에서 총 5건 수정 ("박수를 보낸다" → "리스펙을 보낸다", "1이라도" → "하나라도 더", "완벽하지 않아도" → "완벽하지 않더라도 한 걸음씩", 관련
+                        과제에 기업 IT 인프라 SI 프로젝트 추가, 사과게임 점수 경쟁 에피소드 추가)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -811,6 +971,443 @@
         </div>
       </div>
     </section>
+
+    <!-- 학술 연구 논문 전문 뷰어 모달 (Paper Modal) -->
+    <div class="story-modal-overlay paper-modal-overlay" id="paperModal" hidden aria-modal="true" role="dialog"
+      aria-label="오하율 — 학술 연구 논문 전문">
+      <div class="story-modal-dialog paper-modal-dialog">
+        <div class="story-modal-header paper-modal-header">
+          <div class="story-modal-title-wrap paper-title-wrap">
+            <span class="story-modal-badge paper-badge-modal">Academic Paper · Research Article</span>
+            <h3 class="story-modal-title paper-title">의료기관 진료비 미식별 입금 및 사망환자 미수령 환불금의<br>공공관리체계 구축 방안</h3>
+            <p class="story-modal-subtitle paper-modal-subtitle">A Study on Establishing a Public Management System for
+              Unidentified Medical Payment Deposits and Unclaimed Refunds of Deceased Patients</p>
+          </div>
+          <div class="paper-header-right">
+            <a href="논문_오하율_261009.docx" download class="paper-quick-download" title="논문 DOCX 원문 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>DOCX</span>
+            </a>
+            <a href="논문_오하율_261009.pdf" download class="paper-quick-download" title="논문 PDF 원문 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+              <span>PDF</span>
+            </a>
+            <button class="story-modal-close" type="button" id="paperModalClose" aria-label="논문 창 닫기">
+              <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="paper-quick-nav" aria-label="논문 장별 이동">
+          <a href="#paper-sec-abstract" class="paper-nav-link">초록</a>
+          <a href="#paper-sec-intro" class="paper-nav-link">Ⅰ. 서론</a>
+          <a href="#paper-sec-theory" class="paper-nav-link">Ⅱ. 이론적 고찰</a>
+          <a href="#paper-sec-method" class="paper-nav-link">Ⅲ. 연구 방법</a>
+          <a href="#paper-sec-result" class="paper-nav-link">Ⅳ. 연구 결과</a>
+          <a href="#paper-sec-conclusion" class="paper-nav-link">Ⅴ. 결론</a>
+          <a href="#paper-sec-ref" class="paper-nav-link">참고문헌</a>
+        </div>
+
+        <div class="story-modal-body paper-modal-body">
+<!-- 논문 메타 정보 바 -->
+          <div class="paper-doc-meta-bar">
+            <span><strong>저자:</strong> 오하율 (개인 연구자)</span>
+            <span><strong>작성일:</strong> 2026년 10월 9일</span>
+            <span><strong>연구 분야:</strong> 병원정보시스템(HIS) · 공공인프라 연계</span>
+          </div>
+
+          <!-- 초록 섹션 -->
+          <section class="paper-article-section" id="paper-sec-abstract">
+            <h4 class="paper-article-heading">초 록</h4>
+            <div class="paper-abstract-box">
+              <p>본 연구는 의료기관에서 발생하는 미식별 입금과 사망환자의 미수령 환불금을 체계적으로 관리하기 위한 공공관리체계를 제안하는 데 목적이 있다. 진료비 수납·청구 업무는 병원정보시스템(HIS)을 중심으로 전산화되어 있으나, 입금자 명의가 환자와 다르거나 환자 개명 또는 가족관계 변동에 따라 기존 정보가 불충분해지면 입금이 미식별 상태로 남을 수 있다. 또한 환불금이 발생한 후 환자가 사망하면 사망 사실 확인과는 별도로 적법한 수령권자를 확인하는 절차가 요구되는데, 이는 의료기관이 보유한 정보만으로는 판단하기 어려운 영역이다.</p>
+              <p>이에 본 연구는 병원정보시스템, 진료비 정산 및 환불과 관련된 선행연구와 법령, 제도, 행정서비스를 검토하고, 미식별 입금과 사망환자 미수령 환불금에서 나타나는 정보관리상의 문제를 분석하여 단계적 관리모형을 제안하였다. 제안된 모형은 의료기관 내부 확인, 예외대상 분류, 추가 확인 필요성 판단, 법적 절차에 따른 공공행정정보 연계 검토, 수령권한 확인, 적법한 지급 또는 후속처리의 단계로 구성된다.</p>
+              <p>이 관리체계는 의료기관 내부에 장기간 잔류할 수 있는 예외적 정산정보의 추적성과 투명성을 높이고 관리상의 공백을 줄이는 데 기여할 것으로 판단된다. 다만 실제 의료기관 자료를 이용한 실증분석과 시스템 구현·평가는 수행하지 않았으므로, 미수령 금액의 규모와 잔류 기간에 대한 실태분석, 그리고 정보연계의 법적·제도적 실현 가능성 검토는 후속 연구 과제로 남는다.</p>
+              <p class="paper-keywords"><strong>주제어:</strong> 병원정보시스템, 진료비 정산, 미식별 입금, 미수령 환불금, 공공행정정보</p>
+            </div>
+
+            <div class="paper-abstract-box english-box">
+              <h5 class="paper-sub-heading">Abstract</h5>
+              <p>This study aims to propose a public management system for unidentified deposits and unclaimed refunds of deceased patients that may occur in medical institutions. Medical fee settlement is computerized through hospital information systems, but deposits may remain unidentified when the depositor's name differs from the patient's name or when changes in the patient's name or family relationships make existing information insufficient for identification. In addition, when a patient dies before receiving a refund, confirmation of the appropriate recipient may be required separately from confirmation of the patient's death, which may be difficult to determine using only information held by the medical institution.</p>
+              <p>This study reviewed previous studies, relevant laws, institutional systems, and administrative services related to hospital information systems, medical fee settlement, and refunds. Based on this review, the information management issues associated with unidentified deposits and unclaimed refunds of deceased patients were analyzed, and a stepwise management model was proposed. The proposed model consists of internal verification, classification of exceptional cases, assessment of the need for additional verification, consideration of linkage with public administrative information in accordance with relevant legal procedures, verification of the recipient's entitlement, and lawful payment or follow-up procedures.</p>
+              <p>The proposed management system is expected to improve the traceability and transparency of exceptional settlement information that may remain within medical institutions for extended periods and to reduce management gaps. However, this study did not conduct an empirical analysis using actual data from medical institutions or implement and evaluate the proposed system. Further research is therefore needed to analyze the actual scale and duration of unclaimed amounts and to examine the legal, institutional, and practical feasibility of information linkage.</p>
+              <p class="paper-keywords"><strong>Key Words:</strong> Hospital Information System; Medical Fee Settlement; Unidentified Deposit; Unclaimed Refund; Public Administrative Information</p>
+            </div>
+          </section>
+
+          <!-- Ⅰ. 서론 -->
+          <section class="paper-article-section" id="paper-sec-intro">
+            <h4 class="paper-article-heading">Ⅰ. 서론</h4>
+            <p>우리나라 의료기관은 건강보험을 비롯한 다양한 진료비 지불체계에 따라 환자의 진료비를 산정·수납하고, 심사와 정산 과정을 거쳐 최종 진료비를 확정한다. 특히 입원환자는 재원기간 동안 진료행위와 검사, 처치, 약제 비용이 계속 발생하기 때문에 외래환자보다 원무행정이 복잡하며, 재원일수는 입원 진료비와 밀접하게 연관된 주요 요인이다(김상미 등, 2013). 대형 의료기관은 이러한 진료비 산정·수납과 청구 업무를 병원정보시스템(Hospital Information System; HIS)을 중심으로 수행한다. HIS는 환자 진료정보와 전자의무기록(Electronic Medical Record; EMR), 진료비 계산, 원무행정 정보를 통합하여 관리하는 핵심 정보시스템이다. 도입 이후 접수·수납·청구 업무의 처리 속도와 정확성이 크게 개선된 것으로 평가된다.</p>
+            <p>그러나 전산화가 모든 정산 업무를 자동으로 처리하지는 못한다. 금융기관이 제공한 입금정보와 환자정보를 대조하거나, 사망환자 환불금을 지급하기 위해 상속인을 확인하는 업무처럼 기관 외부 정보를 확인해야 하는 절차는 여전히 수작업에 의존하고 있다(박찬석 등, 2008). 진료비 수납 수단이 현금에서 카드, 계좌이체, 가상계좌 등으로 다양해지면서 이러한 간극은 더 커진다. 보호자나 가족이 환자를 대신하여 진료비를 납부하면서 자신의 명의로 송금하는 경우, 금융기관이 제공하는 입금자명·입금일자·입금금액만으로는 HIS에 등록된 환자등록번호, 환자명, 진료비 정보를 자동으로 연결하기 어렵다. 결국 원무 담당자는 입금내역과 환자정보를 대조하여 해당 금액을 특정 환자의 진료비와 연결하는 확인 절차를 거쳐야 한다. 환자가 개명한 경우에도 과거 진료 당시의 성명과 현재 등록된 성명이 달라 유사한 문제가 발생한다.</p>
+            <p>또한 진료가 끝난 뒤 건강보험 급여비용 심사나 진료비 확인 결과 과다 납부가 확인되면 환불금이 발생하는데, 그 사이에 환자가 사망한 경우에는 본인에게 지급할 수 없으므로 상속인 등 적법한 수령권자를 별도로 확인해야 한다. 이 환불금은 환자의 재산에 해당하고 사망과 함께 상속재산이 되므로, 의료기관이 권한 없는 사람에게 지급하면 추후 분쟁이나 이중 지급의 위험을 부담한다. 반대로 수령권자 확인을 미루면 환불금이 장기간 미환급 상태로 유지된다. HIS는 환자의 진료와 원무정보를 관리하기 위한 시스템이므로, 사망 이후의 상속관계나 환불금 수령권자를 확인하는 기능은 제공하지 않는다. 실제 수령권자를 확인하려면 제적등본, 가족관계증명서 등 외부 행정기관의 공적 서류를 대조·검증하는 절차가 요구된다. EMR이 정보의 정확성과 기재 충실도를 높이는 데 기여한다는 점은 이미 확인되었으나(신아미 등, 2009), EMR이 기관 외부의 행정정보 확인을 대신하지는 못한다. 의료정보의 외부 활용은 개인정보 보호와 법적·제도적 장치를 전제로 해야 한다는 지적도 있다(김영은, 이지연, 2024; 이민영, 2011).</p>
+            <p>이러한 예외적 정산정보가 방치되면 결과는 단순한 행정 미처리에 그치지 않는다. 미식별 입금과 미수령 환불금은 회계상 예수금 또는 미해결 채무로 장기간 잔류하면서 기관의 내부통제와 감사 대상이 되며, 귀속 관계가 불분명한 금액이 오래 남을수록 처리 경위의 추적이 어려워진다. 사망환자 환불금에 대해서는 잘못된 지급의 위험이 지급 지연을 초래하기도 한다. 권한 없는 사람에게 지급하면 진정한 권리자에게 다시 지급해야 하는 위험이 있어 의료기관은 소극적으로 처리하게 되고, 그 결과 환불금이 더 오래 잔류한다. 환자와 상속인의 입장에서는 본인이 알지 못하는 사이에 재산적 권리가 장기간 방치된다.</p>
+            <p>기존 선행연구는 HIS의 사용성과 업무 효율성(박찬석 등, 2008), EMR의 정확성과 정보 일치성(신아미 등, 2009), 입원환자의 본인부담 구조(조영순, 2006), 원무관리 업무의 표준화(김진아 등, 2016) 등을 중심으로 이루어져 왔다. 그러나 진료비 정산 과정에서 남는 미식별 입금과 사망환자 미수령 환불금을 하나의 정보관리 대상으로 설정하고, HIS와 공공 행정정보의 연계 가능성을 다룬 선행연구는 제한적이다. 사망환자 환불금은 환자 재산권과 직결되므로, 병원은 환불 업무를 수행하는 데 그치지 않고 수령 권리자 확인과 이를 위한 행정 절차를 포함하는 관리체계를 마련할 필요가 있다.</p>
+            <p>이에 본 연구는 병원 원무행정에서 개별적으로 처리되어 온 예외적 정산정보를 체계적으로 관리하고, 환자의 재산권 보호와 의료행정의 투명성을 함께 확보할 수 있는 공공관리 방안을 제시하고자 한다. 진료비 정산 과정에서 발생하는 예외적 정보는 크게 세 가지로 수렴한다. 첫째는 미식별 입금에서 입금정보와 환자정보를 정확하게 매칭하는 문제이고, 둘째는 미수령 환불금에서 지급 여부와 처리상태를 지속적으로 추적하는 문제이며, 셋째는 사망환자의 환불금에서 적법한 수령권한을 확인하는 문제이다. 본 연구는 먼저 HIS와 건강보험, 사망, 상속 관련 행정정보의 연계 가능성을 검토하고, 이어 미식별 입금과 사망환자 미수령 환불금의 관리를 위한 정보연계 기반 정책모형을 제안한다. 나아가 권리자에게 환급하기 위한 절차를 모두 거친 뒤에도 끝내 수령되지 않는 금액의 종국 처리 방향까지 함께 검토한다. 이를 통해 미해결 진료비 관련 정보를 투명하게 추적하고, 환자와 상속인의 재산권을 보호하며 의료행정의 관리 공백을 줄이는 데 기여할 것으로 기대한다.</p>
+          </section>
+
+          <!-- Ⅱ. 이론적 고찰 -->
+          <section class="paper-article-section" id="paper-sec-theory">
+            <h4 class="paper-article-heading">Ⅱ. 이론적 고찰</h4>
+
+            <div class="paper-theory-card">
+              <h5 class="paper-sub-heading">1. 의료기관 원무행정과 진료비 정산</h5>
+              <p>의료기관 원무행정은 환자 진료와 관련된 수납, 청구 및 각종 행정정보를 관리하는 업무이며, 진료정보와 비용정보의 연계가 중요하다. 박찬석 외(2008)는 HIS의 주요 업무영역에 진료비 수납 및 청구가 포함됨을 보였고, 김진아 외(2016)는 외래 원무관리 업무의 절차를 조사하여 접수·수납·제증명 등 업무의 표준화 필요성을 제기하였다. 조영순(2006)은 한 대학병원 산재보험 입원환자의 본인부담금을 분석하여 보험 및 진료 특성에 따라 본인부담금이 달라질 수 있음을 보고하였다. 진료비 정산은 단순한 수납 행위가 아니라 건강보험 급여기준, 환자 본인부담 구조, 심사 결과에 따라 금액이 확정되는 절차를 포함한다. 동일한 진료라도 보험 적용 여부와 심사 조정 결과에 따라 환자가 최종적으로 부담하는 금액이 달라지므로, 수납 시점의 금액이 확정 금액과 정확히 일치하지 않을 수 있으며, 이 차액이 환불 또는 추가 수납의 원인이 된다.</p>
+            </div>
+
+            <div class="paper-theory-card">
+              <h5 class="paper-sub-heading">2. 건강보험 심사와 진료비 환불</h5>
+              <p>건강보험 진료비는 관련 급여기준과 심사절차에 따라 산정·청구되며, 심사 또는 진료비 확인 결과에 따라 환자가 부담한 금액이 조정되거나 환불될 수 있다. 진료비의 삭감 또는 조정에는 의료기관의 진료 및 운영 특성 등 다양한 요인이 작용한다. 양유정(2012)은 의료기관의 운영요인과 환경요인이 진료비 삭감률에 미치는 영향을 분석하여, 의료기관의 규모와 운영 효율성이 높을수록 삭감률이 낮아지는 경향을 보고하였다. 건강보험 심사 과정에서 생기는 진료비 삭감과 조정은 환자 부담금의 변동으로 이어지고, 그 결과 과다 납부된 진료비에 대한 환불 절차가 발생한다.</p>
+              <p style="margin-top: 10px;">건강보험심사평가원의 진료비 확인 결과 환자가 부담한 진료비 가운데 과다하게 부담한 금액이 확인되면 환불 절차가 이루어질 수 있다. 이 과정에서는 환불금을 지급할 계좌와 적법한 수령권한에 대한 확인이 필요하다. 환자가 사망한 경우에는 본인에게 직접 환불할 수 없으므로 상속인 등 실제 수령 주체와 그 법적 권한을 확인하는 절차가 별도로 요구되며, 사망환자의 환불금은 일반적인 환불과 구분하여 관리할 필요가 있다.</p>
+            </div>
+
+            <div class="paper-theory-card">
+              <h5 class="paper-sub-heading">3. HIS와 환자정보 관리</h5>
+              <p>HIS는 의료기관의 진료 및 행정업무에서 생성되는 정보를 전산화하여 관리하는 정보시스템이며, EMR은 환자의 진료 관련 기록을 전자적으로 작성·관리하는 체계이다. 신아미 외(2009)는 종이의무기록과 전자의무기록의 기재정도 및 일치도를 비교하였고, 이주연 외(2013)는 대형 대학병원의 의무기록관리 과정에서 서식과 용어의 표준화, 시스템 간 연계와 관련된 문제를 지적하였다. 이 연구들은 병원정보의 전산화와 함께 정보의 일관성과 표준화가 중요함을 시사한다. 박찬석 외(2008)는 HIS의 품질 평가에서 외부 기관과의 정보공유 및 표준화가 개선이 필요한 영역으로 나타났다고 하였으며, 김영은과 이지연(2024)은 EMR 공유와 관련하여 개인정보 보호와 법·제도적 기반의 중요성을 강조하였다. 따라서 병원정보를 외부 행정정보와 연계할 때에는 정보의 목적과 범위를 명확히 하고 개인정보 보호 및 접근권한을 함께 고려해야 한다.</p>
+            </div>
+
+            <div class="paper-theory-card">
+              <h5 class="paper-sub-heading">4. 관련 법·제도적 배경</h5>
+              <p>미식별 입금과 미수령 환불금을 처리할 때에는 사법상 권리관계와 공법상 행정절차가 함께 걸려 있으므로, 관련 법제를 먼저 확인할 필요가 있다. 환자가 납부한 진료비 가운데 과다 수납된 금액은 의료기관이 환자에게 반환해야 한다. 환자가 사망하면 이 반환청구권은 상속재산으로서 상속인에게 승계되며, 상속인이 여럿이면 지급 대상과 절차가 더 복잡해진다(민법 제1005조, 제1006조). 수령권자를 특정할 수 없거나 수령을 거절·회피하는 경우에는 변제공탁으로 채무를 면하는 방법도 있으나(민법 제487조), 소액의 환불금마다 공탁 절차(공탁법 제4조)를 거치는 것은 의료기관에 상당한 업무 부담이 되어 현실적으로 활용되기 어렵다.</p>
+              <p style="margin-top: 10px;">개인정보 측면에서 개인정보 보호법 제18조는 개인정보의 목적 외 이용과 제공을 원칙적으로 제한하면서, 법률상 특별한 규정이 있거나 정보주체의 별도 동의를 받은 경우 등 예외를 인정하고 있다. 한편 전자정부법 제36조는 행정기관 등이 보유한 행정정보를 다른 행정기관 등과 공동으로 이용하도록 하는 근거를, 제37조는 이를 위한 행정정보 공동이용센터의 설치를 각각 규정하고 있다. 다만 행정정보의 활용은 개인정보자기결정권과 조화를 이루어야 하며 명확한 법적 근거를 전제로 해야 한다는 지적이 있다(이민영, 2011). 가족관계등록부는 상속관계를 확인하는 공적 증명수단이 될 수 있으나, 행정정보 공동이용 체계는 기본적으로 행정·공공기관 간의 이용을 전제로 설계된 것이다. 따라서 민간 의료기관이 곧바로 이용할 수 있는 구조가 아니며 별도의 제도적 설계가 필요하다.</p>
+              <p style="margin-top: 10px;">미수령 금액의 공공적 관리에는 이미 유사한 선례가 있다. 국세 환급금 조회서비스, 휴면예금 및 숨은 금융재산 통합조회, 카드 포인트 통합조회 등은 개인이 존재를 알지 못하는 금전적 권리를 공공이 대신 찾아주는 방식으로 운영되어 왔다. '사망자 및 피후견인 등 재산조회 통합처리(안심상속)'도 같은 흐름에 있는 서비스로, 상속인이 여러 기관을 일일이 거치지 않고 사망자의 금융·부동산·세금·연금 정보를 한 번의 신청으로 조회할 수 있게 한다. 그러나 국민건강보험공단이 지급하는 공적 환급금과 달리, 개별 의료기관에서 직접 발생한 진료비 과오납금 및 미환급금은 이러한 공공 통합조회 대상에 포함되어 있지 않다. 이로 인해 상속인이 해당 병원에 개별적으로 문의하거나 방문하지 않는 한 환급금의 존재 여부조차 파악하기 어려운 행정적 사각지대가 발생한다. 의료기관의 미수령 환불금은 제도적 성격이 이와 유사하므로, 이들 선례는 본 연구의 제안을 설계하는 데 참고가 된다.</p>
+            </div>
+
+            <div class="paper-theory-card">
+              <h5 class="paper-sub-heading">5. 진료비 정산·환불의 처리구조와 예외적 정산정보</h5>
+              <p><strong>5.1 진료비 정산 및 환불의 일반적 처리구조:</strong> 의료기관의 진료비는 진료 과정에서 발생한 비용을 기준으로 수납된다. 입원환자의 경우 입원 시 보증금이나 중간납부가 이루어지기도 하며, 재원기간 중 발생한 비용에 대한 중간정산과 퇴원 시점의 최종정산이 이루어진다. 이후 건강보험 심사나 진료비 확인 결과에 따라 이미 산정·수납된 진료비가 조정되면서 환불금이 발생하거나 추가 납부가 필요해질 수 있다. 정상적인 정산 과정에서는 환자 진료정보와 수납정보가 연계되어 해당 진료비의 발생 및 지급 내역이 관리되고, 환불이 발생하면 환자 본인 계좌를 확인하여 지급한다.</p>
+              <p style="margin-top: 10px;"><strong>5.2 예외적 정산정보의 발생과 유형:</strong> 진료비 정산 과정에서는 입금자와 실제 진료를 받은 환자의 명의가 다른 경우처럼 입금정보와 환자정보가 즉시 연결되지 않는 상황이 생길 수 있다. 본 연구에서는 입금 사실은 확인되었으나 해당 금액을 어느 환자의 진료비에 귀속시켜야 하는지가 즉시 확정되지 않은 상태를 '미식별 입금'으로 정의한다. 이러한 정보 불일치는 입금자명과 환자명이 다른 경우에만 생기는 것이 아니다. 환자의 개명 등으로 현재 병원에 등록된 성명과 금융거래 또는 과거 진료 과정에서 확인되는 성명이 달라지는 경우에도 동일 환자 여부를 추가로 확인해야 한다. 환자 식별을 성명 하나에만 의존하면 예외적 정산정보의 정확한 매칭에 한계가 생긴다.</p>
+              <p style="margin-top: 10px;">환불금이 발생하였으나 실제 지급이 완료되지 않으면 미수령 환불금으로 남는다. 특히 환불금 발생 이후 환자가 사망한 경우에는 생존 환자와 달리 실제 수령권한을 별도로 확인해야 하는 문제가 생긴다. 가족관계 변화나 이혼 등으로 기존 가족관계 또는 보호자 정보만으로는 현재 법적 관계와 수령권한을 판단하기 어려운 경우 추가적인 확인절차가 필요하다. 이러한 예외적 정산정보는 발생 원인에 따라 다음과 같이 정리할 수 있다.</p>
+              <ul style="padding-left: 20px; font-size: 14px; line-height: 1.85; margin: 10px 0;">
+                <li><strong>미식별 입금:</strong> 보호자·가족·법인 등이 대납하여 입금자 명의와 환자 명의가 다른 경우, 환자 개명으로 과거 정보와 현재 정보가 달라진 경우, 중복 입금이나 분할 입금으로 귀속이 불분명한 경우</li>
+                <li><strong>미수령 환불금:</strong> 환자의 사망으로 수령권자가 불분명한 경우, 연락처 변경이나 이사 등으로 환자와 연락이 닿지 않는 경우, 금액이 소액이거나 안내가 미비하여 수령이 이루어지지 않는 경우</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Ⅲ. 연구 방법 -->
+          <section class="paper-article-section" id="paper-sec-method">
+            <h4 class="paper-article-heading">Ⅲ. 연구 방법</h4>
+            <div class="paper-theory-card">
+              <h5 class="paper-sub-heading">1. 연구자료 및 연구대상</h5>
+              <p>본 연구의 분석 대상 자료는 세 범주로 구성된다. 첫째는 선행연구로, HIS의 사용성(박찬석 등, 2008), 원무관리 표준화(김진아 등, 2016), EMR의 기재정도 및 일치도(신아미 등, 2009), 입원환자의 본인부담금(조영순, 2006), 재원일과 비용(김상미 등, 2013), 진료비 삭감률(양유정, 2012), 의무기록관리(이주연 등, 2013), EMR 공유 의도(김영은, 이지연, 2024), 행정정보 활용과 개인정보 보호(이민영, 2011)를 포함한다. 둘째는 법령으로, 국민건강보험법 및 같은 법 시행령, 개인정보 보호법 제18조, 민법 제487조·제1005조·제1006조, 공탁법 제4조, 전자정부법 제36조·제37조, 가족관계의 등록 등에 관한 법률을 검토하였다. 셋째는 현행 행정서비스로, 정부24가 운영하는 '사망자 및 피후견인 등 재산조회 통합처리(안심상속)', 건강보험심사평가원의 진료비 확인 제도, 금융위원회·금융감독원의 휴면예금·숨은 금융자산 통합조회(파인), 행정안전부의 행정정보 공동이용을 검토 대상으로 하였다.</p>
+              <p style="margin-top: 10px;">자료의 출처와 확인 방법은 다음과 같다. 법령은 국가법령정보센터를 통해 조문과 개정 연혁을 확인하였고, 선행연구는 KCI 및 각 발행 학술지를 통해 원문과 서지정보를 대조하였으며, 행정서비스는 각 소관 기관의 공식 안내자료를 기준으로 하였다. 다만 2026년 개정 법령의 구체적 공포번호와 개정일자는 투고 시점에 국가법령정보센터를 통해 재확인할 필요가 있다.</p>
+            </div>
+
+            <div class="paper-theory-card">
+              <h5 class="paper-sub-heading">2. 연구 방법 및 분석 절차</h5>
+              <p>본 연구는 미식별 입금과 사망환자 미수령 환불금이라는 예외적 정산정보를 다루는 제도 설계 연구로서, 문헌 및 법제도 분석 방법을 따른다. 먼저 위 선행연구와 법령, 현행 행정서비스의 구조를 검토하였다. 이를 바탕으로 진료비 정산 과정에서 예외적 정산정보가 발생하는 경위와 유형을 도출하고, 유형별로 필요한 확인절차를 분석하였다. 이 분석 결과를 바탕으로 의료기관 내부 관리와 공공행정정보 연계를 단계적으로 결합한 관리모형을 설계하였다. 본 연구는 특정 의료기관의 실제 데이터를 분석한 실증연구가 아니라 제도와 정보 흐름의 설계를 다루는 연구이다.</p>
+            </div>
+          </section>
+
+          <!-- Ⅳ. 연구 결과 -->
+          <section class="paper-article-section" id="paper-sec-result">
+            <h4 class="paper-article-heading">Ⅳ. 연구 결과</h4>
+            <p>Ⅱ장과 Ⅲ장에서 검토한 결과, 진료비 정산 과정에서 나타나는 예외적 정산정보는 (1) 입금정보와 환자정보의 매칭, (2) 미수령 환불금의 지급상태 추적, (3) 사망환자의 수령권한 확인이라는 세 가지 관리 문제로 수렴하였다. 본 연구는 서론에서 제시한 목적에 따라 먼저 공공행정정보와의 연계 가능성을 검토한 뒤, 이를 전제로 한 단계적 관리모형을 제시한다. 이는 박찬석 외(2008)가 HIS 품질 평가에서 외부 기관과의 정보공유 및 표준화를 개선이 필요한 영역으로 지적한 점과도 일치한다.</p>
+
+            <h5 class="paper-sub-heading" style="margin-top: 28px;">1. 공공관리체계 구축의 기본방향</h5>
+            <p>본 연구는 HIS와 공공행정정보를 일괄 통합하는 방식이 아니라, 의료기관 내부 확인 → 예외대상 분류 → 추가 확인 필요성 판단 → 필요한 경우 공공행정정보 연계 검토 → 적법한 후속처리로 이어지는 단계적 관리체계를 제안한다. 이 관리체계는 다음 다섯 가지 원칙을 기반으로 한다.</p>
+            <ul style="padding-left: 20px; font-size: 14.5px; line-height: 1.95; margin: 12px 0 20px 0;">
+              <li><strong>첫째, 정산정보의 정확한 식별 원칙:</strong> 입금자명이나 환자명 같은 단일 정보에 의존하지 않고, 필요한 경우 환자번호, 생년월일, 진료기간 등 의료기관이 적법하게 보유·활용할 수 있는 식별정보를 종합하여 동일인 여부를 확인한다.</li>
+              <li><strong>둘째, 최소정보 활용의 원칙:</strong> 공공행정정보 연계가 필요한 경우에도 모든 환자정보를 공유하는 것이 아니라 해당 업무를 수행하는 데 필요한 최소한의 정보만 활용한다.</li>
+              <li><strong>셋째, 단계적 처리의 원칙:</strong> 미식별 입금이나 환불금이 발생했다는 이유만으로 외부정보를 즉시 조회하지 않고, 의료기관 내부에서 먼저 확인한 뒤 내부정보만으로 해결이 어려운 경우에 한하여 추가적인 연계 필요성을 검토한다.</li>
+              <li><strong>넷째, 처리이력 관리의 원칙:</strong> 예외적 정산정보의 발생부터 확인, 처리, 지급에 이르는 과정을 기록하여 담당자가 바뀌거나 장기간 미처리된 상황에서도 처리경위를 확인할 수 있게 한다.</li>
+              <li><strong>다섯째, 책임구분의 원칙:</strong> 기관 간 정보 확인이 필요한 단계에서는 어떤 기관이 어떤 정보를 어떤 법적 근거로 제공·확인하는지를 문서로 명확히 하여, 정보의 관리 책임이 모호해지지 않도록 한다.</li>
+            </ul>
+
+            <h5 class="paper-sub-heading" style="margin-top: 28px;">2. 공공행정정보 연계 가능성과 단계적 관리모형</h5>
+            <p><strong>2.1 현행 행정서비스와의 관계:</strong> 현재 정부24의 '사망자 및 피후견인 등 재산조회 통합처리(안심상속)'는 상속인 또는 후견인이 사망자의 금융내역, 토지, 자동차, 세금, 연금가입 여부 등의 재산 관련 정보를 통합적으로 조회 신청할 수 있도록 하는 행정서비스이다. 신청인이 한 번 신청하면 각 기관이 보유한 정보를 개별적으로 회신하는 구조이므로, 여러 기관을 일일이 거치는 부담을 줄여 준다. 앞서 살펴본 국세 환급금, 휴면예금, 카드 포인트 등 개인이 찾아가지 않은 금액을 공공이 조회해 주는 서비스도 이미 운영되고 있다. 그러나 현재 공개된 서비스 범위에 의료기관의 미수령 환불금이 별도의 조회대상으로 포함되어 있지는 않다.</p>
+            <p><strong>2.2 공공행정정보 연계 가능성 검토 결과:</strong> 현행 법제를 검토한 결과, 의료기관이 공공행정정보에 직접 접근하는 방식은 현실적으로 곤란한 것으로 나타났다. 전자정부법 제36조와 제37조에 따른 행정정보 공동이용은 행정기관 등 공공부문 간의 이용을 전제로 설계되어 있어, 민간 의료기관이 곧바로 공동이용의 주체가 되기 어렵다. 또한 개인정보 보호법 제18조는 개인정보의 목적 외 이용·제공을 원칙적으로 제한하므로, 사망환자의 상속관계 등 외부 행정정보를 확인하려면 법률상 특별한 근거나 정보주체(상속인)의 동의와 같은 예외 요건이 전제되어야 한다.</p>
+            <p>제도적 측면에서는 국세 환급금, 휴면예금·숨은 금융재산, 카드 포인트 통합조회와 '사망자 등 재산조회 통합처리(안심상속)'처럼 개인이 알지 못하는 금전적 권리를 공공이 대신 조회해 주는 선례가 이미 운영되고 있다. 그러나 의료기관의 미수령 환불금은 현재 이들 조회대상에 포함되어 있지 않아 기존 제도에 자동으로 편입되는 구조는 아니다. 다만 이는 기존 조회체계의 대상 항목을 확장함으로써 연계를 현실화할 여지가 있음을 뜻한다.</p>
+            <p>이상의 검토를 종합하면, 공공행정정보와의 연계는 다음 세 가지 조건에서 가능한 것으로 판단된다. 첫째, 의료기관이 직접 접근하는 방식이 아니라 관계 행정기관을 경유하는 방식이어야 한다. 둘째, 상속인 등 권리자가 신청과 동의를 하는 권리자 주도 경로는 개인정보 부담이 상대적으로 작아 우선 현실화할 수 있다. 셋째, 의료기관이 확인을 요청하는 기관 주도 경로는 별도의 법적 근거 마련이 선행되어야 한다. 따라서 본 연구가 제안하는 연계는 현행 서비스가 이미 제공하는 기능을 전제한 것이 아니라, 위 조건을 충족하는 범위에서 단계적·조건부로 실현 가능한 정책 제안이다.</p>
+            <p><strong>2.3 제안하는 연계구조:</strong> 본 연구에서는 기존 행정서비스의 운영방식을 참고하여, 일정한 요건을 충족하는 사망환자 미수령 환불금을 별도 관리대상으로 설정하고 필요하면 공공행정정보와 연계할 수 있는 구조를 제안한다. 전체 과정은 다음과 같다.</p>
+
+            <div class="paper-model-diagram">
+              <div class="paper-step-box">
+                <span class="step-num">1단계</span>
+                <span class="step-txt">의료기관 내부 확인<br>(HIS 1차 자동 매칭)</span>
+              </div>
+              <div class="paper-step-arrow">→</div>
+              <div class="paper-step-box">
+                <span class="step-num">2단계</span>
+                <span class="step-txt">다차원 교차검증<br>(환자번호·생년월일·기간)</span>
+              </div>
+              <div class="paper-step-arrow">→</div>
+              <div class="paper-step-box">
+                <span class="step-num">3단계</span>
+                <span class="step-txt">예외대상 상태관리<br>(미매칭/장기미식별/사망)</span>
+              </div>
+              <div class="paper-step-arrow">→</div>
+              <div class="paper-step-box">
+                <span class="step-num">4단계</span>
+                <span class="step-txt">공공행정정보 연계<br>(정부24 안심상속 경로)</span>
+              </div>
+              <div class="paper-step-arrow">→</div>
+              <div class="paper-step-box highlight">
+                <span class="step-num">5단계</span>
+                <span class="step-txt">적법 지급 및 종국처리<br>(상속인 지급 / 기금 귀속)</span>
+              </div>
+            </div>
+
+            <p>이 연계는 크게 두 가지 경로로 구분할 수 있다. 하나는 의료기관이 업무 수행을 위해 필요한 확인을 행정기관에 요청하는 기관 주도 경로이고, 다른 하나는 상속인 등 권리자가 안심상속과 유사한 통합 조회절차를 통해 의료기관 미수령 환불금의 존재를 확인하는 권리자 주도 경로이다. 후자는 정보주체가 신청하므로 개인정보 부담이 상대적으로 작으며, 기존 서비스의 조회 항목을 확장하는 방식으로 현실화할 여지가 있다. 여기서 중요한 점은 의료기관이 공공행정정보에 제한 없이 직접 접근하도록 하는 것이 아니라는 것이다. 의료기관은 자신이 보유한 진료·수납·환불정보를 관리하고, 외부 행정정보가 필요한 경우에는 관련 법적 근거와 기관별 업무범위에 따라 필요한 정보를 확인할 수 있는 절차를 마련하는 방식이 적절하다.</p>
+
+            <p><strong>2.4 단계별 관리주체:</strong> 관리주체별 역할은 &lt;표 1&gt;과 같이 구분할 수 있다.</p>
+            <div class="story-table-wrap">
+              <h5 class="paper-table-title">&lt;표 1&gt; 단계별 관리주체와 주요 역할</h5>
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th style="width: 160px;">처리 기관</th>
+                    <th>주요 역할</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>의료기관</strong></td>
+                    <td>진료비 정산, 환불금 발생 및 지급 여부 확인; 미식별 입금 및 미수령 환불금의 예외대상 분류; 개명·가족관계 변화 등 내부정보만으로 판단하기 어려운 대상의 추가 확인 필요성 검토</td>
+                  </tr>
+                  <tr>
+                    <td><strong>관계 행정기관</strong></td>
+                    <td>법적 근거와 업무범위에 따른 필요한 행정정보 확인</td>
+                  </tr>
+                  <tr>
+                    <td><strong>행정정보 공동이용센터</strong></td>
+                    <td>기관 간 정보 확인 요청의 접수·중계 및 공동이용 절차 운영</td>
+                  </tr>
+                  <tr>
+                    <td><strong>의료기관</strong></td>
+                    <td>확인된 정보를 바탕으로 적법한 환불 및 후속처리</td>
+                  </tr>
+                  <tr>
+                    <td><strong>중앙정부</strong></td>
+                    <td>필요한 경우 관리기준, 정보연계 기준, 보호기준 등의 제도화 검토</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>이러한 역할분담은 병원이 모든 행정정보를 직접 보유하거나 판단하는 구조를 피하고, 각 기관이 자신의 업무범위 안에서 필요한 기능을 수행하도록 하는 데 목적이 있다.</p>
+
+            <h5 class="paper-sub-heading" style="margin-top: 28px;">3. 미식별 입금의 관리체계</h5>
+            <p><strong>3.1 미식별 입금의 전산관리:</strong> 미식별 입금은 정상적인 수납정보와 구분하여 별도의 관리대상으로 설정할 필요가 있다. 이를 위해 HIS에서는 입금정보, 환자정보, 매칭정보 및 처리정보를 연계하여 관리하는 구조를 마련할 수 있으며, 주요 관리 항목은 &lt;표 2&gt;와 같이 정리할 수 있다.</p>
+            <div class="story-table-wrap">
+              <h5 class="paper-table-title">&lt;표 2&gt; 미식별 입금 관리를 위한 정보 항목 구성</h5>
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th style="width: 140px;">구분</th>
+                    <th>주요 관리정보</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>입금정보</strong></td>
+                    <td>입금일자, 입금액, 입금자명</td>
+                  </tr>
+                  <tr>
+                    <td><strong>환자정보</strong></td>
+                    <td>환자번호, 환자명, 진료 여부</td>
+                  </tr>
+                  <tr>
+                    <td><strong>매칭정보</strong></td>
+                    <td>환자 매칭 여부, 매칭일자, 확인근거</td>
+                  </tr>
+                  <tr>
+                    <td><strong>확인정보</strong></td>
+                    <td>담당자, 확인일자, 확인내용</td>
+                  </tr>
+                  <tr>
+                    <td><strong>처리정보</strong></td>
+                    <td>충당, 환불 등 처리상태</td>
+                  </tr>
+                  <tr>
+                    <td><strong>이력정보</strong></td>
+                    <td>확인 및 처리과정의 변경이력</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>이러한 정보는 입금이 등록되는 시점부터 일반 수납과 별도의 항목으로 기록되어야 한다. 미식별 입금의 처리상태도 &lt;표 3&gt;과 같이 구분하여 관리할 수 있다.</p>
+            <div class="story-table-wrap">
+              <h5 class="paper-table-title">&lt;표 3&gt; 미식별 입금의 처리상태 구분</h5>
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th style="width: 120px;">상태</th>
+                    <th style="width: 260px;">의미</th>
+                    <th>후속 조치</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>미매칭</strong></td>
+                    <td>입금은 확인되었으나 환자와 연결되지 않은 상태</td>
+                    <td>자동 및 수동 매칭 시도</td>
+                  </tr>
+                  <tr>
+                    <td><strong>매칭 검토</strong></td>
+                    <td>후보 환자가 특정되었으나 동일인 확인이 진행 중인 상태</td>
+                    <td>진료기간·수납내역 등 추가 증빙 확인</td>
+                  </tr>
+                  <tr>
+                    <td><strong>매칭 완료</strong></td>
+                    <td>귀속 환자가 확정된 상태</td>
+                    <td>진료비 충당 또는 환불 처리</td>
+                  </tr>
+                  <tr>
+                    <td><strong>장기 미식별</strong></td>
+                    <td>일정 기간이 지나도 귀속이 확정되지 않은 상태</td>
+                    <td>별도 분류 관리, 주기적 재검토</td>
+                  </tr>
+                  <tr>
+                    <td><strong>처리 완료</strong></td>
+                    <td>충당·반환·소멸 등으로 종결된 상태</td>
+                    <td>처리결과와 이력 보존</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>이를 통해 단순히 미식별 금액의 존재 여부를 관리하는 데 그치지 않고, 해당 금액이 언제 발생하여 어떤 확인과정을 거쳤으며 현재 어느 단계에 있는지를 지속적으로 추적할 수 있다.</p>
+
+            <p><strong>3.2 환자정보 매칭과 예외처리:</strong> 입금정보와 환자정보의 매칭은 단계적으로 진행하는 것이 바람직하다. 먼저 입금자명과 환자명의 일치 여부를 확인하는 1차 자동매칭을 수행하고, 일치하지 않는 경우에는 진료기간, 환자번호, 기존 수납내역, 등록된 보호자 정보 등 의료기관이 적법하게 확인할 수 있는 정보를 종합하여 후보를 검토한다. 그래도 확정되지 않는 건은 담당자 확인 단계로 넘기되, 이때 사용한 확인 근거를 함께 기록한다.</p>
+            <p>환자의 개명으로 현재의 환자명과 과거 진료 또는 입금 과정에서 사용된 성명이 다른 경우에는 동일인 여부를 성명만으로 판단하기 어렵다. 개명 전후의 정보가 적법하게 확인되는 경우 이를 연결할 수 있는 관리기준을 마련하고, 매칭 과정에서 사용한 확인근거를 기록할 필요가 있다. 주민등록번호, 연락처, 과거 수납 계좌 등 부가적인 식별정보를 활용하되, 이는 해당 목적에 필요한 범위에 한정한다. 이러한 예외상황에서 담당자가 임의로 동일인 여부를 판단하면 처리 결과의 일관성이 떨어지므로, 확인 가능한 정보와 판단근거를 함께 기록하여 매칭 과정의 객관성과 추적가능성을 확보해야 한다.</p>
+
+            <p><strong>3.3 장기 미식별 입금의 관리:</strong> 미식별 상태가 장기간 지속되면 일반적인 수납정보와 별도로 장기 미식별 대상으로 분류하여 관리할 필요가 있다. 장기 여부의 기준은 기관의 업무 여건에 따라 정할 수 있으나, 예를 들어 발생 후 일정 기간(30일 또는 90일 등)이 경과한 건을 자동으로 '장기 미식별'로 전환하고 주기적인 재검토 대상으로 관리하는 방식을 고려할 수 있다. 관리절차는 다음과 같이 구성할 수 있다.</p>
+            <p style="background: rgba(0,0,0,0.02); padding: 10px 16px; border-left: 3px solid var(--text); font-weight: 500; font-size: 13.5px; margin: 10px 0 16px 0;">입금 등록 → 환자정보 매칭 → 담당자 확인 → 추가 확인 → 장기 미식별 분류 → 최종 처리 또는 계속 관리</p>
+            <p>장기 미식별 대상에 대해서는 반복적인 수작업 확인에 의존하기보다 확인일자와 처리상태를 전산으로 관리하여 담당자가 변경되더라도 기존의 확인과정을 이어갈 수 있도록 해야 한다. 아울러 장기간 귀속을 확인할 수 없는 금액에 대해서는 회계상 처리 기준과 연계하고, 필요한 경우 공탁 등 법적 처리 방안도 함께 검토할 수 있다.</p>
+
+            <h5 class="paper-sub-heading" style="margin-top: 28px;">4. 사망환자 미수령 환불금의 관리체계</h5>
+            <p><strong>4.1 환불금의 상태관리:</strong> 환불금은 금액이 발생한 시점과 실제 지급이 완료된 시점을 구분하여 관리해야 한다. 환불금이 발생하였으나 지급이 완료되지 않은 경우에는 그 사유와 현재 상태를 별도로 관리하여 장기간 미처리되는 것을 막아야 한다. 이를 위해 HIS에서 다음과 같은 상태값을 관리하는 방안을 제안한다.</p>
+            <p style="background: rgba(0,0,0,0.02); padding: 10px 16px; border-left: 3px solid var(--text); font-weight: 500; font-size: 13.5px; margin: 10px 0 16px 0;">환불 발생 → 환불 안내 → 지급정보 확인 → 지급 완료 / 미지급 → 환자 사망 확인 → 수령권자 확인 필요 → 추가 확인 → 지급 또는 후속처리 완료</p>
+
+            <p>각 상태값의 의미와 관리 포인트는 &lt;표 4&gt;와 같이 정리할 수 있다.</p>
+            <div class="story-table-wrap">
+              <h5 class="paper-table-title">&lt;표 4&gt; 미수령 환불금의 상태값과 관리 내용</h5>
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th style="width: 140px;">상태값</th>
+                    <th style="width: 240px;">의미</th>
+                    <th>관리 포인트</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>환불 발생</strong></td>
+                    <td>심사·정산 결과 과납분이 확인된 상태</td>
+                    <td>발생 금액과 사유 기록</td>
+                  </tr>
+                  <tr>
+                    <td><strong>환불 안내</strong></td>
+                    <td>환자·보호자에게 환불 사실을 안내한 상태</td>
+                    <td>안내 일자와 방법 기록</td>
+                  </tr>
+                  <tr>
+                    <td><strong>지급정보 확인</strong></td>
+                    <td>지급 계좌와 수령인을 확인 중인 상태</td>
+                    <td>본인 명의 계좌 확인 여부</td>
+                  </tr>
+                  <tr>
+                    <td><strong>미지급</strong></td>
+                    <td>연락두절·권한 미확인 등으로 지급이 보류된 상태</td>
+                    <td>사유별 분류와 재시도 관리</td>
+                  </tr>
+                  <tr>
+                    <td><strong>수령권자 확인 필요</strong></td>
+                    <td>환자 사망으로 상속관계 확인이 필요한 상태</td>
+                    <td>증빙서류 또는 행정정보 확인</td>
+                  </tr>
+                  <tr>
+                    <td><strong>지급 완료 / 후속처리 완료</strong></td>
+                    <td>지급 또는 공탁 등으로 종결된 상태</td>
+                    <td>처리결과와 이력 보존</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>이와 같은 상태관리를 통해 환불금의 발생과 지급 여부를 구분하고, 사망환자처럼 별도의 확인이 필요한 대상을 식별할 수 있다.</p>
+
+            <p><strong>4.2 사망 여부와 수령권한의 분리:</strong> 환자의 사망 여부를 확인하는 것과 실제 환불금을 수령할 수 있는 권리관계를 확인하는 것은 구분해야 한다. 환자가 사망했다는 사실만으로 특정 가족이나 보호자가 자동으로 환불금을 수령할 수 있다고 판단해서는 안 되며, 실제 지급 단계에서는 관련 법령과 증빙자료에 따라 적법한 수령권한을 확인해야 한다. 통상 가족관계등록부 등 공적 증명으로 상속관계를 확인하고, 상속인이 여럿인 경우에는 수령 대표자에 대한 확인 절차가 필요하다. 환불금이 소액인 경우에는 간소화된 확인 기준을 적용할 수 있는지 여부도 별도로 검토할 수 있다.</p>
+            <p>가족관계의 변화가 있었던 경우에는 병원에 과거 등록된 가족관계 또는 보호자 정보만으로 현재의 법적 관계를 판단하기 어렵다. 이혼 등으로 기존의 가족관계와 현재의 법적 관계가 달라진 경우에는 병원이 보유한 정보와 실제 수령권한을 구분하여 확인해야 한다. 따라서 사망환자의 환불금 관리는 다음의 순서로 진행하는 방안을 제안한다.</p>
+            <p style="background: rgba(0,0,0,0.02); padding: 10px 16px; border-left: 3px solid var(--text); font-weight: 500; font-size: 13.5px; margin: 10px 0 16px 0;">① 사망 여부 확인 → ② 환불금 발생 및 미지급 여부 확인 → ③ 수령권한 확인 필요 여부 판단 → ④ 필요한 경우 관련 행정정보 또는 증빙 확인 → ⑤ 적법한 지급 또는 후속처리</p>
+
+            <h5 class="paper-sub-heading" style="margin-top: 28px;">5. 통합관리 및 개인정보 보호 방안</h5>
+            <p><strong>5.1 통합관리 구조:</strong> 앞서 제시한 연계구조와 미식별 입금·사망환자 환불금 관리체계를 종합하면 예외적 진료비 관련 정보는 다음과 같은 하나의 관리체계로 통합할 수 있다.</p>
+            <p style="background: rgba(0,0,0,0.02); padding: 10px 16px; border-left: 3px solid var(--text); font-weight: 500; font-size: 13.5px; margin: 10px 0 16px 0;">진료비 정산 → 입금·환불정보 확인 → 예외대상 분류 → 미식별 입금 또는 미수령 환불금 관리 → 환자정보 및 정산정보 추가 확인 → 사망환자의 경우 수령권한 확인 필요성 판단 → 필요한 경우 공공행정정보 연계 검토 → 지급 또는 적법한 후속처리 → 처리결과 및 이력 보존</p>
+            <p>이 과정에서 의료기관 내부정보와 외부 행정정보를 동일한 데이터로 통합하는 것이 아니다. 의료기관 내부 정산정보를 중심에 두고 필요한 확인절차를 단계적으로 연결하는 방식이 기본 구조이며, 외부 정보는 확인이 필요한 지점에서만 제한적으로 관여한다.</p>
+
+            <p><strong>5.2 개인정보 보호와 접근권한:</strong> 공공행정정보와의 연계는 개인정보의 목적 외 이용·제공과 관련될 수 있으므로 명확한 법적 근거와 이용 목적, 제공범위 및 절차를 전제로 설계해야 한다. 현행 개인정보 보호법 제18조는 개인정보의 목적 외 이용·제공을 원칙적으로 제한하면서 법률상 특별한 규정이나 별도 동의 등 일정한 경우에 예외를 인정하고 있다. 따라서 본 연구에서 제안하는 연계체계에는 다음과 같은 관리원칙을 적용해야 한다.</p>
+            <ul style="padding-left: 20px; font-size: 14.5px; line-height: 1.95; margin: 10px 0 16px 0;">
+              <li>최소한의 정보만 활용할 것</li>
+              <li>정보 이용 목적과 법적 근거를 명확히 할 것</li>
+              <li>기관 및 담당자별 접근권한을 구분할 것</li>
+              <li>조회, 변경, 처리 이력을 기록할 것</li>
+              <li>정보의 보유기간과 관리기준을 설정할 것</li>
+              <li>목적이 종료된 정보는 관련 기준에 따라 안전하게 관리·삭제할 것</li>
+            </ul>
+            <p>이 밖에도 조회 화면에서 주민등록번호 등 고유식별정보는 일부를 가려 표시하는 마스킹 처리, 열람·출력 로그의 정기 점검, 담당자 지정과 권한 변경 이력 관리 등의 기술적·관리적 조치가 함께 필요하다. 특히 의료기관이 보유한 진료정보 전체를 공공기관에 제공하는 방식은 본 연구의 목적과 맞지 않는다. 연계가 필요한 경우에도 환자 식별과 환불금 확인에 필요한 범위로 제한하고, 의료정보와 행정정보의 역할을 구분하여 관리하는 것이 적절하다.</p>
+          </section>
+
+          <!-- Ⅴ. 결론 -->
+          <section class="paper-article-section" id="paper-sec-conclusion">
+            <h4 class="paper-article-heading">Ⅴ. 결론</h4>
+            <p>본 연구는 의료기관 원무행정 과정에서 발생하는 미식별 입금과 미수령 환불금 등 예외적 정산정보가 환자 또는 보호자와의 연락 단절 등으로 장기간 의료기관 내부에 잔류할 수 있다는 점에 주목하여, 이를 체계적으로 관리하기 위한 공공관리체계의 구축방안을 제시하였다. 이러한 금액이 장기간 미처리 상태로 남으면 단순한 행정 미처리에 그치지 않고 귀속과 처리과정의 추적이 어려워지며, 관리상의 사각지대가 생겨 오·남용 가능성에 대한 통제도 어려워진다.</p>
+            <p>먼저 본 연구는 HIS와 건강보험, 사망, 상속 관련 공공행정정보의 연계 가능성을 검토하였다. 국세 환급금, 휴면예금, 카드 포인트 통합조회와 '사망자 등 재산조회 통합처리(안심상속)'처럼 개인이 알지 못하는 금전적 권리를 공공이 대신 조회해 주는 제도는 이미 운영되고 있으나, 의료기관의 미수령 환불금은 현재 조회대상에 포함되어 있지 않다. 검토 결과, 의료기관이 공공행정정보에 직접 접근하는 방식이 아니라 개인정보 보호법 등 관련 법·제도와 기관별 업무범위를 전제로, 필요한 경우에 한정하여 행정정보를 확인하는 단계적 연계가 현실적인 방향임을 확인하였다.</p>
+            <p>이러한 검토를 바탕으로 본 연구는 미식별 입금과 미수령 환불금을 별도 관리대상으로 설정하고, 발생부터 확인, 처리, 종결까지의 상태와 이력을 HIS에서 지속적으로 관리하는 정보연계 기반 관리모형을 제안하였다. 또한 환자 개명이나 가족관계 변화 등으로 기존 정보만으로는 확인하기 어려운 경우, 그리고 사망환자 환불금에 대해서는 수령권한을 별도로 확인하고, 내부정보만으로 해결하기 어려우면 관련 법적 근거와 절차에 따라 공공행정정보를 확인하는 단계적 절차를 제시하였다.</p>
+            <p>제안된 방향은 단계적으로 추진하는 것이 현실적이다. 단기적으로는 의료기관이 외부 연계 없이도 수행할 수 있는 범위, 즉 HIS에 미식별 입금과 미수령 환불금의 상태관리·이력관리 기능을 마련하고 기관 내부 처리기준과 담당 체계를 정비하는 일이 우선이다. 중기적으로는 의료계, 건강보험심사평가원, 행정 관련 기관이 참여하는 협의체를 통해 확인 가능한 정보의 범위와 절차를 조정하고, 안심상속 등 기존 조회체계에 의료기관 미수령 환불금을 포함하는 방안을 시범적으로 검토할 수 있다. 장기적으로는 이러한 연계의 법적 근거와 정보 제공·보호 기준을 명문화하여, 미수령 금액이 안정적으로 권리자에게 돌아가는 제도적 기반을 마련해야 한다.</p>
+            <p>아울러 권리자에게 환급하기 위한 절차를 모두 거친 뒤에도 끝내 수령되지 않는 금액에 대해서는 그 종국 처리 방안을 함께 검토할 필요가 있다. 현행 제도에서 미수령 금액은 소멸시효가 완성되면 국고로 귀속되나 그 용도는 특정되어 있지 않다. 다만 휴면예금을 서민금융진흥원에 귀속시켜 취약계층 지원에 활용하는 「서민의 금융생활 지원에 관한 법률」의 사례처럼, 장기 미수령 환불금을 공익 목적 기금에 귀속시켜 사회 소외계층 지원이나 공공 의료연구에 활용하는 방안도 입법적으로 검토할 여지가 있다. 이는 재산권 보호와 소멸시효, 권리자 보호를 우선 전제하는 별도 특별법이 필요하므로, 본 연구의 범위를 넘어 후속 입법 연구의 과제로 남긴다.</p>
+            <p>다만 본 연구는 전국 의료기관의 실제 발생자료를 이용한 실증분석이나 시스템 구현 및 효과검증을 수행하지 못하였다. 향후에는 실제 발생자료를 바탕으로 미수령 금액의 규모와 관리기간을 분석하고, 반환 및 후속처리 기준과 정보연계의 법적 근거를 구체화하여 제안모형이 실현 가능한지 검증하는 연구가 필요하다.</p>
+          </section>
+
+          <!-- 참고문헌 -->
+          <section class="paper-article-section" id="paper-sec-ref">
+            <h4 class="paper-article-heading">참고문헌</h4>
+            <ul class="paper-ref-list">
+              <li>김상미, 이해종, 신동교(2013). 활동기준원가를 이용한 충수절제술과 폐렴의 경제적 재원일과 재원일 단축에 따른 기회이익. 『보건행정학회지』, 23(2), 124-131.</li>
+              <li>김영은, 이지연(2024). 전자의무기록 공유 의도에 영향을 미치는 요인 연구. 『정보관리학회지』, 41(1), 283-311.</li>
+              <li>김진아, 이무식, 황혜정, 김광환(2016). 일부지역 의료기관의 외래원무관리 표준화에 관한 연구. 『한국산학기술학회논문지』, 17(7), 357-366.</li>
+              <li>박찬석, 이현우, 고석하(2008). 병원정보시스템 사용성에 대한 실증연구. 『경영정보학연구』, 10(3), 289-311.</li>
+              <li>신아미, 박희준, 정선주, 노미진, 김윤년(2009). 종이의무기록과 전자의무기록의 기재정도 및 일치도 비교 연구: 심방세동 환자 입원기록을 중심으로. 『대한의료정보학회지』, 15(2), 201-208.</li>
+              <li>양유정(2012). 의료기관 운영요인과 환경요인이 진료비 삭감률에 미치는 영향에 관한 연구. 『디지털융복합연구』, 10(11), 493-502.</li>
+              <li>이민영(2011). 행정정보의 활용과 개인정보의 보호. 『가천법학』, 4(3), 55-88.</li>
+              <li>이주연, 김용, 김건(2013). 대형 대학병원의 의무기록관리 현황분석 및 개선방안에 관한 연구. 『한국기록관리학회지』, 13(1), 107-134.</li>
+              <li>조영순(2006). 한 대학병원 산재보험 입원 환자의 본인부담금 실태 분석. 석사학위논문, 연세대학교 보건대학원.</li>
+            </ul>
+
+            <h5 class="paper-sub-heading" style="margin-top: 24px; font-size: 13.5px;">법령 및 행정자료</h5>
+            <ul class="paper-ref-list">
+              <li>가족관계의 등록 등에 관한 법률.</li>
+              <li>개인정보 보호법 제18조.</li>
+              <li>공탁법 제4조.</li>
+              <li>국민건강보험법 및 같은 법 시행령.</li>
+              <li>민법 제487조, 제1005조, 제1006조.</li>
+              <li>서민의 금융생활 지원에 관한 법률.</li>
+              <li>전자정부법 제36조, 제37조.</li>
+              <li>건강보험심사평가원. 「진료비 확인」 제도 및 처리현황 안내자료. (www.hira.or.kr)</li>
+              <li>금융위원회·금융감독원. 「휴면예금·숨은 금융자산 통합조회(파인)」. (fine.fss.or.kr)</li>
+              <li>행정안전부. 「행정정보 공동이용」. 행정정보 공동이용센터. (www.share.go.kr)</li>
+              <li>행정안전부·정부24. 「사망자 및 피후견인 등 재산조회 통합처리 신청(안심상속)」. (www.gov.kr)</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- 푸터 -->
@@ -820,7 +1417,7 @@
     <p class="footer-purpose">이 페이지는 채용 담당자 또는 인사관리자에게 나의 역량과 경험을 보여주기 위한 포트폴리오입니다.</p>
   </footer>
 
-  <script src="js/main.js?v=20261006_03"></script>
+  <script src="js/main.js?v=20261009_paper"></script>
 </body>
 
 </html>

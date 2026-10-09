@@ -368,3 +368,138 @@
     document.documentElement.style.setProperty('--transition', '0.01ms');
   }
 })();
+
+/* ===========================
+   Academic Paper Reader Modal (학술 논문 전문 뷰어 모달)
+   =========================== */
+(function initPaperModal() {
+  var openBtns = [
+    document.getElementById('paperMainOpenBtn'),
+    document.getElementById('aboutPaperBtn'),
+    document.getElementById('paperEvidenceBtn')
+  ];
+  var modal = document.getElementById('paperModal');
+  var closeBtn = document.getElementById('paperModalClose');
+  var modalBody = modal ? modal.querySelector('.paper-modal-body') : null;
+  var navLinks = modal ? modal.querySelectorAll('.paper-nav-link') : [];
+  var lastFocused = null;
+
+  if (!modal) return;
+
+  function openPaperModal() {
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    if (modalBody) modalBody.scrollTop = 0;
+    if (navLinks.length) {
+      navLinks.forEach(function (link, idx) {
+        if (idx === 0) link.classList.add('active');
+        else link.classList.remove('active');
+      });
+    }
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closePaperModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  openBtns.forEach(function (btn) {
+    if (btn) {
+      btn.addEventListener('click', openPaperModal);
+    }
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closePaperModal);
+  }
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      closePaperModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden) {
+      closePaperModal();
+    }
+  });
+
+  // 퀵 내비게이션 스크롤 이동
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var href = link.getAttribute('href');
+      if (href && href.startsWith('#') && modalBody) {
+        e.preventDefault();
+        var targetSec = modal.querySelector(href);
+        if (targetSec) {
+          targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+
+  // 논문 모달 내부 스크롤스파이 (현재 섹션 탭 활성화)
+  if (modalBody && navLinks.length) {
+    var paperSections = modal.querySelectorAll('.paper-article-section');
+    modalBody.addEventListener('scroll', function () {
+      var bodyTop = modalBody.getBoundingClientRect().top + 70;
+      var currentId = '';
+
+      paperSections.forEach(function (sec) {
+        var rect = sec.getBoundingClientRect();
+        if (rect.top <= bodyTop) {
+          currentId = sec.id;
+        }
+      });
+
+      if (currentId) {
+        navLinks.forEach(function (link) {
+          if (link.getAttribute('href') === '#' + currentId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  }
+})();
+
+/* ===========================
+   Dynamic Badge Lifecycle (작성일 기준 7일간 동적 배지 관리)
+   - 하드코딩 완전 제거: data-created 기준 일주일(7일) 이내 콘텐츠에만 NEW 배지 동적 부여
+   - 7일 경과 시 브라우저에서 영구 자동 숨김
+   =========================== */
+(function initDynamicBadges() {
+  var badges = document.querySelectorAll('.dynamic-badge');
+  if (!badges.length) return;
+
+  var now = new Date();
+  var ACTIVE_DAYS = 7; // 일주일(7일) 이내 등록된 최신 콘텐츠에만 동적 표시
+
+  badges.forEach(function (badge) {
+    var dateStr = badge.getAttribute('data-created');
+    if (!dateStr) return;
+
+    var createdDate = new Date(dateStr);
+    var diffTime = now.getTime() - createdDate.getTime();
+    var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    // 최근 7일 이내인 경우에만 동적으로 뱃지 표시
+    if (diffDays >= 0 && diffDays <= ACTIVE_DAYS) {
+      badge.textContent = 'NEW';
+      badge.hidden = false;
+      badge.title = '등록일: ' + dateStr + ' (신규 ' + diffDays + '일차 · 일주일간 표시)';
+    } else {
+      // 7일 초과 시 화면에서 영구 자동 숨김
+      badge.hidden = true;
+      badge.textContent = '';
+    }
+  });
+})();
+
+
