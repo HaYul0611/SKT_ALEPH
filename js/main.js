@@ -730,14 +730,13 @@
       '            <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />' +
       '          </linearGradient>' +
       '        </defs>' +
-      '        <line x1="0" y1="28" x2="240" y2="28" class="sparkline-guide" stroke-dasharray="3,3" />' +
-      '        <path class="sparkline-area" d="M 0,28 C 15,12 30,12 45,28 C 60,44 75,44 90,28 C 105,12 120,12 135,28 C 150,44 165,44 180,28 C 195,12 210,12 225,28 L 240,28 L 240,56 L 0,56 Z" />' +
-      '        <path class="sparkline-line" d="M 0,28 C 15,12 30,12 45,28 C 60,44 75,44 90,28 C 105,12 120,12 135,28 C 150,44 165,44 180,28 C 195,12 210,12 225,28 L 240,28" />' +
-      '        <circle cx="30" cy="16" r="3" class="sparkline-point" />' +
-      '        <circle cx="90" cy="28" r="2" class="sparkline-point-mid" />' +
-      '        <circle cx="120" cy="16" r="3" class="sparkline-point" />' +
-      '        <circle cx="180" cy="28" r="2" class="sparkline-point-mid" />' +
-      '        <circle cx="210" cy="16" r="3.2" class="sparkline-point active" />' +
+      '        <line x1="0" y1="25" x2="240" y2="25" class="sparkline-guide" stroke-dasharray="3,3" />' +
+      '        <path class="sparkline-area" d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25 L 240,50 L 0,50 Z" />' +
+      '        <path class="sparkline-line" d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25" />' +
+      '        <circle cx="15" cy="17.5" r="3" class="sparkline-point" />' +
+      '        <circle cx="75" cy="17.5" r="3" class="sparkline-point" />' +
+      '        <circle cx="135" cy="17.5" r="3" class="sparkline-point" />' +
+      '        <circle cx="195" cy="17.5" r="3" class="sparkline-point active" />' +
       '      </svg>' +
       '      <div class="sparkline-meta">' +
       '        <span>규칙적 4구간 들숨·날숨 리듬</span>' +
@@ -808,7 +807,13 @@
       '</div>';
   }
 
-  // Tier 1 Fetch: data/records.json 로드 시도
+  // file:/// 로컬 파일 환경에서는 브라우저 보안에 의해 fetch가 차단되므로 에러 없이 즉시 기본 데이터 렌더링
+  if (window.location.protocol === 'file:') {
+    renderMetrics(DEFAULT_METRICS);
+    return;
+  }
+
+  // Tier 1 Fetch: http/https 웹 환경(GitHub Pages)에서 data/records.json 로드 시도
   fetch('data/records.json?v=' + Date.now())
     .then(function (res) {
       if (!res.ok) throw new Error('Status ' + res.status);
@@ -818,7 +823,7 @@
       renderMetrics(jsonData);
     })
     .catch(function () {
-      // Tier 2 Fallback: 로컬 file:/// 환경 또는 네트워크 에러 시에도 무조건 정상 작동
+      // Tier 2 Fallback: 네트워크 에러 시에도 무조건 정상 작동
       renderMetrics(DEFAULT_METRICS);
     });
 })();

@@ -956,23 +956,11 @@ img {
   fill: var(--bg);
   stroke: var(--text);
   stroke-width: 1.8;
-  transition: transform var(--transition);
-}
-
-.sparkline-point-mid {
-  fill: var(--text-light);
-  opacity: 0.6;
 }
 
 .sparkline-point.active {
   fill: var(--text);
   stroke: var(--text);
-  animation: pulse-dot 2.4s infinite ease-in-out;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.35); }
 }
 
 .sparkline-meta {
