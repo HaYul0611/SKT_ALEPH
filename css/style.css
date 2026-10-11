@@ -777,42 +777,49 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text);
 }
 
 .analog-clock {
   width: 42px;
   height: 42px;
   display: block;
+  color: var(--text);
 }
 
 .clock-face {
   stroke: var(--text);
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 .clock-tick {
   stroke: var(--text);
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
-.clock-hand {
-  transform-origin: 20px 20px;
-}
-
+#clockHourHand line,
 .hour-hand {
-  stroke: var(--text);
+  stroke: var(--text) !important;
+  stroke-width: 2.4 !important;
+  stroke-linecap: round !important;
 }
 
+#clockMinuteHand line,
 .minute-hand {
-  stroke: var(--text);
+  stroke: var(--text) !important;
+  stroke-width: 1.6 !important;
+  stroke-linecap: round !important;
 }
 
+#clockSecondHand line,
 .second-hand {
-  stroke: #ef4444;
+  stroke: #ef4444 !important;
+  stroke-width: 1.1 !important;
+  stroke-linecap: round !important;
 }
 
 .clock-pivot {
-  fill: #ef4444;
+  fill: #ef4444 !important;
 }
 
 .attendance-cal-area,
@@ -1485,9 +1492,13 @@ img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.proof-svg,
 .proof-icon {
-  font-size: 12px;
-  line-height: 1;
+  width: 13px;
+  height: 13px;
+  display: block;
+  flex-shrink: 0;
+  stroke: currentColor;
 }
 
 /* ===========================

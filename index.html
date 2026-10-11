@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="오하율 | Portfolio — IT 인프라 · 보안 · 풀스택">
   <meta name="twitter:description" content="병원 행정 중간관리자에서 웹 풀스택, 인프라 보안 엔지니어로의 전환. 오하율의 포트폴리오 및 서사 문서.">
   <meta name="twitter:image" content="https://hayul0611.github.io/SKT_ALEPH/assets/profile.jpg">
-  <link rel="stylesheet" href="css/style.css?v=20261012_v7">
+  <link rel="stylesheet" href="css/style.css?v=20261012_v8">
 </head>
 
 <body>
@@ -281,10 +281,16 @@
                   <line class="clock-tick" x1="36" y1="20" x2="33" y2="20" stroke="currentColor" stroke-width="1.4" />
                   <line class="clock-tick" x1="20" y1="36" x2="20" y2="33" stroke="currentColor" stroke-width="1.4" />
                   <line class="clock-tick" x1="4" y1="20" x2="7" y2="20" stroke="currentColor" stroke-width="1.4" />
-                  <!-- 시침 / 분침 / 초침 -->
-                  <line class="clock-hand hour-hand" id="clockHourHand" x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-                  <line class="clock-hand minute-hand" id="clockMinuteHand" x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                  <line class="clock-hand second-hand" id="clockSecondHand" x1="20" y1="23" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round" />
+                  <!-- 시침 / 분침 / 초침 회전 그룹 -->
+                  <g id="clockHourHand">
+                    <line x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                  </g>
+                  <g id="clockMinuteHand">
+                    <line x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </g>
+                  <g id="clockSecondHand">
+                    <line x1="20" y1="22" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round" />
+                  </g>
                   <circle class="clock-pivot" cx="20" cy="20" r="1.8" fill="#ef4444" />
                 </svg>
               </div>
@@ -691,7 +697,11 @@
           <div class="project-links">
             <button type="button" class="proj-link-btn proof-btn" data-proj-id="fastival"
               aria-label="Fastival-management 엔지니어링 증적 및 상세 프리뷰">
-              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12l10 5 10-5"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+              </svg>
               <span>엔지니어링 증적</span>
             </button>
             <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
@@ -731,7 +741,11 @@
           <div class="project-links">
             <button type="button" class="proj-link-btn proof-btn" data-proj-id="wedding"
               aria-label="WeddingPlatform 엔지니어링 증적 및 상세 프리뷰">
-              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12l10 5 10-5"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+              </svg>
               <span>엔지니어링 증적</span>
             </button>
             <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank" rel="noopener noreferrer"
@@ -769,7 +783,11 @@
           <div class="project-links">
             <button type="button" class="proj-link-btn proof-btn" data-proj-id="varo"
               aria-label="VARO 엔지니어링 증적 및 상세 프리뷰">
-              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12l10 5 10-5"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+              </svg>
               <span>엔지니어링 증적</span>
             </button>
             <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer"
@@ -808,7 +826,9 @@
           <div class="project-links">
             <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="secret-vault"
               aria-label="최부장 시크릿 볼트 엔지니어링 증적 및 보안 방어 로그">
-              <span class="proof-icon" aria-hidden="true">🛡️</span>
+              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
               <span>보안 방어 증적</span>
             </button>
             <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer"
@@ -852,7 +872,11 @@
           <div class="project-links">
             <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="pds-diary"
               aria-label="PDS 다이어리 엔지니어링 증적 및 아키텍처 상세 보기">
-              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12l10 5 10-5"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+              </svg>
               <span>엔지니어링 증적</span>
             </button>
             <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer"
@@ -896,7 +920,11 @@
           <div class="project-links">
             <button type="button" class="proj-link-btn proof-btn" data-proj-id="hamzzi-studio"
               aria-label="또햄찌 공방 엔지니어링 증적 및 알고리즘 상세 보기">
-              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12l10 5 10-5"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+              </svg>
               <span>엔지니어링 증적</span>
             </button>
             <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer"
@@ -940,7 +968,11 @@
           <div class="project-links">
             <button type="button" class="proj-link-btn proof-btn" data-proj-id="apple-game"
               aria-label="사과게임 엔지니어링 증적 및 알고리즘 상세 보기">
-              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12l10 5 10-5"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+              </svg>
               <span>엔지니어링 증적</span>
             </button>
             <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer"
@@ -3068,7 +3100,7 @@
     </svg>
   </button>
 
-  <script src="js/main.js?v=20261012_v7"></script>
+  <script src="js/main.js?v=20261012_v8"></script>
   <!-- 토스트 알림 (복사 완료 피드백 등) -->
   <div class="toast-notification" id="appToast" role="alert" aria-live="polite" hidden>
     <div class="toast-content">

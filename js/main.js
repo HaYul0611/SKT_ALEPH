@@ -630,9 +630,9 @@
       '          <line class="clock-tick" x1="36" y1="20" x2="33" y2="20" stroke="currentColor" stroke-width="1.4"/>' +
       '          <line class="clock-tick" x1="20" y1="36" x2="20" y2="33" stroke="currentColor" stroke-width="1.4"/>' +
       '          <line class="clock-tick" x1="4" y1="20" x2="7" y2="20" stroke="currentColor" stroke-width="1.4"/>' +
-      '          <line class="clock-hand hour-hand" id="clockHourHand" x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>' +
-      '          <line class="clock-hand minute-hand" id="clockMinuteHand" x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
-      '          <line class="clock-hand second-hand" id="clockSecondHand" x1="20" y1="23" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round"/>' +
+      '          <g id="clockHourHand"><line x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></g>' +
+      '          <g id="clockMinuteHand"><line x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g>' +
+      '          <g id="clockSecondHand"><line x1="20" y1="22" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round"/></g>' +
       '          <circle class="clock-pivot" cx="20" cy="20" r="1.8" fill="#ef4444"/>' +
       '        </svg>' +
       '      </div>' +
