@@ -768,6 +768,53 @@ img {
   color: var(--text);
 }
 
+/* 실시간 아날로그 시계 */
+.live-clock-box {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.analog-clock {
+  width: 42px;
+  height: 42px;
+  display: block;
+}
+
+.clock-face {
+  stroke: var(--text);
+  opacity: 0.75;
+}
+
+.clock-tick {
+  stroke: var(--text);
+  opacity: 0.5;
+}
+
+.clock-hand {
+  transform-origin: 20px 20px;
+}
+
+.hour-hand {
+  stroke: var(--text);
+}
+
+.minute-hand {
+  stroke: var(--text);
+}
+
+.second-hand {
+  stroke: #ef4444;
+}
+
+.clock-pivot {
+  fill: #ef4444;
+}
+
 .attendance-cal-area,
 .streak-dots-area {
   flex: 1;
@@ -1582,21 +1629,34 @@ img {
 }
 
 .project-modal-close {
-  background: none;
-  border: 0.5px solid var(--border);
-  border-radius: 4px;
-  padding: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   color: var(--text);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.15s ease;
+  flex-shrink: 0;
 }
 
 .project-modal-close:hover {
   background: var(--text);
   color: var(--bg);
+  border-color: var(--text);
+}
+
+.project-modal-close svg,
+.project-modal-close .close-icon {
+  width: 16px !important;
+  height: 16px !important;
+  display: block !important;
+  stroke: currentColor !important;
+  stroke-width: 2.2 !important;
 }
 
 .proj-tab-bar {

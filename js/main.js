@@ -604,16 +604,11 @@
       }
     }
 
-    // 주 7일(월~일) 달력 매트릭스 셀 생성 (6주 x 7일 = 42슬롯)
+    // 한 달 31일 달력 매트릭스 셀 생성 (정확히 31개 고정)
     var calCellsHtml = '';
-    var totalCalSlots = 42;
-    var attDays = data.attendance.days || 39;
+    var totalCalSlots = 31;
     for (var d = 1; d <= totalCalSlots; d++) {
-      if (d <= attDays) {
-        calCellsHtml += '<span class="cal-cell done" title="Day ' + d + ' (출석 완료)"></span>';
-      } else {
-        calCellsHtml += '<span class="cal-cell empty" title="Day ' + d + ' (종료)"></span>';
-      }
+      calCellsHtml += '<span class="cal-cell done" title="Day ' + d + ' (출석 완료)"></span>';
     }
 
     grid.innerHTML = '' +
@@ -628,23 +623,25 @@
       '  </div>' +
       '  <div class="metric-chart-wrap" aria-label="출석률 ' + data.attendance.rate + '% 시각화">' +
       '    <div class="attendance-visual">' +
-      '      <div class="circular-chart-box">' +
-      '        <svg class="circular-chart" viewBox="0 0 36 36">' +
-      '          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>' +
-      '          <path class="circle-fill" stroke-dasharray="' + data.attendance.rate + ', 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>' +
+      '      <div class="live-clock-box" id="liveClock" title="실시간 아날로그 시계" aria-label="현재 시각 아날로그 시계">' +
+      '        <svg class="analog-clock" viewBox="0 0 40 40">' +
+      '          <circle class="clock-face" cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.8"/>' +
+      '          <line class="clock-tick" x1="20" y1="4" x2="20" y2="7" stroke="currentColor" stroke-width="1.4"/>' +
+      '          <line class="clock-tick" x1="36" y1="20" x2="33" y2="20" stroke="currentColor" stroke-width="1.4"/>' +
+      '          <line class="clock-tick" x1="20" y1="36" x2="20" y2="33" stroke="currentColor" stroke-width="1.4"/>' +
+      '          <line class="clock-tick" x1="4" y1="20" x2="7" y2="20" stroke="currentColor" stroke-width="1.4"/>' +
+      '          <line class="clock-hand hour-hand" id="clockHourHand" x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>' +
+      '          <line class="clock-hand minute-hand" id="clockMinuteHand" x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+      '          <line class="clock-hand second-hand" id="clockSecondHand" x1="20" y1="23" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round"/>' +
+      '          <circle class="clock-pivot" cx="20" cy="20" r="1.8" fill="#ef4444"/>' +
       '        </svg>' +
-      '        <div class="circle-inner-icon" aria-hidden="true">' +
-      '          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" width="13" height="13">' +
-      '            <polyline points="20 6 9 17 4 12"></polyline>' +
-      '          </svg>' +
-      '        </div>' +
       '      </div>' +
-      '      <div class="attendance-cal-area" title="' + data.attendance.days + '일 무결석 주간 달력 기록">' +
+      '      <div class="attendance-cal-area" title="한 달 31일 무결석 연속 출석 기록">' +
       '        <div class="cal-days-header" aria-hidden="true">' +
       '          <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>' +
       '        </div>' +
       '        <div class="cal-days-matrix" aria-hidden="true">' + calCellsHtml + '</div>' +
-      '        <span class="streak-caption">주 7일 기준 6주 무결석 연속 출석 달성</span>' +
+      '        <span class="streak-caption">한 달 31일 기준 완전 연속 출석 달성</span>' +
       '      </div>' +
       '    </div>' +
       '  </div>' +
@@ -813,6 +810,10 @@
       '    <span>출처: ' + data.tasks.source + '</span>' +
       '  </div>' +
       '</div>';
+
+    if (typeof window.updateLiveClock === 'function') {
+      window.updateLiveClock();
+    }
   }
 
   // file:/// 로컬 파일 환경에서는 브라우저 보안에 의해 fetch가 차단되므로 에러 없이 즉시 기본 데이터 렌더링
@@ -1037,6 +1038,40 @@
       }
     });
   });
+})();
+
+/* ===========================
+   Live Analog Clock Engine (실시간 작동 시계)
+   =========================== */
+(function initLiveClock() {
+  function updateClockHands() {
+    var now = new Date();
+    var sec = now.getSeconds();
+    var min = now.getMinutes() + sec / 60;
+    var hour = (now.getHours() % 12) + min / 60;
+
+    var hourDeg = hour * 30;
+    var minDeg = min * 6;
+    var secDeg = sec * 6;
+
+    var hourHand = document.getElementById('clockHourHand');
+    var minuteHand = document.getElementById('clockMinuteHand');
+    var secondHand = document.getElementById('clockSecondHand');
+    var clockBox = document.getElementById('liveClock');
+
+    if (hourHand) hourHand.setAttribute('transform', 'rotate(' + hourDeg + ' 20 20)');
+    if (minuteHand) minuteHand.setAttribute('transform', 'rotate(' + minDeg + ' 20 20)');
+    if (secondHand) secondHand.setAttribute('transform', 'rotate(' + secDeg + ' 20 20)');
+
+    if (clockBox) {
+      var timeStr = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      clockBox.setAttribute('title', '실시간 시계 (현재 시각: ' + timeStr + ')');
+    }
+  }
+
+  updateClockHands();
+  setInterval(updateClockHands, 1000);
+  window.updateLiveClock = updateClockHands;
 })();
 
 /* ===========================
