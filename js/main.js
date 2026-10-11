@@ -35,6 +35,58 @@
 })();
 
 /* ===========================
+   Self Introduction Modal (자기소개서 전문 모달)
+   =========================== */
+(function initIntroModal() {
+  var openBtn = document.getElementById('introModalBtn');
+  var modal = document.getElementById('introModal');
+  var closeBtn = document.getElementById('introClose');
+  var bottomCloseBtn = document.getElementById('introBottomClose');
+  var lastFocused = null;
+
+  if (!openBtn || !modal) return;
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) {
+      closeBtn.focus();
+    }
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocused) {
+      lastFocused.focus();
+    }
+  }
+
+  openBtn.addEventListener('click', openModal);
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  if (bottomCloseBtn) {
+    bottomCloseBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!modal.hidden && e.key === 'Escape') {
+      closeModal();
+    }
+  });
+})();
+
+/* ===========================
    SAR Toggle (강점 펼치기/접기)
    =========================== */
 (function initSarToggles() {

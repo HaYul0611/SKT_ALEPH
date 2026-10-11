@@ -186,9 +186,12 @@ img {
 }
 
 .hero-sub {
-  font-size: 13px;
-  color: var(--text-light);
-  margin-top: 4px;
+  font-size: 14.5px;
+  color: var(--text-mid);
+  margin-top: 8px;
+  letter-spacing: -0.2px;
+  line-height: 1.6;
+  word-break: keep-all;
 }
 
 
@@ -256,7 +259,93 @@ img {
   font-size: 17px;
   color: var(--text-mid);
   line-height: 1.8;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+
+.about-intro-action {
+  margin-top: 18px;
+}
+
+.intro-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.intro-open-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+/* 자기소개서 전용 모달 */
+.intro-modal-dialog {
+  max-width: 680px;
+  width: 90%;
+  max-height: 85vh;
+}
+
+.intro-modal-body {
+  padding: 28px 32px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.intro-prose-wrap {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text);
+  word-break: keep-all;
+}
+
+.intro-prose-wrap p {
+  margin-bottom: 20px;
+}
+
+.intro-prose-wrap p:last-child {
+  margin-bottom: 0;
+}
+
+.about-competency {
+  color: var(--text);
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.intro-modal-footer {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 0.5px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.intro-close-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.intro-close-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
 }
 
 .about-label {
@@ -475,6 +564,184 @@ img {
   font-size: 12px;
   color: var(--text-light);
   line-height: 1.6;
+}
+
+
+/* ===========================
+   Metrics / Records (숫자 칸 섹션)
+   =========================== */
+
+.metrics-section {
+  padding: 40px 48px;
+}
+
+.metrics-header-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.metrics-hint {
+  font-size: 13px;
+  color: var(--text-light);
+  letter-spacing: -0.2px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.metric-card {
+  background: rgba(0, 0, 0, 0.015);
+  border: 0.5px solid var(--border);
+  border-radius: 4px;
+  padding: 22px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+[data-theme="dark"] .metric-card {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--text);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .metric-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.metric-card.highlight-card {
+  border-color: var(--text-mid);
+  background: rgba(0, 0, 0, 0.025);
+}
+
+[data-theme="dark"] .metric-card.highlight-card {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.metric-num-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.metric-num {
+  font-size: clamp(24px, 2.2vw, 30px);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.metric-rate {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+.metric-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-top: 8px;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.metric-date-range {
+  font-size: 11.5px;
+  color: var(--text-light);
+  font-weight: 400;
+  display: inline-block;
+}
+
+.metric-progress-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+[data-theme="dark"] .metric-progress-tag {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.metric-quote-badge {
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.04);
+  border-left: 2px solid var(--text);
+  border-radius: 0 3px 3px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+[data-theme="dark"] .metric-quote-badge {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.metric-quote-badge .quote-mark {
+  font-weight: 700;
+  color: var(--text-mid);
+}
+
+.metric-source {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 0.5px dashed var(--border);
+  font-size: 11px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metric-source-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-light);
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .metrics-section {
+    padding: 32px 20px;
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .metrics-header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }
 
 
