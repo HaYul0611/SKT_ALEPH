@@ -2264,27 +2264,30 @@ a.evidence-item {
 .document-card-footer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
   padding-top: 16px;
   border-top: 0.5px dashed var(--border);
 }
 
 .document-download-btn {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   background: var(--text);
   color: var(--bg);
   border: 1px solid var(--text);
-  padding: 8px 12px;
-  font-size: 12.5px;
+  padding: 7px 10px;
+  font-size: 12px;
   font-weight: 600;
   border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition);
+  white-space: nowrap;
 }
 
 .document-download-btn:hover {
@@ -2292,25 +2295,45 @@ a.evidence-item {
   color: var(--text);
 }
 
+.document-download-btn.docx-btn {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.document-download-btn.docx-btn:hover {
+  border-color: var(--text);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .document-download-btn.docx-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .document-preview-btn {
+  flex: 1 1 auto;
+  min-width: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   background: transparent;
-  color: var(--text);
+  color: var(--text-mid);
   border: 1px solid var(--border);
-  padding: 8px 12px;
-  font-size: 12.5px;
+  padding: 7px 10px;
+  font-size: 12px;
   font-weight: 500;
   border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition);
+  white-space: nowrap;
 }
 
 .document-preview-btn:hover {
   border-color: var(--text);
+  color: var(--text);
   background: rgba(0, 0, 0, 0.03);
 }
 
