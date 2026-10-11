@@ -30,6 +30,7 @@
       <a href="#vision">Security</a>
       <a href="#research">Research</a>
       <a href="#projects">Web Development</a>
+      <a href="#documents">Documents</a>
     </div>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드 전환">
       <span class="theme-icon" id="themeIcon"></span>
@@ -537,7 +538,7 @@
               </svg>
               <span>논문 전문 뷰어 열람</span>
             </button>
-            <a href="논문_오하율_261009.docx" download class="research-btn" aria-label="논문 DOCX 다운로드">
+            <a href="research_paper/논문_오하율_261009.docx" download class="research-btn" aria-label="논문 DOCX 다운로드">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" width="15" height="15" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -547,7 +548,7 @@
               </svg>
               <span>DOCX 다운로드</span>
             </a>
-            <a href="논문_오하율_261009.pdf" download class="research-btn" aria-label="논문 PDF 다운로드">
+            <a href="research_paper/논문_오하율_261009.pdf" download class="research-btn" aria-label="논문 PDF 다운로드">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" width="15" height="15" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -651,8 +652,151 @@
           <span class="evidence-desc">의료기관 예외정산 공공관리체계</span>
         </button>
       </div>
+    </section>
 
-      <!-- 자기소개서 전용 모달 -->
+    <hr class="divider">
+
+    <!-- 문서 다운로드 섹션 (Documents) -->
+    <section class="documents-section" id="documents" aria-label="문서 다운로드">
+      <div class="documents-header-wrap">
+        <div>
+          <h2 class="section-title">Documents</h2>
+          <p class="section-slash" aria-hidden="true">/</p>
+        </div>
+        <span class="documents-hint">📄 이력서 · 자기소개서 · 경력기술서 PDF 다운로드</span>
+      </div>
+
+      <div class="documents-grid">
+        <!-- 1. 이력서 -->
+        <div class="document-card">
+          <div class="document-card-header">
+            <div class="document-icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <span class="document-type-badge">PDF · Resume</span>
+          </div>
+          <div class="document-card-body">
+            <h3 class="document-title">이력서</h3>
+            <p class="document-subtitle">오하율 입사지원 이력서</p>
+            <p class="document-desc">기본 인적사항, 학력, 자격사항(병원행정사 등), 보유 기술 스택 및 직무 교육 이수 내역</p>
+          </div>
+          <div class="document-card-footer">
+            <a href="docs/이력서_오하율.pdf" download class="document-download-btn" aria-label="이력서 PDF 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>PDF 다운로드</span>
+            </a>
+            <a href="docs/이력서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
+              aria-label="이력서 PDF 미리보기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>미리보기</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. 자기소개서 -->
+        <div class="document-card">
+          <div class="document-card-header">
+            <div class="document-icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+            </div>
+            <span class="document-type-badge">PDF · Cover Letter</span>
+          </div>
+          <div class="document-card-body">
+            <h3 class="document-title">자기소개서</h3>
+            <p class="document-subtitle">오하율 자기소개서</p>
+            <p class="document-desc">성장 과정, 원무행정에서의 직무 경험 및 위기 대처, 가치관과 IT 인프라/보안 엔지니어로의 포부</p>
+          </div>
+          <div class="document-card-footer">
+            <a href="docs/자기소개서_오하율.pdf" download class="document-download-btn" aria-label="자기소개서 PDF 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>PDF 다운로드</span>
+            </a>
+            <a href="docs/자기소개서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
+              aria-label="자기소개서 PDF 미리보기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>미리보기</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. 경력기술서 -->
+        <div class="document-card">
+          <div class="document-card-header">
+            <div class="document-icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+            <span class="document-type-badge">PDF · Career</span>
+          </div>
+          <div class="document-card-body">
+            <h3 class="document-title">경력기술서</h3>
+            <p class="document-subtitle">오하율 직무 경력기술서</p>
+            <p class="document-desc">병원 원무·행정 중간관리자 실무 성과, 시스템 디지털 전환, 5개 파트 매뉴얼 수립 및 의료비 프로세스 개선</p>
+          </div>
+          <div class="document-card-footer">
+            <a href="docs/경력기술서_오하율.pdf" download class="document-download-btn" aria-label="경력기술서 PDF 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>PDF 다운로드</span>
+            </a>
+            <a href="docs/경력기술서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
+              aria-label="경력기술서 PDF 미리보기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>미리보기</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 자기소개서 전용 모달 -->
       <div class="story-modal-overlay" id="introModal" hidden aria-modal="true" role="dialog"
         aria-label="오하율 — 자기소개서 전문">
         <div class="story-modal-dialog intro-modal-dialog">
@@ -721,7 +865,7 @@
               <h3 class="story-modal-title">오하율 — 나를 말하는 서사 문서</h3>
             </div>
             <div class="story-header-actions">
-              <a href="오하율_서사문서.md" target="_blank" download class="story-raw-link" title="마크다운 원문 파일 다운로드/열기">
+              <a href="docs/오하율_서사문서.md" target="_blank" download class="story-raw-link" title="마크다운 원문 파일 다운로드/열기">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -1116,7 +1260,6 @@
           </div>
         </div>
       </div>
-    </section>
 
     <!-- 학술 연구 논문 전문 뷰어 모달 (Paper Modal) -->
     <div class="story-modal-overlay paper-modal-overlay" id="paperModal" hidden aria-modal="true" role="dialog"

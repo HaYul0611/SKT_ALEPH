@@ -987,6 +987,201 @@ a.evidence-item {
 
 
 /* ===========================
+   Documents Section (문서 다운로드)
+   =========================== */
+
+.documents-section {
+  padding: 40px 48px;
+}
+
+.documents-header-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.documents-hint {
+  font-size: 13px;
+  color: var(--text-light);
+  letter-spacing: -0.2px;
+}
+
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.document-card {
+  background: rgba(0, 0, 0, 0.015);
+  border: 0.5px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+[data-theme="dark"] .document-card {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.document-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--text);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .document-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.document-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.document-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text);
+}
+
+[data-theme="dark"] .document-icon-badge {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.document-type-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+[data-theme="dark"] .document-type-badge {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.document-card-body {
+  flex: 1;
+  margin-bottom: 22px;
+}
+
+.document-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.4px;
+  margin-bottom: 4px;
+}
+
+.document-subtitle {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: 10px;
+}
+
+.document-desc {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-light);
+  word-break: keep-all;
+}
+
+.document-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 0.5px dashed var(--border);
+}
+
+.document-download-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.document-download-btn:hover {
+  background: transparent;
+  color: var(--text);
+}
+
+.document-preview-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.document-preview-btn:hover {
+  border-color: var(--text);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] .document-preview-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 900px) {
+  .documents-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .documents-section {
+    padding: 32px 20px;
+  }
+  .documents-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .documents-header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+
+/* ===========================
    Modal
    =========================== */
 
@@ -1124,7 +1319,8 @@ a.evidence-item {
   .projects,
   .research-section,
   .vision,
-  .evidence {
+  .evidence,
+  .documents-section {
     padding: 28px 48px;
   }
 }
@@ -1200,7 +1396,8 @@ a.evidence-item {
   .projects,
   .research-section,
   .vision,
-  .evidence {
+  .evidence,
+  .documents-section {
     padding: 24px;
   }
 
