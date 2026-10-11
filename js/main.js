@@ -822,5 +822,29 @@
     });
 })();
 
+/* ===========================
+   Floating Back to Top Handler
+   =========================== */
+(function initBackToTop() {
+  var topBtn = document.getElementById('backToTop');
+  if (!topBtn) return;
+
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) {
+      topBtn.classList.add('visible');
+    } else {
+      topBtn.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  topBtn.addEventListener('click', function () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+})();
+
+
 
 

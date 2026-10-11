@@ -3267,3 +3267,122 @@ a.evidence-item {
   color: var(--text-mid);
   margin-bottom: 8px;
 }
+
+
+/* ===========================
+   Accessibility & Skip Link
+   =========================== */
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 24px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.2s ease;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: 2px solid var(--text);
+}
+
+
+/* ===========================
+   Floating Back to Top Button
+   =========================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all var(--transition);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .back-to-top {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ===========================
+   Print Stylesheet (@media print)
+   (채용담당자/인사팀 Ctrl+P PDF 출력 및 인쇄 최적화)
+   =========================== */
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .nav,
+  .theme-toggle,
+  .back-to-top,
+  .skip-link,
+  .modal-overlay,
+  .story-modal-overlay,
+  .intro-open-btn,
+  .project-filter-bar,
+  .research-actions,
+  .document-card-footer {
+    display: none !important;
+  }
+
+  .divider {
+    border-color: #e0e0e0 !important;
+    margin: 16px 0 !important;
+  }
+
+  .metric-card,
+  .document-card,
+  .project-item {
+    border: 1px solid #cccccc !important;
+    background: #ffffff !important;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+  .metric-chart-wrap {
+    border: 1px solid #dddddd !important;
+    background: #fafafa !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: #111111 !important;
+  }
+}

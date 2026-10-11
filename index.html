@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>오하율 | Portfolio</title>
   <meta name="description" content="오하율의 포트폴리오 — IT 인프라, 보안 엔지니어링, 웹 풀스택 및 연구 서사">
+  <link rel="canonical" href="https://hayul0611.github.io/SKT_ALEPH/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
@@ -14,13 +15,19 @@
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111111'/%3E%3Ctext x='16' y='22' font-family='-apple-system, BlinkMacSystemFont, %22Segoe UI%22, sans-serif' font-size='16' font-weight='800' fill='%23ffffff' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
   <meta property="og:title" content="오하율 | Portfolio — IT 인프라 · 보안 · 풀스택">
   <meta property="og:description" content="병원 행정 중간관리자에서 웹 풀스택, 인프라 보안 엔지니어로의 전환. 오하율의 포트폴리오 및 서사 문서.">
-  <meta property="og:image" content="assets/profile.jpg">
+  <meta property="og:image" content="https://hayul0611.github.io/SKT_ALEPH/assets/profile.jpg">
+  <meta property="og:url" content="https://hayul0611.github.io/SKT_ALEPH/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=20261009_paper">
+  <meta name="twitter:title" content="오하율 | Portfolio — IT 인프라 · 보안 · 풀스택">
+  <meta name="twitter:description" content="병원 행정 중간관리자에서 웹 풀스택, 인프라 보안 엔지니어로의 전환. 오하율의 포트폴리오 및 서사 문서.">
+  <meta name="twitter:image" content="https://hayul0611.github.io/SKT_ALEPH/assets/profile.jpg">
+  <link rel="stylesheet" href="css/style.css?v=20261011_v2">
 </head>
 
 <body>
+  <a href="#main" class="skip-link">본문 바로가기</a>
+
   <!-- 상단 내비게이션 -->
   <header class="nav" role="banner">
     <span class="nav-year">2026</span>
@@ -37,7 +44,7 @@
     </button>
   </header>
 
-  <main>
+  <main id="main">
     <!-- 히어로 섹션 -->
     <section class="hero" aria-label="메인 소개">
       <h1 class="hero-word">portfolio</h1>
@@ -1428,7 +1435,7 @@
               Unidentified Medical Payment Deposits and Unclaimed Refunds of Deceased Patients</p>
           </div>
           <div class="paper-header-right">
-            <a href="논문_오하율_261009.docx" download class="paper-quick-download" title="논문 DOCX 원문 다운로드">
+            <a href="research_paper/논문_오하율_261009.docx" download class="paper-quick-download" title="논문 DOCX 원문 다운로드">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" width="14" height="14">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -1438,7 +1445,7 @@
               </svg>
               <span>DOCX</span>
             </a>
-            <a href="논문_오하율_261009.pdf" download class="paper-quick-download" title="논문 PDF 원문 다운로드">
+            <a href="research_paper/논문_오하율_261009.pdf" download class="paper-quick-download" title="논문 PDF 원문 다운로드">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" width="14" height="14">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -2020,7 +2027,14 @@
     <p class="footer-purpose">이 페이지는 채용 담당자 또는 인사관리자에게 나의 역량과 경험을 보여주기 위한 포트폴리오입니다.</p>
   </footer>
 
-  <script src="js/main.js?v=20261009_paper"></script>
+  <!-- 플로팅 탑 이동 버튼 -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="페이지 맨 위로 이동" title="맨 위로 이동">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="js/main.js?v=20261011_v2"></script>
 </body>
 
 </html>
