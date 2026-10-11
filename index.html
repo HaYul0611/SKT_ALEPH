@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="오하율 | Portfolio — IT 인프라 · 보안 · 풀스택">
   <meta name="twitter:description" content="병원 행정 중간관리자에서 웹 풀스택, 인프라 보안 엔지니어로의 전환. 오하율의 포트폴리오 및 서사 문서.">
   <meta name="twitter:image" content="https://hayul0611.github.io/SKT_ALEPH/assets/profile.jpg">
-  <link rel="stylesheet" href="css/style.css?v=20261012_v5">
+  <link rel="stylesheet" href="css/style.css?v=20261012_v6">
 </head>
 
 <body>
@@ -60,7 +60,11 @@
       <div class="about-left">
         <div class="about-left-main">
           <div class="profile-photo-wrap">
-            <img src="assets/profile.jpg" alt="오하율 프로필 사진" class="profile-photo" width="220" height="280">
+            <picture>
+              <source srcset="assets/profile.webp" type="image/webp">
+              <img src="assets/profile.jpg" alt="오하율 프로필 사진" class="profile-photo" width="220" height="280"
+                fetchpriority="high" decoding="async">
+            </picture>
           </div>
           <h2 class="about-intro">
             엔지니어<span class="about-dash" aria-hidden="true"></span><br>
@@ -283,31 +287,55 @@
                   </svg>
                 </div>
               </div>
-              <div class="streak-dots-area" title="39일 무결석 연속 출석 기록">
-                <div class="streak-grid" aria-hidden="true">
-                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span>
-                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span>
-                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span><span class="streak-dot active"></span><span
-                    class="streak-dot active"></span>
+              <div class="attendance-cal-area" title="39일 무결석 주간 달력 기록">
+                <div class="cal-days-header" aria-hidden="true">
+                  <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>
                 </div>
-                <span class="streak-caption">39일 무결석 완전 연속 달성</span>
+                <div class="cal-days-matrix" aria-hidden="true">
+                  <span class="cal-cell done" title="Day 1 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 2 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 3 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 4 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 5 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 6 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 7 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 8 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 9 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 10 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 11 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 12 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 13 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 14 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 15 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 16 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 17 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 18 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 19 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 20 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 21 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 22 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 23 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 24 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 25 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 26 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 27 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 28 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 29 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 30 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 31 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 32 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 33 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 34 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 35 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 36 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 37 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 38 (출석 완료)"></span>
+                  <span class="cal-cell done" title="Day 39 (출석 완료)"></span>
+                  <span class="cal-cell empty" title="Day 40 (종료)"></span>
+                  <span class="cal-cell empty" title="Day 41 (종료)"></span>
+                  <span class="cal-cell empty" title="Day 42 (종료)"></span>
+                </div>
+                <span class="streak-caption">주 7일 기준 6주 무결석 연속 출석 달성</span>
               </div>
             </div>
           </div>
@@ -413,9 +441,11 @@
                 <!-- 평균 3.1분 기준 점선 가이드 -->
                 <line x1="0" y1="25" x2="240" y2="25" class="sparkline-guide" stroke-dasharray="3,3" />
                 <!-- 부드러운 호흡 그라디언트 영역 -->
-                <path class="sparkline-area" d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25 L 240,50 L 0,50 Z" />
+                <path class="sparkline-area"
+                  d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25 L 240,50 L 0,50 Z" />
                 <!-- 메인 호흡 사인 파동 (들숨·날숨 리듬) -->
-                <path class="sparkline-line" d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25" />
+                <path class="sparkline-line"
+                  d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25" />
                 <!-- 4구간 흡기 피크 인디케이터 (각 주기 정점 정확 배치) -->
                 <circle cx="15" cy="17.5" r="3" class="sparkline-point" />
                 <circle cx="75" cy="17.5" r="3" class="sparkline-point" />
@@ -669,6 +699,11 @@
             <span class="tech-pill">REST API</span>
           </div>
           <div class="project-links">
+            <button type="button" class="proj-link-btn proof-btn" data-proj-id="fastival"
+              aria-label="Fastival-management 엔지니어링 증적 및 상세 프리뷰">
+              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <span>엔지니어링 증적</span>
+            </button>
             <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
               rel="noopener noreferrer" class="proj-link-btn" aria-label="Fastival-management 깃허브 코드">
               <span>GitHub</span> &rarr;
@@ -704,6 +739,11 @@
             <span class="tech-pill">EJS</span>
           </div>
           <div class="project-links">
+            <button type="button" class="proj-link-btn proof-btn" data-proj-id="wedding"
+              aria-label="WeddingPlatform 엔지니어링 증적 및 상세 프리뷰">
+              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <span>엔지니어링 증적</span>
+            </button>
             <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank" rel="noopener noreferrer"
               class="proj-link-btn" aria-label="WeddingPlatform 깃허브 코드">
               <span>GitHub</span> &rarr;
@@ -737,6 +777,11 @@
             <span class="tech-pill">JWT</span>
           </div>
           <div class="project-links">
+            <button type="button" class="proj-link-btn proof-btn" data-proj-id="varo"
+              aria-label="VARO 엔지니어링 증적 및 상세 프리뷰">
+              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <span>엔지니어링 증적</span>
+            </button>
             <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer"
               class="proj-link-btn" aria-label="VARO 깃허브 코드">
               <span>GitHub</span> &rarr;
@@ -771,6 +816,11 @@
             <span class="tech-pill">Node.js</span>
           </div>
           <div class="project-links">
+            <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="secret-vault"
+              aria-label="최부장 시크릿 볼트 엔지니어링 증적 및 보안 방어 로그">
+              <span class="proof-icon" aria-hidden="true">🛡️</span>
+              <span>보안 방어 증적</span>
+            </button>
             <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer"
               class="proj-link-btn demo-btn" aria-label="최부장 시크릿 볼트 실시간 사이트 체험">
               <span class="live-dot" aria-hidden="true"></span>
@@ -810,6 +860,11 @@
             <span class="tech-pill">LocalStorage</span>
           </div>
           <div class="project-links">
+            <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="pds-diary"
+              aria-label="PDS 다이어리 엔지니어링 증적 및 아키텍처 상세 보기">
+              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <span>엔지니어링 증적</span>
+            </button>
             <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer"
               class="proj-link-btn demo-btn" aria-label="PDS 다이어리 실시간 체험">
               <span class="live-dot" aria-hidden="true"></span>
@@ -849,6 +904,11 @@
             <span class="tech-pill">Vanilla JS</span>
           </div>
           <div class="project-links">
+            <button type="button" class="proj-link-btn proof-btn" data-proj-id="hamzzi-studio"
+              aria-label="또햄찌 공방 엔지니어링 증적 및 알고리즘 상세 보기">
+              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <span>엔지니어링 증적</span>
+            </button>
             <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer"
               class="proj-link-btn demo-btn" aria-label="또햄찌 공방 실시간 체험">
               <span class="live-dot" aria-hidden="true"></span>
@@ -888,6 +948,11 @@
             <span class="tech-pill">LocalStorage</span>
           </div>
           <div class="project-links">
+            <button type="button" class="proj-link-btn proof-btn" data-proj-id="apple-game"
+              aria-label="사과게임 엔지니어링 증적 및 알고리즘 상세 보기">
+              <span class="proof-icon" aria-hidden="true">🔬</span>
+              <span>엔지니어링 증적</span>
+            </button>
             <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer"
               class="proj-link-btn demo-btn" aria-label="사과게임 실시간 플레이">
               <span class="live-dot" aria-hidden="true"></span>
@@ -1305,7 +1370,11 @@
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <img src="assets/certificate.jpg" alt="바이브코딩 AI 기반 웹풀스택 개발 과정 수료증 (생년월일 비공개 처리)" class="modal-img">
+        <picture>
+          <source srcset="assets/certificate.webp" type="image/webp">
+          <img src="assets/certificate.jpg" alt="바이브코딩 AI 기반 웹풀스택 개발 과정 수료증 (생년월일 비공개 처리)" class="modal-img"
+            loading="lazy" decoding="async" width="800" height="566">
+        </picture>
       </div>
     </div>
 
@@ -2935,6 +3004,63 @@
         </div>
       </div>
     </div>
+
+    <!-- 프로젝트 상세 프리뷰 & 엔지니어링 증적 모달 -->
+    <div class="project-modal-overlay" id="projectModal" hidden aria-modal="true" role="dialog"
+      aria-label="프로젝트 엔지니어링 증적 및 상세 프리뷰">
+      <div class="project-modal-dialog">
+        <!-- 헤더 -->
+        <div class="project-modal-header">
+          <div class="proj-header-meta">
+            <span class="proj-header-badge" id="projModalBadge">Engineering Proof</span>
+            <div class="proj-title-row">
+              <h3 class="proj-modal-title" id="projModalTitle">프로젝트 명</h3>
+              <span class="proj-modal-category" id="projModalCategory">Platform</span>
+            </div>
+            <p class="proj-modal-summary" id="projModalSummary">프로젝트 한 줄 요약</p>
+          </div>
+          <div class="proj-header-actions">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="proj-action-link" id="projModalLiveLink" hidden>
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Live Demo</span> &rarr;
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="proj-action-link" id="projModalRepoLink">
+              <span>GitHub</span> &rarr;
+            </a>
+            <button class="project-modal-close" type="button" id="projModalClose" aria-label="증적 창 닫기">
+              <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 탭 네비게이션 -->
+        <div class="proj-tab-bar" role="tablist" aria-label="프로젝트 분석 탭">
+          <button type="button" class="proj-tab-chip active" data-tab="arch">1. 아키텍처 &amp; 설계 흐름</button>
+          <button type="button" class="proj-tab-chip" data-tab="diff">2. 핵심 문제 &amp; 해결 Diff</button>
+          <button type="button" class="proj-tab-chip" data-tab="security">3. 보안·검증 증적 로그</button>
+          <button type="button" class="proj-tab-chip" data-tab="code">4. 핵심 구현 코드</button>
+        </div>
+
+        <!-- 탭 콘텐츠 바디 -->
+        <div class="project-modal-body" id="projModalBody">
+          <!-- JS에서 동적 렌더링 -->
+        </div>
+
+        <!-- 푸터 -->
+        <div class="project-modal-footer">
+          <div class="proj-footer-info">
+            <span class="proj-footer-author">Lead / Contributor: 오하율</span>
+            <span class="proj-footer-divider" aria-hidden="true">|</span>
+            <span class="proj-footer-note">Verified on Production &amp; Testbed</span>
+          </div>
+          <button type="button" class="proj-footer-close-btn" id="projModalBottomClose">닫기</button>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- 푸터 -->
@@ -2952,7 +3078,7 @@
     </svg>
   </button>
 
-  <script src="js/main.js?v=20261012_v5"></script>
+  <script src="js/main.js?v=20261012_v6"></script>
   <!-- 토스트 알림 (복사 완료 피드백 등) -->
   <div class="toast-notification" id="appToast" role="alert" aria-live="polite" hidden>
     <div class="toast-content">
