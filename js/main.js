@@ -554,4 +554,273 @@
   });
 })();
 
+/* ===========================
+   Metrics & Records Dynamic Hybrid Sync
+   - Tier 1: data/records.json 비동기 fetch
+   - Tier 2: Fetch 실패 시 내장 기본값(Fallback)으로 100% 가동 보장
+   - Tier 3: 오늘 날짜(new Date()) 실시간 자동 계산 (멈춘 날짜 방지)
+   - Tier 4: 과제 승인 단계(1~13) 동적 렌더링 (12번 승인 시 자동 체크 및 13번 스위칭)
+   =========================== */
+(function initMetricsDynamicSync() {
+  var grid = document.querySelector('.metrics-grid');
+  if (!grid) return;
+
+  var DEFAULT_METRICS = {
+    lastUpdated: '2026-10-11',
+    startDate: '2026-08-11',
+    attendance: { days: 39, totalDays: 39, rate: 100, absent: 0, source: '내 출석 기록' },
+    ritual: { days: 39, startDate: '2026-08-11', endDate: '2026-10-08', autoExtendToToday: true, source: '리추얼 기록' },
+    practice: { successDays: 35, totalDays: 39, rate: 90, quote: '번아웃 이후에도 멈추지 않고 매일 기록한 숫자', source: '리추얼 기록' },
+    breathe: { avgMinutes: 3.1, consistency: 98, source: '리추얼 기록' },
+    feedback: { count: 55, weeklyAvg: 7.8, source: '리추얼 기록' },
+    tasks: { completed: 11, inProgress: 12, total: 13, source: '내 제출 현황' }
+  };
+
+  // 오늘 날짜 계산 (MM.DD 형식)
+  var today = new Date();
+  var todayMonth = String(today.getMonth() + 1).padStart(2, '0');
+  var todayDay = String(today.getDate()).padStart(2, '0');
+  var todayFormatted = todayMonth + '.' + todayDay;
+
+  function renderMetrics(data) {
+    if (!data) data = DEFAULT_METRICS;
+
+    var tasksCompleted = Number(data.tasks.completed) || 11;
+    var tasksTotal = Number(data.tasks.total) || 13;
+    var tasksInProgress = (tasksCompleted < tasksTotal) ? (tasksCompleted + 1) : tasksTotal;
+    var taskPercent = ((tasksCompleted / tasksTotal) * 100).toFixed(1);
+
+    var ritualEndLabel = (data.ritual.autoExtendToToday) ? todayFormatted + ' (현재)' : (data.ritual.endDate || todayFormatted);
+
+    // 13단계 스테퍼 HTML 동적 생성
+    var stepperDotsHtml = '';
+    for (var i = 1; i <= tasksTotal; i++) {
+      if (i <= tasksCompleted) {
+        stepperDotsHtml += '<span class="step-dot completed" title="' + i + '번 과제 완료">✓</span>';
+      } else if (i === tasksInProgress) {
+        stepperDotsHtml += '<span class="step-dot current" title="' + i + '번 과제 진행 중">' + i + '</span>';
+      } else {
+        stepperDotsHtml += '<span class="step-dot upcoming" title="' + i + '번 과제 대기">' + i + '</span>';
+      }
+    }
+
+    // 39개 스트릭 도트 생성
+    var streakDotsHtml = '';
+    var attDays = data.attendance.days || 39;
+    for (var d = 0; d < attDays; d++) {
+      streakDotsHtml += '<span class="streak-dot active"></span>';
+    }
+
+    grid.innerHTML = '' +
+      '<!-- 1. 출석률 -->' +
+      '<div class="metric-card">' +
+      '  <div class="metric-header-part">' +
+      '    <div class="metric-num-wrap">' +
+      '      <span class="metric-num">' + data.attendance.days + '/' + data.attendance.totalDays + '일</span>' +
+      '      <span class="metric-rate">(' + data.attendance.rate + '%)</span>' +
+      '    </div>' +
+      '    <p class="metric-label">출석률, 결석 ' + data.attendance.absent + '</p>' +
+      '  </div>' +
+      '  <div class="metric-chart-wrap" aria-label="출석률 ' + data.attendance.rate + '% 시각화">' +
+      '    <div class="attendance-visual">' +
+      '      <div class="circular-chart-box">' +
+      '        <svg class="circular-chart" viewBox="0 0 36 36">' +
+      '          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>' +
+      '          <path class="circle-fill" stroke-dasharray="' + data.attendance.rate + ', 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>' +
+      '        </svg>' +
+      '        <div class="circle-inner-icon" aria-hidden="true">' +
+      '          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" width="13" height="13">' +
+      '            <polyline points="20 6 9 17 4 12"></polyline>' +
+      '          </svg>' +
+      '        </div>' +
+      '      </div>' +
+      '      <div class="streak-dots-area" title="' + data.attendance.days + '일 무결석 연속 출석 기록">' +
+      '        <div class="streak-grid" aria-hidden="true">' + streakDotsHtml + '</div>' +
+      '        <span class="streak-caption">' + data.attendance.days + '일 무결석 완전 연속 달성</span>' +
+      '      </div>' +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="metric-source">' +
+      '    <span class="metric-source-dot" aria-hidden="true"></span>' +
+      '    <span>출처: ' + data.attendance.source + '</span>' +
+      '  </div>' +
+      '</div>' +
+
+      '<!-- 2. 리추얼 작성 일수 -->' +
+      '<div class="metric-card">' +
+      '  <div class="metric-header-part">' +
+      '    <div class="metric-num-wrap">' +
+      '      <span class="metric-num">' + data.ritual.days + '일</span>' +
+      '    </div>' +
+      '    <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range">(' + data.ritual.startDate + ' ~ ' + todayFormatted + ')</span></p>' +
+      '  </div>' +
+      '  <div class="metric-chart-wrap" aria-label="리추얼 지속 기간 타임라인">' +
+      '    <div class="timeline-bar-chart">' +
+      '      <div class="timeline-bar-track">' +
+      '        <div class="timeline-bar-fill" style="width: 100%;"></div>' +
+      '        <div class="timeline-bar-pointer"></div>' +
+      '      </div>' +
+      '      <div class="timeline-bar-scale" aria-hidden="true">' +
+      '        <span class="scale-label">08.11 (개강)</span>' +
+      '        <span class="scale-mid">총 8주간 매일 기록</span>' +
+      '        <span class="scale-label">' + ritualEndLabel + '</span>' +
+      '      </div>' +
+      '      <div class="timeline-week-blocks" aria-hidden="true">' +
+      '        <span class="week-pill active">1주</span>' +
+      '        <span class="week-pill active">2주</span>' +
+      '        <span class="week-pill active">3주</span>' +
+      '        <span class="week-pill active">4주</span>' +
+      '        <span class="week-pill active">5주</span>' +
+      '        <span class="week-pill active">6주</span>' +
+      '        <span class="week-pill active">7주</span>' +
+      '        <span class="week-pill active">8주</span>' +
+      '      </div>' +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="metric-source">' +
+      '    <span class="metric-source-dot" aria-hidden="true"></span>' +
+      '    <span>출처: ' + data.ritual.source + '</span>' +
+      '  </div>' +
+      '</div>' +
+
+      '<!-- 3. 강점 행동 실천 비율 -->' +
+      '<div class="metric-card highlight-card">' +
+      '  <div class="metric-header-part">' +
+      '    <div class="metric-num-wrap">' +
+      '      <span class="metric-num">' + data.practice.successDays + '/' + data.practice.totalDays + '일</span>' +
+      '      <span class="metric-rate">(' + data.practice.rate + '%)</span>' +
+      '    </div>' +
+      '    <p class="metric-label">강점 행동 "실천했다" 비율</p>' +
+      '  </div>' +
+      '  <div class="metric-chart-wrap" aria-label="강점 행동 실천율 ' + data.practice.rate + '%">' +
+      '    <div class="practice-gauge-box">' +
+      '      <div class="segmented-bar" aria-hidden="true">' +
+      '        <div class="segmented-fill" style="width: ' + data.practice.rate + '%;"></div>' +
+      '        <div class="segmented-unfill" style="width: ' + (100 - data.practice.rate) + '%;"></div>' +
+      '      </div>' +
+      '      <div class="gauge-meta-row">' +
+      '        <span class="gauge-tag-success">실천 ' + data.practice.successDays + '일 (' + data.practice.rate + '%)</span>' +
+      '        <span class="gauge-tag-rest">재정비 ' + (data.practice.totalDays - data.practice.successDays) + '일</span>' +
+      '      </div>' +
+      '    </div>' +
+      '    <div class="metric-quote-badge">' +
+      '      <span class="quote-mark">“</span>' + data.practice.quote + '<span class="quote-mark">”</span>' +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="metric-source">' +
+      '    <span class="metric-source-dot" aria-hidden="true"></span>' +
+      '    <span>출처: ' + data.practice.source + '</span>' +
+      '  </div>' +
+      '</div>' +
+
+      '<!-- 4. 아침 호흡 시간 -->' +
+      '<div class="metric-card">' +
+      '  <div class="metric-header-part">' +
+      '    <div class="metric-num-wrap">' +
+      '      <span class="metric-num">평균 ' + data.breathe.avgMinutes + '분</span>' +
+      '    </div>' +
+      '    <p class="metric-label">매일 아침 호흡 시간</p>' +
+      '  </div>' +
+      '  <div class="metric-chart-wrap" aria-label="아침 호흡 루틴 일자별 파형 그래프">' +
+      '    <div class="sparkline-chart-box">' +
+      '      <svg class="sparkline-svg" viewBox="0 0 200 44" preserveAspectRatio="none">' +
+      '        <defs>' +
+      '          <linearGradient id="breatheGrad" x1="0" y1="0" x2="0" y2="1">' +
+      '            <stop offset="0%" stop-color="currentColor" stop-opacity="0.18" />' +
+      '            <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />' +
+      '          </linearGradient>' +
+      '        </defs>' +
+      '        <path class="sparkline-area" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20 L 200,44 L 0,44 Z" />' +
+      '        <line x1="0" y1="22" x2="200" y2="22" class="sparkline-guide" stroke-dasharray="3,3" />' +
+      '        <path class="sparkline-line" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20" />' +
+      '        <circle cx="50" cy="23" r="2.5" class="sparkline-point" />' +
+      '        <circle cx="100" cy="21" r="2.5" class="sparkline-point" />' +
+      '        <circle cx="150" cy="22" r="2.5" class="sparkline-point" />' +
+      '        <circle cx="200" cy="20" r="3" class="sparkline-point active" />' +
+      '      </svg>' +
+      '      <div class="sparkline-meta">' +
+      '        <span>안정적 호흡 루틴 지속</span>' +
+      '        <span class="sparkline-badge">일관도 ' + data.breathe.consistency + '%</span>' +
+      '      </div>' +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="metric-source">' +
+      '    <span class="metric-source-dot" aria-hidden="true"></span>' +
+      '    <span>출처: ' + data.breathe.source + '</span>' +
+      '  </div>' +
+      '</div>' +
+
+      '<!-- 5. 동료 피드백 교환 횟수 -->' +
+      '<div class="metric-card">' +
+      '  <div class="metric-header-part">' +
+      '    <div class="metric-num-wrap">' +
+      '      <span class="metric-num">' + data.feedback.count + '회</span>' +
+      '    </div>' +
+      '    <p class="metric-label">동료 피드백 교환 횟수</p>' +
+      '  </div>' +
+      '  <div class="metric-chart-wrap" aria-label="주차별 피드백 교환 빈도 막대 그래프">' +
+      '    <div class="mini-bar-chart">' +
+      '      <div class="bars-container" aria-hidden="true">' +
+      '        <div class="bar-col"><span class="bar-fill" style="height: 60%;" title="1주차: 6회"></span><span class="bar-x">W1</span></div>' +
+      '        <div class="bar-col"><span class="bar-fill" style="height: 70%;" title="2주차: 7회"></span><span class="bar-x">W2</span></div>' +
+      '        <div class="bar-col"><span class="bar-fill" style="height: 90%;" title="3주차: 9회"></span><span class="bar-x">W3</span></div>' +
+      '        <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="4주차: 8회"></span><span class="bar-x">W4</span></div>' +
+      '        <div class="bar-col"><span class="bar-fill" style="height: 95%;" title="5주차: 9회"></span><span class="bar-x">W5</span></div>' +
+      '        <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="6주차: 8회"></span><span class="bar-x">W6</span></div>' +
+      '        <div class="bar-col"><span class="bar-fill active" style="height: 85%;" title="7주차+: 8회"></span><span class="bar-x">W7</span></div>' +
+      '      </div>' +
+      '      <div class="bar-chart-meta">' +
+      '        <span>평균 주 ' + data.feedback.weeklyAvg + '회 교환</span>' +
+      '        <span class="bar-total-tag">상호 협업</span>' +
+      '      </div>' +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="metric-source">' +
+      '    <span class="metric-source-dot" aria-hidden="true"></span>' +
+      '    <span>출처: ' + data.feedback.source + '</span>' +
+      '  </div>' +
+      '</div>' +
+
+      '<!-- 6. 핵심 과제 마스터 승인 -->' +
+      '<div class="metric-card">' +
+      '  <div class="metric-header-part">' +
+      '    <div class="metric-num-wrap">' +
+      '      <span class="metric-num">' + tasksCompleted + '/' + tasksTotal + '개</span>' +
+      '    </div>' +
+      '    <p class="metric-label">핵심 과제 마스터 승인 완료 ' + (tasksCompleted < tasksTotal ? '<span class="metric-progress-tag">' + tasksInProgress + '번 진행 중</span>' : '<span class="metric-progress-tag">전체 마스터 완주</span>') + '</p>' +
+      '  </div>' +
+      '  <div class="metric-chart-wrap" aria-label="' + tasksTotal + '개 과제 진행 파이프라인">' +
+      '    <div class="stepper-pipeline">' +
+      '      <div class="stepper-track" aria-hidden="true">' +
+      '        ' + stepperDotsHtml +
+      '      </div>' +
+      '      <div class="stepper-meta">' +
+      '        <span class="stepper-status">마스터 승인율 <strong>' + taskPercent + '%</strong></span>' +
+      '        <span class="stepper-badge">' + (tasksCompleted >= 12 ? '최종 완료 임박' : '최종 관문 진입') + '</span>' +
+      '      </div>' +
+      '    </div>' +
+      '  </div>' +
+      '  <div class="metric-source">' +
+      '    <span class="metric-source-dot" aria-hidden="true"></span>' +
+      '    <span>출처: ' + data.tasks.source + '</span>' +
+      '  </div>' +
+      '</div>';
+  }
+
+  // Tier 1 Fetch: data/records.json 로드 시도
+  fetch('data/records.json?v=' + Date.now())
+    .then(function (res) {
+      if (!res.ok) throw new Error('Status ' + res.status);
+      return res.json();
+    })
+    .then(function (jsonData) {
+      renderMetrics(jsonData);
+    })
+    .catch(function () {
+      // Tier 2 Fallback: 로컬 file:/// 환경 또는 네트워크 에러 시에도 무조건 정상 작동
+      renderMetrics(DEFAULT_METRICS);
+    });
+})();
+
+
 
