@@ -723,24 +723,25 @@
       '  </div>' +
       '  <div class="metric-chart-wrap" aria-label="아침 호흡 루틴 일자별 파형 그래프">' +
       '    <div class="sparkline-chart-box">' +
-      '      <svg class="sparkline-svg" viewBox="0 0 200 44" preserveAspectRatio="none">' +
+      '      <svg class="sparkline-svg" viewBox="0 0 240 56">' +
       '        <defs>' +
       '          <linearGradient id="breatheGrad" x1="0" y1="0" x2="0" y2="1">' +
-      '            <stop offset="0%" stop-color="currentColor" stop-opacity="0.18" />' +
+      '            <stop offset="0%" stop-color="currentColor" stop-opacity="0.25" />' +
       '            <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />' +
       '          </linearGradient>' +
       '        </defs>' +
-      '        <path class="sparkline-area" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20 L 200,44 L 0,44 Z" />' +
-      '        <line x1="0" y1="22" x2="200" y2="22" class="sparkline-guide" stroke-dasharray="3,3" />' +
-      '        <path class="sparkline-line" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20" />' +
-      '        <circle cx="50" cy="23" r="2.5" class="sparkline-point" />' +
-      '        <circle cx="100" cy="21" r="2.5" class="sparkline-point" />' +
-      '        <circle cx="150" cy="22" r="2.5" class="sparkline-point" />' +
-      '        <circle cx="200" cy="20" r="3" class="sparkline-point active" />' +
+      '        <line x1="0" y1="28" x2="240" y2="28" class="sparkline-guide" stroke-dasharray="3,3" />' +
+      '        <path class="sparkline-area" d="M 0,28 C 15,12 30,12 45,28 C 60,44 75,44 90,28 C 105,12 120,12 135,28 C 150,44 165,44 180,28 C 195,12 210,12 225,28 L 240,28 L 240,56 L 0,56 Z" />' +
+      '        <path class="sparkline-line" d="M 0,28 C 15,12 30,12 45,28 C 60,44 75,44 90,28 C 105,12 120,12 135,28 C 150,44 165,44 180,28 C 195,12 210,12 225,28 L 240,28" />' +
+      '        <circle cx="30" cy="16" r="3" class="sparkline-point" />' +
+      '        <circle cx="90" cy="28" r="2" class="sparkline-point-mid" />' +
+      '        <circle cx="120" cy="16" r="3" class="sparkline-point" />' +
+      '        <circle cx="180" cy="28" r="2" class="sparkline-point-mid" />' +
+      '        <circle cx="210" cy="16" r="3.2" class="sparkline-point active" />' +
       '      </svg>' +
       '      <div class="sparkline-meta">' +
-      '        <span>안정적 호흡 루틴 지속</span>' +
-      '        <span class="sparkline-badge">일관도 ' + data.breathe.consistency + '%</span>' +
+      '        <span>규칙적 4구간 들숨·날숨 리듬</span>' +
+      '        <span class="sparkline-badge">일관도 ' + data.breathe.consistency + '% (안정)</span>' +
       '      </div>' +
       '    </div>' +
       '  </div>' +

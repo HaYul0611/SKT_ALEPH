@@ -918,18 +918,20 @@ img {
   color: var(--text-light);
 }
 
-/* 4. Sparkline SVG */
+/* 4. Sparkline SVG (호흡 루틴 파형) */
 .sparkline-chart-box {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
+  padding-top: 4px;
 }
 
 .sparkline-svg {
   width: 100%;
-  height: 38px;
+  height: 52px;
   overflow: visible;
   color: var(--text);
+  display: block;
 }
 
 .sparkline-area {
@@ -939,40 +941,56 @@ img {
 .sparkline-guide {
   stroke: var(--border);
   stroke-width: 0.8;
+  opacity: 0.8;
 }
 
 .sparkline-line {
   fill: none;
   stroke: var(--text);
-  stroke-width: 2;
+  stroke-width: 2.2;
   stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .sparkline-point {
   fill: var(--bg);
   stroke: var(--text);
-  stroke-width: 1.5;
+  stroke-width: 1.8;
+  transition: transform var(--transition);
+}
+
+.sparkline-point-mid {
+  fill: var(--text-light);
+  opacity: 0.6;
 }
 
 .sparkline-point.active {
   fill: var(--text);
+  stroke: var(--text);
+  animation: pulse-dot 2.4s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
 }
 
 .sparkline-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--text-mid);
 }
 
 .sparkline-badge {
   font-size: 10px;
   font-weight: 600;
-  padding: 1px 6px;
+  padding: 2px 7px;
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.05);
   color: var(--text);
+  letter-spacing: -0.1px;
 }
 
 [data-theme="dark"] .sparkline-badge {
@@ -3602,13 +3620,32 @@ a.evidence-item {
 
 .novel-nav-bar {
   display: flex;
-  gap: 6px;
-  padding: 12px 28px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px 12px;
   background: rgba(0, 0, 0, 0.02);
   border-bottom: 0.5px solid var(--border);
   overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
+  flex-shrink: 0;
+  min-height: 52px;
+  box-sizing: border-box;
   scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.novel-nav-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.novel-nav-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.novel-nav-bar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
 }
 
 [data-theme="dark"] .novel-nav-bar {
@@ -3616,17 +3653,23 @@ a.evidence-item {
 }
 
 .novel-nav-chip {
-  padding: 5px 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 13px;
   font-size: 11.5px;
+  line-height: 1.2;
   font-weight: 500;
   border: 0.5px solid var(--border);
-  background: transparent;
+  background: var(--bg);
   color: var(--text-mid);
-  border-radius: 14px;
+  border-radius: 16px;
   cursor: pointer;
   transition: all var(--transition);
   font-family: inherit;
   flex-shrink: 0;
+  box-sizing: border-box;
+  user-select: none;
 }
 
 .novel-nav-chip:hover {

@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="오하율 | Portfolio — IT 인프라 · 보안 · 풀스택">
   <meta name="twitter:description" content="병원 행정 중간관리자에서 웹 풀스택, 인프라 보안 엔지니어로의 전환. 오하율의 포트폴리오 및 서사 문서.">
   <meta name="twitter:image" content="https://hayul0611.github.io/SKT_ALEPH/assets/profile.jpg">
-  <link rel="stylesheet" href="css/style.css?v=20261012_v1">
+  <link rel="stylesheet" href="css/style.css?v=20261012_v4">
 </head>
 
 <body>
@@ -403,24 +403,29 @@
           <!-- 차트: 안정적인 호흡 루틴 SVG 스파크라인 파형 -->
           <div class="metric-chart-wrap" aria-label="아침 호흡 루틴 일자별 파형 그래프">
             <div class="sparkline-chart-box">
-              <svg class="sparkline-svg" viewBox="0 0 200 44" preserveAspectRatio="none">
+              <svg class="sparkline-svg" viewBox="0 0 240 56">
                 <defs>
                   <linearGradient id="breatheGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="currentColor" stop-opacity="0.18" />
+                    <stop offset="0%" stop-color="currentColor" stop-opacity="0.25" />
                     <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />
                   </linearGradient>
                 </defs>
-                <path class="sparkline-area" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20 L 200,44 L 0,44 Z" />
-                <line x1="0" y1="22" x2="200" y2="22" class="sparkline-guide" stroke-dasharray="3,3" />
-                <path class="sparkline-line" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20" />
-                <circle cx="50" cy="23" r="2.5" class="sparkline-point" />
-                <circle cx="100" cy="21" r="2.5" class="sparkline-point" />
-                <circle cx="150" cy="22" r="2.5" class="sparkline-point" />
-                <circle cx="200" cy="20" r="3" class="sparkline-point active" />
+                <!-- 평균 3.1분 기준 점선 가이드 -->
+                <line x1="0" y1="28" x2="240" y2="28" class="sparkline-guide" stroke-dasharray="3,3" />
+                <!-- 부드러운 호흡 그라디언트 영역 -->
+                <path class="sparkline-area" d="M 0,28 C 15,12 30,12 45,28 C 60,44 75,44 90,28 C 105,12 120,12 135,28 C 150,44 165,44 180,28 C 195,12 210,12 225,28 L 240,28 L 240,56 L 0,56 Z" />
+                <!-- 메인 호흡 사인 파동 (들숨·날숨 리듬) -->
+                <path class="sparkline-line" d="M 0,28 C 15,12 30,12 45,28 C 60,44 75,44 90,28 C 105,12 120,12 135,28 C 150,44 165,44 180,28 C 195,12 210,12 225,28 L 240,28" />
+                <!-- 흡기 고점 및 리듬 인디케이터 (원형 유지) -->
+                <circle cx="30" cy="16" r="3" class="sparkline-point" />
+                <circle cx="90" cy="28" r="2" class="sparkline-point-mid" />
+                <circle cx="120" cy="16" r="3" class="sparkline-point" />
+                <circle cx="180" cy="28" r="2" class="sparkline-point-mid" />
+                <circle cx="210" cy="16" r="3.2" class="sparkline-point active" />
               </svg>
               <div class="sparkline-meta">
-                <span>안정적 호흡 루틴 지속</span>
-                <span class="sparkline-badge">일관도 98%</span>
+                <span>규칙적 4구간 들숨·날숨 리듬</span>
+                <span class="sparkline-badge">일관도 98% (안정)</span>
               </div>
             </div>
           </div>
@@ -2330,7 +2335,6 @@
               <p>오늘도 하율은 노트를 펼쳤다. 할 일 세 줄을 적고, 어제 적은 것을 다시 읽었다. 어제의 자기가 오늘의 자기에게 건네는 인수인계였다. 병원에서도, 군대에서도, 팀 프로젝트에서도
                 인수인계는 중요했다. 자기 자신에게 하는 인수인계도 마찬가지였다. 빠뜨린 것이 없는지 확인하고, 다음 할 일을 적고, 노트를 덮었다.</p>
               <p>그 자리가 어디든, 하율은 거기서도 순서를 맞추고, 빠진 것을 찾고, 정리할 것이다. 그것이 하율이니까. 그럼에도 불구하고, 멈추지 않는 사람이니까.</p>
-              <p>[[ALEPH_BODY_END]]</p>
             </div>
           </section>
         </div>
@@ -2949,7 +2953,7 @@
     </svg>
   </button>
 
-  <script src="js/main.js?v=20261012_v1"></script>
+  <script src="js/main.js?v=20261012_v4"></script>
   <!-- 토스트 알림 (복사 완료 피드백 등) -->
   <div class="toast-notification" id="appToast" role="alert" aria-live="polite" hidden>
     <div class="toast-content">
