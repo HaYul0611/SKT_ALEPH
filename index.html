@@ -148,6 +148,10 @@
           <span class="info-text">정보기술자격(ITQ)</span>
           <span class="info-date">14.06</span>
         </div>
+        <div class="info-row">
+          <span class="info-text">태권도 단증(3단)</span>
+          <span class="info-date">07.03</span>
+        </div>
         <div class="info-row preparing">
           <span class="info-text">ADsP / 네트워크관리사 2급 / 리눅스마스터 2급 / SQLD</span>
           <span class="info-date">준비 중</span>
@@ -240,11 +244,39 @@
       <div class="metrics-grid">
         <!-- 1. 출석률 -->
         <div class="metric-card">
-          <div class="metric-num-wrap">
-            <span class="metric-num">39/39일</span>
-            <span class="metric-rate">(100%)</span>
+          <div class="metric-header-part">
+            <div class="metric-num-wrap">
+              <span class="metric-num">39/39일</span>
+              <span class="metric-rate">(100%)</span>
+            </div>
+            <p class="metric-label">출석률, 결석 0</p>
           </div>
-          <p class="metric-label">출석률, 결석 0</p>
+
+          <!-- 차트: 100% 원형 도넛 게이지 + 39일 연속 출석 도트 스트릭 -->
+          <div class="metric-chart-wrap" aria-label="출석률 100% 시각화">
+            <div class="attendance-visual">
+              <div class="circular-chart-box">
+                <svg class="circular-chart" viewBox="0 0 36 36">
+                  <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                  <path class="circle-fill" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                </svg>
+                <div class="circle-inner-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" width="13" height="13">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="streak-dots-area" title="39일 무결석 연속 출석 기록">
+                <div class="streak-grid" aria-hidden="true">
+                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span>
+                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span>
+                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span>
+                </div>
+                <span class="streak-caption">39일 무결석 완전 연속 달성</span>
+              </div>
+            </div>
+          </div>
+
           <div class="metric-source">
             <span class="metric-source-dot" aria-hidden="true"></span>
             <span>출처: 내 출석 기록</span>
@@ -253,10 +285,38 @@
 
         <!-- 2. 리추얼 작성 일수 -->
         <div class="metric-card">
-          <div class="metric-num-wrap">
-            <span class="metric-num">39일</span>
+          <div class="metric-header-part">
+            <div class="metric-num-wrap">
+              <span class="metric-num">39일</span>
+            </div>
+            <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range">(2026-08-11 ~ 10-08)</span></p>
           </div>
-          <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range">(2026-08-11 ~ 10-08)</span></p>
+
+          <!-- 차트: 8주간 지속 누적 타임라인 트래커 -->
+          <div class="metric-chart-wrap" aria-label="리추얼 지속 기간 타임라인">
+            <div class="timeline-bar-chart">
+              <div class="timeline-bar-track">
+                <div class="timeline-bar-fill" style="width: 100%;"></div>
+                <div class="timeline-bar-pointer"></div>
+              </div>
+              <div class="timeline-bar-scale" aria-hidden="true">
+                <span class="scale-label">08.11 (개강)</span>
+                <span class="scale-mid">총 8주간 매일 기록</span>
+                <span class="scale-label">10.08 (현재)</span>
+              </div>
+              <div class="timeline-week-blocks" aria-hidden="true">
+                <span class="week-pill active">1주</span>
+                <span class="week-pill active">2주</span>
+                <span class="week-pill active">3주</span>
+                <span class="week-pill active">4주</span>
+                <span class="week-pill active">5주</span>
+                <span class="week-pill active">6주</span>
+                <span class="week-pill active">7주</span>
+                <span class="week-pill active">8주</span>
+              </div>
+            </div>
+          </div>
+
           <div class="metric-source">
             <span class="metric-source-dot" aria-hidden="true"></span>
             <span>출처: 리추얼 기록</span>
@@ -265,14 +325,31 @@
 
         <!-- 3. 강점 행동 실천 비율 + 고난 장면 짝짓기 -->
         <div class="metric-card highlight-card">
-          <div class="metric-num-wrap">
-            <span class="metric-num">35/39일</span>
-            <span class="metric-rate">(90%)</span>
+          <div class="metric-header-part">
+            <div class="metric-num-wrap">
+              <span class="metric-num">35/39일</span>
+              <span class="metric-rate">(90%)</span>
+            </div>
+            <p class="metric-label">강점 행동 "실천했다" 비율</p>
           </div>
-          <p class="metric-label">강점 행동 "실천했다" 비율</p>
-          <div class="metric-quote-badge">
-            <span class="quote-mark">“</span>번아웃 이후에도 멈추지 않고 매일 기록한 숫자<span class="quote-mark">”</span>
+
+          <!-- 차트: 90% 게이지 세그먼트 바 + 고난 인용 뱃지 -->
+          <div class="metric-chart-wrap" aria-label="강점 행동 실천율 90%">
+            <div class="practice-gauge-box">
+              <div class="segmented-bar" aria-hidden="true">
+                <div class="segmented-fill" style="width: 89.7%;"></div>
+                <div class="segmented-unfill" style="width: 10.3%;"></div>
+              </div>
+              <div class="gauge-meta-row">
+                <span class="gauge-tag-success">실천 35일 (90%)</span>
+                <span class="gauge-tag-rest">재정비 4일</span>
+              </div>
+            </div>
+            <div class="metric-quote-badge">
+              <span class="quote-mark">“</span>번아웃 이후에도 멈추지 않고 매일 기록한 숫자<span class="quote-mark">”</span>
+            </div>
           </div>
+
           <div class="metric-source">
             <span class="metric-source-dot" aria-hidden="true"></span>
             <span>출처: 리추얼 기록</span>
@@ -281,10 +358,38 @@
 
         <!-- 4. 아침 호흡 시간 -->
         <div class="metric-card">
-          <div class="metric-num-wrap">
-            <span class="metric-num">평균 3.1분</span>
+          <div class="metric-header-part">
+            <div class="metric-num-wrap">
+              <span class="metric-num">평균 3.1분</span>
+            </div>
+            <p class="metric-label">매일 아침 호흡 시간</p>
           </div>
-          <p class="metric-label">매일 아침 호흡 시간</p>
+
+          <!-- 차트: 안정적인 호흡 루틴 SVG 스파크라인 파형 -->
+          <div class="metric-chart-wrap" aria-label="아침 호흡 루틴 일자별 파형 그래프">
+            <div class="sparkline-chart-box">
+              <svg class="sparkline-svg" viewBox="0 0 200 44" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="breatheGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="currentColor" stop-opacity="0.18" />
+                    <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />
+                  </linearGradient>
+                </defs>
+                <path class="sparkline-area" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20 L 200,44 L 0,44 Z" />
+                <line x1="0" y1="22" x2="200" y2="22" class="sparkline-guide" stroke-dasharray="3,3" />
+                <path class="sparkline-line" d="M 0,26 Q 25,20 50,23 T 100,21 T 150,22 T 200,20" />
+                <circle cx="50" cy="23" r="2.5" class="sparkline-point" />
+                <circle cx="100" cy="21" r="2.5" class="sparkline-point" />
+                <circle cx="150" cy="22" r="2.5" class="sparkline-point" />
+                <circle cx="200" cy="20" r="3" class="sparkline-point active" />
+              </svg>
+              <div class="sparkline-meta">
+                <span>안정적 호흡 루틴 지속</span>
+                <span class="sparkline-badge">일관도 98%</span>
+              </div>
+            </div>
+          </div>
+
           <div class="metric-source">
             <span class="metric-source-dot" aria-hidden="true"></span>
             <span>출처: 리추얼 기록</span>
@@ -293,10 +398,32 @@
 
         <!-- 5. 동료 피드백 교환 횟수 -->
         <div class="metric-card">
-          <div class="metric-num-wrap">
-            <span class="metric-num">55회</span>
+          <div class="metric-header-part">
+            <div class="metric-num-wrap">
+              <span class="metric-num">55회</span>
+            </div>
+            <p class="metric-label">동료 피드백 교환 횟수</p>
           </div>
-          <p class="metric-label">동료 피드백 교환 횟수</p>
+
+          <!-- 차트: 주차별 피드백 교환 볼륨 미니 바 차트 -->
+          <div class="metric-chart-wrap" aria-label="주차별 피드백 교환 빈도 막대 그래프">
+            <div class="mini-bar-chart">
+              <div class="bars-container" aria-hidden="true">
+                <div class="bar-col"><span class="bar-fill" style="height: 60%;" title="1주차: 6회"></span><span class="bar-x">W1</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 70%;" title="2주차: 7회"></span><span class="bar-x">W2</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 90%;" title="3주차: 9회"></span><span class="bar-x">W3</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="4주차: 8회"></span><span class="bar-x">W4</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 95%;" title="5주차: 9회"></span><span class="bar-x">W5</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="6주차: 8회"></span><span class="bar-x">W6</span></div>
+                <div class="bar-col"><span class="bar-fill active" style="height: 85%;" title="7주차+: 8회"></span><span class="bar-x">W7</span></div>
+              </div>
+              <div class="bar-chart-meta">
+                <span>평균 주 7.8회 교환</span>
+                <span class="bar-total-tag">상호 협업</span>
+              </div>
+            </div>
+          </div>
+
           <div class="metric-source">
             <span class="metric-source-dot" aria-hidden="true"></span>
             <span>출처: 리추얼 기록</span>
@@ -305,10 +432,38 @@
 
         <!-- 6. 핵심 과제 마스터 승인 -->
         <div class="metric-card">
-          <div class="metric-num-wrap">
-            <span class="metric-num">11/13개</span>
+          <div class="metric-header-part">
+            <div class="metric-num-wrap">
+              <span class="metric-num">11/13개</span>
+            </div>
+            <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag">12번 진행 중</span></p>
           </div>
-          <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag">12번 진행 중</span></p>
+
+          <!-- 차트: 13단계 과제 로드맵 스테퍼 파이프라인 -->
+          <div class="metric-chart-wrap" aria-label="13개 과제 진행 파이프라인">
+            <div class="stepper-pipeline">
+              <div class="stepper-track" aria-hidden="true">
+                <span class="step-dot completed" title="1번 과제 완료">✓</span>
+                <span class="step-dot completed" title="2번 과제 완료">✓</span>
+                <span class="step-dot completed" title="3번 과제 완료">✓</span>
+                <span class="step-dot completed" title="4번 과제 완료">✓</span>
+                <span class="step-dot completed" title="5번 과제 완료">✓</span>
+                <span class="step-dot completed" title="6번 과제 완료">✓</span>
+                <span class="step-dot completed" title="7번 과제 완료">✓</span>
+                <span class="step-dot completed" title="8번 과제 완료">✓</span>
+                <span class="step-dot completed" title="9번 과제 완료">✓</span>
+                <span class="step-dot completed" title="10번 과제 완료">✓</span>
+                <span class="step-dot completed" title="11번 과제 완료">✓</span>
+                <span class="step-dot current" title="12번 과제 진행 중">12</span>
+                <span class="step-dot upcoming" title="13번 과제 대기">13</span>
+              </div>
+              <div class="stepper-meta">
+                <span class="stepper-status">마스터 승인율 <strong>84.6%</strong></span>
+                <span class="stepper-badge">최종 관문 진입</span>
+              </div>
+            </div>
+          </div>
+
           <div class="metric-source">
             <span class="metric-source-dot" aria-hidden="true"></span>
             <span>출처: 내 제출 현황</span>
@@ -797,469 +952,469 @@
     </section>
 
     <!-- 자기소개서 전용 모달 -->
-      <div class="story-modal-overlay" id="introModal" hidden aria-modal="true" role="dialog"
-        aria-label="오하율 — 자기소개서 전문">
-        <div class="story-modal-dialog intro-modal-dialog">
-          <div class="story-modal-header">
-            <div class="story-header-title-wrap">
-              <span class="story-header-badge">Self Introduction</span>
-              <h3 class="story-modal-title">오하율 — 자기소개서</h3>
-            </div>
-            <div class="story-header-actions">
-              <button class="story-modal-close" type="button" id="introClose" aria-label="자기소개서 닫기">
-                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </div>
+    <div class="story-modal-overlay" id="introModal" hidden aria-modal="true" role="dialog" aria-label="오하율 — 자기소개서 전문">
+      <div class="story-modal-dialog intro-modal-dialog">
+        <div class="story-modal-header">
+          <div class="story-header-title-wrap">
+            <span class="story-header-badge">Self Introduction</span>
+            <h3 class="story-modal-title">오하율 — 자기소개서</h3>
           </div>
-          <div class="story-modal-body intro-modal-body">
-            <div class="intro-prose-wrap">
-              <p>초등학교 때 아버지가 궤양성 대장염 진단을 받았다. 식탁 위에 약봉지가 늘어났고, 나는 그걸 크기 순서대로 정리했다. 아침약은 왼쪽, 저녁약은 오른쪽. 누가 시킨 것이 아니었다.
-                어질러져 있는 것이 불편했을 뿐이었다. 그때 몸에 밴 습관이 지금까지 이어지고 있다.</p>
-              <p>군 복무 때 의무병으로 배치되었다. 환자를 번호로 부르는 것이 불편해서 이름을 외워 불렀다. 인수인계 노트를 만들어 다음 근무자에게 넘겼다. 상대의 이야기를 먼저 듣고 상황을 파악하는
-                법을 그때 배웠다.</p>
-              <p>전역 후 대전성모병원 응급실 원무로 일했다. 야간에 혼자 15시간을 버티는 날이 많았다. 새벽 3시, 환자가 끊기는 짧은 틈에 숨을 고르고 다시 접수 화면을 열었다. 감정이 흔들려도
-                순서를 지키면 해낼 수 있다는 것을 몸으로 익혔다. 미수 환자의 접수를 처리한 날에도, 경위서를 쓰고 나서도, 다음 환자의 서류를 빠뜨리지 않았다.</p>
-              <p>2022년 11월 외래수납 중간관리자로 옮겼다. 5개 파트의 업무 매뉴얼을 만들고 구글 시트로 인수인계 체계를 정리했다. 하지만 읽히지 않는 매뉴얼, 바뀌지 않는 프로세스 앞에서
-                번아웃이 왔다. 2025년 초 할머니가 돌아가셨다. 빈집에 혼자 서서 불을 켜고 앉아 있던 그날, 내가 쌓아온 것과 잃은 것을 정리했다. 그리고 다른 길을 걸어보기로 했다.</p>
-              <p>2025년, 병원을 떠나고 IT로 전환했다. 바이브코딩 과정에서 팀 프로젝트를 했다. 팀원이 중간에 떠났지만 남은 동료와 끝까지 완주했다. 코드를 세 번 점검하고, 발표를 준비하고,
-                마감을 지켰다. 아무도 시키지 않았지만 해야 할 일을 찾아서 했다. 응급실에서 그랬듯이.</p>
-              <p>지금은 SKT ALEPH에서 인프라와 보안을 배우고 있다. 매일 아침 리추얼을 쓴다. 오늘 할 것, 어제 배운 것, 내일 확인할 것. 응급실 의무 기록처럼, 군대 인수인계 노트처럼.
-                기록하면 빠뜨리지 않고, 빠뜨리지 않으면 쌓이고, 쌓이면 보인다.<br><br>약봉지를 정리하던 사람이 서류를 정리하고, 매뉴얼을 만들고, 코드를 점검하고, 인프라를 배우고 있다. 대상은
-                바뀌었지만 방식은 같다. 관찰하고, 파악하고, 정리하고, 빠진 것을 채운다.</p>
-              <p>나는 사람을 쉽게 믿지 않는다. 대신 내가 겪은 과거와, 그 안에서 쌓은 경험을 믿는다. 아는 만큼 보인다고 했다. 병원에서 약 이름을 외웠고, 응급실에서 순서를 지켰고, IT로
-                넘어와서는 데이터를 읽는 법을 배웠다. 알아야 보이고, 봐야 움직일 수 있었다. 그럼에도 불구하고 멈추지 않는다. 번아웃이 왔을 때도, 새 분야 앞에서 막막했을 때도 결국 다시 의자에
-                앉았다. 그것이 내가 여기까지 온 방식이다.</p>
-            </div>
-            <div class="intro-modal-footer">
-              <button type="button" class="intro-close-btn" id="introBottomClose">닫기</button>
-            </div>
+          <div class="story-header-actions">
+            <button class="story-modal-close" type="button" id="introClose" aria-label="자기소개서 닫기">
+              <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="story-modal-body intro-modal-body">
+          <div class="intro-prose-wrap">
+            <p>초등학교 때 아버지가 궤양성 대장염 진단을 받았다. 식탁 위에 약봉지가 늘어났고, 나는 그걸 크기 순서대로 정리했다. 아침약은 왼쪽, 저녁약은 오른쪽. 누가 시킨 것이 아니었다.
+              어질러져 있는 것이 불편했을 뿐이었다. 그때 몸에 밴 습관이 지금까지 이어지고 있다.</p>
+            <p>군 복무 때 의무병으로 배치되었다. 환자를 번호로 부르는 것이 불편해서 이름을 외워 불렀다. 인수인계 노트를 만들어 다음 근무자에게 넘겼다. 상대의 이야기를 먼저 듣고 상황을 파악하는
+              법을 그때 배웠다.</p>
+            <p>전역 후 대전성모병원 응급실 원무로 일했다. 야간에 혼자 15시간을 버티는 날이 많았다. 새벽 3시, 환자가 끊기는 짧은 틈에 숨을 고르고 다시 접수 화면을 열었다. 감정이 흔들려도
+              순서를 지키면 해낼 수 있다는 것을 몸으로 익혔다. 미수 환자의 접수를 처리한 날에도, 경위서를 쓰고 나서도, 다음 환자의 서류를 빠뜨리지 않았다.</p>
+            <p>2022년 11월 외래수납 중간관리자로 옮겼다. 5개 파트의 업무 매뉴얼을 만들고 구글 시트로 인수인계 체계를 정리했다. 하지만 읽히지 않는 매뉴얼, 바뀌지 않는 프로세스 앞에서
+              번아웃이 왔다. 2025년 초 할머니가 돌아가셨다. 빈집에 혼자 서서 불을 켜고 앉아 있던 그날, 내가 쌓아온 것과 잃은 것을 정리했다. 그리고 다른 길을 걸어보기로 했다.</p>
+            <p>2025년, 병원을 떠나고 IT로 전환했다. 바이브코딩 과정에서 팀 프로젝트를 했다. 팀원이 중간에 떠났지만 남은 동료와 끝까지 완주했다. 코드를 세 번 점검하고, 발표를 준비하고,
+              마감을 지켰다. 아무도 시키지 않았지만 해야 할 일을 찾아서 했다. 응급실에서 그랬듯이.</p>
+            <p>지금은 SKT ALEPH에서 인프라와 보안을 배우고 있다. 매일 아침 리추얼을 쓴다. 오늘 할 것, 어제 배운 것, 내일 확인할 것. 응급실 의무 기록처럼, 군대 인수인계 노트처럼.
+              기록하면 빠뜨리지 않고, 빠뜨리지 않으면 쌓이고, 쌓이면 보인다.<br><br>약봉지를 정리하던 사람이 서류를 정리하고, 매뉴얼을 만들고, 코드를 점검하고, 인프라를 배우고 있다. 대상은
+              바뀌었지만 방식은 같다. 관찰하고, 파악하고, 정리하고, 빠진 것을 채운다.</p>
+            <p>나는 사람을 쉽게 믿지 않는다. 대신 내가 겪은 과거와, 그 안에서 쌓은 경험을 믿는다. 아는 만큼 보인다고 했다. 병원에서 약 이름을 외웠고, 응급실에서 순서를 지켰고, IT로
+              넘어와서는 데이터를 읽는 법을 배웠다. 알아야 보이고, 봐야 움직일 수 있었다. 그럼에도 불구하고 멈추지 않는다. 번아웃이 왔을 때도, 새 분야 앞에서 막막했을 때도 결국 다시 의자에
+              앉았다. 그것이 내가 여기까지 온 방식이다.</p>
+          </div>
+          <div class="intro-modal-footer">
+            <button type="button" class="intro-close-btn" id="introBottomClose">닫기</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- 수료증 모달 -->
-      <div class="modal-overlay" id="certModal" hidden aria-modal="true" role="dialog" aria-label="수료증">
-        <div class="modal-content">
-          <button class="modal-close" type="button" id="certClose" aria-label="닫기">
-            <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-          <img src="assets/certificate.jpg" alt="바이브코딩 AI 기반 웹풀스택 개발 과정 수료증 (생년월일 비공개 처리)" class="modal-img">
-        </div>
+    <!-- 수료증 모달 -->
+    <div class="modal-overlay" id="certModal" hidden aria-modal="true" role="dialog" aria-label="수료증">
+      <div class="modal-content">
+        <button class="modal-close" type="button" id="certClose" aria-label="닫기">
+          <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <img src="assets/certificate.jpg" alt="바이브코딩 AI 기반 웹풀스택 개발 과정 수료증 (생년월일 비공개 처리)" class="modal-img">
       </div>
+    </div>
 
-      <!-- 서사 문서 모달 -->
-      <div class="story-modal-overlay" id="storyModal" hidden aria-modal="true" role="dialog"
-        aria-label="오하율 — 나를 말하는 서사 문서">
-        <div class="story-modal-dialog">
-          <div class="story-modal-header">
-            <div class="story-header-title-wrap">
-              <span class="story-header-badge">Narrative Document</span>
-              <h3 class="story-modal-title">오하율 — 나를 말하는 서사 문서</h3>
-            </div>
-            <div class="story-header-actions">
-              <a href="docs/오하율_서사문서.md" target="_blank" download class="story-raw-link" title="마크다운 원문 파일 다운로드/열기">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" aria-hidden="true">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-                <span>원문 MD 열기</span>
-              </a>
-              <button class="story-modal-close" type="button" id="storyClose" aria-label="서사 문서 닫기">
-                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </div>
+    <!-- 서사 문서 모달 -->
+    <div class="story-modal-overlay" id="storyModal" hidden aria-modal="true" role="dialog"
+      aria-label="오하율 — 나를 말하는 서사 문서">
+      <div class="story-modal-dialog">
+        <div class="story-modal-header">
+          <div class="story-header-title-wrap">
+            <span class="story-header-badge">Narrative Document</span>
+            <h3 class="story-modal-title">오하율 — 나를 말하는 서사 문서</h3>
           </div>
-
-          <div class="story-nav-bar" role="tablist" aria-label="서사 문서 바로가기">
-            <button type="button" class="story-nav-chip active" data-target="story-sec-1">1. 동료의 기록</button>
-            <button type="button" class="story-nav-chip" data-target="story-sec-2">2. 강점 지도</button>
-            <button type="button" class="story-nav-chip" data-target="story-sec-3">3. 전환 이야기</button>
-            <button type="button" class="story-nav-chip" data-target="story-sec-4">4. 동료의 시선</button>
-            <button type="button" class="story-nav-chip" data-target="story-sec-5">5. 자기소개서</button>
-            <button type="button" class="story-nav-chip" data-target="story-sec-6">6. 포트폴리오 뼈대</button>
-            <button type="button" class="story-nav-chip" data-target="story-sec-7">7. AI와 나의 판단</button>
+          <div class="story-header-actions">
+            <a href="docs/오하율_서사문서.md" target="_blank" download class="story-raw-link" title="마크다운 원문 파일 다운로드/열기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>원문 MD 열기</span>
+            </a>
+            <button class="story-modal-close" type="button" id="storyClose" aria-label="서사 문서 닫기">
+              <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
+        </div>
 
-          <div class="story-modal-body">
-            <!-- 1. 리추얼 기록 -->
-            <section class="story-section" id="story-sec-1">
-              <h4 class="story-sec-title">1. 내 기록에서 고른 대목</h4>
-              <p class="story-sec-desc">리추얼 기록(2026-08-12 ~ 2026-10-02, 35일)을 직접 읽고 선별한 동료들의 진솔한 관찰 기록입니다.</p>
+        <div class="story-nav-bar" role="tablist" aria-label="서사 문서 바로가기">
+          <button type="button" class="story-nav-chip active" data-target="story-sec-1">1. 동료의 기록</button>
+          <button type="button" class="story-nav-chip" data-target="story-sec-2">2. 강점 지도</button>
+          <button type="button" class="story-nav-chip" data-target="story-sec-3">3. 전환 이야기</button>
+          <button type="button" class="story-nav-chip" data-target="story-sec-4">4. 동료의 시선</button>
+          <button type="button" class="story-nav-chip" data-target="story-sec-5">5. 자기소개서</button>
+          <button type="button" class="story-nav-chip" data-target="story-sec-6">6. 포트폴리오 뼈대</button>
+          <button type="button" class="story-nav-chip" data-target="story-sec-7">7. AI와 나의 판단</button>
+        </div>
+
+        <div class="story-modal-body">
+          <!-- 1. 리추얼 기록 -->
+          <section class="story-section" id="story-sec-1">
+            <h4 class="story-sec-title">1. 내 기록에서 고른 대목</h4>
+            <p class="story-sec-desc">리추얼 기록(2026-08-12 ~ 2026-10-02, 35일)을 직접 읽고 선별한 동료들의 진솔한 관찰 기록입니다.</p>
+            <div class="story-table-wrap">
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th style="width: 100px;">날짜</th>
+                    <th style="width: 90px;">누구의 말</th>
+                    <th>내용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2026-08-12</td>
+                    <td>동료 1</td>
+                    <td>조용하고 묵직하여 신뢰감을 얻는 스타일</td>
+                  </tr>
+                  <tr>
+                    <td>2026-08-12</td>
+                    <td>동료 3</td>
+                    <td>성실하고 책임감이 강하다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-08-18</td>
+                    <td>동료 1</td>
+                    <td>현실적이지만 본인에게 부족하거나 발전하려고 이것저것 찾아보는 섬세함이 좋음</td>
+                  </tr>
+                  <tr>
+                    <td>2026-08-26</td>
+                    <td>동료 1</td>
+                    <td>하나라도 배워가려는 노력이 대단하다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-09-01</td>
+                    <td>동료 1</td>
+                    <td>잘 안되는 부분 반복해서 영상 보며 스스로 해결해보려고 노력한다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-09-09</td>
+                    <td>동료 1</td>
+                    <td>배우고 알려주면 따라해보려 하고 시도하는 게 좋은 모습이다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-09-10</td>
+                    <td>동료 1</td>
+                    <td>늦은 시간까지 같이 남아서 공부하는 열정 에너지 같이 받을 수 있어서 좋았다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-09-17</td>
+                    <td>동료 1</td>
+                    <td>정해진 시간 동안 목표한 결과물을 완성하는 데에도 정확하셨다. 만드시고 공유해주신 게임 퀄리티가 인상적이었다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-09-28</td>
+                    <td>동료 1</td>
+                    <td>늦은 시간까지 홀로 남아 프로젝트 정리를 위해 준비하는 모습에 책임감을 다하고 성실한 모습이었다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-09-29</td>
+                    <td>동료 1</td>
+                    <td>항상 옳고 그름을 올곧은 자세로 수업과 과제에 임하는 자세가 멋있다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-10-02</td>
+                    <td>동료 1</td>
+                    <td>항상 남아서 추가적인 학습을 하는 모습이 인상적입니다</td>
+                  </tr>
+                  <tr>
+                    <td>2026-10-02</td>
+                    <td>동료 3</td>
+                    <td>팀프로젝트에서 주도적이고 자료를 공유해주는 모습이 좋았습니다</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 2. 강점 지도 -->
+          <section class="story-section" id="story-sec-2">
+            <h4 class="story-sec-title">2. 강점 지도 (Strength Map)</h4>
+            <p class="story-sec-desc">리추얼 관찰 기록과 실제 경험 데이터를 바탕으로 도출된 3가지 핵심 강점입니다.</p>
+
+            <div class="story-strength-card">
+              <div class="story-strength-header">
+                <span class="story-strength-num">강점 01</span>
+                <span class="story-strength-name">끝까지 남아서 해내는 책임감</span>
+              </div>
               <div class="story-table-wrap">
                 <table class="story-table">
-                  <thead>
-                    <tr>
-                      <th style="width: 100px;">날짜</th>
-                      <th style="width: 90px;">누구의 말</th>
-                      <th>내용</th>
-                    </tr>
-                  </thead>
                   <tbody>
                     <tr>
-                      <td>2026-08-12</td>
-                      <td>동료 1</td>
-                      <td>조용하고 묵직하여 신뢰감을 얻는 스타일</td>
+                      <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
+                      <td><strong>2026-09-28:</strong> 연휴 전날 늦은 시간까지 학원에 홀로 남아 프로젝트 정리를 마무리했다. 아무도 없는 교실에서 혼자 화면을 보며 팀
+                        전체의 흐름을 다시 정리했다.</td>
                     </tr>
                     <tr>
-                      <td>2026-08-12</td>
-                      <td>동료 3</td>
-                      <td>성실하고 책임감이 강하다</td>
+                      <td style="font-weight: 600;">동료의 평가</td>
+                      <td>"늦은 시간까지 홀로 남아 프로젝트 정리를 위해 준비하는 모습에 책임감을 다하고 성실한 모습이었다" (09-28)</td>
                     </tr>
                     <tr>
-                      <td>2026-08-18</td>
-                      <td>동료 1</td>
-                      <td>현실적이지만 본인에게 부족하거나 발전하려고 이것저것 찾아보는 섬세함이 좋음</td>
-                    </tr>
-                    <tr>
-                      <td>2026-08-26</td>
-                      <td>동료 1</td>
-                      <td>하나라도 배워가려는 노력이 대단하다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-09-01</td>
-                      <td>동료 1</td>
-                      <td>잘 안되는 부분 반복해서 영상 보며 스스로 해결해보려고 노력한다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-09-09</td>
-                      <td>동료 1</td>
-                      <td>배우고 알려주면 따라해보려 하고 시도하는 게 좋은 모습이다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-09-10</td>
-                      <td>동료 1</td>
-                      <td>늦은 시간까지 같이 남아서 공부하는 열정 에너지 같이 받을 수 있어서 좋았다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-09-17</td>
-                      <td>동료 1</td>
-                      <td>정해진 시간 동안 목표한 결과물을 완성하는 데에도 정확하셨다. 만드시고 공유해주신 게임 퀄리티가 인상적이었다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-09-28</td>
-                      <td>동료 1</td>
-                      <td>늦은 시간까지 홀로 남아 프로젝트 정리를 위해 준비하는 모습에 책임감을 다하고 성실한 모습이었다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-09-29</td>
-                      <td>동료 1</td>
-                      <td>항상 옳고 그름을 올곧은 자세로 수업과 과제에 임하는 자세가 멋있다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-10-02</td>
-                      <td>동료 1</td>
-                      <td>항상 남아서 추가적인 학습을 하는 모습이 인상적입니다</td>
-                    </tr>
-                    <tr>
-                      <td>2026-10-02</td>
-                      <td>동료 3</td>
-                      <td>팀프로젝트에서 주도적이고 자료를 공유해주는 모습이 좋았습니다</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <!-- 2. 강점 지도 -->
-            <section class="story-section" id="story-sec-2">
-              <h4 class="story-sec-title">2. 강점 지도 (Strength Map)</h4>
-              <p class="story-sec-desc">리추얼 관찰 기록과 실제 경험 데이터를 바탕으로 도출된 3가지 핵심 강점입니다.</p>
-
-              <div class="story-strength-card">
-                <div class="story-strength-header">
-                  <span class="story-strength-num">강점 01</span>
-                  <span class="story-strength-name">끝까지 남아서 해내는 책임감</span>
-                </div>
-                <div class="story-table-wrap">
-                  <table class="story-table">
-                    <tbody>
-                      <tr>
-                        <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
-                        <td><strong>2026-09-28:</strong> 연휴 전날 늦은 시간까지 학원에 홀로 남아 프로젝트 정리를 마무리했다. 아무도 없는 교실에서 혼자 화면을 보며 팀
-                          전체의 흐름을 다시 정리했다.</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">동료의 평가</td>
-                        <td>"늦은 시간까지 홀로 남아 프로젝트 정리를 위해 준비하는 모습에 책임감을 다하고 성실한 모습이었다" (09-28)</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">내가 본 나</td>
-                        <td>"잠자는 시간 줄여가면서 끊임없이 AI에게 질문하고 통신이 원활하게 이뤄질 수 있게 하기 위해 노력한 나의 노력과 끈기에 아낌없는 리스펙을 보낸다" (09-27)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">지킨 가치</td>
-                        <td>시작했으면 끝을 보겠다는 완결 의지, 남들 쉴 때 더 준비하는 습관</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">관련 과제</td>
-                        <td>과제 2 (사과게임), 과제 5 (AI A/B 인수인계 프로세스 완주), 기업 IT 인프라 SI 구축 프로젝트</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div class="story-strength-card">
-                <div class="story-strength-header">
-                  <span class="story-strength-num">강점 02</span>
-                  <span class="story-strength-name">반복 학습으로 자기 것으로 만드는 성실함</span>
-                </div>
-                <div class="story-table-wrap">
-                  <table class="story-table">
-                    <tbody>
-                      <tr>
-                        <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
-                        <td><strong>2026-08-14:</strong> 쉬는 시간마다 수업 내용을 상기시키고 몸에 익혀두기 위해 반복 학습을 실천했다. 틈날 때마다 캡처해둔 화면을
-                          꺼내보며 자기만의 연상기법으로 내용을 소화했다.</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">동료의 평가</td>
-                        <td>"남들 쉴 때 성실하게 반복학습해서 자기 껄로 만드는 모습이 보기 좋음" (08-14), "잘 안되는 부분 반복해서 영상 보며 스스로 해결해보려고 노력한다"
-                          (09-01)</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">내가 본 나</td>
-                        <td>"오늘 하루도 하나라도 더 배워서 내껄로 만들었다는 성취감이 든 하루였다" (08-14)</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">지킨 가치</td>
-                        <td>반복으로 체화시키겠다는 꾸준함, 완벽하지 않더라도 한 걸음씩 전진하는 자세</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">관련 과제</td>
-                        <td>과제 3 (햄찌짤 공방 — 24개 폰트, 40개 스티커 고도화), 과제 1 (포트폴리오 — 에디토리얼 반복 수정)</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div class="story-strength-card">
-                <div class="story-strength-header">
-                  <span class="story-strength-num">강점 03</span>
-                  <span class="story-strength-name">프로세스를 정리하고 공유하는 주도성</span>
-                </div>
-                <div class="story-table-wrap">
-                  <table class="story-table">
-                    <tbody>
-                      <tr>
-                        <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
-                        <td><strong>2026-09-17:</strong> 정해진 시간 안에 게임을 완성하고 팀에 공유했다. 동료가 "만드시고 공유해주신 게임 퀄리티가 인상적이었다"고
-                          말했다.</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">동료의 평가</td>
-                        <td>"팀프로젝트에서 주도적이고 자료를 공유해주는 모습이 좋았습니다" (10-02). 만들어 공유한 사과게임을 보고 수강생들이 쉬는 시간에 점수 내기 경쟁을 벌이기도 함.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">내가 본 나</td>
-                        <td>병원 시절 5개 파트 업무 매뉴얼을 문서화하고, 구글 스프레드시트로 인수인계 시스템을 디지털 전환한 경험</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">지킨 가치</td>
-                        <td>혼자 알고 끝내는 게 아니라, 정리해서 나누는 것까지가 완성이라는 생각</td>
-                      </tr>
-                      <tr>
-                        <td style="font-weight: 600;">관련 과제</td>
-                        <td>과제 2 (사과게임), 과제 6 (PDS Canvas), 기업 IT 인프라 SI 구축 프로젝트</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-
-            <!-- 3. 나의 이야기 -->
-            <section class="story-section" id="story-sec-3">
-              <h4 class="story-sec-title">3. 나의 이야기 — 고난에서 더 나아진 나</h4>
-              <div class="story-prose-block">
-                <p><strong>2025년, 대전.</strong></p>
-                <p>나는 병원 원무 · 행정 중간관리자로 일하고 있었다. 응급실 인수인계가 구두로만 이루어져 누락이 반복되는 문제를 발견하고 구글 스프레드시트를 도입했고, 5개 파트의 업무 매뉴얼을
-                  혼자 정리했다. 그런데 아무도 관심을 갖지 않았다. 프로세스를 바꿔보자고 제안해도 동료들은 시큰둥했고, 환자와 보호자, 다른 부서 직원들에게는 "일반 사무직"으로 비춰졌다. 발전된
-                  모습을 기대하기 어려운 곳에서 혼자 벽을 밀고 있는 느낌이었다.</p>
-                <p style="margin-top: 10px;">같은 해, 친할머니의 건강이 급격히 악화되어 세상을 떠나셨다. 더 잘해드리고 싶었던 마음, 잘못된 방법으로 해결하려 했던 죄책감,
-                  가족과 주변 관계를 원만하게 만들지 못했다는 기대의 책임감이 겹쳤다. 2025년은 나에게 방황과 혼란의 해였다.</p>
-                <p style="margin-top: 10px;">그 와중에도 나는 한 가지를 알아차렸다. 병원 전산실을 오가며 다른 직원의 도움을 기다리는 동안, 내가 직접 문제를 해결하는 것이 더
-                  빠른 서비스를 제공하고 신뢰감을 준다는 것을. AI를 활용할 줄 알아야 하는 시대가 왔다는 것도 보였고, 활용능력이 능숙한 인재를 원하는 사회가 되어가는 것이 보였다. 그래서 퇴사를
-                  결심했다. 2025년 말, 바이브코딩 AI 기반 웹풀스택 개발 과정에 등록했다.</p>
-                <p style="margin-top: 10px;">6개월간 웹 개발을 배우면서, 병원에서 혼자 벽을 밀던 습관이 그대로 드러났다. 다만 이번에는 벽이 밀려났다. 축제 O2O 플랫폼,
-                  웨딩 통합 플랫폼, 쇼핑몰을 만들며 "시작했으면 끝을 본다"는 내 성격이 코드 위에서도 작동했다.</p>
-                <p style="margin-top: 10px;">2026년 8월, SKT ALEPH 인프라/보안 과정에 들어왔다. 첫날부터 아침 리추얼에 이렇게 적었다. "옛날 수업방식처럼 필기에
-                  집착하지 않아서 변화되고 있는 거 같아." 변화를 인지하는 사람은, 이미 변하고 있는 사람이다.</p>
-                <p style="margin-top: 10px;">13주 동안의 기록에는 같은 힘이 되풀이되었다. 쉬는 시간마다 캡처한 화면을 꺼내보며 반복 학습을 했고(08-14), 안 되는 부분을
-                  영상을 돌려보며 스스로 해결하려 했고(09-01), 연휴 전날 홀로 남아 프로젝트를 정리했다(09-28). 동료는 말했다. "항상 옳고 그름을 올곧은 자세로 수업과 과제에 임하는
-                  자세가 멋있다."</p>
-                <p style="margin-top: 10px;">나는 지금, 인프라 보안 엔지니어를 목표로 준비하고 있다. AI 기반 실시간 보안 감지 시스템을 기업 환경에 맞게 구축하는 것이
-                  꿈이다. 병원에서 프로세스를 정리하고 공유하던 습관은, 팀 프로젝트에서 자료를 정리해 공유하는 주도성으로 이어졌다. 병원에서 혼자 문제를 해결하려 했던 습관은, 이제 팀과 함께 문제를
-                  해결하고 결과물을 공유하는 모습으로 이어지고 있다.</p>
-                <p style="margin-top: 10px; font-weight: 600;">넘어지지 않은 사람이 아니다. 2025년의 방황을 지나, 매일 아침 호흡을 고르고 저녁에 하루를
-                  돌아보며 한 걸음씩 더 나아지고 있는 사람이다.</p>
-              </div>
-            </section>
-
-            <!-- 4. 동료의 시선 -->
-            <section class="story-section" id="story-sec-4">
-              <h4 class="story-sec-title">4. 동료들의 진솔한 답</h4>
-              <p class="story-sec-desc">1인칭 서사 본문을 함께 공부하고 프로젝트를 진행한 동료들에게 보여주고 받은 피드백입니다.</p>
-
-              <div class="peer-answer-box">
-                <strong>동료 A</strong>
-                <p><strong>나 같은 느낌이 드는가?</strong> 맞아요, 과장 없이 담백하게 소개하는 느낌이 인상깊었습니다.</p>
-                <p><strong>지어낸 느낌이 있는 곳은?</strong> 너무 자연스럽게 느껴져 잘 모르겠습니다.</p>
-              </div>
-
-              <div class="peer-answer-box">
-                <strong>동료 B</strong>
-                <p><strong>나 같은 느낌이 드는가?</strong> 80~90% 정도는 맞는 거 같아요.</p>
-                <p><strong>지어낸 느낌이 있는 곳은?</strong> 늦게까지 남아 공부하거나 프로젝트를 정리하고, 자료를 만들어 공유했던 장면들은 실제로 봤던 모습과 가까워서 진정성이
-                  느껴집니다.</p>
-              </div>
-
-              <div class="peer-answer-box">
-                <strong>동료 C</strong>
-                <p><strong>나 같은 느낌이 드는가?</strong> 전체적으로 평소 모습이 잘 드러나는 것 같다. 특히 수업이 끝난 뒤에도 남아서 부족한 부분을 계속 공부하거나, 팀 프로젝트에서
-                  필요한 자료를 정리하는 것을 실제로 자주 봐서 하율이형 다운 내용입니다.</p>
-                <p><strong>지어낸 느낌이 있는 곳은?</strong> 팀원들에게 자료를 공유하고 프로젝트를 주도적으로 정리하는 모습을 생각하면 내용 자체가 과장됐다고 느껴지지는 않았습니다.
-                </p>
-              </div>
-
-              <div class="peer-answer-box">
-                <strong>동료 D</strong>
-                <p><strong>나 같은 느낌이 드는가?</strong> 내용이 주는 정보 값 자체는 하율님 같았습니다.</p>
-              </div>
-            </section>
-
-            <!-- 5. 자기소개서 -->
-            <section class="story-section" id="story-sec-5">
-              <h4 class="story-sec-title">5. 자기소개서</h4>
-              <div class="story-quote">
-                <p>초등학교 때 아버지가 궤양성 대장염 진단을 받았다. 식탁 위에 약봉지가 늘어났고, 나는 그걸 크기 순서대로 정리했다. 아침약은 왼쪽, 저녁약은 오른쪽. 누가 시킨 것이 아니었다.
-                  어질러져 있는 것이 불편했을 뿐이었다. 그때 몸에 밴 습관이 지금까지 이어지고 있다.</p>
-                <p style="margin-top: 12px;">군 복무 때 의무병으로 배치되었다. 환자를 번호로 부르는 것이 불편해서 이름을 외워 불렀다. 인수인계 노트를 만들어 다음 근무자에게
-                  넘겼다. 상대의 이야기를 먼저 듣고 상황을 파악하는 법을 그때 배웠다. <strong>(대인관계력)</strong></p>
-                <p style="margin-top: 12px;">전역 후 대전성모병원 응급실 원무로 일했다. 야간에 혼자 15시간을 버티는 날이 많았다. 새벽 3시, 환자가 끊기는 짧은 틈에 숨을
-                  고르고 다시 접수 화면을 열었다. 감정이 흔들려도 순서를 지키면 해낼 수 있다는 것을 몸으로 익혔다. 미수 환자의 접수를 처리한 날에도, 경위서를 쓰고 나서도, 다음 환자의 서류를
-                  빠뜨리지 않았다. <strong>(자기조절력)</strong></p>
-                <p style="margin-top: 12px;">2022년 11월 외래수납 중간관리자로 옮겼다. 5개 파트의 업무 매뉴얼을 만들고 구글 시트로 인수인계 체계를 정리했다. 하지만 읽히지
-                  않는 매뉴얼, 바뀌지 않는 프로세스 앞에서 번아웃이 왔다. 2025년 초 할머니가 돌아가셨다. 빈집에 혼자 서서 불을 켜고 앉아 있던 그날, 내가 쌓아온 것과 잃은 것을 정리했다.
-                  그리고 다른 길을 걸어보기로 했다.</p>
-                <p style="margin-top: 12px;">2025년, 병원을 떠나고 IT로 전환했다. 바이브코딩 과정에서 팀 프로젝트를 했다. 팀원이 중간에 떠났지만 남은 동료와 끝까지
-                  완주했다. 코드를 세 번 점검하고, 발표를 준비하고, 마감을 지켰다. 아무도 시키지 않았지만 해야 할 일을 찾아서 했다. 응급실에서 그랬듯이.
-                  <strong>(자기동기력)</strong></p>
-                <p style="margin-top: 12px;">지금은 SKT ALEPH에서 인프라와 보안을 배우고 있다. 매일 아침 리추얼을 쓴다. 오늘 할 것, 어제 배운 것, 내일 확인할 것.
-                  응급실 의무 기록처럼, 군대 인수인계 노트처럼. 기록하면 빠뜨리지 않고, 빠뜨리지 않으면 쌓이고, 쌓이면 보인다.<br>약봉지를 정리하던 사람이 서류를 정리하고, 매뉴얼을 만들고,
-                  코드를 점검하고, 인프라를 배우고 있다. 대상은 바뀌었지만 방식은 같다. 관찰하고, 파악하고, 정리하고, 빠진 것을 채운다.</p>
-                <p style="margin-top: 12px;">나는 사람을 쉽게 믿지 않는다. 대신 내가 겪은 과거와, 그 안에서 쌓은 경험을 믿는다. 아는 만큼 보인다고 했다. 병원에서 약 이름을
-                  외웠고, 응급실에서 순서를 지켰고, IT로 넘어와서는 데이터를 읽는 법을 배웠다. 알아야 보이고, 봐야 움직일 수 있었다. 그럼에도 불구하고 멈추지 않는다. 번아웃이 왔을 때도, 새
-                  분야 앞에서 막막했을 때도 결국 다시 의자에 앉았다. 그것이 내가 여기까지 온 방식이다.</p>
-              </div>
-            </section>
-
-            <!-- 6. 포트폴리오 뼈대 -->
-            <section class="story-section" id="story-sec-6">
-              <h4 class="story-sec-title">6. 포트폴리오 뼈대 (목차)</h4>
-              <div class="story-table-wrap">
-                <table class="story-table">
-                  <thead>
-                    <tr>
-                      <th style="width: 140px;">강점</th>
-                      <th style="width: 160px;">관련 과제</th>
-                      <th>산출물</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td rowspan="3" style="font-weight: 600;">끝까지 해내는 책임감</td>
-                      <td>과제 2: 사과게임</td>
-                      <td>Apple 10 미니게임</td>
-                    </tr>
-                    <tr>
-                      <td>과제 5: AI A/B 인수인계</td>
-                      <td>모바일 UX 비교 보고서</td>
-                    </tr>
-                    <tr>
-                      <td>기업 IT 인프라 SI 구축</td>
-                      <td>3계층 네트워크 + EMR/PACS 서버</td>
-                    </tr>
-                    <tr>
-                      <td rowspan="3" style="font-weight: 600;">반복 학습의 성실함</td>
-                      <td>과제 1: 포트폴리오</td>
-                      <td>에디토리얼 소개 페이지</td>
-                    </tr>
-                    <tr>
-                      <td>과제 3: 햄찌짤 공방</td>
-                      <td>이미지/카드 편집기</td>
-                    </tr>
-                    <tr>
-                      <td>과제 4: 오늘의 진짜 정보판</td>
-                      <td>데이터가 안 올 때 대응</td>
-                    </tr>
-                    <tr>
-                      <td rowspan="2" style="font-weight: 600;">정리하고 공유하는 주도성</td>
-                      <td>과제 6: PDS Canvas</td>
-                      <td>Plan-Do-See 다이어리</td>
-                    </tr>
-                    <tr>
-                      <td>과제 8: Portfolio-Vault</td>
-                      <td>패스키 인증 포트폴리오</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <!-- 7. AI와 나의 판단 -->
-            <section class="story-section" id="story-sec-7">
-              <h4 class="story-sec-title">7. AI와 나의 판단</h4>
-              <div class="story-table-wrap">
-                <table class="story-table">
-                  <thead>
-                    <tr>
-                      <th style="width: 150px;">구분</th>
-                      <th>내용</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style="font-weight: 600;">AI에게 맡긴 일</td>
-                      <td>리추얼 기록 분석, 강점 후보 추출, 강점 지도 표 작성, 3인칭 이야기 초안 작성, 자기소개서 초안 틀 잡기</td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight: 600;">내가 직접 판단한 일</td>
-                      <td>리추얼 기록에서 대목 12개 직접 고르기, 에이전트 규칙 5개를 내 언어로 쓰기, 우선순위 결정, 과정 이전 고난(2025년) 내용 직접 제공, 본인 성격("성실하고
-                        차분하면서 완벽을 추구하는 자기객관화") 방향 설정, 강점 지도에서 표현 5건 수정, 3인칭 초안을 1인칭으로 직접 수정, 자기소개서 첫 문장과 마지막 문장 직접 작성
+                      <td style="font-weight: 600;">내가 본 나</td>
+                      <td>"잠자는 시간 줄여가면서 끊임없이 AI에게 질문하고 통신이 원활하게 이뤄질 수 있게 하기 위해 노력한 나의 노력과 끈기에 아낌없는 리스펙을 보낸다" (09-27)
                       </td>
                     </tr>
                     <tr>
-                      <td style="font-weight: 600;">AI 제안을 따르지 않은 일</td>
-                      <td>강점 지도에서 총 5건 수정 ("박수를 보낸다" → "리스펙을 보낸다", "1이라도" → "하나라도 더", "완벽하지 않아도" → "완벽하지 않더라도 한 걸음씩", 관련
-                        과제에 기업 IT 인프라 SI 프로젝트 추가, 사과게임 점수 경쟁 에피소드 추가)</td>
+                      <td style="font-weight: 600;">지킨 가치</td>
+                      <td>시작했으면 끝을 보겠다는 완결 의지, 남들 쉴 때 더 준비하는 습관</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">관련 과제</td>
+                      <td>과제 2 (사과게임), 과제 5 (AI A/B 인수인계 프로세스 완주), 기업 IT 인프라 SI 구축 프로젝트</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </section>
-          </div>
+            </div>
+
+            <div class="story-strength-card">
+              <div class="story-strength-header">
+                <span class="story-strength-num">강점 02</span>
+                <span class="story-strength-name">반복 학습으로 자기 것으로 만드는 성실함</span>
+              </div>
+              <div class="story-table-wrap">
+                <table class="story-table">
+                  <tbody>
+                    <tr>
+                      <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
+                      <td><strong>2026-08-14:</strong> 쉬는 시간마다 수업 내용을 상기시키고 몸에 익혀두기 위해 반복 학습을 실천했다. 틈날 때마다 캡처해둔 화면을
+                        꺼내보며 자기만의 연상기법으로 내용을 소화했다.</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">동료의 평가</td>
+                      <td>"남들 쉴 때 성실하게 반복학습해서 자기 껄로 만드는 모습이 보기 좋음" (08-14), "잘 안되는 부분 반복해서 영상 보며 스스로 해결해보려고 노력한다"
+                        (09-01)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">내가 본 나</td>
+                      <td>"오늘 하루도 하나라도 더 배워서 내껄로 만들었다는 성취감이 든 하루였다" (08-14)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">지킨 가치</td>
+                      <td>반복으로 체화시키겠다는 꾸준함, 완벽하지 않더라도 한 걸음씩 전진하는 자세</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">관련 과제</td>
+                      <td>과제 3 (햄찌짤 공방 — 24개 폰트, 40개 스티커 고도화), 과제 1 (포트폴리오 — 에디토리얼 반복 수정)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="story-strength-card">
+              <div class="story-strength-header">
+                <span class="story-strength-num">강점 03</span>
+                <span class="story-strength-name">프로세스를 정리하고 공유하는 주도성</span>
+              </div>
+              <div class="story-table-wrap">
+                <table class="story-table">
+                  <tbody>
+                    <tr>
+                      <td style="width: 110px; font-weight: 600;">날짜 있는 장면</td>
+                      <td><strong>2026-09-17:</strong> 정해진 시간 안에 게임을 완성하고 팀에 공유했다. 동료가 "만드시고 공유해주신 게임 퀄리티가 인상적이었다"고
+                        말했다.</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">동료의 평가</td>
+                      <td>"팀프로젝트에서 주도적이고 자료를 공유해주는 모습이 좋았습니다" (10-02). 만들어 공유한 사과게임을 보고 수강생들이 쉬는 시간에 점수 내기 경쟁을 벌이기도 함.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">내가 본 나</td>
+                      <td>병원 시절 5개 파트 업무 매뉴얼을 문서화하고, 구글 스프레드시트로 인수인계 시스템을 디지털 전환한 경험</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">지킨 가치</td>
+                      <td>혼자 알고 끝내는 게 아니라, 정리해서 나누는 것까지가 완성이라는 생각</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: 600;">관련 과제</td>
+                      <td>과제 2 (사과게임), 과제 6 (PDS Canvas), 기업 IT 인프라 SI 구축 프로젝트</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. 나의 이야기 -->
+          <section class="story-section" id="story-sec-3">
+            <h4 class="story-sec-title">3. 나의 이야기 — 고난에서 더 나아진 나</h4>
+            <div class="story-prose-block">
+              <p><strong>2025년, 대전.</strong></p>
+              <p>나는 병원 원무 · 행정 중간관리자로 일하고 있었다. 응급실 인수인계가 구두로만 이루어져 누락이 반복되는 문제를 발견하고 구글 스프레드시트를 도입했고, 5개 파트의 업무 매뉴얼을
+                혼자 정리했다. 그런데 아무도 관심을 갖지 않았다. 프로세스를 바꿔보자고 제안해도 동료들은 시큰둥했고, 환자와 보호자, 다른 부서 직원들에게는 "일반 사무직"으로 비춰졌다. 발전된
+                모습을 기대하기 어려운 곳에서 혼자 벽을 밀고 있는 느낌이었다.</p>
+              <p style="margin-top: 10px;">같은 해, 친할머니의 건강이 급격히 악화되어 세상을 떠나셨다. 더 잘해드리고 싶었던 마음, 잘못된 방법으로 해결하려 했던 죄책감,
+                가족과 주변 관계를 원만하게 만들지 못했다는 기대의 책임감이 겹쳤다. 2025년은 나에게 방황과 혼란의 해였다.</p>
+              <p style="margin-top: 10px;">그 와중에도 나는 한 가지를 알아차렸다. 병원 전산실을 오가며 다른 직원의 도움을 기다리는 동안, 내가 직접 문제를 해결하는 것이 더
+                빠른 서비스를 제공하고 신뢰감을 준다는 것을. AI를 활용할 줄 알아야 하는 시대가 왔다는 것도 보였고, 활용능력이 능숙한 인재를 원하는 사회가 되어가는 것이 보였다. 그래서 퇴사를
+                결심했다. 2025년 말, 바이브코딩 AI 기반 웹풀스택 개발 과정에 등록했다.</p>
+              <p style="margin-top: 10px;">6개월간 웹 개발을 배우면서, 병원에서 혼자 벽을 밀던 습관이 그대로 드러났다. 다만 이번에는 벽이 밀려났다. 축제 O2O 플랫폼,
+                웨딩 통합 플랫폼, 쇼핑몰을 만들며 "시작했으면 끝을 본다"는 내 성격이 코드 위에서도 작동했다.</p>
+              <p style="margin-top: 10px;">2026년 8월, SKT ALEPH 인프라/보안 과정에 들어왔다. 첫날부터 아침 리추얼에 이렇게 적었다. "옛날 수업방식처럼 필기에
+                집착하지 않아서 변화되고 있는 거 같아." 변화를 인지하는 사람은, 이미 변하고 있는 사람이다.</p>
+              <p style="margin-top: 10px;">13주 동안의 기록에는 같은 힘이 되풀이되었다. 쉬는 시간마다 캡처한 화면을 꺼내보며 반복 학습을 했고(08-14), 안 되는 부분을
+                영상을 돌려보며 스스로 해결하려 했고(09-01), 연휴 전날 홀로 남아 프로젝트를 정리했다(09-28). 동료는 말했다. "항상 옳고 그름을 올곧은 자세로 수업과 과제에 임하는
+                자세가 멋있다."</p>
+              <p style="margin-top: 10px;">나는 지금, 인프라 보안 엔지니어를 목표로 준비하고 있다. AI 기반 실시간 보안 감지 시스템을 기업 환경에 맞게 구축하는 것이
+                꿈이다. 병원에서 프로세스를 정리하고 공유하던 습관은, 팀 프로젝트에서 자료를 정리해 공유하는 주도성으로 이어졌다. 병원에서 혼자 문제를 해결하려 했던 습관은, 이제 팀과 함께 문제를
+                해결하고 결과물을 공유하는 모습으로 이어지고 있다.</p>
+              <p style="margin-top: 10px; font-weight: 600;">넘어지지 않은 사람이 아니다. 2025년의 방황을 지나, 매일 아침 호흡을 고르고 저녁에 하루를
+                돌아보며 한 걸음씩 더 나아지고 있는 사람이다.</p>
+            </div>
+          </section>
+
+          <!-- 4. 동료의 시선 -->
+          <section class="story-section" id="story-sec-4">
+            <h4 class="story-sec-title">4. 동료들의 진솔한 답</h4>
+            <p class="story-sec-desc">1인칭 서사 본문을 함께 공부하고 프로젝트를 진행한 동료들에게 보여주고 받은 피드백입니다.</p>
+
+            <div class="peer-answer-box">
+              <strong>동료 A</strong>
+              <p><strong>나 같은 느낌이 드는가?</strong> 맞아요, 과장 없이 담백하게 소개하는 느낌이 인상깊었습니다.</p>
+              <p><strong>지어낸 느낌이 있는 곳은?</strong> 너무 자연스럽게 느껴져 잘 모르겠습니다.</p>
+            </div>
+
+            <div class="peer-answer-box">
+              <strong>동료 B</strong>
+              <p><strong>나 같은 느낌이 드는가?</strong> 80~90% 정도는 맞는 거 같아요.</p>
+              <p><strong>지어낸 느낌이 있는 곳은?</strong> 늦게까지 남아 공부하거나 프로젝트를 정리하고, 자료를 만들어 공유했던 장면들은 실제로 봤던 모습과 가까워서 진정성이
+                느껴집니다.</p>
+            </div>
+
+            <div class="peer-answer-box">
+              <strong>동료 C</strong>
+              <p><strong>나 같은 느낌이 드는가?</strong> 전체적으로 평소 모습이 잘 드러나는 것 같다. 특히 수업이 끝난 뒤에도 남아서 부족한 부분을 계속 공부하거나, 팀 프로젝트에서
+                필요한 자료를 정리하는 것을 실제로 자주 봐서 하율이형 다운 내용입니다.</p>
+              <p><strong>지어낸 느낌이 있는 곳은?</strong> 팀원들에게 자료를 공유하고 프로젝트를 주도적으로 정리하는 모습을 생각하면 내용 자체가 과장됐다고 느껴지지는 않았습니다.
+              </p>
+            </div>
+
+            <div class="peer-answer-box">
+              <strong>동료 D</strong>
+              <p><strong>나 같은 느낌이 드는가?</strong> 내용이 주는 정보 값 자체는 하율님 같았습니다.</p>
+            </div>
+          </section>
+
+          <!-- 5. 자기소개서 -->
+          <section class="story-section" id="story-sec-5">
+            <h4 class="story-sec-title">5. 자기소개서</h4>
+            <div class="story-quote">
+              <p>초등학교 때 아버지가 궤양성 대장염 진단을 받았다. 식탁 위에 약봉지가 늘어났고, 나는 그걸 크기 순서대로 정리했다. 아침약은 왼쪽, 저녁약은 오른쪽. 누가 시킨 것이 아니었다.
+                어질러져 있는 것이 불편했을 뿐이었다. 그때 몸에 밴 습관이 지금까지 이어지고 있다.</p>
+              <p style="margin-top: 12px;">군 복무 때 의무병으로 배치되었다. 환자를 번호로 부르는 것이 불편해서 이름을 외워 불렀다. 인수인계 노트를 만들어 다음 근무자에게
+                넘겼다. 상대의 이야기를 먼저 듣고 상황을 파악하는 법을 그때 배웠다. <strong>(대인관계력)</strong></p>
+              <p style="margin-top: 12px;">전역 후 대전성모병원 응급실 원무로 일했다. 야간에 혼자 15시간을 버티는 날이 많았다. 새벽 3시, 환자가 끊기는 짧은 틈에 숨을
+                고르고 다시 접수 화면을 열었다. 감정이 흔들려도 순서를 지키면 해낼 수 있다는 것을 몸으로 익혔다. 미수 환자의 접수를 처리한 날에도, 경위서를 쓰고 나서도, 다음 환자의 서류를
+                빠뜨리지 않았다. <strong>(자기조절력)</strong></p>
+              <p style="margin-top: 12px;">2022년 11월 외래수납 중간관리자로 옮겼다. 5개 파트의 업무 매뉴얼을 만들고 구글 시트로 인수인계 체계를 정리했다. 하지만 읽히지
+                않는 매뉴얼, 바뀌지 않는 프로세스 앞에서 번아웃이 왔다. 2025년 초 할머니가 돌아가셨다. 빈집에 혼자 서서 불을 켜고 앉아 있던 그날, 내가 쌓아온 것과 잃은 것을 정리했다.
+                그리고 다른 길을 걸어보기로 했다.</p>
+              <p style="margin-top: 12px;">2025년, 병원을 떠나고 IT로 전환했다. 바이브코딩 과정에서 팀 프로젝트를 했다. 팀원이 중간에 떠났지만 남은 동료와 끝까지
+                완주했다. 코드를 세 번 점검하고, 발표를 준비하고, 마감을 지켰다. 아무도 시키지 않았지만 해야 할 일을 찾아서 했다. 응급실에서 그랬듯이.
+                <strong>(자기동기력)</strong>
+              </p>
+              <p style="margin-top: 12px;">지금은 SKT ALEPH에서 인프라와 보안을 배우고 있다. 매일 아침 리추얼을 쓴다. 오늘 할 것, 어제 배운 것, 내일 확인할 것.
+                응급실 의무 기록처럼, 군대 인수인계 노트처럼. 기록하면 빠뜨리지 않고, 빠뜨리지 않으면 쌓이고, 쌓이면 보인다.<br>약봉지를 정리하던 사람이 서류를 정리하고, 매뉴얼을 만들고,
+                코드를 점검하고, 인프라를 배우고 있다. 대상은 바뀌었지만 방식은 같다. 관찰하고, 파악하고, 정리하고, 빠진 것을 채운다.</p>
+              <p style="margin-top: 12px;">나는 사람을 쉽게 믿지 않는다. 대신 내가 겪은 과거와, 그 안에서 쌓은 경험을 믿는다. 아는 만큼 보인다고 했다. 병원에서 약 이름을
+                외웠고, 응급실에서 순서를 지켰고, IT로 넘어와서는 데이터를 읽는 법을 배웠다. 알아야 보이고, 봐야 움직일 수 있었다. 그럼에도 불구하고 멈추지 않는다. 번아웃이 왔을 때도, 새
+                분야 앞에서 막막했을 때도 결국 다시 의자에 앉았다. 그것이 내가 여기까지 온 방식이다.</p>
+            </div>
+          </section>
+
+          <!-- 6. 포트폴리오 뼈대 -->
+          <section class="story-section" id="story-sec-6">
+            <h4 class="story-sec-title">6. 포트폴리오 뼈대 (목차)</h4>
+            <div class="story-table-wrap">
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th style="width: 140px;">강점</th>
+                    <th style="width: 160px;">관련 과제</th>
+                    <th>산출물</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" style="font-weight: 600;">끝까지 해내는 책임감</td>
+                    <td>과제 2: 사과게임</td>
+                    <td>Apple 10 미니게임</td>
+                  </tr>
+                  <tr>
+                    <td>과제 5: AI A/B 인수인계</td>
+                    <td>모바일 UX 비교 보고서</td>
+                  </tr>
+                  <tr>
+                    <td>기업 IT 인프라 SI 구축</td>
+                    <td>3계층 네트워크 + EMR/PACS 서버</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" style="font-weight: 600;">반복 학습의 성실함</td>
+                    <td>과제 1: 포트폴리오</td>
+                    <td>에디토리얼 소개 페이지</td>
+                  </tr>
+                  <tr>
+                    <td>과제 3: 햄찌짤 공방</td>
+                    <td>이미지/카드 편집기</td>
+                  </tr>
+                  <tr>
+                    <td>과제 4: 오늘의 진짜 정보판</td>
+                    <td>데이터가 안 올 때 대응</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="2" style="font-weight: 600;">정리하고 공유하는 주도성</td>
+                    <td>과제 6: PDS Canvas</td>
+                    <td>Plan-Do-See 다이어리</td>
+                  </tr>
+                  <tr>
+                    <td>과제 8: Portfolio-Vault</td>
+                    <td>패스키 인증 포트폴리오</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 7. AI와 나의 판단 -->
+          <section class="story-section" id="story-sec-7">
+            <h4 class="story-sec-title">7. AI와 나의 판단</h4>
+            <div class="story-table-wrap">
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th style="width: 150px;">구분</th>
+                    <th>내용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 600;">AI에게 맡긴 일</td>
+                    <td>리추얼 기록 분석, 강점 후보 추출, 강점 지도 표 작성, 3인칭 이야기 초안 작성, 자기소개서 초안 틀 잡기</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 600;">내가 직접 판단한 일</td>
+                    <td>리추얼 기록에서 대목 12개 직접 고르기, 에이전트 규칙 5개를 내 언어로 쓰기, 우선순위 결정, 과정 이전 고난(2025년) 내용 직접 제공, 본인 성격("성실하고
+                      차분하면서 완벽을 추구하는 자기객관화") 방향 설정, 강점 지도에서 표현 5건 수정, 3인칭 초안을 1인칭으로 직접 수정, 자기소개서 첫 문장과 마지막 문장 직접 작성
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 600;">AI 제안을 따르지 않은 일</td>
+                    <td>강점 지도에서 총 5건 수정 ("박수를 보낸다" → "리스펙을 보낸다", "1이라도" → "하나라도 더", "완벽하지 않아도" → "완벽하지 않더라도 한 걸음씩", 관련
+                      과제에 기업 IT 인프라 SI 프로젝트 추가, 사과게임 점수 경쟁 에피소드 추가)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
       </div>
+    </div>
 
     <!-- 학술 연구 논문 전문 뷰어 모달 (Paper Modal) -->
     <div class="story-modal-overlay paper-modal-overlay" id="paperModal" hidden aria-modal="true" role="dialog"

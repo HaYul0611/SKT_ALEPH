@@ -683,12 +683,12 @@ img {
 }
 
 .metric-quote-badge {
-  margin-top: 10px;
+  margin-top: 8px;
   padding: 6px 10px;
   background: rgba(0, 0, 0, 0.04);
   border-left: 2px solid var(--text);
   border-radius: 0 3px 3px 0;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 500;
   color: var(--text);
   line-height: 1.45;
@@ -702,6 +702,443 @@ img {
 .metric-quote-badge .quote-mark {
   font-weight: 700;
   color: var(--text-mid);
+}
+
+/* Metric Chart Visuals */
+.metric-chart-wrap {
+  margin: 14px 0 10px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 0.5px solid var(--border);
+  border-radius: 4px;
+  min-height: 82px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+[data-theme="dark"] .metric-chart-wrap {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* 1. Attendance: Circular Gauge + Streak Dots */
+.attendance-visual {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.circular-chart-box {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.circular-chart {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.08);
+  stroke-width: 3.2;
+}
+
+[data-theme="dark"] .circle-bg {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.circle-fill {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.8s ease;
+}
+
+.circle-inner-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.streak-dots-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.streak-grid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 3px;
+}
+
+.streak-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1.5px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .streak-dot {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.streak-dot.active {
+  background: var(--text);
+  opacity: 0.85;
+}
+
+.streak-caption {
+  font-size: 11px;
+  color: var(--text-mid);
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+/* 2. Timeline Bar Chart */
+.timeline-bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.timeline-bar-track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .timeline-bar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.timeline-bar-fill {
+  height: 100%;
+  background: var(--text);
+  border-radius: 4px;
+}
+
+.timeline-bar-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: var(--text-light);
+  letter-spacing: -0.2px;
+}
+
+.timeline-bar-scale .scale-mid {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.timeline-week-blocks {
+  display: flex;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.week-pill {
+  flex: 1;
+  text-align: center;
+  font-size: 9.5px;
+  padding: 1px 0;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-mid);
+}
+
+[data-theme="dark"] .week-pill {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.week-pill.active {
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--text);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .week-pill.active {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* 3. Practice Gauge Box */
+.practice-gauge-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.segmented-bar {
+  display: flex;
+  height: 9px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.segmented-fill {
+  background: var(--text);
+  border-radius: 3px 0 0 3px;
+}
+
+.segmented-unfill {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 0 3px 3px 0;
+}
+
+[data-theme="dark"] .segmented-unfill {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.gauge-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.gauge-tag-success {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.gauge-tag-rest {
+  color: var(--text-light);
+}
+
+/* 4. Sparkline SVG */
+.sparkline-chart-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sparkline-svg {
+  width: 100%;
+  height: 38px;
+  overflow: visible;
+  color: var(--text);
+}
+
+.sparkline-area {
+  fill: url(#breatheGrad);
+}
+
+.sparkline-guide {
+  stroke: var(--border);
+  stroke-width: 0.8;
+}
+
+.sparkline-line {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.sparkline-point {
+  fill: var(--bg);
+  stroke: var(--text);
+  stroke-width: 1.5;
+}
+
+.sparkline-point.active {
+  fill: var(--text);
+}
+
+.sparkline-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--text-mid);
+}
+
+.sparkline-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text);
+}
+
+[data-theme="dark"] .sparkline-badge {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 5. Mini Bar Chart */
+.mini-bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 44px;
+  gap: 6px;
+  padding: 0 4px;
+}
+
+.bar-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.bar-fill {
+  width: 100%;
+  max-width: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 2px 2px 0 0;
+  transition: all var(--transition);
+}
+
+[data-theme="dark"] .bar-fill {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.bar-col:hover .bar-fill,
+.bar-fill.active {
+  background: var(--text);
+}
+
+.bar-x {
+  font-size: 9px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.bar-chart-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--text-mid);
+}
+
+.bar-total-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+[data-theme="dark"] .bar-total-tag {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 6. Stepper Pipeline */
+.stepper-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stepper-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  padding: 4px 0;
+}
+
+.step-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.step-dot.completed {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.step-dot.current {
+  background: transparent;
+  border: 1.8px solid var(--text);
+  color: var(--text);
+  position: relative;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); }
+  70% { box-shadow: 0 0 0 5px rgba(0, 0, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+}
+
+[data-theme="dark"] .step-dot.current {
+  animation: pulse-ring-dark 2s infinite;
+}
+
+@keyframes pulse-ring-dark {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
+  70% { box-shadow: 0 0 0 5px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.step-dot.upcoming {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px dashed var(--border);
+  color: var(--text-light);
+}
+
+[data-theme="dark"] .step-dot.upcoming {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.stepper-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--text-mid);
+}
+
+.stepper-status strong {
+  color: var(--text);
+}
+
+.stepper-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+[data-theme="dark"] .stepper-badge {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .metric-source {
