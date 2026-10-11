@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="오하율 | Portfolio — IT 인프라 · 보안 · 풀스택">
   <meta name="twitter:description" content="병원 행정 중간관리자에서 웹 풀스택, 인프라 보안 엔지니어로의 전환. 오하율의 포트폴리오 및 서사 문서.">
   <meta name="twitter:image" content="https://hayul0611.github.io/SKT_ALEPH/assets/profile.jpg">
-  <link rel="stylesheet" href="css/style.css?v=20261011_v2">
+  <link rel="stylesheet" href="css/style.css?v=20261012_v1">
 </head>
 
 <body>
@@ -85,6 +85,13 @@
           <p class="about-value">
             <button type="button" class="about-story-btn" id="aboutStoryBtn" aria-label="서사 문서 열람">
               나를 말하는 서사 문서
+            </button>
+          </p>
+          <p class="about-label">Novel</p>
+          <p class="about-value">
+            <button type="button" class="about-story-btn about-novel-btn" id="aboutNovelBtn"
+              aria-label="성장 소설 전 11장 열람">
+              성장 소설 (아는 만큼 보인다 · 11장)
             </button>
           </p>
           <p class="about-label">Research</p>
@@ -264,20 +271,41 @@
             <div class="attendance-visual">
               <div class="circular-chart-box">
                 <svg class="circular-chart" viewBox="0 0 36 36">
-                  <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                  <path class="circle-fill" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                  <path class="circle-bg"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="circle-fill" stroke-dasharray="100, 100"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                 </svg>
                 <div class="circle-inner-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" width="13" height="13">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                    stroke-linejoin="round" width="13" height="13">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
               </div>
               <div class="streak-dots-area" title="39일 무결석 연속 출석 기록">
                 <div class="streak-grid" aria-hidden="true">
-                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span>
-                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span>
-                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span><span class="streak-dot active"></span>
+                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span>
+                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span>
+                  <span class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span><span class="streak-dot active"></span><span
+                    class="streak-dot active"></span>
                 </div>
                 <span class="streak-caption">39일 무결석 완전 연속 달성</span>
               </div>
@@ -416,13 +444,20 @@
           <div class="metric-chart-wrap" aria-label="주차별 피드백 교환 빈도 막대 그래프">
             <div class="mini-bar-chart">
               <div class="bars-container" aria-hidden="true">
-                <div class="bar-col"><span class="bar-fill" style="height: 60%;" title="1주차: 6회"></span><span class="bar-x">W1</span></div>
-                <div class="bar-col"><span class="bar-fill" style="height: 70%;" title="2주차: 7회"></span><span class="bar-x">W2</span></div>
-                <div class="bar-col"><span class="bar-fill" style="height: 90%;" title="3주차: 9회"></span><span class="bar-x">W3</span></div>
-                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="4주차: 8회"></span><span class="bar-x">W4</span></div>
-                <div class="bar-col"><span class="bar-fill" style="height: 95%;" title="5주차: 9회"></span><span class="bar-x">W5</span></div>
-                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="6주차: 8회"></span><span class="bar-x">W6</span></div>
-                <div class="bar-col"><span class="bar-fill active" style="height: 85%;" title="7주차+: 8회"></span><span class="bar-x">W7</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 60%;" title="1주차: 6회"></span><span
+                    class="bar-x">W1</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 70%;" title="2주차: 7회"></span><span
+                    class="bar-x">W2</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 90%;" title="3주차: 9회"></span><span
+                    class="bar-x">W3</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="4주차: 8회"></span><span
+                    class="bar-x">W4</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 95%;" title="5주차: 9회"></span><span
+                    class="bar-x">W5</span></div>
+                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="6주차: 8회"></span><span
+                    class="bar-x">W6</span></div>
+                <div class="bar-col"><span class="bar-fill active" style="height: 85%;" title="7주차+: 8회"></span><span
+                    class="bar-x">W7</span></div>
               </div>
               <div class="bar-chart-meta">
                 <span>평균 주 7.8회 교환</span>
@@ -595,14 +630,22 @@
           <p class="section-slash" aria-hidden="true">/</p>
         </div>
         <div class="project-filter-bar" role="tablist" aria-label="프로젝트 분류 필터">
-          <button type="button" class="proj-chip active" data-filter="all">전체 (3)</button>
-          <button type="button" class="proj-chip" data-filter="team">팀 프로젝트 (1)</button>
-          <button type="button" class="proj-chip" data-filter="platform">플랫폼 / 풀스택 (2)</button>
+          <button type="button" class="proj-chip active" data-filter="all">전체 (7)</button>
+          <button type="button" class="proj-chip" data-filter="security">SKT ALEPH &amp; 보안 (2)</button>
+          <button type="button" class="proj-chip" data-filter="platform">플랫폼 &amp; 풀스택 (3)</button>
+          <button type="button" class="proj-chip" data-filter="interactive">인터랙티브 &amp; 캔버스 (2)</button>
         </div>
       </div>
       <div class="project-grid" id="projectGrid">
-        <div class="project-item" data-category="team platform">
-          <span class="project-num" aria-hidden="true">01</span>
+        <!-- 01. Fastival-management (팀 프로젝트 / 플랫폼) -->
+        <div class="project-item" data-category="platform">
+          <div class="project-item-top">
+            <span class="project-num" aria-hidden="true">01</span>
+            <div class="project-badge-group">
+              <span class="proj-type-tag team">팀 프로젝트</span>
+              <span class="proj-type-tag">Full-Stack</span>
+            </div>
+          </div>
           <h3 class="project-name">
             <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
               rel="noopener noreferrer">Fastival-management<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
@@ -614,10 +657,29 @@
               </svg></a>
           </h3>
           <p class="project-desc">축제 올인원 O2O 통합 플랫폼</p>
-          <p class="project-tag">팀 프로젝트</p>
+          <p class="project-highlight">부스 실시간 대기열·예약 시스템 및 관리자/운영자/방문객 3계층 역할 권한 제어</p>
+          <div class="project-tech-tags">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Express</span>
+            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">REST API</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
+              rel="noopener noreferrer" class="proj-link-btn" aria-label="Fastival-management 깃허브 코드">
+              <span>GitHub</span> &rarr;
+            </a>
+          </div>
         </div>
+
+        <!-- 02. WeddingPlatform (플랫폼) -->
         <div class="project-item" data-category="platform">
-          <span class="project-num" aria-hidden="true">02</span>
+          <div class="project-item-top">
+            <span class="project-num" aria-hidden="true">02</span>
+            <div class="project-badge-group">
+              <span class="proj-type-tag">Platform</span>
+            </div>
+          </div>
           <h3 class="project-name">
             <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank"
               rel="noopener noreferrer">WeddingPlatform<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
@@ -629,10 +691,30 @@
               </svg></a>
           </h3>
           <p class="project-desc">웨딩 올인원 통합 플랫폼</p>
-          <p class="project-meta">컨설팅 · 모바일 청첩장 · 뷰티/헬스케어 · CRM</p>
+          <p class="project-highlight">전문가 컨설팅 예약, 모바일 청첩장 커스텀 빌더, 뷰티·헬스케어 매칭 및 CRM 일체화</p>
+          <div class="project-tech-tags">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Express</span>
+            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">JWT</span>
+            <span class="tech-pill">EJS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn" aria-label="WeddingPlatform 깃허브 코드">
+              <span>GitHub</span> &rarr;
+            </a>
+          </div>
         </div>
+
+        <!-- 03. VARO (플랫폼) -->
         <div class="project-item" data-category="platform">
-          <span class="project-num" aria-hidden="true">03</span>
+          <div class="project-item-top">
+            <span class="project-num" aria-hidden="true">03</span>
+            <div class="project-badge-group">
+              <span class="proj-type-tag">E-Commerce</span>
+            </div>
+          </div>
           <h3 class="project-name">
             <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer">VARO<svg
                 class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -643,7 +725,175 @@
               </svg></a>
           </h3>
           <p class="project-desc">남성 패션 커뮤니티 쇼핑몰</p>
-          <p class="project-meta">Node.js · Express · MySQL · JWT</p>
+          <p class="project-highlight">스타일링 OOTD 피드와 실시간 장바구니/주문 트랜잭션 무결성 보장 및 인증 관리</p>
+          <div class="project-tech-tags">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Express</span>
+            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">JWT</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn" aria-label="VARO 깃허브 코드">
+              <span>GitHub</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 04. 최부장 시크릿 볼트 (SKT ALEPH 보안 방어전) -->
+        <div class="project-item featured-project" data-category="security">
+          <div class="project-item-top">
+            <span class="project-num" aria-hidden="true">04</span>
+            <div class="project-badge-group">
+              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+              <span class="proj-type-tag security-tag">보안 방어전</span>
+            </div>
+          </div>
+          <h3 class="project-name">
+            <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer">최부장 시크릿
+              볼트<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg></a>
+          </h3>
+          <p class="project-desc">BYTE BACK 가상 자료실 침해 방어전 실습</p>
+          <p class="project-highlight">공개 엔드포인트 비인가 접근 차단, 데이터 캡슐화, 자동 공격 판정 엔진(Attack Check) 무결성 통과</p>
+          <div class="project-tech-tags">
+            <span class="tech-pill">Vercel</span>
+            <span class="tech-pill">Security Policy</span>
+            <span class="tech-pill">API Hardening</span>
+            <span class="tech-pill">Node.js</span>
+          </div>
+          <div class="project-links">
+            <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn demo-btn" aria-label="최부장 시크릿 볼트 실시간 사이트 체험">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Live Demo</span> &rarr;
+            </a>
+            <a href="https://github.com/HaYul0611/choi-bujang-secret-vault" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn" aria-label="최부장 시크릿 볼트 GitHub 저장소">
+              <span>GitHub</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 05. P.D.S Canvas (SKT ALEPH / 플랫폼) -->
+        <div class="project-item featured-project" data-category="security platform">
+          <div class="project-item-top">
+            <span class="project-num" aria-hidden="true">05</span>
+            <div class="project-badge-group">
+              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+              <span class="proj-type-tag">3D 양장본 다이어리</span>
+            </div>
+          </div>
+          <h3 class="project-name">
+            <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer">P.D.S Canvas —
+              플랜두씨 다이어리<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg></a>
+          </h3>
+          <p class="project-desc">계획(Plan) &rarr; 실행(Do) &rarr; 회고(See) 성장 메트릭 다이어리</p>
+          <p class="project-highlight">0ms FOUC 차단 로그인, 캔들라이트 심야 서재 모드, 계획-실행 시간 오차 및 Blocker 시각화, Supabase 연동</p>
+          <div class="project-tech-tags">
+            <span class="tech-pill">JavaScript</span>
+            <span class="tech-pill">CSS 3D Transforms</span>
+            <span class="tech-pill">Supabase</span>
+            <span class="tech-pill">LocalStorage</span>
+          </div>
+          <div class="project-links">
+            <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn demo-btn" aria-label="PDS 다이어리 실시간 체험">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Live Demo</span> &rarr;
+            </a>
+            <a href="https://github.com/HaYul0611/PDS-Diary" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn" aria-label="PDS 다이어리 GitHub 저장소">
+              <span>GitHub</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 06. 또햄찌 공방 (SKT ALEPH / 인터랙티브 캔버스) -->
+        <div class="project-item" data-category="interactive">
+          <div class="project-item-top">
+            <span class="project-num" aria-hidden="true">06</span>
+            <div class="project-badge-group">
+              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+              <span class="proj-type-tag">Canvas Studio</span>
+            </div>
+          </div>
+          <h3 class="project-name">
+            <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer">또햄찌 공방
+              (Hamzzi Studio)<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg></a>
+          </h3>
+          <p class="project-desc">60FPS 캔버스 기반 고화질 웹 짤방 &amp; 스티커 에디터</p>
+          <p class="project-highlight">피사체 지향 8방향 자동 꼬리 계산 말풍선 알고리즘, 실시간 휠 줌/팬(-100~100), 원클릭 레이어 편집</p>
+          <div class="project-tech-tags">
+            <span class="tech-pill">HTML5 Canvas</span>
+            <span class="tech-pill">60FPS Drag/Zoom</span>
+            <span class="tech-pill">Geometry Algorithm</span>
+            <span class="tech-pill">Vanilla JS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn demo-btn" aria-label="또햄찌 공방 실시간 체험">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Live Demo</span> &rarr;
+            </a>
+            <a href="https://github.com/HaYul0611/Hamzzi-Studio" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn" aria-label="또햄찌 공방 GitHub 저장소">
+              <span>GitHub</span> &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 07. Apple 10 (SKT ALEPH / 인터랙티브 웹 퍼즐) -->
+        <div class="project-item" data-category="interactive">
+          <div class="project-item-top">
+            <span class="project-num" aria-hidden="true">07</span>
+            <div class="project-badge-group">
+              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+              <span class="proj-type-tag">Puzzle Game</span>
+            </div>
+          </div>
+          <h3 class="project-name">
+            <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer">Apple 10 — 사과게임
+              (닌텐도 에디션)<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg></a>
+          </h3>
+          <p class="project-desc">클래식 콘솔 프레임 감성의 수학 퍼즐 &amp; 랭킹 시스템</p>
+          <p class="project-highlight">1~10단계 정밀 난이도 가중치 알고리즘, 실물 사과 SVG 렌더링, Web Audio BGM 선택 및 명예의 전당</p>
+          <div class="project-tech-tags">
+            <span class="tech-pill">Vanilla JS</span>
+            <span class="tech-pill">SVG Graphics</span>
+            <span class="tech-pill">Web Audio API</span>
+            <span class="tech-pill">LocalStorage</span>
+          </div>
+          <div class="project-links">
+            <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn demo-btn" aria-label="사과게임 실시간 플레이">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>Live Demo</span> &rarr;
+            </a>
+            <a href="https://github.com/HaYul0611/apple-game" target="_blank" rel="noopener noreferrer"
+              class="proj-link-btn" aria-label="사과게임 GitHub 저장소">
+              <span>GitHub</span> &rarr;
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -825,7 +1075,7 @@
           <h2 class="section-title">Documents</h2>
           <p class="section-slash" aria-hidden="true">/</p>
         </div>
-        <span class="documents-hint">📄 이력서 · 자기소개서 · 경력기술서 PDF 다운로드</span>
+        <span class="documents-hint">📄 입사지원 서류 PDF 및 성장 서사 에세이 (전 11장)</span>
       </div>
 
       <div class="documents-grid">
@@ -952,6 +1202,45 @@
                 <line x1="10" y1="14" x2="21" y2="3"></line>
               </svg>
               <span>미리보기</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. 성장 소설 · 장편 에세이 -->
+        <div class="document-card document-card-highlight">
+          <div class="document-card-header">
+            <div class="document-icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <span class="document-type-badge">Essay · 전 11장</span>
+          </div>
+          <div class="document-card-body">
+            <h3 class="document-title">성장 소설 · 에세이</h3>
+            <p class="document-subtitle">오하율 — 아는 만큼 보인다 (전 11장)</p>
+            <p class="document-desc">초등학교 시절 약봉지 정리부터 응급실 야간, 전산화 시도, 그리고 코드 앞의 엔지니어가 되기까지 11장의 성장 서사 소설</p>
+          </div>
+          <div class="document-card-footer">
+            <button type="button" class="document-download-btn doc-modal-trigger" id="docNovelBtn"
+              aria-label="성장 소설 전문 읽기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <span>전문 읽기</span>
+            </button>
+            <a href="docs/오하율_성장에세이_아는만큼보인다.md" download class="document-preview-btn" aria-label="성장 소설 마크다운 원문 다운로드">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>MD 다운로드</span>
             </a>
           </div>
         </div>
@@ -1417,6 +1706,631 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- 성장 소설 전문 뷰어 모달 (Novel Modal) -->
+    <div class="story-modal-overlay novel-modal-overlay" id="novelModal" hidden aria-modal="true" role="dialog"
+      aria-label="오하율 — 성장 소설 아는 만큼 보인다 (전 11장)">
+      <div class="story-modal-dialog novel-modal-dialog">
+        <div class="story-modal-header novel-modal-header">
+          <div class="story-header-title-wrap novel-title-wrap">
+            <span class="story-header-badge novel-badge-modal">Narrative Novel &amp; Essay · 전 11장</span>
+            <h3 class="story-modal-title novel-title">오하율 — 아는 만큼 보인다</h3>
+            <p class="story-modal-subtitle novel-subtitle">초등학교 시절 약봉지를 든 아이부터 응급실 야간, 그리고 코드 앞의 엔지니어가 되기까지</p>
+          </div>
+          <div class="story-header-actions novel-header-actions">
+            <a href="docs/오하율_성장에세이_아는만큼보인다.md" target="_blank" download class="story-raw-link"
+              title="마크다운 원문 파일 다운로드/열기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>원문 MD 열기</span>
+            </a>
+            <button class="story-modal-close" type="button" id="novelClose" aria-label="성장 소설 창 닫기">
+              <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Novel Navigation -->
+        <div class="novel-nav-bar" role="tablist" aria-label="성장 소설 장별 바로가기">
+          <button type="button" class="novel-nav-chip active" data-target="novel-sec-1">1. 약봉지를 든 아이</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-2">2. 의무병</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-3">3. 응급실의 첫 야간</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-4">4. 서진혁이 가르쳐준 </button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-5">5. 구글 시트 한 장</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-6">6. 혼자서 고치려던 사</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-7">7. 2025년</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-8">8. 퇴사 도장</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-9">9. 빈자리를 채우는 법</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-10">10. 큰 숲이 보이기 시</button>
+          <button type="button" class="novel-nav-chip" data-target="novel-sec-11">11. 아는 만큼 보인다</button>
+        </div>
+
+        <!-- Novel Content -->
+        <div class="novel-modal-body">
+          <section class="novel-section" id="novel-sec-1">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 01</span>
+              <h4 class="novel-chapter-title">제1장. 약봉지를 든 아이</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>하율의 기억에서 가장 오래된 냄새는 소독약이 아니라 한약 봉지의 쓴내였다.</p>
+              <p>초등학교 저학년이던 무렵, 아버지는 자주 아팠다. 궤양성 대장염이라는 병명을 하율이 처음 들었을 때는 그 단어가 무엇을 뜻하는지 몰랐다. 다만 아버지가 화장실에 오래 계시고, 어머니가
+                걱정스러운 얼굴로 병원에 전화를 거는 날이 많아졌다는 것은 알았다. 식탁 위에는 늘 약봉지가 여러 개 놓여 있었고, 하율은 그 약봉지를 크기 순서대로 정리하는 버릇이 있었다. 큰 것부터
+                작은 것 순서로. 아침에는 먹을 약을 왼쪽에 놓고, 저녁에 먹을 약을 오른쪽에 놓았다. 이미 먹은 빈 봉지는 따로 모아서 쓰레기통에 넣었다. 누가 가르쳐준 것이 아니었다. 어질러져 있는
+                것이 불편했을 뿐이었다.</p>
+              <p>어느 날인가 아버지가 그 모습을 보시고 웃으셨다. &quot;약도 줄 세울 줄 아는 놈이 있네.&quot; 그 한마디가 별것 아닌데도 하율은 오랫동안 기억했다. 자기가 무언가를 정리하는
+                일이 누군가에게 눈에 띈 첫 번째 순간이었으니까. 아버지는 웃으신 뒤 약봉지 하나를 집어 들고, 물과 함께 삼키셨다. 하율은 그 모습을 보면서 아버지가 약을 먹는 순서도 기억했다. 큰
+                알약 먼저, 작은 알약.</p>
+              <p>약을 먹는 아버지의 표정을 하율은 기억한다. 아프다는 말을 잘 하지 않는 분이었다. 어머니가 &quot;오늘 어때요?&quot; 하고 물으면 대부분 &quot;괜찮아&quot;라고
+                답하셨다. 하지만 괜찮지 않은 날은 표정으로 알 수 있었다. 이마에 주름이 깊어지고, 입술이 마르고, 눈이 살짝 감기는 날. 그런 날은 저녁 식탁에서 밥을 한 숟갈만 드시고 일어나셨다.
+                하율은 그 한 숟갈을 세고 있었다. 아버지가 밥을 많이 드시면 오늘은 괜찮은 날이고, 적게 드시면 아픈 날이었다. 아이가 부모의 건강을 밥의 양으로 측정하는 것. 서글픈 일이지만, 그것이
+                하율이 할 수 있는 관찰이었다.</p>
+              <p>어머니는 내색하지 않는 사람이었다. 아버지의 병에 대해 아이들 앞에서 눈물을 보인 적이 없었다. 병원에 다녀와서 힘들었을 텐데도 저녁을 차리고, 빨래를 하고, 아이들의 이야기를 들었다.
+                하율은 어머니가 힘든 것을 알았지만, 어머니에게 &quot;힘드세요?&quot;라고 묻지 않았다. 물으면 어머니가 더 힘들어할 것 같았다. 대신 하율은 할 수 있는 것을 했다. 식탁을
+                닦고, 설거지를 하고. 말 대신 행동으로 자기 자리를 지키는 것이 하율의 방식이었고, 그 방식은 어머니에게서 배운 것인지도 몰랐다.</p>
+              <p>아버지의 병은 좋아졌다 나빠지기를 반복했다. 좋은 날에는 아버지가 거실에서 텔레비전을 보시면서 청소를 하셨다, 나쁜 날에는 방에서 나오시지 않고 잠만 주무셨다. 어머니는 생활비를 위해
+                일을 나가셨고, 하율과 여동생은 그 사이를 조용히 메웠다. 하율은 학교에서 돌아오면 여동생과 밥이 없는 날에는 라면을 끓이거나 계란을 삶았다. 냄비에 물을 올리고, 면을 넣고, 스프를
+                풀고, 계란을 깨 넣는 순서를 한 번 배운 뒤로는 틀리지 않았다. 물의 양도 눈대중이 아니라 냄비의 선에 맞추었다. 면이 퍼지지 않게 정확히 삼 분을 세는 것도 하율만의 규칙이었다.
+              </p>
+              <p>여동생이 라면을 먹으며 말했다. &quot;오빠가 끓인 게 제일 맛있어.&quot; 하율은 대꾸하지 않았지만 속으로는 나쁘지 않은 기분이었다. 어머니가 병원에서 돌아와 부엌에 들어왔을
+                때, 설거지가 되어 있는 것을 보고 잠깐 멈추신 적이 있었다. &quot;하율이가 했어?&quot; 하율은 고개를 끄덕였다. 어머니는 아무 말 없이 하율의 머리를 한 번 쓰다듬으셨다. 그
+                손길이 따뜻했다. 누군가를 돌보는 일이 자기에게 어울린다는 것을, 하율은 그때 아직 말로 정리할 수 없었다. 다만 라면 국물이 따뜻했고, 건너편에 앉은 여동생의 얼굴에 김이 올랐고, 부엌
+                형광등 아래의 그 장면이 유난히 선명하게 남았다.</p>
+              <p>아버지의 병원 진료가 있는 날이면 하율은 학교 끝나고 곧장 집에 왔다. 현관에 신발이 없으면 아직 병원이라는 뜻이었고, 신발이 있으면 무사히 돌아왔다는 뜻이었다. 그 작은 확인 절차를
+                하율은 매번 반복했다. 누가 시킨 것이 아니었다. 스스로 만든 규칙이었다. 신발이 없는 날에는 거실 불을 켜고, 여동생이 하교할 때까지 숙제를 하며 기다렸다. 여동생이 오면 같이 간식을
+                먹었다. 과자 봉지를 나누어 접시에 담는 것도 하율의 몫이었다.</p>
+              <p>아버지가 증상이 심한 날에는 밤에 화장실을 자주 가셨다. 하율의 방은 화장실 옆이었고, 밤에 물 내리는 소리가 들렸다. 한 번, 두 번, 세 번. 하율은 그 횟수를 세면서 잠을 설쳤다.
+                많이 가시는 밤은 상태가 안 좋은 것이고, 적게 가시는 밤은 괜찮은 것이었다. 아침에 일어나 아버지의 얼굴을 보면 밤의 횟수가 맞았다. 많이 가신 밤 다음 아침에는 아버지의 얼굴이 더
+                피곤해 보였다. 하율은 그때 아무 말도 하지 않았다. 아이가 부모에게 &quot;괜찮으세요?&quot;라고 묻는 것은 오히려 부모를 걱정시키는 것이었다. 아이는 모르는 척하는 것이 다른
+                형태의 배려일 수 있었다. 하율은 그 배려를 일찍 배웠다. 모르는 척 하면서 약봉지를 정리하고, 모르는 척 하면서 여동생 숙제를 봐주고, 모르는 척 하면서 설거지를 하는 것. 알면서
+                모르는 척 하는 것이 매일의 역할이었다.</p>
+              <p>병원 대기실 의자에 앉아 아버지 진료가 끝나기를 기다리는 시간이 하율에게는 특별했다. 대기실에는 늘 사람들이 앉아 있었고, 그 사람들 각자의 이유로 아프거나 걱정하고 있었다. 할머니 한
+                분이 손자를 데리고 와서 접수하는 모습을 보았고, 젊은 부부가 아이를 안고 불안한 얼굴로 앉아 있는 것도 보았다. 하율은 그들을 보면서 막연히 생각했다. 아픈 사람은 어디에나 있고,
+                누군가는 그 옆에 앉아 있어야 한다고. 그 생각이 직업 의식 같은 것이었는지는 모르겠다. 그저 병원이라는 공간이 낯설지 않았다. 소독약 냄새도, 하얀 벽도, 번호표를 뽑는 기계 소리도.
+                그것들이 일상의 일부였다.</p>
+              <p>아버지는 증상이 좋아지는 날이면 가족을 데리고 외식을 하셨다. 대단한 식당이 아니라 집 근처 삼겹살집이었다. 대패삼겹살과 된장찌개를 시키고, 여동생은 어김없이 물을 따르다가 쏟았다.
+                아버지는 그 모습을 보며 별 말씀이 없으셨다. 하율은 자기 공깃밥에 된장찌개를 먹으면서 그 장면을 바라보았다. 아무것도 하지 않아도 괜찮은 시간이 있다는 것을 느꼈다. 모든 시간이
+                무언가를 해야 하는 시간은 아니라는 것을. 가끔은 그냥 앉아서 밥을 먹는 것만으로도 충분한 시간이 있었다.</p>
+              <p>어느 해 겨울, 아버지의 증상이 심해져 입원을 해야 했다. 하율과 여동생은 이모 집에서 며칠을 보냈다. 이모 집에서 하율은 낯선 방에 누워 천장을 보았다. 자기 방이 아닌 곳에서 자는
+                것은 불편했지만, 불편하다고 말하지 않았다. 아버지가 입원해 있는데 방이 불편하다는 말은 할 수 없었다. 이모가 저녁을 차려주시며 &quot;맛있게 먹어&quot;라고 했을 때, 하율은
+                고개를 숙이고 밥을 먹었다. 여동생은 이모 집 토끼와 놀면서 웃고 있었다. 하율은 그 모습을 보면서 여동생이 웃고 있다는 것에 안도했다. 동생은 아직 상황을 정확히 이해하지 못하는
+                나이였고, 그래서 웃을 수 있었다. 하율은 상황을 이해했기 때문에 웃지 않았다. 이해한다는 것이 반드시 좋은 것만은 아니라는 사실을, 하율은 그때 아무렇지 않게 받아들였다.</p>
+              <p>아버지가 퇴원한 날, 다시 집으로 돌아왔다. 아버지는 얼굴이 좀 야위어 있었지만 웃으셨다. 아버지는 밥을 해주셨고, 하율은 식탁을 닦고 수저를 놓았다. 세 명이 식탁에 앉아 밥을 먹는
+                시간. 그 시간이 당연하지 않다는 것을 하율은 어린 나이에 알았다. 당연한 것은 없다. 매일 반복되는 것도 어느 날 중단될 수 있다. 그 사실을 아는 아이는 반복을 소중히 여기게 된다.
+                하율이 매일의 루틴을 빠뜨리지 않으려는 성격의 뿌리가 거기에 있었는지도 모른다.</p>
+              <p>하율의 어린 시절은 화려하지 않았다. 부유하지도, 특별히 가난하지도 않았다. 아버지는 아팠고, 여동생은 어렸고, 하율은 그 사이에서 조용히 자기 자리를 지켰다. 약봉지를 정리하고,
+                라면을 끓이고, 현관의 신발을 확인하고, 설거지를 하고, 여동생의 숙제를 봐주는 것. 그것이 하율이 할 수 있는 일이었고, 하율은 그 일들을 빠뜨리지 않았다. 작은 일이지만 매일
+                반복했고, 반복하면서 몸에 배었다. 나중에 하율이 어떤 일을 하든 빠뜨리지 않는 사람이 된 것은, 이 시절의 반복이 바탕이 되었을 것이다.</p>
+              <p>초등학교에서 하율은 눈에 띄지 않는 아이였다. 학급 반장을 하거나 발표를 잘하는 아이가 아니었다. 운동을 잘하거나 그림을 잘 그리는 것도 아니었다. 다만 준비물을 빠뜨리지 않았고,
+                숙제를 기한에 맞추었고, 알림장을 깨끗하게 썼다. 선생님이 칭찬하는 아이는 따로 있었지만, 하율은 문제를 일으키지 않는 아이였다. 존재감이 크지 않은 대신 안정적이었다. 교실에서 모둠
+                활동을 할 때 하율은 대체로 서기를 맡으며 정리를 잘했다. 발표할 내용을 종이에 옮기거나, 준비물을 배분하거나, 끝나고 책상을 원위치 시키는 일. 하고 싶어서가 아니라, 아무도 안 하면
+                안 되는 일처럼 보였으니까. 하율은 아무도 안 하는 일을 도맡는 습관이 어릴 때부터 있었다. 그것이 성격인지 환경이 만든 것인지는 하율도 몰랐다. 다만 그렇게 하는 것이 자연스러웠다.
+              </p>
+              <p>중학교에 올라가서도 비슷했다. 성적은 중간쯤이었고, 친구가 많지도 않았다. 하율은 깊은 우정보다 적당한 거리를 유지하는 관계를 편안해했다. 방과 후에 친구들과 어울리는 시간보다 집에
+                돌아가 여동생을 챙기는 시간이 더 자연스러웠다. 그것이 하율에게 고독했느냐고 물으면, 그렇지 않았다. 혼자 있는 것이 외로운 것이 아니라 편한 것이라는 구분을 하율은 일찍 알았다. 혼자
+                있을 때 하율은 생각이 정리되었다. 사람이 많으면 정리가 안 되었다. 그래서 시끄러운 환경보다 조용한 환경을 선호했고, 이 성향은 이후 야간 근무에서 오히려 강점이 되었다.</p>
+              <p>훗날 하율은 병원에서 일하게 된다. 그때 하율은 자기가 왜 병원을 택했는지 스스로에게 물었고, 명확한 답을 찾지 못했다. 다만 병원 복도의 소독약 냄새가 어린 시절 아버지를 따라가던 그
+                복도의 냄새와 같다는 것을 알아차렸을 때, 무언가가 연결되는 느낌을 받았다. 약봉지를 정리하던 아이가, 환자의 서류를 정리하는 사람이 된 것이다. 순서를 맞추고, 빠진 것을 찾고,
+                제자리에 돌려놓는 일. 달라진 것은 약봉지가 서류로 바뀌었다는 것뿐이었다. 그리고 그 연결은 우연이 아니라, 어린 시절부터 쌓인 습관이 자연스럽게 만든 경로였다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-2">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 02</span>
+              <h4 class="novel-chapter-title">제2장. 의무병, 번호 대신 이름</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>군대에서 하율은 의무병이 되었다.</p>
+              <p>배정받은 보직이 의무였고, 하율은 그것을 그대로 받아들였다. 다른 보직을 원한 것도 아니었고, 의무를 특별히 원한 것도 아니었다. 주어진 자리에 가는 것. 그것이 하율의 방식이었다.
+                의무병의 일은 단순했다. 아픈 병사를 진료실로 안내하고, 군의관의 지시에 따라 약을 나누어 주고, 상처를 소독하고, 기록을 남기는 것. 하율은 그 일을 묵묵히 했다. 잘하려고 애쓴 것도
+                아니었고, 대충 하려 한 것도 아니었다. 시킨 대로, 빠뜨리지 않고, 제시간에 하는 것. 그것이 하율의 방식이었다.</p>
+              <p>처음 며칠은 모든 것이 서툴렀다. 소독약의 종류를 구분하지 못했고, 체온계 사용법도 헷갈렸고, 군의관이 지시하는 약품명을 알아듣지 못해 두 번 물어보는 일이 잦았다. 하율은 저녁에
+                의무실에 남아 약품 목록을 외웠다. 이름, 용도, 보관 위치, 투여 방법. 어린 시절 아버지의 약봉지를 정리하던 방식과 비슷했다. 분류하고, 순서를 정하고, 반복해서 확인하는 것.
+                일주일이 지나자 대부분의 약품을 찾을 수 있었고, 이 주일이 지나자 군의관이 약품명만 말하면 바로 꺼낼 수 있었다. 군의관이 한번은 말했다. &quot;적응이 빠르네.&quot; 칭찬인지
+                관찰인지 모호한 한마디였지만, 하율은 그 한마디에서 자기가 제대로 하고 있다는 확인을 얻었다.</p>
+              <p>의무실은 작았다. 침대 여덟 개, 약품 선반 하나, 군의관 책상 하나, 의무병 책상 하나. 그 좁은 공간에서 하율은 하루를 보냈다. 아침에 약품 재고를 확인하고, 진료 기록부를
+                정리하고, 군의관이 출근하기 전에 의무실을 깨끗이 닦았다. 바닥을 쓸고, 침대 시트를 정리하고, 소독약 통의 뚜껑이 잘 닫혀 있는지 확인했다. 사소한 일이었지만, 하율은 그 사소한 일에서
+                빠지는 것을 싫어했다.</p>
+              <p>군 의무실에서 병사들은 번호로 불렸다. &quot;O번 이등병 OOO, 들어오세요.&quot; 하율은 처음에 그것을 당연하게 여겼다. 군대니까. 번호가 곧 이름이었다. 하지만 한 달쯤
+                지났을 때, 진료를 받으러 온 병사가 문 앞에서 머뭇거리는 모습을 보았다. 그 병사는 배가 아프다고 했지만, 눈이 빨갛고 손이 떨리고 있었다. 하율은 그때 자기도 모르게 번호 대신 이름을
+                불렀다. &quot;김OO 일병, 여기 앉아.&quot; 그 한마디에 병사의 어깨가 조금 내려갔다. 긴장이 풀린 것인지, 누군가가 자기를 알아본다는 안도감인지. 하율은 정확히 알 수
+                없었지만, 그 변화를 느꼈다.</p>
+              <p>그날 이후 하율은 의식적으로 이름을 불렀다. 진료 기록부에 적힌 이름을 미리 확인하고, 병사가 들어오기 전에 이름을 한번 읽었다. 발음이 어려운 이름은 머릿속으로 연습했다. 이름을 잘못
+                부르는 것은 번호로 부르는 것보다 더 나빴다. 이름은 정확해야 의미가 있었다. 하율은 그 정확함에 공을 들였다. 나중에 응급실에서 &quot;성함 말씀해 주세요&quot;라고 정확한
+                톤으로 물었던 것, 환자의 이름을 한 번에 기억했던 것, 보호자의 이름까지 기록부에 적어두었던 것. 그 모든 습관의 출발점이 의무실에서 번호 대신 이름을 부르기 시작한 그날이었다.</p>
+              <p>이름을 부르는 것은 사소했지만, 하율에게는 하나의 방법이 되었다. 번호로 부르면 사람은 환자가 되고, 이름으로 부르면 사람은 사람으로 남았다. 하율은 의무실에 오는 병사들의 이름을
+                외웠다. 처음에는 자주 오는 병사들만, 나중에는 한두 번 온 병사들도. 약을 건넬 때 &quot;여기요&quot;가 아니라 이름을 붙였다. &quot;김OO 일병, 이거 식후에
+                드세요.&quot; &quot;박OO 상병, 연고 바르시고 내일 다시 오세요.&quot; 그것이 특별한 일이라고 생각하지 않았다. 다만 그렇게 하는 편이 자연스러웠다.</p>
+              <p>의무병 생활에서 하율이 배운 것은 의학 지식이 아니었다. 소독의 기술도 아니었다. 아픈 사람 옆에 있는 법을 배웠다. 아무 말 하지 않아도 되는 순간이 있고, 한마디가 필요한 순간이
+                있다는 것을. 어떤 병사는 진료를 받으러 와서 아픈 데보다 군 생활의 힘듦을 이야기했다. 하율은 들었다. 조언을 하지 않았다. 해결책을 제시하지 않았다. 그냥 들었다. 듣는 것만으로도
+                상대의 어깨가 내려가는 경우가 있었다. 하율은 그것을 보며 배웠다. 사람에게는 해결보다 경청이 먼저 필요한 때가 있다는 것을.</p>
+              <p>병사들이 진료를 마치고 나갈 때, &quot;감사합니다&quot;라고 말하는 경우는 드물었다. 의무실은 병원이 아니라 군대였으니까. 하지만 가끔 복도에서 마주치면 눈을 마주치고 고개를
+                끄덕이는 사람이 있었다. 하율은 그것으로 충분했다. 눈인사 하나가 감사의 말보다 진솔하게 느껴질 때가 있었다.</p>
+              <p>군 생활 중에 하율은 한 가지 습관을 들였다. 매일 저녁, 그날 의무실에서 있었던 일을 짧게 기록하는 것. 진료 내용이 아니라, 자기가 느낀 것이나 다음에 확인할 것을 메모하는
+                수준이었다. &quot;OOO 일병 두 번째 방문, 같은 증상 반복, 군의관에게 보고할 것.&quot; &quot;소독약 재고 부족, 보급 신청 필요.&quot; 이 기록들이 쌓이면서
+                하율은 의무실의 흐름을 전체적으로 파악할 수 있게 되었다. 어떤 시기에 어떤 증상의 환자가 많은지, 어떤 약품이 빨리 소진되는지.</p>
+              <p>전역을 앞둔 어느 날, 후임 의무병에게 인수인계를 했다. 약품 목록, 진료 기록부 정리 방법, 군의관 성향, 자주 오는 환자 특이사항, 보급 신청 시기, 의무실 청소 순서. 하율은
+                그것을 노트 한 권에 정리해 두었다. 후임은 그 노트를 받아 들고 말했다. &quot;이거 언제 다 쓰셨어요?&quot; 하율은 대답했다. &quot;틈틈이.&quot; 실제로 틈틈이 쓴
+                것이었다. 한꺼번에 정리한 것이 아니라, 매일 조금씩 기록하고, 나중에 보기 좋게 다듬은 것이었다. 후임은 그 노트를 펼쳐보더니 고개를 끄덕였다. &quot;이거면 혼자서도 할 수
+                있겠네요.&quot; 하율은 그 말에 조용히 만족했다. 자기가 이 자리를 떠나도 돌아갈 수 있도록 만드는 것. 그것이 인수인계의 본질이라는 것을 하율은 본능적으로 알고 있었다.</p>
+              <p>군 생활의 마지막 밤, 하율은 의무실 불을 끄기 전에 약품 선반을 한 번 더 확인했다. 부족한 것은 없는지, 유통기한이 다가온 것은 없는지, 라벨이 떨어진 것은 없는지. 내일이면 떠날
+                곳인데도 확인을 멈추지 않았다. 그것이 하율이었다. 맡은 자리를 떠나는 마지막 순간까지, 그 자리의 상태를 확인하는 사람. 누가 보든 안 보든.</p>
+              <p>전역 후 하율은 짐을 싸면서 의무실을 마지막으로 한 번 둘러보았다. 침대 여덟 개, 약품 선반 하나, 군의관 책상, 의무병 책상. 좁은 공간이었지만, 그 안에서 보낸 시간은 하율에게
+                작지 않았다. 하율은 후임에게 남기고 갈 노트 마지막 페이지에 짧게 적었다. &quot;환자 이름을 외워라. 번호보다 이름이 낫다.&quot; 후임이 그 조언을 따를지는 알 수 없었지만,
+                적어두는 것이 하율이 할 수 있는 마지막이었다. 군 생활에서 하율이 얻은 것은 직업적 스킬이라기보다 태도에 가까운 것이었다. 자리를 지키는 법, 기록을 남기는 법, 떠나는 순간까지
+                확인하는 법. 그것들이 습관이 되어 몸에 새겨졌다.</p>
+              <p>제대 후 하율은 무엇을 할지 정하지 못한 채 몇 달을 보냈다. 취업 공고를 보았지만 끌리는 것이 없었다. 대학 전공도 뚜렷한 방향을 주지 못했다. 그러던 중 병원 원무과 채용 공고를
+                보았다. 하율은 잠깐 생각했다. 공고를 읽고 다시 읽었다. 근무지, 직무 내용, 급여, 복리후생. 조건을 하나씩 확인하는 것이 하율의 방식이었다. 감으로 결정하는 것이 아니라, 조건을
+                보고 판단하는 것. 하지만 그 판단의 바닥에는 감이 아닌 경험이 있었다. 병원. 의무실에서의 시간이 떠올랐다. 아픈 사람 옆에 있는 일. 서류를 정리하고, 빠진 것을 찾고, 순서를 맞추는
+                일. 자기가 할 수 있는 일이었다. 하율은 지원서를 썼다. 자기소개서에 특별한 것을 쓰지 못했다. 다만 &quot;맡은 일을 빠뜨리지 않겠습니다&quot;라는 한 줄을 적었다. 그 한
+                줄이 하율의 전부이자 가장 정확한 자기소개였다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-3">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 03</span>
+              <h4 class="novel-chapter-title">제3장. 응급실의 첫 야간</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>대전성모병원 응급실. 하율이 처음 배정받은 곳이었다.</p>
+              <p>면접 때 인사담당자가 말했다. &quot;응급실 원무는 강도가 셉니다. 괜찮겠습니까?&quot; 하율은 고개를 끄덕였다. 강도가 세다는 것이 구체적으로 무엇을 의미하는지 그때는 몰랐다.
+                첫 야간 근무를 하고 나서야 알았다.</p>
+              <p>응급실 원무의 일은 환자가 들어오는 순간부터 시작되었다. 접수, 보험 확인, 서류 작성, 입원 수속, 퇴원 정산. 단어로 나열하면 단순해 보이지만, 응급실에서는 이 모든 것이 동시에
+                일어났다. 새벽 두 시에 교통사고 환자가 들어오고, 세 시에 급성 복통 환자가 들어오고, 네 시에 알코올 중독 환자가 소리를 지르고, 다섯 시에 경찰이 들어와 진술서 협조를 요청하는
+                동안에도 하율은 화면 앞에 앉아 서류를 처리했다. 한 건이 끝나기 전에 다음 건이 시작되었고, 다음 건을 처리하는 중에 이전 건의 누락이 발견되었다. 하율은 그 혼돈 속에서 순서를
+                만들었다. 급한 것 먼저, 나머지는 메모해 두고 순서대로.</p>
+              <p>첫 야간 근무는 열다섯 시간이었다. 혼자였다. 야간 원무 인력이 한 명이었기 때문이다. 주간에는 두 명이 교대로 앉지만, 야간에는 하율 혼자 창구를 지켰다. 화장실에 가는 것도 타이밍을
+                봐야 했다. 환자가 잠깐 뜸한 틈을 노려야 했고, 그 틈은 예고 없이 왔다가 예고 없이 사라졌다. 화장실에 갔다 오는 삼 분 사이에 환자가 올 수도 있었다.</p>
+              <p>식사는 더 어려웠다. 먹으면 화장실에 가야 하고, 화장실에 가려면 자리를 비워야 하고, 자리를 비울 수 있는 환경이 아니었다. 열다섯 시간 동안 혼자 근무하는 구조에서, 식사는 선택이
+                아니라 계산의 문제였다. 하율은 첫 야간에 저녁을 거르고 새벽까지 버텼다. 배가 고프다는 감각은 있었지만, 참을 수 있었다. 참을 수 없는 것은 환자가 왔을 때 자리가 비어 있는
+                것이었다. 이후에도 비슷한 야간이 반복되었고, 하율은 야간 근무 날에는 식사량을 조절하는 법을 스스로 터득했다. 근무 시작 전에 가볍게 먹고, 근무 중에는 먹지 않는 것. 누가 가르쳐준
+                것이 아니었다. 몸이 먼저 배웠다.</p>
+              <p>근무 초기에 선배가 하나 알려준 것이 있었다. &quot;응급실 원무는 실수 없이 빨라야 해. 느리면 환자가 기다려.&quot; 하율은 그 말에 동의하며, 틀리지 않고 빠르게 일하는
+                쪽을 택했다. 접수 화면의 입력 순서를 자기만의 루틴으로 만들었다. 성명, 주민번호, 보험 종류, 내원 사유. 네 칸을 탭 키로 넘기면서 입력하는 순서를 손가락이 기억할 때까지 반복했다.
+                일주일쯤 지나자 화면을 보지 않아도 손이 움직였다. 환자의 얼굴을 보면서 동시에 입력할 수 있게 되었다. 그때부터 하율은 접수 과정에서 환자와 눈을 마주칠 수 있었다. 화면만 보는 직원과
+                눈을 마주치는 직원의 차이를 하율은 환자의 반응에서 느꼈다. 눈을 마주치면 환자의 목소리가 조금 낮아졌다. 급한 상황에서도 상대가 자기를 보고 있다는 것만으로 안도하는 사람이 있었다.
+              </p>
+              <p>응급실 밤의 소리는 독특했다. 모니터 경고음, 들것 바퀴 소리, 보호자의 울음소리, 간호사의 발걸음, 전화벨. 하율은 처음에 그 소리들이 뒤섞여 들렸지만, 몇 주가 지나자 소리를 구분할
+                수 있게 되었다. 전화벨은 접수 문의인지 내과 연락인지, 발걸음은 급한 것인지 일상적인 것인지. 귀가 훈련된 것이 아니라, 반복이 구분을 만든 것이었다.</p>
+              <p>새벽 다섯 시쯤이 되면 응급실에 잠깐의 고요가 찾아오는 시간이 있었다. 환자가 줄고, 보호자들이 졸고, 간호사들이 교대 준비를 시작하는 그 사이. 하율은 그 시간에 잠깐 의자 등받이에
+                기대어 숨을 골랐다. 눈을 감지는 않았다. 언제 환자가 올지 모르니까. 다만 숨을 깊이 쉬었다. 들이쉬고, 내쉬고, 다시 들이쉬고. 형광등 불빛 아래, 소독약 냄새가 스며든 공기 속에서,
+                그 몇 분의 호흡이 하율에게는 하나의 의식이 되었다. 나중에 ALEPH에서 매일 아침저녁 리추얼을 기록하게 되었을 때, 하율이 그 습관에 자연스럽게 적응할 수 있었던 것은 응급실 새벽의
+                이 호흡 때문이었을 것이다.</p>
+              <p>그 새벽의 고요 속에서 하율은 가끔 생각했다. 왜 여기 앉아 있는 걸까. 돈 때문만은 아니었다. 이 일이 좋아서도 아니었다. 좋다는 감정보다는 맞다는 느낌에 가까웠다. 다만 자기 자리가
+                여기라는 느낌이 있었다. 누군가는 이 자리에 앉아 있어야 하고, 지금 그 누군가가 자기라는 것. 대단한 사명감이 아니라, 그냥 그런 느낌이었다. 체념도 아니었다. 체념에는 아쉬움이
+                묻어나지만, 하율이 느끼는 것은 아쉬움이 아니라 수용이었다.</p>
+              <p>야간 근무가 반복되면서 하율의 일상은 일반 사람들과 엇갈렸다. 사람들이 자는 시간에 일하고, 사람들이 일하는 시간에 잤다. 퇴근해서 집에 오면 아침이었고, 커튼을 치고 잠을 청했다.
+                바깥에서는 차 소리와 학교 종소리가 들렸지만, 하율은 그 소리에 적응했다. 적응한다는 것은 신경이 무뎌지는 것이 아니라, 소리를 인지하면서도 잠들 수 있는 상태를 말했다. 일종의
+                훈련이었다. 몸이 기억하는 리듬을 바꾸는 훈련.</p>
+              <p>쉬는 날에도 생체 리듬은 쉽게 돌아오지 않았다. 밤 열한 시가 넘어야 잠이 왔고, 오전에 일어나도 머리가 무거웠다. 야간 근무자들의 공통된 증상이었지만, 하율은 그것을 증상이라고
+                생각하지 않았다. 일의 일부라고 여겼다. 누군가는 이 시간에 깨어 있어야 하고, 그 누군가가 자기라면 그에 따르는 불편도 자기 것이라고. 그 수용이 건강한 것인지, 무감각한 것인지,
+                하율은 판단하지 않았다. 다만 버텼다.</p>
+              <p>응급실에서 일하면서 하율은 사람의 다양한 모습을 보았다. 응급 상황으로 실려 온 사람, 가벼운 상처인데 겁이 나서 온 사람, 갈 곳이 없어서 응급실 의자에 앉아 있는 사람. 보호자
+                중에는 울면서 들어오는 사람도 있었고, 화를 내면서 들어오는 사람도 있었고, 아무 말 없이 허공을 보는 사람도 있었다. 하율은 그 모든 사람에게 같은 톤으로 말했다. 높이지도, 낮추지도
+                않는 목소리. &quot;어떻게 오셨어요?&quot;, &quot;성함 혹은 신분증 보여주세요.&quot;, &quot;접수되었습니다, 잠시 앉아서 성함 호명되시면
+                들어가실게요.&quot;</p>
+              <p>그 균일한 톤이 하율의 장점이었다는 것을 하율 자신은 몰랐다. 나중에 간호사가 말해주었다. &quot;오 선생은 누가 와도 똑같이 대해. 그게 응급실에서는 중요한 거야. 환자가 불안할
+                때 접수하는 사람이 같이 불안하면 안 되거든.&quot; 하율은 그 말을 듣고 잠깐 생각했다. 자기는 의식적으로 그렇게 한 것이 아니었다. 그냥 그렇게 하는 것이 편했을 뿐이었다. 하지만
+                그 편안함이 일종의 능력이라는 것을, 하율은 그때 처음 알았다.</p>
+              <p>응급실의 밤은 길었다. 하지만 어떤 밤은 유난히 짧았다. 정신없이 환자를 처리하다 보면 어느새 아침이었다. 주간 근무자가 출근하고, 하율은 자리를 넘기고, 병원 뒷문으로 나왔다. 아침
+                공기가 차가웠다. 하늘이 밝아지고 있었다. 가로수 사이로 아침 햇살이 비스듬히 내려왔고, 출근하는 사람들이 하율과 반대 방향으로 걸어갔다. 하율은 그 공기를 마시며 집으로 향했다. 집까지
+                이십 분. 그 이십 분이 하율의 하루 중 가장 조용한 시간이었다. 아무도 부르지 않고, 아무 서류도 없고, 그냥 집으로 향하면 되는 시간. 하율은 그 시간을 좋아했다. 새소리가 들리는 그
+                이십 분이, 열다섯 시간의 야간을 버틸 수 있게 해주는 보상이었다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-4">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 04</span>
+              <h4 class="novel-chapter-title">제4장. 서진혁이 가르쳐준 것</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>서진혁은 하율보다 9개월 전 먼저 응급실 원무에 들어온 선배였다.</p>
+              <p>말이 똑부러졌고, 일 처리가 빨랐다. 하율이 모르는 것을 물으면 간결하게 답해 주었고, 같은 것을 두 번 묻지 않게 한 번에 정확히 설명했다. 설명할 때 군더더기가 없었다.
+                &quot;이건 이렇게 해. 이유는 이래서야.&quot; 끝이었다. 하율은 그 방식이 좋았다. 불필요한 말이 없으니 집중할 수 있었다. 서진혁은 감정을 드러내는 사람이 아니었지만, 하율이
+                실수했을 때 소리를 높이지 않았다. &quot;여기가 빠졌어. 다음엔 이 순서로 해.&quot; 그것만 말하고 자기 일로 돌아갔다. 하율은 서진혁에게 많은 것을 배웠지만, 가장 중요한
+                것을 배운 건 서진혁이 더 이상 없는 날이었다.</p>
+              <p>응급실에서 일하다 보면 예측할 수 없는 상황이 온다. 교통사고, 화상, 식중독, 그리고 때로는 스스로를 해친 사람. 하율이 근무하던 어느 야간, 한 환자가 응급실에 실려 왔다. 신원
+                미상의 환자였다. 의료진이 빠르게 움직였고, 하율은 접수와 보험 확인을 하면서 동시에 상황을 파악해야 했다. 손이 떨리지는 않았지만, 머릿속이 하얘지는 순간이 있었다. 무엇을 먼저 해야
+                하는지 순서가 엉켰다. 접수를 해야 하나, 보호자에게 연락을 해야 하나, 경찰에 연락을 해야 하나.</p>
+              <p>그때 하율은 서진혁이 알려준 순서를 떠올렸다. &quot;일단 접수 먼저. 보험은 나중에 확인해도 되지만 접수를 빠뜨리면 안 돼. 경찰은 간호사가 연락하니까 네가 따로 안 해도 돼. 네
+                일은 서류야. 서류를 놓치지 마.&quot; 서진혁은 이런 상황을 몇 번 겪었고, 그때마다 같은 순서를 밟았다고 했다. 혼란스러울 때일수록 순서를 정해놓으면 흔들리지 않는다고. 하율은 그
+                순서를 머릿속에서 꺼내어 하나씩 실행했다. 접수. 신원 확인. 보호자 연락처 기록. 서류 정리. 하나씩 하니까 할 수 있었다.</p>
+              <p>그 밤은 길었다. 환자는 의료진에게 넘겨졌고, 하율은 그 뒤의 서류를 처리했다. 밤이 지나고 아침이 되었다. 하율은 경위서를 작성해야 했다. 경위서는 그 상황에서 원무가 어떤 절차를
+                밟았는지 기록하는 문서였다. 하율은 시간 순서대로 적었다. 몇 시 몇 분에 환자 도착, 몇 시 몇 분에 접수 완료, 몇 시 몇 분에 보호자 연락, 몇 시 몇 분에 입원 수속. 사실만
+                적었다. 감정은 적지 않았다. 경위서에 감정을 넣을 자리는 없었다. 하지만 감정이 없는 것은 아니었다. 하율은 그 경위서를 다 쓰고 나서야 몸이 떨리기 시작했다. 사후 반응이었다. 상황
+                중에는 차분했지만, 상황이 끝나고 나서 몸이 반응했다.</p>
+              <p>경위서를 다 쓰고 퇴근길에 하율은 평소보다 느리게 걸었다. 발걸음이 무거운 것이 아니라 머릿속이 복잡했다. 미수 환자의 얼굴은 기억나지 않았다. 접수할 때 본 이름과 나이만 기억났다.
+                하율보다 두 살 어렸다. 그 사실이 하율을 오래 붙들었다. 두 살 차이. 자기와 비슷한 나이의 사람이 그런 선택을 했다는 것. 하율은 그 사람의 사정을 알 수 없었고, 알 권한도 없었다.
+                다만 자기가 할 수 있는 것은 서류를 빠뜨리지 않는 것, 접수를 정확히 하는 것, 그래서 그 사람이 이후에 필요한 의료와 행정 절차에서 불이익을 받지 않도록 하는 것뿐이었다. 원무가 할
+                수 있는 것은 거기까지였다. 하지만 거기까지라도 빠뜨리지 않는 것. 그것이 그 밤, 하율이 자기 자신에게 할 수 있는 최선의 말이었다.</p>
+              <p>그 경위서를 쓰면서 하율은 자기가 하는 일의 무게를 처음 느꼈다. 원무는 의료 행위를 하지 않는다. 주사를 놓거나 수술을 하는 사람이 아니다. 하지만 원무가 접수를 빠뜨리면 환자의
+                기록이 사라진다. 보험 확인을 놓치면 환자에게 수백만 원의 부담이 돌아간다. 서류 한 장이 한 사람의 이후를 바꿀 수 있다. 하율은 그 무게를 느꼈고, 동시에 자기가 그 무게를 견딜 수
+                있는 사람이라는 것도 느꼈다. 무너지지 않았으니까. 순서를 밟았으니까.</p>
+              <p>서진혁은 얼마 뒤 다른 파트로 옮겼다. 떠나기 전에 하율에게 말했다. &quot;네가 이 자리에 맞는 것 같아. 꼼꼼하고, 흔들리지 않고, 순서를 지키니까.&quot; 하율은
+                감사합니다, 라고 말했지만, 속으로는 이 자리에 맞는 게 좋은 건지 나쁜 건지 잘 모르겠다고 생각했다. 응급실 야간 원무에 맞는 사람이라니. 그게 칭찬인지, 단순한 관찰인지, 혹은
+                &quot;이 힘든 자리에 적응할 수 있는 사람은 별로 없는데 네가 바로 그중 하나다&quot;라는 의미인지.</p>
+              <p>서진혁이 떠나기 전날, 둘은 야간 근무를 마치고 병원 앞 감자탕 집에서 술한잔을 했다. 새벽 여섯 시의 감자탕집. 둘 다 말이 적은 사람이어서 오래 앉아 있어도 어색하지 않았다.
+                서진혁이 말했다. &quot;이 일을 왜 시작한거야?&quot; 하율은 잠깐 생각하고 답했다. 별다른 말을 하지 못했다. 서진혁은 고개를 끄덕였다. &quot;나도 비슷해.&quot;
+                그것이 둘의 마지막 대화였다. 긴 말이 필요 없는 관계. 할 수 있는 일을 하는 사람과 할 수 있는 일을 하는 사람 사이의 이해. 하율은 그 감자탕 집 술 한잔을 기억하지 못하지만,
+                창밖으로 보이던 아침 하늘의 색은 기억했다. 회색에서 연한 파랑으로 바뀌어 가던 하늘. 서진혁은 그 하늘 아래로 걸어갔고, 하율은 반대 방향으로 갔다.</p>
+              <p>하지만 하율은 그 자리를 지켰다. 서진혁이 떠난 뒤에도, 새로운 직원이 오지 않는 날에도, 혼자서 열다섯 시간을 버텼다. 새벽에 숨을 고르고, 아침에 자리를 넘기고, 병원 뒷문으로 나와
+                걸었다. 그 반복 속에서 하율은 조금씩 단단해졌다. 단단해진다는 것이 감정이 없어지는 것은 아니었다. 감정을 느끼되, 그 감정이 순서를 흐트러뜨리지 않게 하는 법을 배운 것이었다.
+                서진혁이 떠나면서 남긴 것은 인수인계 노트가 아니라, 순서의 중요성이었다. 혼란 속에서도 순서를 지키면 해낼 수 있다는 것. 그 가르침을 하율은 몸에 새겼다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-5">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 05</span>
+              <h4 class="novel-chapter-title">제5장. 구글 시트 한 장</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>2020년 초에서 중순 사이, 하율은 조용히 한 가지를 시작했다.</p>
+              <p>응급실 인수인계는 구두로 이루어졌다. 주간 근무자가 야간 근무자에게 말로 전달했다. &quot;3번 베드 환자 보호자 연락 안 됐고, 7번 베드는 입원 수속 내일 아침에 해야 하고,
+                CT 예약은 담당 선생님이 내일 확인한다고 했어.&quot; 말로 전달하면 빠지는 것이 생겼다. 3번 베드 이야기는 했는데 5번 베드를 잊거나, 입원 수속 시간이 아침인지 오후인지
+                헷갈리거나, 보호자 연락을 이미 했는지 아직인지 기억이 불확실하거나. 인수인계 누락은 곧 환자에게 영향을 주었다. 서류가 늦어지고, 보험 청구가 밀리고, 보호자에게 같은 말을 두 번 해야
+                했다. 하율은 그 비효율이 불편했다.</p>
+              <p>하율은 구글 스프레드시트를 열었다. 개인 계정으로 만든 시트였다. 병원 공식 시스템이 아니라 하율 개인의 도구였다. 열 제목을 정했다. 날짜, 베드 번호, 환자 성명, 접수 상태, 보험
+                확인, 보호자 연락, 특이사항, 담당 확인. 색깔 규칙도 정했다. 처리 완료는 초록, 진행 중은 노랑, 미처리는 빨강. 그리고 그날 야간 근무를 시작하면서 빈칸을 채워 나갔다. 근무가
+                끝나면 시트 링크를 다음 근무자에게 보냈다. &quot;이거 보면 돼요. 빨간 칸은 아직 안 된 거예요.&quot;</p>
+              <p>처음에 ER 파트 직원들은 시트를 쓰기 시작했다. 링크를 열어 확인하고, 자기 근무 때 처리한 것을 표시했다. 말로 전달할 때보다 누락이 줄었다. 이전에는 &quot;그거
+                말했잖아&quot; &quot;아니, 못 들었는데&quot;라는 대화가 빈번했는데, 시트가 생기고 나서는 &quot;시트에 있잖아&quot; 한마디로 끝났다. 하율은 조용히 만족했다.
+                시트 하나가 인수인계의 질을 바꾸고 있었다. 큰 변화가 아니었다. 다만 빠지는 것이 줄었을 뿐이었다. 하지만 빠지는 것이 줄어든다는 것은 환자에게 직접적인 차이를 만들었다.</p>
+              <p>하지만 상급자들의 시선은 달랐다. 오래 병원에 있던 사람들, 기존 방식으로 일해 온 사람들에게 하율의 시도는 불편한 변화였다. 병원은 보수적인 조직이었다. 오래된 프로세스에는 이유가
+                있다고 여기는 문화가 있었다. &quot;지금까지 이렇게 해왔는데 뭘 바꾸려고 하냐.&quot; 직접적으로 그런 말을 하는 사람은 드물었지만, 분위기는 읽혔다. 회의에서 하율이 시트
+                이야기를 꺼내면 반응이 미지근했다. 관심을 보이는 것도 아니고 반대를 하는 것도 아닌, 그냥 듣고 넘어가는 분위기. 눈엣가시라는 표현이 과하지 않았다. 젊은 직원이 혼자 무언가를 만들어서
+                공유하고, 다른 직원들이 그걸 쓰기 시작하면, 기존 시스템의 결함이 드러나는 것이니까.</p>
+              <p>하율은 말하지 않았다. 기존 방식이 잘못되었다고 말한 적이 없었다. 다만 시트를 만들어서 공유했을 뿐이었다. 하지만 행동 자체가 메시지였다. 불편한 메시지. 하율은 그 불편함을
+                감수하면서 시트를 유지했다. 상급자가 직접 쓰지 말라고 지시하지는 않았으니까. 지시가 없으면 계속하는 것. 그것도 하율의 방식이었다.</p>
+              <p>어느 날, 야간 근무 중에 시트를 확인하다가 비고란에 누군가가 적어 놓은 메모를 발견했다. &quot;편하다.&quot; 딱 세 글자. 누가 적었는지 계정을 보면 알 수 있었지만,
+                하율은 확인하지 않았다. 그 세 글자로 충분했다. 자기가 만든 것이 누군가에게 쓸모가 있었다는 것. 그것이면 됐다. 하율은 화면에서 그 세 글자를 보고 잠깐 멈췄다. 응급실 야간의 형광등
+                아래, 모니터의 푸른 빛 속에서, 그 세 글자가 유난히 밝게 보였다. 하율은 잠깐 웃었다. 그리고 다음 칸을 채우러 갔다.</p>
+              <p>시트를 유지하는 것은 만드는 것보다 더 많은 에너지가 들었다. 매일 근무가 시작되면 전날 시트를 확인하고, 빈칸이 있으면 채우고, 상태가 바뀐 것은 업데이트해야 했다. 자기 근무 때만
+                관리하면 되는 것이 아니라, 다른 사람이 빠뜨린 부분도 잡아야 했다. 노란색으로 표시된 '진행 중' 칸이 이틀째 그대로인 것을 발견하면, 해당 담당자에게 물었다. &quot;이거 아직
+                진행 중인 거예요?&quot; 대부분은 &quot;아, 깜빡했어요&quot; 하며 처리했다. 가끔은 &quot;시트까지 확인해야 하나요?&quot;라는 반응도 있었다. 하율은 그런 반응에
+                말을 보태지 않았다. &quot;확인만 부탁드려요.&quot; 그것만 말했다. 설득하지 않았다. 시트의 유용함은 말이 아니라 결과로 증명되어야 한다고 생각했다. 실제로 시트를 쓰기 시작한
+                뒤 인수인계 관련 민원이 줄었다. 수치를 낸 것은 아니었지만, 체감할 수 있는 정도였다.</p>
+              <p>시트는 완벽하지 않았다. 인터넷이 안 되는 구역에서는 열 수 없었고, 병원 전산 시스템과 연동되지 않았고, 공식 문서가 아니라 법적 효력도 없었다. 보안 문제도 있었다. 개인 계정으로
+                만든 시트에 환자 정보를 넣는 것이 적절한지에 대한 고민도 있었다. 하율은 그 한계를 알았다. 나중에 보안을 배우면서 개인 계정으로 업무 데이터를 관리하는 것이 정보 보안 관점에서 얼마나
+                위험한 행동이었는지 깨닫게 되었다. 하지만 당시에는 그것이 유일한 방법이었다. 병원 공식 시스템에 인수인계 도구가 없었고, 도구를 만들어 달라고 요청해도 우선순위에 밀렸다. 하율은 가용한
+                자원 안에서 최선을 택한 것이었다. 완벽하지 않은 선택이었지만, 아무것도 하지 않는 것보다는 낫다는 판단. 하율의 판단 기준은 항상 그것이었다. 이상적인 것이 아니라 가능한 것. 완벽한
+                것이 아니라 지금 할 수 있는 것.</p>
+              <p>그래도 구두 인수인계보다는 나았다. 빠진 것이 눈에 보이니까. 빨간 칸이 남아 있으면 아직 처리 안 된 것이 있다는 뜻이니까. 완벽하지 않은 도구라도, 도구가 없는 것보다는 나았다.
+              </p>
+              <p>이 경험은 나중에 하율이 업무 매뉴얼을 만들고, 프로세스를 디지털로 전환하려는 시도를 하는 바탕이 되었다. 구글 시트 한 장에서 시작한 것이, 5개 파트 매뉴얼 문서화로 이어졌다.
+                하율은 그것을 &quot;디지털 전환&quot;이라고 부르지 않았다. 그냥 &quot;정리&quot;라고 불렀다. 빠진 것을 찾고, 순서를 맞추고, 누구나 볼 수 있게 만드는 것.
+                약봉지를 크기 순서대로 놓던 아이가, 업무를 정리하는 사람이 된 것이었다. 도구가 약봉지에서 구글 시트로 바뀌었을 뿐, 하는 일의 본질은 같았다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-6">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 06</span>
+              <h4 class="novel-chapter-title">제6장. 혼자서 고치려던 사람</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>2022년 10월 31일, 하율은 응급실 마지막 근무를 마쳤다.</p>
+              <p>11월부터 외래 수납 파트로 이동했다. 응급실 야간 원무로 근무한 기간이 길어지면서 체력적으로 한계가 왔다. 열다섯 시간 혼자 근무하는 패턴이 몸에 누적되었다. 잠을 자도 개운하지
+                않았고, 쉬는 날에도 긴장이 풀리지 않았다. 몸이 보내는 신호였다. 그것만이 이유는 아니었다. 응급실에서 하율이 할 수 있는 일의 범위가 정해져 있다는 것을 느꼈다. 시트를 만들고,
+                매뉴얼을 정리하고, 인수인계 누락을 줄이는 것. 그 이상은 원무의 권한 밖이었다. 시스템 자체를 바꾸려면 병원 전체의 결정이 필요했고, 하율 한 사람이 밀 수 있는 범위를 넘어서는
+                일이었다.</p>
+              <p>외래 수납 파트에서 하율은 중간관리자 역할을 맡았다. 수납 창구 직원들의 업무를 조율하고, 민원을 처리하고, 상급자에게 보고하는 위치. 응급실과 달리 야간 근무는 없었지만, 다른 종류의
+                스트레스가 있었다. 사람을 관리하는 일은 서류를 처리하는 일과 달랐다. 서류는 순서를 정하면 되지만, 사람은 순서대로 움직이지 않았다. 각자의 사정이 있고, 각자의 속도가 있고, 각자의
+                불만이 있었다.</p>
+              <p>중간관리자라는 직함은 있었지만 권한은 제한적이었다. 상급자의 결정을 전달하고, 하급자의 불만을 수렴하고, 그 사이에서 균형을 잡는 것. 하율은 그 역할에서 응급실과는 다른 종류의 피로를
+                느꼈다. 응급실에서는 몸이 힘들었다. 외래에서는 마음이 힘들었다. 직원 A가 직원 B에 대한 불만을 하율에게 말했고, 하율은 그것을 어떻게 처리해야 하는지 고민했다. 양쪽 다 틀린 것이
+                아닌 경우가 대부분이었다. 다만 방식이 달랐을 뿐이었다. 하율은 판단하지 않으려고 했다. 듣고, 확인하고, 필요한 부분만 조정했다. 의무병 시절 &quot;듣는 것만으로 상대의 어깨가
+                내려가는 경우가 있다&quot;는 것을 배운 경험이 여기서도 쓰였다. 불만을 가진 직원에게 해결책을 제시하기보다 먼저 들었다. 들어주면 절반은 해결되는 경우가 있었다. 절반은 안 되는
+                경우도 있었지만.</p>
+              <p>하율은 외래 파트에서도 정리를 시도했다. 수납 업무 흐름을 문서화하고, 자주 발생하는 민원 유형을 분류하고, 처리 절차를 매뉴얼로 만들었다. 5개 파트의 업무 매뉴얼을 혼자 작성했다.
+                누가 시킨 것이 아니었다. 하율이 스스로 필요하다고 판단했기 때문이다. 새로운 직원이 들어올 때마다 같은 것을 처음부터 설명해야 하는 비효율이 싫었다. &quot;이건 어떻게 하는
+                거예요?&quot; &quot;아, 그건 이렇게 해요.&quot; 같은 대화를 매번 반복하는 것보다, 매뉴얼이 있으면 기본적인 것은 읽고 시작할 수 있었다.</p>
+              <p>하지만 매뉴얼을 읽는 사람은 많지 않았다. 하율은 공유 폴더에 올려두고 메신저로 안내했지만, 대부분의 직원들은 여전히 &quot;선배한테 물어봐&quot;를 선택했다. 문서를 읽는
+                것보다 사람에게 묻는 것이 익숙한 문화였다. 하율은 실망하지 않으려고 했지만, 조금은 실망했다. 만든 사람은 혼자인데 쓰는 사람도 혼자인 매뉴얼. 그것이 하율의 현실이었다. 가끔 새로운
+                직원이 매뉴얼을 보고 &quot;이거 도움이 됐어요&quot;라고 말하면 하율은 속으로 조금 안도했다. 아주 가끔이었지만, 그 가끔이 하율을 유지시켰다.</p>
+              <p>2025년 3월 말, 하율은 대전의 병원을 떠났다. 외래 수납 중간관리자로 근무한 기간은 2022년 11월부터 2025년 3월까지. 약 2년 5개월. 그 기간 동안 하율이 만든 매뉴얼은
+                어떻게 되었을까. 하율이 떠나면서 매뉴얼을 관리하는 사람이 없어졌고, 아마 시간이 지나면서 내용이 업데이트되지 않아 쓸모없어졌을 것이다. 하율은 그것을 짐작했지만 확인하지 않았다.
+                확인해봤자 달라지는 것은 없었으니까. 다만 한 가지 바람이 있었다면, 자기가 만든 매뉴얼의 구조라도 누군가 기억해주면 좋겠다는 것이었다. 내용이 낡아도 구조는 남을 수 있었다. 항목을
+                나누고, 순서를 정하고, 빠진 것을 표시하는 방식. 그 방식을 한 사람이라도 가져갔다면, 하율이 그 자리에 있었던 시간이 완전히 사라진 것은 아닐 것이었다.</p>
+              <p>하율은 떠나기 전 마지막으로 매뉴얼 폴더를 정리했다. 파일명을 깔끔하게 바꾸고, 최종 수정일을 확인하고, 읽는 순서를 안내하는 메모를 폴더 첫 페이지에 넣었다. 후임에게 폴더 위치를
+                알려주었다. 후임은 고개를 끄덕였지만, 그 폴더를 열어볼 것인지는 하율도 알 수 없었다. 약품 선반을 정리하던 의무병 시절과 같았다. 떠나는 사람은 자기가 할 수 있는 최선의 상태로
+                만들어 놓고 가는 것. 이후에 어떻게 되는지는 남는 사람의 몫이었다. 하율은 그것을 알았고, 그래도 정리를 멈추지 않았다. 누군가 열어볼 수도 있으니까. 아무도 열어보지 않더라도, 정리된
+                상태 자체가 하율이 그 자리에 있었다는 흔적이니까.</p>
+              <p>4월에 세종의 한 개인병원으로 이직하게 된다. 새로운 환경에서 다시 시작할 수 있을 거라고 생각했다. 하지만 작은 병원은 작은 병원대로의 한계가 있었다. 인력이 적어 한 사람이 여러
+                역할을 해야 했고, 시스템을 개선할 여력이 없었다. 하율은 거기서도 정리를 시도했지만, 결과는 비슷했다. 정리는 했지만 유지되지 않았다. 하율이 하면 정리가 되고, 하율이 안 하면
+                흐트러졌다.</p>
+              <p>퇴근 후 자취방에 돌아오면 하율은 습관적으로 핸드폰을 확인했다. 업무 메신저에 새 알림이 있으면 확인하고, 다음 날 할 일을 정리했다. 쉬는 시간에도 일에서 완전히 벗어나지 못하는 것.
+                그것이 책임감인지 강박인지 하율은 구분하지 못했다. 응급실에서 야간 근무를 하던 시절에는 근무가 끝나면 확실히 끝이었다. 다음 근무자에게 자리를 넘기면 그 이후는 하율의 시간이 아니었다.
+                하지만 중간관리자가 되면서 근무 시간의 경계가 흐려졌다. 새벽에 직원이 보낸 메시지, 주말에 온 민원 보고, 공휴일에 시스템 오류 연락. 하율은 그것들을 확인하지 않으면 불안했다.
+                확인하는 것이 자기 역할이라고 생각했다. 하지만 그 역할이 자기를 조금씩 소진시키고 있다는 것도 느꼈다. 소진은 갑자기 오지 않았다. 매일 조금씩 깎이는 것이었다. 나무가 바람에 꺾이는
+                것이 아니라, 천천히 마르는 것처럼.</p>
+              <p>하율은 가끔 생각했다. 내가 이 일에 맞지 않는 건지, 이 환경이 나와 맞지 않는 건지. 분명한 것은 하나였다. 하율은 문제를 보면 고치고 싶은 사람이었다. 비효율을 보면 정리하고
+                싶었고, 빠진 것을 보면 채우고 싶었다. 하지만 그 욕구가 채워지는 환경이 아니었다. 하율이 고치고 싶은 것을, 주변은 고칠 필요가 없다고 여겼다. 혹은 고쳐야 한다는 것을 알지만 고칠
+                여력이 없다고 판단했다.</p>
+              <p>세종의 개인병원에서 하율은 한 가지 더 깨달았다. 환경의 크기와 상관없이, 혼자 하는 일에는 천장이 있다는 것을. 대형 병원에서도 혼자였고, 작은 병원에서도 혼자였다. 장소가 바뀌어도
+                패턴은 같았다. 하율이 시작하고, 하율이 유지하고, 하율이 떠나면 사라지는 것. 이 패턴을 깨려면 혼자가 아닌 구조가 필요했다. 한 사람의 노력이 아니라, 여러 사람이 함께 쓰는 시스템이
+                필요했다. 하율은 그 시스템을 만드는 쪽의 사람이 되고 싶다는 생각이 어렴풋이 들었다. 사용하는 사람이 아니라 만드는 사람. 정리하는 사람이 아니라 정리할 수 있는 도구를 만드는 사람.
+                그 생각이 나중에 IT 전환의 한 동기가 되었다.</p>
+              <p>혼자서 고치려는 것의 한계를 하율은 조금씩 느꼈다. 혼자 매뉴얼을 만들고, 혼자 시트를 관리하고, 혼자 프로세스를 정리하는 것. 그것은 필요한 일이었지만, 혼자 하는 일은 혼자 끝나기
+                쉬웠다. 하율이 떠나면 그 시트도, 매뉴얼도, 정리된 프로세스도 함께 사라질 가능성이 높았다. 하율은 그것을 알았지만, 그래도 멈추지 않았다. 자기가 있는 동안만이라도 빠진 것이 없도록
+                하는 것이 하율의 방식이었으니까. 포기하지 않는 것과 무의미한 반복 사이의 경계를 하율은 아직 정확히 긋지 못했다. 다만 멈추기보다는 지금 할 수 있는 것을 하는 쪽을 선택했다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-7">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 07</span>
+              <h4 class="novel-chapter-title">제7장. 2025년, 대전의 여름</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>2025년 7월, 대전.</p>
+              <p>할머니가 돌아가셨다.</p>
+              <p>하율에게 할머니는 먼 존재가 아니었다. 어린 시절 부모님이 바쁜 날에는 할머니 댁에서 지냈고, 할머니는 하율을 &quot;우리 하율이&quot;라고 불렀다. 할머니의 집에는 늘 시래기가
+                있었고, 김치가 있었고, 둥근 밥상이 있었다. 할머니는 하율에게 밥을 주실 때 늘 한 숟갈을 더 올려주셨다. &quot;많이 먹고 골고루 먹어야 크지.&quot; 하율은 이미 다 컸는데도
+                할머니에게는 늘 더 먹여야 하는 아이였다. 하율은 그 밥상에서 밥을 먹고, 텔레비전을 보고, 가끔 할머니 근처에 기대어 졸았다. 특별할 것 없는 풍경이었지만, 그래서 더 단단한
+                풍경이었다. 화려한 기억은 흐려지지만, 일상의 기억은 선명히 남는다.</p>
+              <p>할머니의 건강이 나빠진 것은 갑작스러웠다. 괜찮으셨던 분이 갑자기 입원하셨고, 몇 달 사이에 상태가 급격히 악화되었다. 하율은 병원을 오갔다. 자기도 병원에서 일하는 사람이면서, 할머니
+                병실 앞에 서면 아무것도 할 수 없었다. 원무과 직원으로서는 서류를 처리하고 보험을 확인하는 일을 할 수 있었지만, 손자로서는 그저 지켜보는 것뿐이었다. 그 무력함이 이상했다. 병원이라는
+                공간에서 매일 일하면서도, 정작 자기 가족 앞에서는 할 수 있는 것이 없었다. 서류를 정리하는 능력, 순서를 맞추는 꼼꼼함, 빠뜨리지 않는 주의력. 그 모든 것이 할머니 병실 앞에서는
+                쓸모가 없었다.</p>
+              <p>할머니가 돌아가신 날, 하율은 울지 않았다. 울지 않은 것이 아니라 울 수 없었다. 감정이 얼어붙은 느낌이었다. 슬픔이 올 자리에 텅 빈 공간이 있었다. 장례를 치르고, 절차를 밟고,
+                서류를 처리했다. 하율이 잘하는 일이었다. 절차를 밟고 서류를 정리하는 일. 장례식장에서도 하율은 서류를 정리하는 역할을 맡았다. 누가 시킨 것이 아니었지만, 하율이 하는 것이
+                자연스러웠다. 가족들은 슬퍼하고 있었고, 누군가는 실무를 처리해야 했으니까. 하지만 이번에는 그 능력이 자기를 보호하는 껍질이 아니라, 감정을 막는 벽처럼 느껴졌다.</p>
+              <p>장례가 끝나고 한동안 하율은 방황했다. 출근은 했지만 일에 집중하기 어려웠다. 퇴근 후에는 아무것도 하지 않았다. 자취방에 돌아와 불을 켜지 않고 앉아 있는 날이 많았다. 창밖으로
+                대전의 여름 밤 하늘이 보였다. 밤이 되어서도 하늘은 완전히 검지 않았고, 불빛과 어우러져 회색빛이 돌았다. 무언가를 해야 한다는 생각은 있었지만, 무엇을 해야 하는지 모르겠었다.
+                텔레비전을 켜도 소리가 머릿속에 들어오지 않았고, 핸드폰을 봐도 스크롤만 내리다가 놓았다.</p>
+              <p>하율은 자기 자신에게 여러 가지를 물었다. 할머니에게 더 잘할 수 있었는지. 더 자주 찾아뵐 수 있었는지. 바쁘다는 핑계로 미뤘던 것은 없었는지. 마지막에 무슨 말을 했는지. 기억이
+                선명하지 않은 것이 괴로웠다. 기억이 선명해도 괴로울 것을 알면서, 선명하지 않은 것이 더 괴로웠다. 사람은 지나간 뒤에야 소중함을 알고, 알고 나면 되돌릴 수 없다는 것. 누구나 아는
+                말이지만, 직접 겪으면 그 말의 무게가 달랐다.</p>
+              <p>어느 날 퇴근 후, 하율은 할머니 댁에 갔다. 아무도 없는 집이었다. 현관 앞에서 열쇠를 꺼내려다가 손이 멈추었다. 열쇠를 돌리면 안에는 텅 빈 방이 있을 것이고, 시래기도 김치도 둥근
+                밥상도 없을 것이었다. 하율은 열쇠를 돌리지 않고 현관 앞에 잠깐 서 있었다. 문 앞에 서 있는 것만으로 충분한 날이 있었다. 안에 들어가면 빈 공간이 슬픔을 확대시킬 것 같았다. 하율은
+                돌아섰다. 집으로 돌아오는 차 안에서 창밖을 보았다. 대전의 가로등이 하나씩 켜지고 있었다. 주황색 불빛이 도로 위에 길게 늘어졌다. 하율은 그 불빛을 보면서 할머니가 저녁마다 거실 불을
+                켜두셨던 것을 떠올렸다. &quot;불 켜둬야 집이지.&quot; 할머니의 말씀이었다. 하율의 자취방에 돌아왔을 때, 이번에는 불을 켰다. 어두운 방에 앉아 있는 대신, 불을 켜고
+                앉았다. 작은 변화였지만, 그것이 하율의 방식이었다. 한꺼번에 바뀌지 않더라도, 한 가지씩.</p>
+              <p>같은 시기, 하율은 직장에서도 한계를 느끼고 있었다. 혼자서 프로세스를 정리하고, 혼자서 매뉴얼을 만들고, 혼자서 시트를 관리하는 일. 그 일들이 갑자기 무의미하게 느껴졌다. 할머니를
+                잃은 슬픔과 직장에서의 한계가 겹치면서, 하율의 2025년 여름은 어두웠다. 잃은 것과 막힌 것이 동시에 찾아온 계절이었다.</p>
+              <p>그 여름 동안 하율은 한 가지를 깨달았다. 자기가 잃은 것과 자기가 가진 것의 목록이 달라지고 있다는 것을. 할머니를 잃었다. 직장에서의 성장 가능성도 잃었다. 하지만 가진 것도
+                있었다. 병원에서 쌓은 경험, 서류를 정리하는 능력, 프로세스를 파악하는 눈, 빠뜨리지 않는 꼼꼼함. 그것들은 잃은 것이 아니었다. 여전히 하율의 안에 있었다. 다만 그것들을 쓸 곳이
+                바뀌어야 한다는 느낌이 들었다. 같은 도구를 다른 곳에 쓰는 것. 그 생각이 아직 구체적이지는 않았지만, 방향은 있었다.</p>
+              <p>하지만 계절은 기다리지 않았다. 여름이 지나면 가을이 왔고, 가을이 되면 해가 짧아졌다. 하율의 마음이 가을과 함께 밝아진 것은 아니었다. 감정은 계절처럼 깔끔하게 바뀌지 않았다. 다만
+                가을의 공기가 여름보다 서늘했고, 해가 짧아졌고, 그 물리적인 변화가 조금은 영향을 주었다. 하율은 어느 날 퇴근 후 평소와 다른 경로로 집으로 향했다. 특별한 이유는 없었다. 그냥 다른
+                길로 가보고 싶었다. 매일 같은 길로 다니는 것이 갑자기 답답했다. 그 길에 작은 카페가 있었고, 창가에 앉아 있는 사람들이 보였다. 하율은 잠깐 서서 그 풍경을 보았다. 아무도 하율을
+                보지 않았다. 하율도 아무에게도 말하지 않았다. 다만 서 있었다. 그 풍경이 특별한 것은 아니었지만, 하율에게는 하나의 전환이었다. 다른 길로 걸어보겠다는 마음이 생겼다는 것 자체가.
+              </p>
+              <p>다른 길로 걸어본 그날, 하율은 자취방에 돌아와서 오래간만에 책을 펼쳤다. 무슨 책이었는지는 중요하지 않았다. 글자를 따라가는 것 자체가 중요했다. 글자를 읽는 동안에는 할머니 생각이,
+                병원 생각이, 매뉴얼 생각이 잠깐 멈추었다. 책을 읽는 것이 도피인지 회복인지 판단할 필요는 없었다. 다만 머릿속이 조금 조용해졌다. 그 조용함이 하율에게는 필요한 것이었다. 응급실의
+                소음, 외래의 민원, 상급자의 시선. 그 모든 것에서 벗어나 혼자 조용한 시간을 갖는 것. 하율은 그날부터 퇴근 후 삼십 분씩 책을 읽거나 운동을 시작했다. 무엇을 읽든 상관없었다.
+                소설이든 에세이든, 글자를 따라가는 삼십 분이 하율의 하루를 마무리하는 새로운 루틴이 되었다. 병원에서는 야간 근무 후 아침 산책이 보상이었다면, 퇴사를 앞둔 시기에는 이 독서 시간이
+                비슷한 역할을 했다.</p>
+              <p>그 순간이 전환점이었다고 말하면 과장이다. 하율은 극적인 깨달음을 얻지 않았다. 다만 지금까지 걸어온 길이 유일한 길은 아닐 수 있다는 생각이 조용히 자리 잡았다. 병원이 유일한
+                선택지가 아닐 수 있다는 생각. 그 생각이 씨앗이었다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-8">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 08</span>
+              <h4 class="novel-chapter-title">제8장. 퇴사 도장</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>2025년, 하율은 퇴사를 결심했다.</p>
+              <p>오래 고민한 결심이었다. 하룻밤에 정한 것이 아니라, 몇 달에 걸쳐 조금씩 기울어진 저울이 어느 순간 한쪽으로 넘어간 것이었다. 병원에서의 시간이 무의미했다고 말할 수는 없었다.
+                응급실에서 배운 것, 외래에서 경험한 것, 매뉴얼을 만들고 시트를 관리하면서 쌓인 것. 그것들은 분명히 하율의 일부가 되어 있었다. 하지만 이 자리에 더 있어도 달라지는 것이 없을 거라는
+                느낌이 점점 커졌다. 같은 매뉴얼을 만들고, 같은 프로세스를 정리하고, 같은 한계에 부딪히는 반복. 성장하지 않는 반복은 하율에게 견디기 어려운 것이었다.</p>
+              <p>할머니를 잃은 뒤의 방황, 혼자서 프로세스를 고치려던 피로, 매뉴얼을 만들어도 읽히지 않는 허탈함. 그리고 병원 전산실을 오가며 깨달은 것. 다른 직원의 도움을 기다리는 동안, 자기가
+                직접 문제를 해결하는 것이 더 빠른 서비스를 제공하고 신뢰감을 준다는 것을. 하율은 병원 전산 시스템의 오류를 자주 마주했다. 수납 프로그램이 멈추거나, 데이터가 꼬이거나, 프린터가
+                연결되지 않을 때마다 전산실에 연락했다. 전산실 담당자가 오기까지 기다려야 했고, 그 사이에 환자는 창구 앞에서 기다렸다.</p>
+              <p>하율은 가끔 직접 컴퓨터를 재시작하거나, 네트워크 케이블을 확인하거나, 간단한 문제를 스스로 해결했다. 그럴 때마다 생각했다. 이걸 좀 더 체계적으로 배우면 어떨까. 기다리지 않고 직접
+                해결할 수 있다면 어떨까. 문제가 생겼을 때 전산실에 전화하는 사람이 아니라, 문제를 해결하는 사람이 되면 어떨까.</p>
+              <p>퇴사를 결심하고 나서도 며칠간 아무에게도 말하지 않았다. 결심이 흔들릴까봐가 아니라, 말로 꺼내면 현실이 되는 것이 두려웠다. 병원에서 수년간 일한 사람이 서른 넘어 전혀 다른 분야로
+                간다는 것. 안정적인 수입을 놓고, 경력을 리셋하고, 처음부터 다시 배운다는 것. 객관적으로 보면 위험한 선택이었다. 하율의 부모님도 걱정하셨을 것이다. 하지만 하율은 그 걱정보다 지금의
+                자리에서 더 이상 성장하지 못한다는 정체가 더 두려웠다. 정체는 느린 하락이었다. 겉으로는 같은 자리에 있지만, 안으로는 조금씩 무너지는 것.</p>
+              <p>하율은 어느 저녁 아버지에게 전화를 했다. &quot;좀 다른 길로 가보려고요.&quot; 아버지는 잠깐 침묵하다가 말씀하셨다. &quot;생각이 있으면 해봐.&quot; 길게 말리지
+                않으셨다. 아버지도 하율이 병원에서 힘들어하는 것을 느끼고 계셨을 것이다. 전화를 끊고 하율은 잠깐 멍하니 앉아 있었다. 아버지의 그 한마디가 허락처럼 느껴졌다. 허락이 필요한 나이는
+                지났지만, 그래도.</p>
+              <p>AI를 활용할 줄 알아야 하는 시대가 오고 있었다. 하율은 뉴스를 통해, 그리고 주변의 변화를 통해 그것을 느꼈다. 활용 능력이 능숙한 인재를 원하는 사회가 되어가고 있었다. 하율은 그
+                흐름을 읽었다. 읽는다는 것 자체가 하율의 변화였다. 이전의 하율은 주어진 자리에서 주어진 일을 했다. 지금의 하율은 자리를 바꾸는 것을 생각하고 있었다.</p>
+              <p>퇴사 서류에 도장을 찍는 날, 하율은 오래 서 있지 않았다. 도장을 찍고, 서류를 제출하고, 사물함을 비우고, 나왔다. 사물함에는 별것이 없었다. 볼펜 하나, 메모장 몇 권, 슬리퍼.
+                메모장에는 업무 관련 기록들이 적혀 있었다. 하율은 그 메모장을 가방에 넣었다. 나중에 쓸 일은 없을 것이지만, 버리기는 아까웠다. 기록은 하율의 일부였으니까.</p>
+              <p>동료들에게 작별 인사를 하지 않았다. 하율은 기약도 없는 작별을 좋아하지 않았다. 할 말이 있으면 이미 했고, 없으면 굳이 만들 필요가 없었다. 한 동료가 말했다. &quot;어디
+                가려고?&quot; 하율은 말했다. &quot;좀 머리식히면서 공부해보려고요.&quot; 구체적으로 무엇을 하려는지는 말하지 않았다. 아직 정확히 정하지 않았기 때문이다.</p>
+              <p>마지막 출근 날, 하율은 평소보다 일찍 나왔다. 아무도 없는 사무실에서 자기 자리를 둘러보았다. 모니터, 키보드, 마우스, 전화기. 몇 년간 매일 마주한 물건들이었다. 모니터 옆에 붙어
+                있던 포스트잇을 떼었다. &quot;접수 → 보험 → 수속 → 정산&quot;. 서진혁이 가르쳐준 순서였다. 처음 응급실에 배정받았을 때 적어놓은 것이었는데, 외래로 옮긴 뒤에도 떼지
+                않았다. 순서라는 것의 상징처럼 거기 붙어 있었다. 하율은 그 포스트잇을 가방에 넣었다. 메모장과 함께. 작은 것들이지만, 하율의 시간이 담긴 것들이었다. 사무실에 첫 번째 동료가
+                출근하기 전에 하율은 정리를 마쳤다. 깨끗한 책상이 남았다. 다음 사람이 바로 앉아서 일을 시작할 수 있는 상태. 인수인계의 기본이었다.</p>
+              <p>병원을 나서면서 하율은 잠시 멈춰 섰다. 다른 길을 걸어보고 싶다. 그 생각이 선명했다. IT든 병원이든, 아니면 아직 생각하지 못한 어떤 분야든. 정해진 것은 없었다. 다만 여기는
+                아니라는 것, 그리고 어디로 가든 자기가 가진 것들 — 정리하는 습관, 순서를 지키는 꼼꼼함, 빠뜨리지 않는 주의력을 쓸 수 있는 곳이 있을 거라는 막연한 확신이 있었다.
+                확신이라기보다는, 그것들이 쓸모없지는 않을 거라는 기대에 가까웠다.</p>
+              <p>2025년 말, 하율은 바이브코딩 AI 기반 웹풀스택 개발 과정에 등록했다. IT를 배워보기로 한 것이다. 프로그래밍을 한 번도 해본 적이 없었다. HTML이 무엇인지, 서버가 어떻게
+                동작하는지, 코드 한 줄이 어떤 결과를 만드는지 전혀 몰랐다. 화면에 글자 하나를 띄우는 것도 모르는 상태에서 시작했다. 하지만 하율은 모르는 것을 배우는 일을 두려워하지 않았다. 의무병
+                시절 약품 목록을 외우고, 응급실에서 보험 규정을 익히고, 외래에서 수납 시스템을 파악한 것처럼. 새로운 것을 만나면 일단 관찰하고, 순서를 파악하고, 반복해서 익히는 것. 그것이 하율이
+                아는 유일한 학습 방법이었고, 지금까지 그 방법이 실패한 적은 없었다.</p>
+              <p>개발을 배우기 시작한 첫 주는 당혹스러웠다. 화면에 &quot;Hello World&quot;를 띄우는 것조차 여러 단계가 필요했다. 에디터를 설치하고, 파일을 만들고, 태그를
+                입력하고, 브라우저에서 여는 것. 병원에서는 시스템이 이미 갖춰져 있었다. 수납 프로그램이 깔려 있었고, 프린터가 연결되어 있었고, 네트워크가 구성되어 있었다. 하율은 그 시스템 위에서
+                일했다. 하지만 코드는 빈 화면에서 시작했다. 아무것도 없는 곳에서 무언가를 만들어야 했다. 그 느낌이 낯설었지만, 동시에 흥미롭기도 했다. 자기가 쓴 한 줄이 화면에 바로 결과를 만드는
+                것. 병원에서는 서류를 처리해도 결과가 바로 보이지 않았다. 보험 청구가 처리되기까지 며칠이 걸렸고, 매뉴얼을 만들어도 효과가 보이기까지 몇 주가 걸렸다. 하지만 코드는 달랐다. 코드를
+                쓰고 실행하면 즉시 결과가 나왔다. 맞으면 작동하고, 틀리면 에러가 떴다. 그 명확함이 하율에게는 편안했다. 맞고 틀림이 분명한 세계. 눈치를 보거나 분위기를 읽을 필요 없이, 코드가
+                답을 알려주었다.</p>
+              <p>6개월간 웹 개발을 배우면서, 병원에서 시작했으면 끝을 보던 습관이 코드 위에서도 작동했다. 축제 O2O 플랫폼을 만들 때 새벽까지 에러를 잡았고, 웨딩 통합 플랫폼에서 결제 로직이 안
+                될 때 포기하지 않고 반복했고, 쇼핑몰 프로젝트에서 장바구니 기능이 틀어졌을 때 처음부터 다시 짰다. 병원에서 열다섯 시간을 버티던 체력과 끈기가, 개발 공부에서 그대로 쓰였다. 분야가
+                바뀌었을 뿐, 하율은 같은 사람이었다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-9">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 09</span>
+              <h4 class="novel-chapter-title">제9장. 빈자리를 채우는 법</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>2025년 가을, 바이브 코딩 웹 풀스택 과정에서 팀 프로젝트가 시작되었다.</p>
+              <p>팀 프로젝트는 하율에게 새로운 경험이었다. 병원에서는 팀이라고 부르는 조직이 있었지만, 실질적으로는 각자의 역할이 분리되어 있었다. 접수하는 사람, 수납하는 사람, 보험 청구하는 사람.
+                같은 공간에서 일하지만 협업이라기보다 분업에 가까웠다. 하지만 개발 프로젝트에서의 팀은 달랐다. 한 사람이 만든 것 위에 다른 사람이 만든 것이 올라가고, 그 위에 또 다른 것이 쌓이는
+                구조. 한 사람의 코드가 다른 사람의 코드에 직접 영향을 주었다. 그래서 소통이 분업보다 중요했다. 하율은 그 차이를 프로젝트를 하면서 체감했다.</p>
+              <p>하율의 팀에는 세 명이 있었다. 하율, 강태호, 임소희. 강태호가 팀장을 맡았다. 프로젝트 주제를 정하고, 역할을 나누고, 일정을 잡았다. 강태호는 전체 흐름을 보는 사람이었다. 누가
+                어디까지 했는지 확인하고, 일정이 밀리면 조정했다. 하율은 자기 몫의 작업을 맡아 진행했다. 병원에서 그랬듯, 맡은 일은 빠뜨리지 않았다. 기한보다 조금 일찍 끝내는 것을 목표로 삼았다.
+                여유를 두어야 예상치 못한 문제에 대응할 수 있다는 것을 응급실에서 배웠으니까.</p>
+              <p>문제는 임소희에게서 시작되었다. 프로젝트 초반에는 참여하던 임소희가 점점 연락이 뜸해졌다. 회의에 나오지 않는 날이 생겼고, 맡은 작업이 올라오지 않았다. 강태호가 연락을 했지만 답이
+                없었다. 하율도 메시지를 보냈지만 읽지 않았다. 며칠 뒤 임소희는 프로젝트를 중도 포기하겠다고 말했다. 이유는 자세히 듣지 못했다. 개인 사정이라고만 했다.</p>
+              <p>팀원이 빠지면 남은 사람의 부담이 늘어난다. 계획했던것이 한 순간에 틀어졌다. 세 명이 할 일을 두 명이 해야 했다. 하율은 임소희가 맡고 있던 작업을 확인했다. 이미 시작된 부분은
+                거의 없었다. 빈 폴더와 빈 파일만 있었다. 이름만 있고 내용이 없는 파일들. 처음부터 다시 해야 했다.</p>
+              <p>하율은 그 소식을 듣고 잠깐 앉아 있었다. 화가 나지 않았다고 하면 거짓말이다. 화가 났다. 함께 하겠다고 해놓고 빠지는 것. 그것이 상대에게 어떤 영향을 주는지 임소희는 생각했을까.
+                하지만 하율은 그 화를 오래 들고 있지 않았다. 병원에서 배운 것 중 하나가, 감정을 가지되 감정에 끌려다니지 않는 것이었다. 응급실에서 환자 보호자가 화를 내도, 서류를 처리해야 했다.
+                감정을 느끼는 것과 감정에 따라 행동하는 것은 별개였다. 하율은 화를 느꼈고, 그 화를 인정했고, 그리고 다음 할 일로 넘어갔다.</p>
+              <p>하율은 화를 내지 않고 삼켰다. 화를 내봐야 달라지는 것이 없었다. 하율이 화를 낸다고 임소희가 돌아오는 것도 아니었고, 코드가 저절로 쓰이는 것도 아니었다. 다만 해야 할 일이
+                늘어났다는 사실을 확인하고, 일정을 다시 짰다. 강태호와 상의해서 임소희의 작업을 둘이 나누어 맡았다. 강태호는 기획과 발표를 추가로 맡았고, 하율은 구현 부분을 추가로 가져갔다.</p>
+              <p>밤이 늦어졌다. 연휴 전날에도 하율은 학원에 남아 코드를 보며 작업 했었다. 아무도 없는 교실에서 모니터 불빛만 켜져 있었다. 키보드 소리와 에어컨 소리만 들렸다. 하율은 그 조용한
+                시간에 집중했다. 응급실 새벽의 고요와 비슷한 종류의 집중이었다. 세상이 조용해지면 하율의 집중력은 올라갔다. 방해 요소가 없으니까. 임소희의 빈자리를 채우는 것이 아니라, 프로젝트의
+                빈자리를 채우는 것이라고 하율은 생각했다. 사람의 빈자리는 채울 수 없지만, 작업의 빈자리는 채울 수 있었다.</p>
+              <p>연휴 동안 하율은 거의 자취방에서 살았다. 아침에 눈떠서 밤 늦은 시간까지 작업을 했다. 점심은 귀찮아 거르기 일 수 였고, 저녁도 거르기 일 수 였다. 응급실 야간에서 식사를 조절하던
+                습관이 여기서도 작동했다. 배가 고프다는 감각은 있었지만, 코드가 안 풀리는 초조함과 빠른시일 내로 마무리해야 된다는 생각이 더 컸다. 하율은 기능 하나가 완성될 때까지 자리에서 일어나지
+                않는 버릇이 있었다. 화장실도 기능이 돌아가는 것을 확인한 뒤에 갔다. 비합리적이었지만, 중간에 끊으면 흐름이 깨질 것 같았다. 응급실에서 서류를 처리하다 중간에 멈추면 누락이 생겼던
+                경험이 무의식적으로 작용한 것인지도 몰랐다.</p>
+              <p>코드를 작성하다 막히면 AI에게 질문했다. 질문하고, 답을 확인하고, 코드에 반영하고, 에러가 나면 다시 질문했다. 그 반복이 밤새 이어졌다. 하율은 에러 메시지를 보면서 짜증이 나기도
+                했지만, 에러가 해결되는 순간의 안도감이 더 컸다. 빨간 에러 메시지가 사라지고 화면에 결과물이 뜨는 순간. 그 순간이 하율을 다음 코드로 넘어가게 했다.</p>
+              <p>강태호는 좋은 팀장이었다. 하율이 늦게까지 남아 작업하는 것을 알고 &quot;우리가 할 수 있는데까지 해보고 공부한다 생각하고 더 배워간다 생각하자&quot;라고 말했지만, 하율이
+                계속하겠다고 하면 너무 스트레스 받지 않게 말렸다. 말은 적었지만, 그런 무심하게 던진 말이 위로가 되었다. 병원에서 혼자 일할 때는 느껴보지 못했던 경험이었다. 작은 것이었지만, 함께
+                협동해 일한다는 느낌은 그런 작은 것에서 왔다.</p>
+              <p>프로젝트 마감이 다가오면서 하율은 자기가 만든 코드를 처음부터 끝까지 점검했다. 변수명이 일관적인지, 주석이 빠진 곳은 없는지, 에러 처리가 제대로 되어 있는지. 병원에서 서류를
+                제출하기 전에 확인하던 습관이 코드에서도 그대로 작동했다. 빠진 것이 있으면 찾고, 찾으면 채우고, 채우면 다시 전체를 확인하는 것. 하율은 이 과정을 세 번 반복했다. 첫 번째에서 오타
+                세 개를 찾았고, 두 번째에서 예외 처리 누락 하나를 발견했다. 세 번째까지 확인하고 나서야 하율은 안심했다. 강태호가 말했다. &quot;우리 최선을 다했고 서로 처음이고 모르는게
+                당연할 수 있어, 그래도 배워가는게 있을 거야.&quot; 그 말에 하율은 가슴이 먹먹해졌다.</p>
+              <p>프로젝트는 완주했다. 발표 날, 하율은 자기 파트를 설명했다. 길게 말하지 않았다. 만든 것을 보여주고, 어떤 문제를 해결했는지 짧게 설명했다. 강태호가 보충 설명을 했다. 둘의 호흡이
+                맞았다. 따로 맞춰본 적이 없는데도 서로 어디서 멈추고 어디서 이어받을지 자연스럽게 흘러갔다. 한 명이 빠진 자리를 둘이 메우면서 오히려 소통이 더 밀도 있게 되었다.</p>
+              <p>발표 직전 하율은 긴장했다. 코드를 짜는 것과 사람 앞에서 말하는 것은 다른 종류의 일이었다. 응급실에서는 환자와 일대일로 대화했지만, 여러 사람 앞에 서서 자기가 만든 것을 설명하는
+                경험은 익숙하지 않았다. 하율은 발표 전날 밤에 화면을 보며 혼자 연습했다. 이 버튼을 누르면 이렇게 되고, 여기서 데이터가 이렇게 흐르고. 기술적인 설명을 어떻게 비전문가에게도 전달할
+                수 있을지 고민했다. 결국 하율이 선택한 방법은 간결함이었다. 핵심만 말하고, 나머지는 화면이 보여주도록 하는 것. 응급실에서 환자에게 &quot;접수되었습니다, 잠시 앉아 이름
+                호명되시면 들어가실게요.&quot;라고 짧게 말하던 습관이 발표에서도 작동했다.</p>
+              <p>발표가 끝나고 강태호가 말했다. &quot;수고하셨습니다.&quot; 하율도 말했다. &quot;고생많으셨습니다.&quot; 그 짧은 교환이 긴 말보다 무거웠다. 병원에서 혼자 매뉴얼을
+                만들고 혼자 시트를 관리하던 하율과는 다른 경험이었다. 이 프로젝트에서 하율은 함께 하는 일의 가능성을 처음으로 체감했다. 빈자리를 채우는 것은 혼자 할 수 있지만, 완주하는 것은 혼자
+                할 수 없었다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-10">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 10</span>
+              <h4 class="novel-chapter-title">제10장. 큰 숲이 보이기 시작할 때</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>2026년 8월, SKT ALEPH 인프라/보안 과정이 시작되었다.</p>
+              <p>첫날, 하율은 아침 리추얼에 이렇게 적었다. &quot;옛날 수업방식처럼 필기에 집착하지 않아서 변화되고 있는 거 같아.&quot; 이 한 줄이 하율에게는 의미가 있었다. 과거의 자기와
+                지금의 자기 사이에 차이가 생겼다는 것을 스스로 인지한 것이니까. 변화를 인지하는 사람은 이미 변하고 있는 사람이다. 예전의 하율이라면 수업 내용을 빠짐없이 적으려고 했을 것이다.
+                빠뜨리는 것을 싫어하는 성격이니까. 하지만 지금의 하율은 적는 것보다 이해하는 것을 먼저 하고 있었다.</p>
+              <p>ALEPH 과정에서 하율은 매일 아침과 저녁에 리추얼을 기록했다. 아침에는 오늘의 목표를, 저녁에는 하루를 돌아보는 내용을. 35일간의 기록이 쌓였다. 그 기록에는 되풀이되는 패턴이
+                있었다. 쉬는 시간마다 수업 내용을 캡처해서 꺼내보는 것. 안 되는 부분을 영상을 돌려보며 스스로 해결하려는 것. 늦은 시간까지 남아서 과제를 정리하는 것. 이 세 가지가 거의 매일
+                반복되었다.</p>
+              <p>하율은 그 패턴을 의식하지 못했지만, 동료들은 보았다. 리추얼 기록의 동료 피드백에는 같은 말이 반복되었다. &quot;남아서 학습하는 모습이 인상적&quot; 이 피드백은 다섯 번
+                이상 나왔다. &quot;반복해서 영상 보며 해결하려 노력한다&quot; &quot;책임감을 다하고 성실한 모습&quot; &quot;배우고 알려주면 따라해보려 하고 시도하는 게 좋은
+                모습이다&quot; &quot;늦은 시간까지 같이 남아서 공부하는 열정 에너지 같이 받을 수 있어서 좋았다.&quot; 하율은 그 피드백을 읽으면서 약간의 어색함을 느꼈다. 자기는 특별한
+                것을 한다고 생각하지 않았는데, 다른 사람의 눈에는 그것이 보이는 것이었다. 자기에게는 당연한 것이 남에게는 인상적인 것일 수 있다는 사실. 하율은 그것을 처음 알았다.</p>
+              <p>ALEPH 과정 중 가장 인상적이었던 것은 다른 수강생들과의 교류였다. 병원에서는 같은 직군의 사람들만 만났다. 원무과 직원, 간호사, 의사. 모두 의료라는 같은 세계 안의
+                사람들이었다. 하지만 ALEPH에는 다양한 배경의 사람들이 있었다. 영어 교육자, 대학생, 애니메이션학과 졸업생, 비전공자 취준생. 각자 다른 이유로 여기 와 있었다. 그 다양성이
+                하율에게는 신선했다. 같은 과제를 해도 접근 방식이 달랐다. 디자인을 먼저 생각하는 사람, 기능부터 만드는 사람, 전체 구조를 잡고 시작하는 사람. 하율은 자기가 모든걸 이해 못해도
+                흐름을 이해하고 구조부터 잡는 쪽이라는 것을 다른 사람과 비교하면서 처음 알았다. 병원에서는 비교 대상이 없었으니까. 모두 같은 프로세스를 따랐으니까.</p>
+              <p>과제2 내가 설계한 미니게임이 있었다. 프루트박스를 분석하고, 자기만의 Apple 10 미니게임을 만드는 과제. 하율은 원작을 분석하는 것부터 시작했다. 게임의 구조를 파악하고, 규칙을
+                정리하고, 구현 순서를 정했다. 병원에서 업무 흐름을 분석하던 방식과 같았다. 전체 흐름을 먼저 보고, 부분으로 나누고, 순서를 정하는 것. 코드를 작성하고, 테스트하고, 고치고, 다시
+                테스트했다. 빠르게 하느라 밤을 새서 작업한 날이 있었다.</p>
+              <p>하율은 리추얼에 적었다. &quot;잠자는 시간 줄여가면서 끊임없이 AI에게 질문하고 통신이 원활하게 이뤄질 수 있게 하기위해 노력한 나에게 박수를 보낸다.&quot; 자기 자신에게
+                박수를 보내는 문장. 하율답지 않은 표현이었다. 하율은 원래 자기를 칭찬하는 데 익숙하지 않았다. 약봉지를 정리해도, 매뉴얼을 만들어도, 야간을 버텨도, 자기에게
+                &quot;잘했다&quot;고 말하지 않는 사람이었다. 다만 그날은 정말 힘들었고, 그래도 끝냈다는 안도감이 그 문장이 된 것이었다. 그 한 줄이 하율의 성장을 보여주었다. 자기가 한
+                일을 인정할 수 있게 된 것. 작지만 중요한 변화였다.</p>
+              <p>ALEPH에서 하율은 네트워크, 서버, 보안을 배웠다. 병원에서 전산실 오가며 느꼈던 &quot;직접 해결하면 더 빠르겠다&quot;는 생각이, 체계적인 지식으로 채워지고 있었다.
+                DNS가 어떻게 작동하는지, 서버와 클라이언트가 어떻게 통신하는지, 방화벽이 무엇을 막는지. 하나씩 배울 때마다 과거의 경험이 연결되었다. 병원에서 네트워크 프린터가 안 될 때 전산실에
+                전화하던 기억. 그때 하율이 한 것은 프린터의 전원을 끄고 다시 켜는 것뿐이었다. 하지만 지금은 왜 프린터가 안 되는지 가능한 원인을 여러 가지 떠올릴 수 있었다. 네트워크 연결
+                문제인지, 드라이버 문제인지, IP 충돌인지. 아는 것이 늘어나니 볼 수 있는 것이 늘어났다.</p>
+              <p>수업이 끝난 뒤 교실에 남아 복습하는 것은 하율의 루틴이 되었다. 다른 수강생들이 하나둘 떠난 뒤에도 하율은 자리에 앉아 그날 배운 것을 정리했다. 수업 중에 캡처해 둔 화면을 하나씩
+                꺼내보며, 실습에서 놓친 부분을 다시 따라했다. 이해가 안 되는 부분은 영상을 돌려보며 반복했다. 세 번째 돌려봐도 모르겠으면 메모에 적어두고, 다음 날 강사에게 물었다. 그 과정이
+                효율적이었는지는 모르겠지만, 하율에게는 유일하게 아는 방법이었다. 반복. 확인. 빠진 것 채우기. 병원에서도, 군대에서도, 그리고 여기서도. 방법은 같았다.</p>
+              <p>교실에 혼자 남아 있으면 형광등 소리와 컴퓨터 팬 돌아가는 소리만 들렸다. 윙, 하는 미세한 소리. 응급실 야간의 형광등 소리와 같은 소리였다. 하율은 그 소리가 익숙했다. 혼자 있는
+                공간에서 무언가를 하는 시간. 그 시간이 하율에게는 가장 생산적인 시간이었다. 누군가와 함께하는 것이 싫은 것이 아니라, 혼자 집중하는 시간이 자기에게 맞는다는 것을 알기 때문이었다.
+              </p>
+              <p>동료 피드백 중 하나가 하율의 기억에 남았다. &quot;항상 옳고 그름을 올곧은 자세로 수업과 과제에 임하는 자세가 멋있다.&quot; 하율은 그 말을 읽고 잠깐 멈췄다. 자기가
+                올곧은 사람인지는 모르겠지만, 맡은 것을 빠뜨리지 않으려는 것은 사실이었다. 대충 넘어가는 것이 불편한 성격이었다. 과제의 요구사항이 열 개면 열 개를 다 확인하고 싶었고, 아홉 개만
+                하고 넘어가면 나머지 한 개가 신경 쓰였다. 그것이 올곧다는 말로 보인다면, 나쁘지 않은 일이었다. 그것이 하율의 원래 모습이니까.</p>
+              <p>과정이 진행되면서 하율은 전체적인 그림이 조금씩 보이기 시작했다. 개별 기술이 아니라, 기술들이 어떻게 연결되는지. 네트워크 위에 서버가 있고, 서버 안에 서비스가 돌아가고, 그
+                서비스를 보호하는 것이 보안이다. 병원에서 개별 업무를 하나씩 정리하던 시절에는 전체 흐름이 보이지 않았다. 매뉴얼을 만들어도 그것이 전체 시스템에서 어디에 위치하는지 몰랐다. 하지만
+                인프라를 배우면서, 부분이 아니라 전체를 보는 시각이 생기고 있었다.</p>
+              <p>이전에는 나무 한 그루만 보였는데, 지금은 나무들 사이의 간격과 방향이 보이기 시작한다는 느낌. 아직 숲 전체를 조망하는 위치에 오르지는 못했지만, 올라갈 수 있는 길이 있다는 것을
+                알게 된 느낌이었다. 그리고 그 길을 걸어가는 데 필요한 것은 천재적인 재능이 아니라, 매일 한 발짝씩 걷는 꾸준함이라는 것도 알게 되었다. 하율이 원래 가지고 있던 것이었다.</p>
+            </div>
+          </section>
+
+          <section class="novel-section" id="novel-sec-11">
+            <div class="novel-chapter-header">
+              <span class="novel-chapter-num">CHAPTER 11</span>
+              <h4 class="novel-chapter-title">제11장. 아는 만큼 보인다</h4>
+            </div>
+            <div class="novel-chapter-body">
+              <p>하율은 아직 도착하지 않았다.</p>
+              <p>어디에 도착해야 하는지도 정확히 모른다. 인프라 보안 엔지니어가 되겠다는 목표가 있지만, 그것이 최종 목적지인지는 알 수 없다. 어쩌면 다시 병원으로 갈 수도 있다. 병원의 IT
+                인프라를 관리하는 사람이 될 수도 있다. 아니면 아직 생각해 보지 않은 전혀 다른 분야에서 일하게 될 수도 있다. 하율은 그 열린 가능성을 두려워하지 않는다. 병원에서 시작했을 때도
+                목적지를 알고 시작한 것이 아니었다. 의무병이 되었을 때도, 응급실 원무가 되었을 때도, 외래 수납 중간관리자가 되었을 때도. 매번 그 자리에 서보고 나서야 다음이 보였다.</p>
+              <p>지금도 마찬가지다. ALEPH에서 인프라와 보안을 배우면서, 다음 단계가 조금씩 선명해지고 있다. 하지만 다음 단계를 밟고 나면 또 그다음이 보일 것이다. 하율은 그 패턴을 안다. 한
+                걸음 걸으면 한 걸음 앞이 보이고, 그 한 걸음을 걸으면 또 한 걸음 앞이 보이는 것. 끝이 보이지 않는다고 걷기를 멈출 이유는 없다.</p>
+              <p>하율이 가진 것은 화려하지 않다. 대단한 학벌도, 오래된 IT 경력도, 남다른 인맥도 없다. 하율이 가진 것은 정리하는 습관, 빠뜨리지 않는 주의력, 그리고 한번 시작하면 끝까지 가보는
+                성격이다. 약봉지를 크기 순서대로 놓던 아이에서, 업무 매뉴얼을 만들고, 구글 시트를 관리하고, 팀 프로젝트를 완주하고, AI 기반 인프라 보안을 배우는 사람이 된 것. 그 사이를 이은
+                것은 재능이 아니라 반복이었다. 매일 조금씩, 빠뜨리지 않고, 순서대로. 화려하지 않지만 쌓이는 것. 그것이 하율의 방식이었고, 하율은 그 방식을 바꿀 생각이 없다.</p>
+              <p>아침에 일어나면 하율은 리추얼을 쓴다. ALEPH에서 배운 습관이지만, 과정이 끝나도 계속하고 있다. 오늘 할 것, 어제 배운 것, 내일 확인할 것. 세 줄이면 충분했다. 응급실 의무
+                기록처럼, 군대 의무실 메모처럼, 병원 매뉴얼처럼. 기록은 하율의 방식이었다. 기록하면 빠뜨리지 않고, 빠뜨리지 않으면 쌓이고, 쌓이면 보인다. 지금까지의 리추얼을 모두 모으면 하율이라는
+                사람의 패턴이 보일 것이다. 매일 비슷한 말을 적지만, 그 비슷함 속에 조금씩 달라지는 것이 있다. 처음에는 &quot;수업 따라가기&quot;였던 목표가 &quot;스스로
+                구현해보기&quot;로 바뀌고, &quot;모르는 것 질문하기&quot;가 &quot;모르는 것 먼저 시도하고 안 되면 질문하기&quot;로 바뀌었다. 리추얼은 거울이었다. 어제의 자기와
+                오늘의 자기를 비교할 수 있는 거울.</p>
+              <p>하율은 요즘 세 가지 말을 자주 한다.</p>
+              <p>첫 번째, &quot;아는 만큼 보인다.&quot;</p>
+              <p>병원에서 일할 때 하율은 프로세스의 비효율을 보았지만, 그것을 해결할 기술적 방법을 몰랐다. 네트워크 프린터가 안 될 때 전원을 끄고 다시 켜는 것밖에 할 줄 몰랐다. 하지만 네트워크가
+                어떻게 작동하는지, 시스템이 어떻게 구성되는지를 배우고 나니, 예전에는 보이지 않던 것들이 보이기 시작했다. 프린터가 안 되는 이유가 열 가지 보이고, 수납 프로그램이 느린 이유가 다섯
+                가지 보이고, 인수인계가 누락되는 구조적 원인이 세 가지 보인다. 문제를 인식하는 것과 문제를 해결할 수 있는 것은 다른 차원이었다. 아는 것이 늘어날수록 보이는 것이 넓어졌다. 그래서
+                하율은 배움을 멈추지 않는다. 아직 보이지 않는 것이 많다는 것을 알기 때문이다. 모르는 것이 많다는 것을 아는 것 자체가 배움의 시작이다.</p>
+              <p>두 번째, &quot;그럼에도 불구하고.&quot;</p>
+              <p>하율의 시간 중 쉬운 시간은 많지 않았다. 아버지의 병으로 약봉지를 정리하던 어린 시절, 군대에서 번호 대신 이름을 불렀던 시간, 응급실에서 열다섯 시간을 혼자 버텼던 밤들, 매뉴얼을
+                만들어도 읽히지 않던 외래에서의 나날, 상급자의 시선을 감수하며 시트를 유지했던 것, 할머니를 잃고 방황했던 여름, 팀원이 떠난 뒤 빈자리를 채웠던 밤. 그때마다 하율은 멈출 수도
+                있었다. 약봉지를 정리하지 않아도 되었고, 이름 대신 번호로 불러도 되었고, 시트를 만들지 않아도 되었고, 매뉴얼을 쓰지 않아도 되었다. 하지만 멈추지 않았다. 멈추지 않은 이유가 대단한
+                것은 아니었다. 멈추면 다시 시작하는 것이 더 힘들다는 것을 경험적으로 알았을 뿐이었다. 힘들어도, 보이지 않아도, 반응이 없어도, 그럼에도 불구하고 한 발짝을 내딛는 것. 그것이 하율이
+                자기 자신에게 요구하는 유일한 것이었다. 완벽하게 하라는 요구가 아니라, 멈추지 말라는 요구.</p>
+              <p>세 번째, &quot;나는 사람을 쉽게 믿지 않는다. 나의 과거와 경험을 믿는다.&quot;</p>
+              <p>이 말은 냉소가 아니었다. 하율은 사람을 싫어하는 것이 아니라, 말보다 행동을, 약속보다 이행을 먼저 본다는 뜻이었다. 병원에서 &quot;바꾸겠다&quot;는 말은 많았지만 실제로
+                바뀐 것은 적었다. 프로세스를 개선하자는 회의는 있었지만 회의 후에 달라진 것은 없었다. 임소희는 함께 하겠다고 했지만 중간에 떠났다. 하율은 그 경험들을 통해, 기대를 사람에게 거는
+                것보다 자기 경험에서 근거를 찾는 편이 흔들리지 않는다는 것을 배웠다. 이전에 해낸 것이 다음에도 해낼 수 있다는 증거가 된다. 응급실 야간을 버텼으니까 새벽 코딩도 버틸 수 있다.
+                매뉴얼을 만들었으니까 문서화도 할 수 있다. 팀 프로젝트를 완주했으니까 다음 프로젝트도 완주할 수 있다. 하율은 그 증거를 쌓아가고 있었다. 믿음은 증거 위에 세울 때 흔들리지 않는다.
+              </p>
+              <p>가끔 하율은 병원 시절의 동료들을 떠올린다. 서진혁이 어디서 무엇을 하고 있는지, 응급실에서 함께 야간을 버티던 간호사들은 어떻게 되었는지. 연락하지는 않았다. 하율은 연락을 자주 하는
+                사람이 아니었다. 하지만 그 사람들과 함께한 시간이 지금의 하율을 만든 일부라는 것은 알았다. 서진혁의 순서, 응급실 새벽의 호흡, 간호사의 &quot;네가 이 자리에 맞아&quot;라는
+                말. 그것들이 하율의 뼈대에 들어 있었다. 앞으로 만날 사람들에게서도 비슷한 것을 받게 될 것이다. 그리고 하율도 누군가에게 비슷한 것을 줄 수 있을 것이다. 구글 시트의 비고란에
+                &quot;편하다&quot;라고 적은 그 익명의 동료처럼. 매뉴얼이 도움이 됐다고 말해준 새 직원처럼. 작은 것이지만 남는 것. 하율은 그런 것을 남기는 사람이 되고 싶었다.</p>
+              <p>하율은 지금, 어딘가의 중간에 서 있다. 병원과 IT 사이, 과거와 미래 사이, 아는 것과 모르는 것 사이. 그 중간이 불안하지 않다고 하면 거짓말이다. 완전히 새로운 분야에서 경력이
+                없는 사람으로 다시 시작하는 것은 쉽지 않다. 하지만 하율은 중간에 서 있는 법을 안다. 응급실 새벽의 고요 속에서 숨을 고르던 것처럼, 지금도 숨을 고르고 있다. 다음 환자가 올
+                때까지, 다음 단계가 보일 때까지. 그 사이의 시간을 견디는 것. 그것이 하율이 가장 잘하는 일 중 하나다.</p>
+              <p>약봉지를 정리하던 아이는 이제 서른이 넘었다. 여전히 정리하는 것을 좋아하고, 빠진 것을 찾는 것을 잘하고, 순서를 지키는 것을 편안해한다. 달라진 것은 정리하는 대상이다. 약봉지에서
+                서류로, 서류에서 매뉴얼로, 매뉴얼에서 코드로, 코드에서 인프라로. 대상은 바뀌었지만 방식은 같다. 관찰하고, 파악하고, 정리하고, 빠진 것을 채운다. 그 방식이 앞으로도 유효할 것이라는
+                보장은 없다. 하지만 지금까지 유효했다는 증거는 있다. 하율은 그 증거를 믿는다.</p>
+              <p>하율은 아직 도착하지 않았다. 하지만 걷고 있다. 어디로 가는지 완전히 알지 못해도, 한 발짝씩 옮기고 있다. 그것으로 된다고 하율은 생각한다. 아는 만큼 보이고, 보이는 만큼 걸으면,
+                언젠가는 서 있어야 할 자리가 보일 것이다.</p>
+              <p>가끔 하율은 어린 시절의 식탁을 떠올린다. 아버지의 약봉지가 놓여 있던 식탁. 여동생이 라면을 먹으며 &quot;오빠가 끓인 게 제일 맛있어&quot;라고 말하던 그 식탁. 그 식탁에서
+                하율은 처음으로 정리하는 법을 배웠다. 큰 것부터 작은 것 순서로. 왼쪽은 아침, 오른쪽은 저녁. 단순한 규칙이었지만, 그 규칙이 하율의 출발점이었다. 출발점은 화려할 필요가 없다.
+                약봉지 하나, 라면 한 그릇, 현관의 신발 한 켤레. 그 작은 것들에서 시작한 사람은 작은 것들의 가치를 안다. 큰 시스템도 작은 단위의 반복으로 이루어져 있다는 것을 안다. 서버도,
+                네트워크도, 보안도, 결국은 작은 규칙들의 집합이다. 하율은 그것을 직감적으로 안다. 약봉지를 정리하던 아이가 알려준 것이다.</p>
+              <p>오늘도 하율은 노트를 펼쳤다. 할 일 세 줄을 적고, 어제 적은 것을 다시 읽었다. 어제의 자기가 오늘의 자기에게 건네는 인수인계였다. 병원에서도, 군대에서도, 팀 프로젝트에서도
+                인수인계는 중요했다. 자기 자신에게 하는 인수인계도 마찬가지였다. 빠뜨린 것이 없는지 확인하고, 다음 할 일을 적고, 노트를 덮었다.</p>
+              <p>그 자리가 어디든, 하율은 거기서도 순서를 맞추고, 빠진 것을 찾고, 정리할 것이다. 그것이 하율이니까. 그럼에도 불구하고, 멈추지 않는 사람이니까.</p>
+              <p>[[ALEPH_BODY_END]]</p>
             </div>
           </section>
         </div>
@@ -2029,12 +2943,24 @@
 
   <!-- 플로팅 탑 이동 버튼 -->
   <button type="button" class="back-to-top" id="backToTop" aria-label="페이지 맨 위로 이동" title="맨 위로 이동">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+      stroke-linejoin="round" width="18" height="18" aria-hidden="true">
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
 
-  <script src="js/main.js?v=20261011_v2"></script>
+  <script src="js/main.js?v=20261012_v1"></script>
+  <!-- 토스트 알림 (복사 완료 피드백 등) -->
+  <div class="toast-notification" id="appToast" role="alert" aria-live="polite" hidden>
+    <div class="toast-content">
+      <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span id="toastMessage">클립보드에 복사되었습니다.</span>
+    </div>
+  </div>
+
 </body>
 
 </html>

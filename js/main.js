@@ -848,3 +848,179 @@
 
 
 
+
+
+/* ===========================
+   Novel / Essay Modal & ScrollSpy (성장 소설 전 11장 전문 모달)
+   =========================== */
+(function initNovelModal() {
+  var openBtns = [
+    document.getElementById('aboutNovelBtn'),
+    document.getElementById('docNovelBtn')
+  ];
+  var modal = document.getElementById('novelModal');
+  var closeBtn = document.getElementById('novelClose');
+  var navChips = modal ? modal.querySelectorAll('.novel-nav-chip') : [];
+  var modalBody = modal ? modal.querySelector('.novel-modal-body') : null;
+  var sections = modal ? modal.querySelectorAll('.novel-section') : [];
+  var lastFocused = null;
+  var isClickScrolling = false;
+  var scrollTimer = null;
+
+  if (!modal || !modalBody) return;
+
+  function setActiveChip(targetId) {
+    var activeChip = null;
+    navChips.forEach(function (chip) {
+      if (chip.getAttribute('data-target') === targetId) {
+        chip.classList.add('active');
+        activeChip = chip;
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+
+    if (activeChip && !isClickScrolling) {
+      activeChip.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    }
+  }
+
+  function updateScrollSpy() {
+    if (isClickScrolling || !sections.length) return;
+
+    var bodyRect = modalBody.getBoundingClientRect();
+    var triggerLine = bodyRect.top + 80;
+
+    if (modalBody.scrollHeight - modalBody.scrollTop <= modalBody.clientHeight + 25) {
+      setActiveChip(sections[sections.length - 1].id);
+      return;
+    }
+
+    var currentId = sections[0].id;
+    for (var i = 0; i < sections.length; i++) {
+      var sec = sections[i];
+      var secRect = sec.getBoundingClientRect();
+      if (secRect.top <= triggerLine) {
+        currentId = sec.id;
+      } else {
+        break;
+      }
+    }
+
+    setActiveChip(currentId);
+  }
+
+  function scrollToChapter(targetId, smooth) {
+    var targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    setActiveChip(targetId);
+    isClickScrolling = true;
+    clearTimeout(scrollTimer);
+
+    var bodyRect = modalBody.getBoundingClientRect();
+    var targetRect = targetEl.getBoundingClientRect();
+    var offset = targetRect.top - bodyRect.top + modalBody.scrollTop - 10;
+
+    modalBody.scrollTo({
+      top: Math.max(0, offset),
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+
+    scrollTimer = setTimeout(function () {
+      isClickScrolling = false;
+      updateScrollSpy();
+    }, smooth ? 600 : 50);
+  }
+
+  function openNovelModal(chapterId) {
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+
+    if (chapterId) {
+      setTimeout(function () { scrollToChapter(chapterId, false); }, 50);
+    } else {
+      modalBody.scrollTop = 0;
+      setActiveChip('novel-sec-1');
+    }
+
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeNovelModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  openBtns.forEach(function (btn) {
+    if (btn) {
+      btn.addEventListener('click', function () {
+        openNovelModal('novel-sec-1');
+      });
+    }
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeNovelModal);
+  }
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      closeNovelModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden) {
+      closeNovelModal();
+    }
+  });
+
+  navChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var target = chip.getAttribute('data-target');
+      if (target) scrollToChapter(target, true);
+    });
+  });
+
+  modalBody.addEventListener('scroll', updateScrollSpy, { passive: true });
+})();
+
+/* ===========================
+   Toast Notification & Clipboard Copy
+   =========================== */
+(function initToastAndCopy() {
+  var toast = document.getElementById('appToast');
+  var toastMsg = document.getElementById('toastMessage');
+  var toastTimer = null;
+
+  window.showToast = function (msg) {
+    if (!toast || !toastMsg) return;
+    toastMsg.textContent = msg || '클립보드에 복사되었습니다.';
+    toast.hidden = false;
+    void toast.offsetWidth;
+    toast.classList.add('show');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove('show');
+      setTimeout(function () {
+        toast.hidden = true;
+      }, 300);
+    }, 2400);
+  };
+
+  var emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+  emailLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var email = link.getAttribute('href').replace('mailto:', '');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function () {
+          window.showToast('이메일 주소(' + email + ')가 복사되었습니다.');
+        }).catch(function () {});
+      }
+    });
+  });
+})();
