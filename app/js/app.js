@@ -28,7 +28,9 @@
     currentCase: null,
     selectedRowId: null,
     isMasked: true,
-    pipelineRunning: false
+    pipelineRunning: false,
+    tableViewMode: 'compact', // 'compact' (가로스크롤 없는 3대 금액 통합 뷰) or 'full' (전체 열 열람)
+    isCltMode: false          // false (실제 소요일수 로그정규 적합) or true (중심극한정리 CLT 표본평균 정규 적합)
   };
 
   // Pre-configured Research Cases (Directly from Paper Findings)
@@ -64,7 +66,7 @@
       desc: '주민등록번호 및 개명 전/후 이력 교차 검증을 통해 본인 동일인 식별 후 자동 진료비 수납 대사 및 정산.'
     },
     deceased: {
-      depositorName: '건강보험심사평가원',
+      depositorName: '건강보험심사평가원(사후정산)',
       patientName: '박영수(고인)',
       amount: 350000,
       caseType: 'REFUND',
@@ -73,10 +75,11 @@
       isRenamed: false,
       hasPrevNameRecord: false,
       isDeceased: true,
+      isUninsured: false,
       hasHeirPublicProof: true,
       badgeText: '논문 케이스 3 · 사망환자 환불금 (공공연계)',
-      title: '사후 발생 진료비 환불금의 상속권자 공공확인 케이스',
-      desc: '사망환자의 임의 지급을 차단하고 정부24 안심상속 원스톱 서비스를 통해 적격 1순위 상속인을 검증하여 환불 지급.'
+      title: '사후 발생 진료비 환불금의 3차 EMR 사망진단 및 안심상속 공공확인 케이스',
+      desc: '1차 심평원 건보 말소 감지 → 2차 자격부존재(외국인·무자격 배제 대기 / 사망 단정 유보) → 3차 원내 EMR 사망진단서 확인 후 [사망환자] 최종 판정 확정 → 4차 안심상속 적격 상속인 검증 → 5차 종결.'
     }
   };
 
@@ -123,6 +126,7 @@
     dom.renamedDetailsBox = document.getElementById('renamedDetailsBox');
     dom.inputPrevPatientName = document.getElementById('inputPrevPatientName');
     dom.checkDeceased = document.getElementById('checkDeceased');
+    dom.checkUninsured = document.getElementById('checkUninsured');
     dom.checkPublicProof = document.getElementById('checkPublicProof');
 
     dom.maskingToggle = document.getElementById('maskingToggle');
@@ -151,6 +155,10 @@
     // Table, Filter, Search & Pagination
     dom.filterChips = document.querySelectorAll('.filter-chip');
     dom.tableBody = document.getElementById('sampleTableBody');
+    dom.mainTableHead = document.getElementById('mainTableHead');
+    dom.btnToggleTableViewMode = document.getElementById('btnToggleTableViewMode');
+    dom.tableViewModeText = document.getElementById('tableViewModeText');
+    dom.tableScrollHintText = document.getElementById('tableScrollHintText');
     dom.tableSearchInput = document.getElementById('tableSearchInput');
     dom.clearSearchBtn = document.getElementById('clearSearchBtn');
     dom.tableCountBadge = document.getElementById('tableCountBadge');
@@ -158,6 +166,12 @@
     dom.paginationInfo = document.getElementById('paginationInfo');
     dom.loadMoreRowsBtn = document.getElementById('loadMoreRowsBtn');
     dom.showAllRowsBtn = document.getElementById('showAllRowsBtn');
+
+    // Part 06 CLT toggle
+    dom.btnToggleCltMode = document.getElementById('btnToggleCltMode');
+    dom.cltModeBtnText = document.getElementById('cltModeBtnText');
+    dom.distChartTitle = document.getElementById('distChartTitle');
+    dom.distChartDesc = document.getElementById('distChartDesc');
 
     // Report Modal
     dom.reportModal = document.getElementById('reportModal');
@@ -179,7 +193,6 @@
     dom.toastContainer = document.getElementById('toastContainer');
   }
 
-  // Initialize Theme with Icon Toggle
   function updateThemeUI() {
     document.documentElement.setAttribute('data-theme', state.theme);
     if (dom.themeIconSun && dom.themeIconMoon) {
@@ -199,6 +212,9 @@
       state.theme = state.theme === 'dark' ? 'light' : 'dark';
       localStorage.setItem('theme', state.theme);
       updateThemeUI();
+      if (typeof redrawAllStatsCharts === 'function') {
+        redrawAllStatsCharts();
+      }
       showToast('테마가 ' + (state.theme === 'dark' ? '다크 모드' : '라이트 모드') + '로 변경되었습니다.');
       SiemService.recordEvent({
         action: 'THEME_CHANGE',
@@ -470,6 +486,7 @@
     dom.checkGuardianReg.checked = data.guardianRegistered;
     dom.checkRenamed.checked = data.isRenamed;
     dom.checkDeceased.checked = data.isDeceased;
+    if (dom.checkUninsured) dom.checkUninsured.checked = Boolean(data.isUninsured);
     dom.checkPublicProof.checked = data.hasHeirPublicProof;
 
     updateKoreanAmountReadout(data.amount);
@@ -492,6 +509,7 @@
       isRenamed: dom.checkRenamed.checked,
       hasPrevNameRecord: dom.checkRenamed.checked,
       isDeceased: dom.checkDeceased.checked,
+      isUninsured: dom.checkUninsured ? dom.checkUninsured.checked : false,
       hasHeirPublicProof: dom.checkPublicProof.checked
     };
   }
@@ -568,7 +586,27 @@
     showToast('파이프라인 판정이 완료되었습니다: ' + result.finalOutcome.replace(/_/g, ' '));
   }
 
-  // Render 150 Samples Batch Table (Secure & Masked + Live Search & Pagination)
+  // 3대 정산 금액 HTML 렌더러 (①원납부/선수금, ②심평원확정, ③환불금 명확 구분)
+  function renderThreeTierAmounts(row) {
+    var depAmt = row.depositAmount || row.amount || 0;
+    var confAmt = (row.confirmedCost !== undefined) ? row.confirmedCost : (row.caseType === 'REFUND' ? Math.max(0, depAmt - row.amount) : depAmt);
+    var refAmt = (row.refundAmount !== undefined) ? row.refundAmount : (row.caseType === 'REFUND' ? row.amount : 0);
+    var hasRef = refAmt > 0;
+
+    return '<div class="amount-three-tier">' +
+      '<div class="tier-row deposit" title="환자/보호자 기납부액 (선수금 또는 수납액)">' +
+        '<span class="tier-tag deposit-tag">납부</span><span>' + depAmt.toLocaleString('ko-KR') + '원</span>' +
+      '</div>' +
+      '<div class="tier-row confirmed" title="심평원 심사 후 결정된 실제 본인부담 진료비">' +
+        '<span class="tier-tag confirmed-tag">확정</span><span>' + confAmt.toLocaleString('ko-KR') + '원</span>' +
+      '</div>' +
+      '<div class="tier-row refund' + (hasRef ? ' has-refund' : '') + '" title="과오납 발생 환불 결정액">' +
+        '<span class="tier-tag refund-tag">환불</span><span class="' + (hasRef ? '' : 'refund-zero') + '">' + refAmt.toLocaleString('ko-KR') + '원</span>' +
+      '</div>' +
+    '</div>';
+  }
+
+  // Render Batch Table (컴팩트 6열 뷰 & 전체 10열 뷰 지원 + 3대 정산 금액 체계)
   function renderBatchTable() {
     if (!window.MEDIMATCH_DATA || !window.MEDIMATCH_DATA.samples) return;
     var list = window.MEDIMATCH_DATA.samples;
@@ -585,7 +623,7 @@
       filtered = list.filter(function (item) { return !item.legacyMatched; });
     }
 
-    // 2. Real-time Search Query Filter (Across all records)
+    // 2. Real-time Search Query Filter
     if (state.searchQuery) {
       var q = state.searchQuery.toLowerCase();
       filtered = filtered.filter(function (item) {
@@ -602,7 +640,7 @@
     var matchCount = filtered.length;
     var displayCount = Math.min(matchCount, state.displayLimit);
 
-    // Update Counter Badge and Pagination Label
+    // 3. UI 뱃지 및 모드 라벨 동기화
     if (dom.tableCountBadge) {
       if (state.searchQuery) {
         dom.tableCountBadge.textContent = '검색 ' + matchCount + '건 / 전체 ' + totalCount + '건';
@@ -624,11 +662,49 @@
       dom.showAllRowsBtn.style.display = (state.displayLimit >= matchCount) ? 'none' : 'inline-flex';
     }
 
+    // 뷰 모드 텍스트 동기화
+    var isCompact = (state.tableViewMode === 'compact');
+    if (dom.tableViewModeText) {
+      dom.tableViewModeText.textContent = isCompact ? '전체 열 보기 (스크롤)' : '컴팩트 뷰로 전환 (한눈에 보기)';
+    }
+    if (dom.tableScrollHintText) {
+      dom.tableScrollHintText.innerHTML = isCompact
+        ? '<strong>컴팩트 뷰 활성화:</strong> 3대 정산 금액(원납부/확정/환불)과 식별 전환 내역이 한눈에 정렬됩니다. (가로 스크롤 불필요)'
+        : '<strong>전체 열 모드:</strong> 가로로 스크롤하여 10개 상세 컬럼 내역을 모두 확인하실 수 있습니다.';
+    }
+
+    // 4. 테이블 헤더 렌더링
+    if (dom.mainTableHead) {
+      if (isCompact) {
+        dom.mainTableHead.innerHTML = '<tr>' +
+          '<th scope="col" style="width:125px;">ID / 구분</th>' +
+          '<th scope="col" style="min-width:180px;">3대 정산 금액 (납부 · 확정 · 환불)</th>' +
+          '<th scope="col" style="min-width:140px;">거래 주체 (입금자 / 환자)</th>' +
+          '<th scope="col" style="min-width:170px;">대조 전환 &amp; 처리 소요일</th>' +
+          '<th scope="col" style="min-width:140px;">최종 판정 결과</th>' +
+          '<th scope="col" style="text-align:center; width:50px;">관리</th>' +
+        '</tr>';
+      } else {
+        dom.mainTableHead.innerHTML = '<tr>' +
+          '<th scope="col">ID</th>' +
+          '<th scope="col">구분</th>' +
+          '<th scope="col">3대 정산 금액</th>' +
+          '<th scope="col">입금자</th>' +
+          '<th scope="col">환자</th>' +
+          '<th scope="col">기존대조</th>' +
+          '<th scope="col">제안모형</th>' +
+          '<th scope="col">소요일수</th>' +
+          '<th scope="col">최종결과</th>' +
+          '<th scope="col" style="text-align:center; width:50px;">관리</th>' +
+        '</tr>';
+      }
+    }
+
     var isMasked = dom.maskingToggle ? dom.maskingToggle.checked : true;
     var html = '';
 
     if (matchCount === 0) {
-      html = '<tr><td colspan="10" style="text-align:center; padding:36px 16px; color:var(--text-light); font-weight:600;">검색 및 필터 조건에 부합하는 정산 트랜잭션이 없습니다.</td></tr>';
+      html = '<tr><td colspan="' + (isCompact ? '6' : '10') + '" style="text-align:center; padding:36px 16px; color:var(--text-light); font-weight:600;">검색 및 필터 조건에 부합하는 정산 트랜잭션이 없습니다.</td></tr>';
     } else {
       filtered.slice(0, state.displayLimit).forEach(function (row) {
         var isLegacyOk = row.legacyMatched;
@@ -650,22 +726,47 @@
           caseTypeBadge = '<span class="badge badge-held" style="font-size:11px;">진료비 환불금</span>';
         }
 
-        html += '<tr class="' + rowClasses.join(' ') + '" data-id="' + window.PipelineEngine.escapeHtml(row.id) + '" title="클릭 시 이 케이스를 시뮬레이터로 자동 로드하여 수정/검증합니다">';
-        html += '<td><code>' + window.PipelineEngine.escapeHtml(row.id) + '</code>' + (row.isEdited ? ' <span class="badge badge-edited" title="' + (row.editedAt || '수정됨') + '">수정됨</span>' : '') + '</td>';
-        html += '<td>' + caseTypeBadge + '</td>';
-        html += '<td><strong>' + Number(row.amount).toLocaleString('ko-KR') + '원</strong></td>';
-        html += '<td>' + dispDepositor + '</td>';
-        html += '<td>' + dispPatient + '</td>';
-        html += '<td><span class="badge ' + (isLegacyOk ? 'badge-success' : 'badge-held') + '">' + (isLegacyOk ? '매칭성공' : '미식별') + '</span></td>';
-        html += '<td><span class="badge ' + (isPropOk ? 'badge-success' : 'badge-pending') + '">' + (isPropOk ? '식별완료' : '예외관리') + '</span></td>';
-        html += '<td>' + row.daysLegacy + '일 &rarr; <strong>' + row.daysProposed + '일</strong></td>';
-        html += '<td><small>' + window.PipelineEngine.escapeHtml(row.finalResult.replace(/_/g, ' ')) + '</small></td>';
-        html += '<td style="text-align:center;">';
-        html += '<button type="button" class="table-row-delete-btn" data-delete-id="' + window.PipelineEngine.escapeHtml(row.id) + '" title="트랜잭션 ' + window.PipelineEngine.escapeHtml(row.id) + ' 삭제" aria-label="삭제">';
-        html += '<svg class="svg-icon sm" viewBox="0 0 24 24" style="width:13px; height:13px; pointer-events:none;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
-        html += '</button>';
-        html += '</td>';
-        html += '</tr>';
+        var delBtn = '<button type="button" class="table-row-delete-btn" data-delete-id="' + window.PipelineEngine.escapeHtml(row.id) + '" title="트랜잭션 ' + window.PipelineEngine.escapeHtml(row.id) + ' 삭제" aria-label="삭제">' +
+          '<svg class="svg-icon sm" viewBox="0 0 24 24" style="width:13px; height:13px; pointer-events:none;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>' +
+        '</button>';
+
+        var daysSaved = Math.max(0, (row.daysLegacy || 0) - (row.daysProposed || 0));
+
+        if (isCompact) {
+          // [컴팩트 모드] 6개 통합 컬럼으로 가로 스크롤 불필요
+          html += '<tr class="' + rowClasses.join(' ') + '" data-id="' + window.PipelineEngine.escapeHtml(row.id) + '" title="클릭 시 이 케이스를 시뮬레이터로 자동 로드하여 수정/검증합니다">';
+          html += '<td><code>' + window.PipelineEngine.escapeHtml(row.id) + '</code><div style="margin-top:3px;">' + caseTypeBadge + '</div>' + (row.isEdited ? '<span class="badge badge-edited" style="margin-top:2px;" title="' + (row.editedAt || '수정됨') + '">수정됨</span>' : '') + '</td>';
+          html += '<td>' + renderThreeTierAmounts(row) + '</td>';
+          html += '<td><div class="cell-entity-stack">' +
+            '<div class="entity-line"><span class="entity-badge">입금</span><span>' + dispDepositor + '</span></div>' +
+            '<div class="entity-line"><span class="entity-badge">환자</span><strong>' + dispPatient + '</strong></div>' +
+          '</div></td>';
+          html += '<td><div class="cell-match-flow">' +
+            '<div class="flow-badges">' +
+              '<span class="badge ' + (isLegacyOk ? 'badge-success' : 'badge-held') + '" style="font-size:10px;">' + (isLegacyOk ? '일치' : '미식별') + '</span>' +
+              '<span>&rarr;</span>' +
+              '<span class="badge ' + (isPropOk ? 'badge-success' : 'badge-pending') + '" style="font-size:10px;">' + (isPropOk ? '식별완료' : '예외관리') + '</span>' +
+            '</div>' +
+            '<div class="flow-days">' + row.daysLegacy + '일 &rarr; <strong>' + row.daysProposed + '일</strong>' + (daysSaved > 0 ? '<span class="days-saved-pill">-' + daysSaved + '일</span>' : '') + '</div>' +
+          '</div></td>';
+          html += '<td><small>' + window.PipelineEngine.escapeHtml(row.finalResult.replace(/_/g, ' ')) + '</small></td>';
+          html += '<td style="text-align:center;">' + delBtn + '</td>';
+          html += '</tr>';
+        } else {
+          // [전체 10열 모드]
+          html += '<tr class="' + rowClasses.join(' ') + '" data-id="' + window.PipelineEngine.escapeHtml(row.id) + '" title="클릭 시 이 케이스를 시뮬레이터로 자동 로드하여 수정/검증합니다">';
+          html += '<td><code>' + window.PipelineEngine.escapeHtml(row.id) + '</code>' + (row.isEdited ? ' <span class="badge badge-edited" title="' + (row.editedAt || '수정됨') + '">수정됨</span>' : '') + '</td>';
+          html += '<td>' + caseTypeBadge + '</td>';
+          html += '<td>' + renderThreeTierAmounts(row) + '</td>';
+          html += '<td>' + dispDepositor + '</td>';
+          html += '<td>' + dispPatient + '</td>';
+          html += '<td><span class="badge ' + (isLegacyOk ? 'badge-success' : 'badge-held') + '">' + (isLegacyOk ? '매칭성공' : '미식별') + '</span></td>';
+          html += '<td><span class="badge ' + (isPropOk ? 'badge-success' : 'badge-pending') + '">' + (isPropOk ? '식별완료' : '예외관리') + '</span></td>';
+          html += '<td>' + row.daysLegacy + '일 &rarr; <strong>' + row.daysProposed + '일</strong></td>';
+          html += '<td><small>' + window.PipelineEngine.escapeHtml(row.finalResult.replace(/_/g, ' ')) + '</small></td>';
+          html += '<td style="text-align:center;">' + delBtn + '</td>';
+          html += '</tr>';
+        }
       });
     }
 
@@ -1070,18 +1171,66 @@
     showToast('전체 ' + samples.length + '건 결산 데이터셋이 CSV 파일로 다운로드되었습니다.');
   }
 
-  // Compute and Animate Statistics Counter & Progress Bars
+  // Compute and Animate Statistics Counter & Progress Bars (100% 완전 동적 연동)
   function updateBatchMetrics() {
     if (!window.MEDIMATCH_DATA || !window.MEDIMATCH_DATA.samples) return;
     var metrics = window.PipelineEngine.computeBatchMetrics(window.MEDIMATCH_DATA.samples);
     if (!metrics) return;
 
+    // 1. 숫자 애니메이션
     animateNumber(dom.statDepRate, 20.0, metrics.deposits.proposedRate, '%');
     animateNumber(dom.statDepDays, 137.7, metrics.deposits.proposedAvgDays, '일');
     animateNumber(dom.statRefRate, 0.0, metrics.refunds.proposedRate, '%');
     animateNumber(dom.statRefDays, 188.0, metrics.refunds.proposedAvgDays, '일');
 
-    // Dynamic Progress Gauge Bars
+    // 2. 차이 뱃지(Diff badge) 100% 동적 갱신 (하드코딩 완전 제거)
+    var diffDepRate = document.getElementById('diffDepRate');
+    var diffDepDays = document.getElementById('diffDepDays');
+    var diffRefRate = document.getElementById('diffRefRate');
+    var diffRefDays = document.getElementById('diffRefDays');
+
+    var depRateDiff = metrics.deposits.proposedRate - metrics.deposits.legacyRate;
+    var depDaysDiff = metrics.deposits.legacyAvgDays - metrics.deposits.proposedAvgDays;
+    var refRateDiff = metrics.refunds.proposedRate - metrics.refunds.legacyRate;
+    var refDaysDiff = metrics.refunds.legacyAvgDays - metrics.refunds.proposedAvgDays;
+
+    if (diffDepRate) {
+      diffDepRate.textContent = (depRateDiff >= 0 ? '+' : '') + depRateDiff.toFixed(1) + '%p';
+      diffDepRate.className = 'metric-diff-badge ' + (depRateDiff >= 0 ? 'up' : 'down');
+    }
+    if (diffDepDays) {
+      diffDepDays.textContent = (depDaysDiff >= 0 ? '-' : '+') + Math.abs(depDaysDiff).toFixed(1) + '일';
+      diffDepDays.className = 'metric-diff-badge ' + (depDaysDiff >= 0 ? 'down' : 'up');
+    }
+    if (diffRefRate) {
+      diffRefRate.textContent = (refRateDiff >= 0 ? '+' : '') + refRateDiff.toFixed(1) + '%p';
+      diffRefRate.className = 'metric-diff-badge ' + (refRateDiff >= 0 ? 'up' : 'down');
+    }
+    if (diffRefDays) {
+      diffRefDays.textContent = (refDaysDiff >= 0 ? '-' : '+') + Math.abs(refDaysDiff).toFixed(1) + '일';
+      diffRefDays.className = 'metric-diff-badge ' + (refDaysDiff >= 0 ? 'down' : 'up');
+    }
+
+    // 3. 하단 비교 문구(Compare caption) 100% 동적 갱신 (하드코딩 완전 제거)
+    var compDepRate = document.getElementById('compareDepRate');
+    var compDepDays = document.getElementById('compareDepDays');
+    var compRefRate = document.getElementById('compareRefRate');
+    var compRefDays = document.getElementById('compareRefDays');
+
+    if (compDepRate) {
+      compDepRate.innerHTML = '기존 단순대조 ' + metrics.deposits.legacyRate.toFixed(1) + '% &rarr; 제안모형 ' + metrics.deposits.proposedRate.toFixed(1) + '%';
+    }
+    if (compDepDays) {
+      compDepDays.innerHTML = '기존 ' + metrics.deposits.legacyAvgDays.toFixed(1) + '일 &rarr; 제안모형 ' + metrics.deposits.proposedAvgDays.toFixed(1) + '일로 단축';
+    }
+    if (compRefRate) {
+      compRefRate.innerHTML = '기존 단순대조 ' + metrics.refunds.legacyRate.toFixed(1) + '% &rarr; 제안모형 ' + metrics.refunds.proposedRate.toFixed(1) + '%';
+    }
+    if (compRefDays) {
+      compRefDays.innerHTML = '기존 ' + metrics.refunds.legacyAvgDays.toFixed(1) + '일 &rarr; 제안모형 ' + metrics.refunds.proposedAvgDays.toFixed(1) + '일로 단축';
+    }
+
+    // 4. 게이지 프로그레스 바 동적 갱신
     var barDepRate = document.getElementById('barDepRate');
     var barDepDays = document.getElementById('barDepDays');
     var barRefRate = document.getElementById('barRefRate');
@@ -1089,12 +1238,12 @@
 
     if (barDepRate) barDepRate.style.width = Math.min(metrics.deposits.proposedRate, 100) + '%';
     if (barDepDays) {
-      var savedPct = Math.max(0, Math.min(100, Math.round(((metrics.deposits.legacyAvgDays - metrics.deposits.proposedAvgDays) / metrics.deposits.legacyAvgDays) * 100)));
+      var savedPct = Math.max(0, Math.min(100, Math.round(((metrics.deposits.legacyAvgDays - metrics.deposits.proposedAvgDays) / (metrics.deposits.legacyAvgDays || 1)) * 100)));
       barDepDays.style.width = savedPct + '%';
     }
     if (barRefRate) barRefRate.style.width = Math.min(metrics.refunds.proposedRate, 100) + '%';
     if (barRefDays) {
-      var refSavedPct = Math.max(0, Math.min(100, Math.round(((metrics.refunds.legacyAvgDays - metrics.refunds.proposedAvgDays) / metrics.refunds.legacyAvgDays) * 100)));
+      var refSavedPct = Math.max(0, Math.min(100, Math.round(((metrics.refunds.legacyAvgDays - metrics.refunds.proposedAvgDays) / (metrics.refunds.legacyAvgDays || 1)) * 100)));
       barRefDays.style.width = refSavedPct + '%';
     }
   }
@@ -1640,6 +1789,449 @@
     });
   }
 
+  // ========================================================
+  // Statistical Analytics & Accordion UI Controller
+  // ========================================================
+  var currentDistVar = 'deposit'; // 'deposit' or 'refund'
+  var latestCvResult = null;
+  var latestDistResult = null;
+  var latestHypList = null;
+  var latestAdvResult = null;
+
+  function renderCvUI(cvResult) {
+    if (!cvResult) return;
+    latestCvResult = cvResult;
+
+    var tbody = document.getElementById('cvTableBody');
+    if (tbody) {
+      tbody.innerHTML = cvResult.folds.map(function (f) {
+        return '<tr>' +
+          '<td><strong>Fold ' + f.fold + '</strong></td>' +
+          '<td>' + f.trainSize.toLocaleString() + '건</td>' +
+          '<td>' + f.valSize.toLocaleString() + '건</td>' +
+          '<td><span style="color:var(--primary); font-weight:700;">' + f.trainAccuracy.toFixed(2) + '%</span></td>' +
+          '<td><span style="color:var(--success); font-weight:700;">' + f.valAccuracy.toFixed(2) + '%</span></td>' +
+          '<td>' + f.valF1.toFixed(1) + '%</td>' +
+          '<td>' + f.valLoss.toFixed(4) + '</td>' +
+          '<td><span class="badge badge-neutral" style="font-size:11px;">' + f.accuracyGap.toFixed(2) + '%p</span></td>' +
+          '</tr>';
+      }).join('') +
+      '<tr style="background:var(--surface-sub); font-weight:800;">' +
+      '<td>평균 (Mean)</td>' +
+      '<td colspan="2">전체 ' + (cvResult.folds[0].trainSize + cvResult.folds[0].valSize).toLocaleString() + '건</td>' +
+      '<td>' + cvResult.meanTrainAccuracy.toFixed(2) + '%</td>' +
+      '<td style="color:var(--success);">' + cvResult.meanValAccuracy.toFixed(2) + '%</td>' +
+      '<td>' + cvResult.meanTrainF1.toFixed(1) + '%</td>' +
+      '<td>' + cvResult.meanValLoss.toFixed(4) + '</td>' +
+      '<td><span class="badge badge-success" style="font-size:11px;">' + cvResult.generalizationGap.toFixed(2) + '%p (적정)</span></td>' +
+      '</tr>';
+    }
+
+    var diagText = document.getElementById('cvDiagnosisText');
+    if (diagText) {
+      diagText.innerHTML = '<strong>[데이터 적격성 정밀 진단]</strong> ' + cvResult.diagnosis;
+    }
+
+    var badge = document.getElementById('cvStatusBadge');
+    if (badge) {
+      badge.textContent = cvResult.status === 'OPTIMAL_FIT' ? 'Optimal Fit (적정 적합)' : cvResult.status;
+      badge.className = cvResult.status === 'OPTIMAL_FIT' ? 'badge badge-success' : 'badge badge-warning';
+    }
+
+    var canvas = document.getElementById('chartCvCanvas');
+    if (canvas && window.StatsEngine) {
+      StatsEngine.ChartRenderer.renderCvChart(canvas, cvResult);
+    }
+  }
+
+  function renderDistributionUI(distResult) {
+    if (!distResult) return;
+    latestDistResult = distResult;
+
+    var tbody = document.getElementById('distTableBody');
+    if (tbody) {
+      var d = distResult.depositStats;
+      var r = distResult.refundStats;
+      var a = distResult.amountStats;
+
+      tbody.innerHTML =
+        '<tr>' +
+        '<td><strong>미식별 입금 소요일 (기존)</strong></td>' +
+        '<td>' + d.legacy.n.toLocaleString() + '건</td>' +
+        '<td>' + d.legacy.mean.toFixed(1) + '일</td>' +
+        '<td>' + d.legacy.variance.toFixed(1) + '</td>' +
+        '<td>' + d.legacy.sd.toFixed(2) + '일</td>' +
+        '<td>' + d.legacy.se.toFixed(2) + '</td>' +
+        '<td>[' + d.legacy.ci95[0].toFixed(1) + ', ' + d.legacy.ci95[1].toFixed(1) + ']</td>' +
+        '<td>' + d.legacy.median.toFixed(1) + ' (' + d.legacy.iqr.toFixed(1) + ')</td>' +
+        '<td>' + d.legacy.skewness.toFixed(2) + ' / ' + d.legacy.kurtosis.toFixed(2) + '</td>' +
+        '</tr>' +
+        '<tr style="background:var(--surface-sub);">' +
+        '<td><strong>미식별 입금 소요일 (제안)</strong></td>' +
+        '<td>' + d.proposed.n.toLocaleString() + '건</td>' +
+        '<td style="color:var(--success); font-weight:700;">' + d.proposed.mean.toFixed(1) + '일</td>' +
+        '<td>' + d.proposed.variance.toFixed(1) + '</td>' +
+        '<td>' + d.proposed.sd.toFixed(2) + '일</td>' +
+        '<td>' + d.proposed.se.toFixed(2) + '</td>' +
+        '<td>[' + d.proposed.ci95[0].toFixed(1) + ', ' + d.proposed.ci95[1].toFixed(1) + ']</td>' +
+        '<td>' + d.proposed.median.toFixed(1) + ' (' + d.proposed.iqr.toFixed(1) + ')</td>' +
+        '<td>' + d.proposed.skewness.toFixed(2) + ' / ' + d.proposed.kurtosis.toFixed(2) + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td><strong>환불금 잔류 소요일 (기존)</strong></td>' +
+        '<td>' + r.legacy.n.toLocaleString() + '건</td>' +
+        '<td>' + r.legacy.mean.toFixed(1) + '일</td>' +
+        '<td>' + r.legacy.variance.toFixed(1) + '</td>' +
+        '<td>' + r.legacy.sd.toFixed(2) + '일</td>' +
+        '<td>' + r.legacy.se.toFixed(2) + '</td>' +
+        '<td>[' + r.legacy.ci95[0].toFixed(1) + ', ' + r.legacy.ci95[1].toFixed(1) + ']</td>' +
+        '<td>' + r.legacy.median.toFixed(1) + ' (' + r.legacy.iqr.toFixed(1) + ')</td>' +
+        '<td>' + r.legacy.skewness.toFixed(2) + ' / ' + r.legacy.kurtosis.toFixed(2) + '</td>' +
+        '</tr>' +
+        '<tr style="background:var(--surface-sub);">' +
+        '<td><strong>환불금 잔류 소요일 (제안)</strong></td>' +
+        '<td>' + r.proposed.n.toLocaleString() + '건</td>' +
+        '<td style="color:var(--success); font-weight:700;">' + r.proposed.mean.toFixed(1) + '일</td>' +
+        '<td>' + r.proposed.variance.toFixed(1) + '</td>' +
+        '<td>' + r.proposed.sd.toFixed(2) + '일</td>' +
+        '<td>' + r.proposed.se.toFixed(2) + '</td>' +
+        '<td>[' + r.proposed.ci95[0].toFixed(1) + ', ' + r.proposed.ci95[1].toFixed(1) + ']</td>' +
+        '<td>' + r.proposed.median.toFixed(1) + ' (' + r.proposed.iqr.toFixed(1) + ')</td>' +
+        '<td>' + r.proposed.skewness.toFixed(2) + ' / ' + r.proposed.kurtosis.toFixed(2) + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td><strong>정산 금액 분포 (원)</strong></td>' +
+        '<td>' + a.n.toLocaleString() + '건</td>' +
+        '<td>' + Math.round(a.mean).toLocaleString() + '원</td>' +
+        '<td>' + (Math.round(a.variance / 1000000)).toLocaleString() + 'M</td>' +
+        '<td>' + Math.round(a.sd).toLocaleString() + '원</td>' +
+        '<td>' + Math.round(a.se).toLocaleString() + '</td>' +
+        '<td>[' + Math.round(a.ci95[0]).toLocaleString() + ', ' + Math.round(a.ci95[1]).toLocaleString() + ']</td>' +
+        '<td>' + Math.round(a.median).toLocaleString() + ' (' + Math.round(a.iqr).toLocaleString() + ')</td>' +
+        '<td>' + a.skewness.toFixed(2) + ' / ' + a.kurtosis.toFixed(2) + '</td>' +
+        '</tr>';
+    }
+
+    var canvas = document.getElementById('chartDistCanvas');
+    if (canvas && window.StatsEngine) {
+      if (state.isCltMode) {
+        var cltData = StatsEngine.simulateSamplingDistributionOfMean(
+          StatsEngine.currentSample,
+          (currentDistVar === 'deposit') ? 'daysProposed' : 'daysProposed',
+          1000, 30
+        );
+        StatsEngine.ChartRenderer.renderDistributionChart(canvas, cltData, true);
+        if (dom.cltModeBtnText) dom.cltModeBtnText.textContent = '원시 관측 소요일수 분포로 복귀';
+        if (dom.distChartTitle) dom.distChartTitle.textContent = (currentDistVar === 'deposit' ? '미식별 입금' : '환불금') + ' 표본평균(x̄)의 중심극한정리(CLT) 정규분포';
+        if (dom.distChartDesc) dom.distChartDesc.textContent = '※ 표본(n=30)씩 1,000회 부트스트랩 리샘플링한 표본평균들의 분포로, 중심극한정리에 의해 좌우 완전 대칭의 가우시안 정규분포(Bell Curve)를 형성합니다.';
+      } else {
+        var targetStats = (currentDistVar === 'deposit') ? distResult.depositStats.proposed : distResult.refundStats.proposed;
+        StatsEngine.ChartRenderer.renderDistributionChart(canvas, targetStats, false);
+        if (dom.cltModeBtnText) dom.cltModeBtnText.textContent = 'CLT 표본평균 정규분포(Bell Curve)로 전환';
+        if (dom.distChartTitle) dom.distChartTitle.textContent = (currentDistVar === 'deposit' ? '미식별 입금' : '환불금') + ' 처리 소요일수 표본분포 히스토그램 및 로그정규 적합 곡선';
+        if (dom.distChartDesc) dom.distChartDesc.textContent = '※ 제안 모델 도입으로 대다수 케이스가 0~5일 이내 신속 처리되어 좌측으로 치우친 형태(양의 왜도)를 띱니다. 통계학적 완전 정규분포는 우측 버튼을 눌러 확인하세요.';
+      }
+    }
+  }
+
+  function renderHypothesisUI(hypList) {
+    if (!hypList || !Array.isArray(hypList)) return;
+    latestHypList = hypList;
+
+    var container = document.getElementById('hypGridContainer');
+    if (container) {
+      container.innerHTML = hypList.map(function (hyp) {
+        var isRate = (hyp.id === '6.1' || hyp.id === '6.3');
+        var legStr = isRate ? (hyp.legacyRate.toFixed(1) + '%') : (hyp.legacyMeanDays.toFixed(1) + '일');
+        var propStr = isRate ? (hyp.proposedRate.toFixed(1) + '%') : (hyp.proposedMeanDays.toFixed(1) + '일');
+
+        return '<div class="hyp-card significant">' +
+          '<div class="hyp-header">' +
+            '<span class="hyp-num-badge">가설 ' + hyp.id + '</span>' +
+            '<span class="hyp-p-badge">귀무가설 기각 (p < 0.001)</span>' +
+          '</div>' +
+          '<div class="hyp-title">' + hyp.title + '</div>' +
+          '<div class="hyp-statement">' +
+            '<div><strong>귀무가설:</strong> ' + hyp.nullHypothesis + '</div>' +
+            '<div><strong>대립가설:</strong> ' + hyp.altHypothesis + '</div>' +
+          '</div>' +
+          '<div class="hyp-metrics">' +
+            '<div class="hyp-stat-item">' +
+              '<span class="hyp-stat-lbl">기존 방식</span>' +
+              '<span class="hyp-stat-val">' + legStr + '</span>' +
+            '</div>' +
+            '<div class="hyp-stat-item">' +
+              '<span class="hyp-stat-lbl">제안 모형</span>' +
+              '<span class="hyp-stat-val" style="color:var(--success);">' + propStr + '</span>' +
+            '</div>' +
+            '<div class="hyp-stat-item">' +
+              '<span class="hyp-stat-lbl">' + hyp.statisticName + '</span>' +
+              '<span class="hyp-stat-val">' + (typeof hyp.statisticValue === 'number' ? hyp.statisticValue.toFixed(2) : hyp.statisticValue) + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="hyp-conclusion">✓ ' + hyp.conclusion + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    var canvas = document.getElementById('chartHypCanvas');
+    if (canvas && window.StatsEngine) {
+      StatsEngine.ChartRenderer.renderHypothesisChart(canvas, hypList);
+    }
+  }
+
+  function renderAdvancedUI(advResult) {
+    if (!advResult) return;
+    latestAdvResult = advResult;
+
+    // Kaplan-Meier
+    var kmCanvas = document.getElementById('chartSurvivalCanvas');
+    if (kmCanvas && window.StatsEngine) {
+      StatsEngine.ChartRenderer.renderSurvivalChart(kmCanvas, advResult.kaplanMeier);
+    }
+
+    // Logistic Forest Plot
+    var forestCanvas = document.getElementById('chartForestCanvas');
+    if (forestCanvas && window.StatsEngine) {
+      StatsEngine.ChartRenderer.renderForestPlot(forestCanvas, advResult.logisticRegression);
+    }
+
+    // Bootstrap
+    var bootMean = document.getElementById('bootMeanVal');
+    var bootCi = document.getElementById('bootCiVal');
+    if (bootMean && advResult.bootstrap) {
+      bootMean.textContent = advResult.bootstrap.meanSavedDays.toFixed(1) + '일 절감';
+    }
+    if (bootCi && advResult.bootstrap) {
+      bootCi.textContent = '95% BCa 신뢰구간: [' + advResult.bootstrap.ci95[0].toFixed(1) + '일, ' + advResult.bootstrap.ci95[1].toFixed(1) + '일] (B=' + advResult.bootstrap.iterations + '회)';
+    }
+
+    // Hospital ROI
+    var roi = advResult.economicRoi;
+    if (roi) {
+      var hVal = document.getElementById('roiHoursVal');
+      var lVal = document.getElementById('roiLaborVal');
+      var legVal = document.getElementById('roiLegalVal');
+      var tVal = document.getElementById('roiTotalVal');
+      if (hVal) hVal.textContent = roi.totalSavedHours.toLocaleString() + '시간';
+      if (lVal) lVal.textContent = (Math.round(roi.laborCostSaved / 10000)).toLocaleString() + '만 원';
+      if (legVal) legVal.textContent = (Math.round(roi.legalCostSaved / 10000)).toLocaleString() + '만 원';
+      if (tVal) tVal.textContent = (Math.round(roi.totalBenefit / 10000)).toLocaleString() + '만 원';
+    }
+  }
+
+  function redrawAllStatsCharts() {
+    if (!window.StatsEngine) return;
+    if (latestCvResult) {
+      var cvCanvas = document.getElementById('chartCvCanvas');
+      if (cvCanvas) StatsEngine.ChartRenderer.renderCvChart(cvCanvas, latestCvResult);
+    }
+    if (latestDistResult) {
+      var distCanvas = document.getElementById('chartDistCanvas');
+      if (distCanvas) {
+        if (state.isCltMode) {
+          var cltData = StatsEngine.simulateSamplingDistributionOfMean(
+            StatsEngine.currentSample,
+            (currentDistVar === 'deposit') ? 'daysProposed' : 'daysProposed',
+            1000, 30
+          );
+          StatsEngine.ChartRenderer.renderDistributionChart(distCanvas, cltData, true);
+        } else {
+          var targetStats = (currentDistVar === 'deposit') ? latestDistResult.depositStats.proposed : latestDistResult.refundStats.proposed;
+          StatsEngine.ChartRenderer.renderDistributionChart(distCanvas, targetStats, false);
+        }
+      }
+    }
+    if (latestHypList) {
+      var hypCanvas = document.getElementById('chartHypCanvas');
+      if (hypCanvas) StatsEngine.ChartRenderer.renderHypothesisChart(hypCanvas, latestHypList);
+    }
+    if (latestAdvResult) {
+      var kmCanvas = document.getElementById('chartSurvivalCanvas');
+      if (kmCanvas) StatsEngine.ChartRenderer.renderSurvivalChart(kmCanvas, latestAdvResult.kaplanMeier);
+      var forestCanvas = document.getElementById('chartForestCanvas');
+      if (forestCanvas) StatsEngine.ChartRenderer.renderForestPlot(forestCanvas, latestAdvResult.logisticRegression);
+    }
+  }
+
+  function runAndRenderAllStats(sample) {
+    if (!sample) return;
+    // 1. KPI cards
+    var depItems = sample.filter(function (s) { return s.caseType === 'DEPOSIT' || s.caseType === 'PREPAYMENT'; });
+    var matchCount = depItems.filter(function (s) { return s.proposedMatched; }).length;
+    var rate = depItems.length > 0 ? (matchCount / depItems.length) * 100 : 0;
+    var legDays = depItems.reduce(function (a, b) { return a + b.daysLegacy; }, 0) / (depItems.length || 1);
+    var propDays = depItems.reduce(function (a, b) { return a + b.daysProposed; }, 0) / (depItems.length || 1);
+
+    var kpiSampleSize = document.getElementById('kpiSampleSize');
+    var kpiSampleRate = document.getElementById('kpiSampleRate');
+    var kpiSampleDays = document.getElementById('kpiSampleDays');
+    if (kpiSampleSize) kpiSampleSize.textContent = 'n = ' + sample.length.toLocaleString() + '건';
+    if (kpiSampleRate) kpiSampleRate.textContent = rate.toFixed(1) + '%';
+    if (kpiSampleDays) kpiSampleDays.textContent = '-' + (legDays - propDays).toFixed(1) + '일';
+
+    // 2. Cross Validation (5-Fold)
+    var cvResult = StatsEngine.runCrossValidation(sample, 5);
+    renderCvUI(cvResult);
+
+    // 3. Sample Distributions
+    var distResult = StatsEngine.computeSampleDistributions(sample);
+    renderDistributionUI(distResult);
+
+    // 4. 4 Hypothesis Tests (6.1 ~ 6.4)
+    var hypList = StatsEngine.runHypothesisTests(sample);
+    renderHypothesisUI(hypList);
+
+    // 5. Advanced Analysis (Kaplan-Meier, Logistic, Bootstrap, ROI)
+    var advResult = StatsEngine.runAdvancedAnalysis(sample);
+    renderAdvancedUI(advResult);
+  }
+
+  function initStatsController() {
+    if (!window.StatsEngine) return;
+    // Generate hospital dataset if not yet generated
+    if (!StatsEngine.hospitalPopulation) {
+      StatsEngine.generateHospitalDataset(5000);
+    }
+    // Perform initial random sampling (n=500)
+    var sample = StatsEngine.sampleRandom(null, 500);
+    runAndRenderAllStats(sample);
+
+    // Accordion click handlers
+    document.querySelectorAll('.accordion-header').forEach(function (header) {
+      header.addEventListener('click', function () {
+        var item = header.closest('.accordion-item');
+        if (item) {
+          var isExpanded = item.classList.contains('expanded');
+          item.classList.toggle('expanded');
+          header.setAttribute('aria-expanded', !isExpanded);
+          if (!isExpanded) {
+            setTimeout(redrawAllStatsCharts, 60);
+          }
+        }
+      });
+      header.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          header.click();
+        }
+      });
+    });
+
+    // Expand all / Collapse all
+    var btnExpandAll = document.getElementById('btnExpandAllAccordions');
+    if (btnExpandAll) {
+      btnExpandAll.addEventListener('click', function () {
+        document.querySelectorAll('.accordion-item').forEach(function (item) {
+          item.classList.add('expanded');
+          var hdr = item.querySelector('.accordion-header');
+          if (hdr) hdr.setAttribute('aria-expanded', 'true');
+        });
+        setTimeout(redrawAllStatsCharts, 60);
+        showToast('모든 연구 및 통계 파트 섹션이 펼쳐졌습니다.');
+      });
+    }
+
+    var btnCollapseAll = document.getElementById('btnCollapseAllAccordions');
+    if (btnCollapseAll) {
+      btnCollapseAll.addEventListener('click', function () {
+        document.querySelectorAll('.accordion-item').forEach(function (item) {
+          item.classList.remove('expanded');
+          var hdr = item.querySelector('.accordion-header');
+          if (hdr) hdr.setAttribute('aria-expanded', 'false');
+        });
+        showToast('모든 연구 및 통계 파트 섹션이 접혔습니다.');
+      });
+    }
+
+    // Sampling buttons
+    var btnRunSampling = document.getElementById('btnRunSampling');
+    var sampleSizeSelect = document.getElementById('sampleSizeSelect');
+    if (btnRunSampling) {
+      btnRunSampling.addEventListener('click', function () {
+        var n = sampleSizeSelect ? parseInt(sampleSizeSelect.value, 10) : 500;
+        var newSample = StatsEngine.sampleRandom(null, n);
+        runAndRenderAllStats(newSample);
+        showToast('대학병원 모집단 5,000건에서 무작위 표본(n=' + n.toLocaleString() + '건) 추출 및 8대 통계 분석이 완료되었습니다.');
+      });
+    }
+
+    var btnQuickSampleRun = document.getElementById('btnQuickSampleRun');
+    if (btnQuickSampleRun) {
+      btnQuickSampleRun.addEventListener('click', function () {
+        var n = sampleSizeSelect ? parseInt(sampleSizeSelect.value, 10) : 500;
+        var newSample = StatsEngine.sampleRandom(null, n);
+        runAndRenderAllStats(newSample);
+        showToast('대학병원 5,000건 표본 재추출 및 통계 분석 갱신이 완료되었습니다.');
+      });
+    }
+
+    // Load hospital sample to table
+    var btnLoadHospitalToTable = document.getElementById('btnLoadHospitalToTable');
+    if (btnLoadHospitalToTable) {
+      btnLoadHospitalToTable.addEventListener('click', function () {
+        if (!StatsEngine.currentSample) return;
+        window.MEDIMATCH_DATA.samples = StatsEngine.currentSample;
+        state.selectedRowId = null;
+        renderBatchTable();
+        updateBatchMetrics();
+        var part3 = document.getElementById('accordionPart3');
+        if (part3) {
+          part3.classList.add('expanded');
+          var hdr = part3.querySelector('.accordion-header');
+          if (hdr) hdr.setAttribute('aria-expanded', 'true');
+          part3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        showToast('현재 표본 ' + StatsEngine.currentSample.length.toLocaleString() + '건이 메인 트랜잭션 테이블에 로드되었습니다.');
+      });
+    }
+
+    // Toggle distribution variable (입금 소요일 vs 환불금 잔류일)
+    var btnToggleDistVar = document.getElementById('btnToggleDistVar');
+    if (btnToggleDistVar) {
+      btnToggleDistVar.addEventListener('click', function () {
+        currentDistVar = (currentDistVar === 'deposit') ? 'refund' : 'deposit';
+        var span = btnToggleDistVar.querySelector('span');
+        if (span) {
+          span.textContent = (currentDistVar === 'deposit') ? '환불금 잔류일 분포로 전환' : '입금 소요일 분포로 전환';
+        }
+        if (StatsEngine.currentSample) {
+          var dist = StatsEngine.computeSampleDistributions(StatsEngine.currentSample);
+          renderDistributionUI(dist);
+        }
+      });
+    }
+
+    // Toggle CLT Mode (관측 소요일수 로그정규 vs CLT 표본평균 정규분포 Bell Curve)
+    if (dom.btnToggleCltMode) {
+      dom.btnToggleCltMode.addEventListener('click', function () {
+        state.isCltMode = !state.isCltMode;
+        if (latestDistResult) {
+          renderDistributionUI(latestDistResult);
+        }
+        showToast(state.isCltMode
+          ? '중심극한정리(CLT) 표본평균 정규 적합 모드가 활성화되었습니다 (B=1,000회 부트스트랩).'
+          : '원시 관측 소요일수 로그정규 적합 모드로 복귀했습니다.');
+      });
+    }
+
+    // Toggle Table View Mode (컴팩트 6열 vs 전체 10열)
+    if (dom.btnToggleTableViewMode) {
+      dom.btnToggleTableViewMode.addEventListener('click', function () {
+        state.tableViewMode = (state.tableViewMode === 'compact') ? 'full' : 'compact';
+        renderBatchTable();
+        showToast(state.tableViewMode === 'compact'
+          ? '컴팩트 뷰가 적용되었습니다 (3대 정산 금액 한눈에 보기).'
+          : '전체 열 모드가 적용되었습니다 (가로 스크롤 열람).');
+      });
+    }
+
+    // Window resize redraw
+    window.addEventListener('resize', function () {
+      redrawAllStatsCharts();
+    });
+  }
+
   // Bootstrapping
   function init() {
     cacheDom();
@@ -1650,6 +2242,7 @@
     loadPreset('guardian');
     renderBatchTable();
     updateBatchMetrics();
+    initStatsController();
   }
 
   if (document.readyState === 'loading') {

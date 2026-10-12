@@ -34,13 +34,17 @@
 
       // [1단계] 단순 1:1 성명 대조
       var isDirectNameMatch = (sanitized.depositorName.trim() === sanitized.patientName.trim());
+      var step1Detail = isDirectNameMatch
+        ? '입금자명과 환자명이 정확히 일치합니다 (' + sanitized.depositorName + ').'
+        : (sanitized.isDeceased
+            ? '심평원 보험자격 말소 상태 감지 및 입금자명(' + sanitized.depositorName + ')·환자명(' + sanitized.patientName + ') 불일치.'
+            : '입금자명(' + sanitized.depositorName + ')과 환자등록명(' + sanitized.patientName + ')이 불일치합니다.');
+
       steps.push({
         step: 1,
         title: '1차 단순 성명 대조',
         status: isDirectNameMatch ? 'SUCCESS' : 'PENDING',
-        detail: isDirectNameMatch
-          ? '입금자명과 환자명이 정확히 일치합니다 (' + sanitized.depositorName + ').'
-          : '입금자명(' + sanitized.depositorName + ')과 환자등록명(' + sanitized.patientName + ')이 불일치합니다.'
+        detail: step1Detail
       });
 
       // [2단계] HIS 다차원 교차검증
@@ -70,9 +74,10 @@
       } else if (sanitized.isRenamed && sanitized.hasPrevNameRecord) {
         multiDimSuccess = true;
         multiDimDetail = '주민등록번호 및 개명 전/후 이력 교차 검증으로 동일인 식별 완료.';
-      } else if (sanitized.caseType === 'REFUND' && sanitized.isDeceased) {
+      } else if (sanitized.caseType === 'REFUND' && (sanitized.isDeceased || sanitized.isUninsured)) {
         multiDimSuccess = false;
-        multiDimDetail = '환자 사망 건으로 감지됨. 금융실명법 및 민법상 임의 지급 불가 → 4단계 공공연계로 이관.';
+        // 2차에서는 사망을 섣불리 단정하지 않고 자격 부존재(외국인·무자격자 또는 사망 의심)로 감지 후 3차 진단으로 이관
+        multiDimDetail = '건강보험 자격 부존재/말소 상태 감지 (외국인·무자격자 또는 사망 의심 등 예외 상태). 2차에서 사망 건으로 단정하는 것은 섣부른 판단이므로, 원내 EMR 진료기록 및 환자 원장 대조 후 3차 정밀 진단 단계로 이관합니다.';
       } else if (sanitized.relationType === 'UNKNOWN' || !sanitized.guardianRegistered) {
         multiDimSuccess = false;
         multiDimDetail = '원내 미등록 대납자(기타 대납) 및 성명 불일치. 내부 전산만으로는 귀속 환자 특정 불가.';
@@ -88,7 +93,7 @@
         detail: multiDimDetail
       });
 
-      // [3단계] 예외 분류 및 상태값 추적
+      // [3단계] 예외 분류 및 상태값 추적 (사망 판정은 3차 정밀 진단 후 최종 결정)
       var step3Status = 'TRACKING';
       var step3Detail = '';
       if (sanitized.caseType === 'PREPAYMENT') {
@@ -103,8 +108,13 @@
         step3Status = 'RESOLVED';
         step3Detail = '정상 매칭 완료 건으로 분류. 예외 추적 종료.';
       } else if (sanitized.caseType === 'REFUND' && sanitized.isDeceased) {
-        step3Status = 'DECEASED_ROUTING';
-        step3Detail = '사망환자 미수령 환불금 특수 관리 대상으로 상태값 등록 (사망일자/사후정산 이력 추적).';
+        // 3차에서 원내 EMR 의무기록 및 사망진단서 확인 후 비로소 '사망환자' 판정 확정
+        step3Status = 'DECEASED_DIAGNOSED';
+        step3Detail = '원내 EMR 의무기록 및 사망진단서(사망선고 기록) 교차 정밀 진단 완료 → [사망환자] 최종 판정 확정. 민법상 임의지급 차단 및 4단계 안심상속 공공행정연계로 이관.';
+      } else if (sanitized.caseType === 'REFUND' && sanitized.isUninsured) {
+        // 외국인, 무자격자 등 생존 환자로 판정
+        step3Status = 'UNINSURED_RESOLVED';
+        step3Detail = '원내 EMR 진료기록 대조 결과: 생존 환자(외국인·건보 무자격자 등 보험 미적용)로 확인. 사망 건 배제 후 외국인/무자격자 예외 정산 프로세스로 정상 분류.';
       } else {
         step3Status = 'UNIDENTIFIED_LOG';
         step3Detail = '장기 미식별 예수금 상태로 등재. 입금 확인 전산 알림 및 소명 대기 큐로 이관.';
@@ -112,7 +122,7 @@
 
       steps.push({
         step: 3,
-        title: '3차 예외 분류 및 상태 추적',
+        title: '3차 예외 분류 및 정밀 진단',
         status: step3Status,
         detail: step3Detail
       });
@@ -132,6 +142,9 @@
           step4Detail = '공공 상속 증빙 부존재 또는 상속 분쟁 상태. 오지급 방지를 위해 임의 지급 보류.';
           heirQualified = false;
         }
+      } else if (sanitized.caseType === 'REFUND' && sanitized.isUninsured) {
+        step4Status = 'NOT_APPLICABLE';
+        step4Detail = '생존 환자(외국인·무자격자) 환불 건으로 공공 상속연계 단계를 건너뜁니다.';
       } else if (sanitized.caseType === 'PREPAYMENT') {
         step4Status = 'NOT_APPLICABLE';
         step4Detail = '선수금(사전 예치) 수납 건으로 공공 상속연계 단계를 건너뜁니다.';
@@ -171,6 +184,9 @@
           finalOutcome = '상속인부존재_공탁예정';
           daysSaved = 0;
         }
+      } else if (sanitized.caseType === 'REFUND' && sanitized.isUninsured) {
+        finalOutcome = '외국인무자격_예외수납환불';
+        daysSaved = 101;
       } else if (multiDimSuccess) {
         finalOutcome = '매칭완료_진료비수납';
         daysSaved = 128; // 논문 통계 기반
@@ -182,7 +198,7 @@
       steps.push({
         step: 5,
         title: '5차 적법 후속처리 및 종결',
-        status: finalOutcome.indexOf('완료') !== -1 || finalOutcome.indexOf('지급') !== -1 || finalOutcome.indexOf('대체') !== -1 ? 'RESOLVED' : 'MANAGED',
+        status: finalOutcome.indexOf('완료') !== -1 || finalOutcome.indexOf('지급') !== -1 || finalOutcome.indexOf('대체') !== -1 || finalOutcome.indexOf('환불') !== -1 ? 'RESOLVED' : 'MANAGED',
         detail: '최종 상태: ' + finalOutcome + ' (오지급 분쟁 노출 차단)'
       });
 
@@ -192,7 +208,7 @@
         steps: steps,
         finalOutcome: finalOutcome,
         legacyMatched: isDirectNameMatch,
-        proposedMatched: multiDimSuccess || heirQualified,
+        proposedMatched: multiDimSuccess || heirQualified || Boolean(sanitized.isUninsured),
         riskControlled: riskControlled,
         daysSaved: daysSaved
       };
@@ -245,6 +261,7 @@
           isRenamed: Boolean(raw.isRenamed),
           hasPrevNameRecord: Boolean(raw.hasPrevNameRecord),
           isDeceased: Boolean(raw.isDeceased),
+          isUninsured: Boolean(raw.isUninsured),
           hasHeirPublicProof: Boolean(raw.hasHeirPublicProof)
         }
       };
