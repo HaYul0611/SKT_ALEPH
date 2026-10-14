@@ -28,19 +28,27 @@
       if (matchRate) attRate = parseInt(matchRate[1], 10);
     }
 
-    // 과제 승인 데이터 탐색
-    let tasksCompleted = 11;
+    // 과제 승인 데이터 탐색 (동적 N개 과제 자동 감지)
+    let tasksCompleted = 13;
     let tasksTotal = 13;
-    const taskList = document.querySelector('#taskSubmissionList');
+    const taskList = document.querySelector('#taskSubmissionList, .task-list, [data-panel="tasks"]');
     if (taskList) {
-      const approvedItems = taskList.querySelectorAll('[data-status="approved"], .approved, [data-state="approved"]');
+      // 승인된 과제 개수 파악
+      const approvedItems = taskList.querySelectorAll('[data-status="approved"], .approved, [data-state="approved"], .status-approved');
       if (approvedItems.length > 0) {
         tasksCompleted = approvedItems.length;
+      }
+      // 전체 과제 항목 동적 파악 (14, 15 등 신규 과제 자동 수용)
+      const allTaskRows = taskList.querySelectorAll('tr, .task-card, .task-item, [data-task-id], li');
+      if (allTaskRows.length > 0) {
+        tasksTotal = Math.max(allTaskRows.length, tasksCompleted);
+      } else {
+        tasksTotal = Math.max(13, tasksCompleted);
       }
     }
 
     // 리추얼 누적 횟수 탐색
-    let ritualTotal = 39;
+    let ritualTotal = 42;
     const ritualTotalEl = document.querySelector('#ritualTotal');
     if (ritualTotalEl) {
       const parsed = parseInt(ritualTotalEl.textContent.trim(), 10);

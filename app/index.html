@@ -516,21 +516,75 @@
                 <input type="text" id="inputPatient" class="form-input" value="이순신(부친)" required maxlength="20">
               </div>
 
-              <div class="form-group">
-                <label class="form-label" for="inputAmount">
-                  <span>정산 금액 (원)</span>
-                  <span class="form-hint">1,000단위 자동 구분</span>
-                </label>
-                <input type="text" inputmode="numeric" id="inputAmount" class="form-input" value="148,720" required
-                  placeholder="예: 148,720" autocomplete="off">
-                <p class="amount-korean-readout" id="amountKoreanReadout" aria-live="polite">금 일십사만 팔천칠백이십 원정</p>
-                <div class="amount-quick-chips" role="group" aria-label="금액 빠른 증액">
-                  <span class="quick-chip-label">퀵 증액:</span>
-                  <button type="button" class="quick-amount-chip" data-add="10000">+1만</button>
-                  <button type="button" class="quick-amount-chip" data-add="50000">+5만</button>
-                  <button type="button" class="quick-amount-chip" data-add="100000">+10만</button>
-                  <button type="button" class="quick-amount-chip" data-add="500000">+50만</button>
-                  <button type="button" class="quick-amount-chip" data-add="1000000">+100만</button>
+              <!-- 3대 정산 금액 체계 (납부 · 확정 · 환불) 폼 그룹 -->
+              <div class="form-three-tier-card">
+                <div class="form-tier-header">
+                  <span class="form-tier-title">
+                    <svg class="svg-icon sm" viewBox="0 0 24 24" aria-hidden="true" style="stroke: #0284c7;">
+                      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                      <line x1="2" y1="10" x2="22" y2="10"></line>
+                    </svg>
+                    <span>3대 정산 금액 체계 (납부 · 확정 · 환불)</span>
+                  </span>
+                  <span class="form-tier-desc">①원납부 입력 시, 심평원 심사 기준에 따라 ②확정 진료비 및 ③환불금이 자동 산출됩니다.</span>
+                </div>
+
+                <!-- ① 원납부액 / 선수금 (직접 입력 가능) -->
+                <div class="tier-field deposit-field">
+                  <div class="form-label-with-tag">
+                    <label class="form-label" for="inputAmount">
+                      <span class="tier-tag deposit-tag">납부</span>
+                      <span>원납부 / 선수금 (수납액)</span>
+                    </label>
+                    <span class="form-hint">직접 수정 가능 · 1,000단위</span>
+                  </div>
+                  <input type="text" inputmode="numeric" id="inputAmount" class="form-input" value="148,720" required
+                    placeholder="예: 148,720" autocomplete="off">
+                  <p class="amount-korean-readout" id="amountKoreanReadout" aria-live="polite">금 일십사만 팔천칠백이십 원정</p>
+                  <div class="amount-quick-chips" role="group" aria-label="금액 빠른 증액">
+                    <span class="quick-chip-label">퀵 증액:</span>
+                    <button type="button" class="quick-amount-chip" data-add="10000">+1만</button>
+                    <button type="button" class="quick-amount-chip" data-add="50000">+5만</button>
+                    <button type="button" class="quick-amount-chip" data-add="100000">+10만</button>
+                    <button type="button" class="quick-amount-chip" data-add="500000">+50만</button>
+                    <button type="button" class="quick-amount-chip" data-add="1000000">+100만</button>
+                  </div>
+                </div>
+
+                <!-- ② 심평원 확정 진료비 (자동 산출 · 읽기 전용) -->
+                <div class="tier-field confirmed-field">
+                  <div class="form-label-with-tag">
+                    <label class="form-label" for="inputConfirmedCost">
+                      <span class="tier-tag confirmed-tag">확정</span>
+                      <span>심평원 확정 진료비 (본인부담금)</span>
+                    </label>
+                    <span class="tier-auto-badge" title="정산 구분과 심사 결과에 따라 자동 계산되어 직접 수정 불가">
+                      <svg class="svg-icon xs" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#64748b;">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <span>자동 산출 (수정 불가)</span>
+                    </span>
+                  </div>
+                  <input type="text" id="inputConfirmedCost" class="form-input readonly-tier" value="148,720원" readonly tabindex="-1" title="심평원 심사 기준 진료비 자동 반영">
+                </div>
+
+                <!-- ③ 과오납 환불금 (자동 산출 · 읽기 전용) -->
+                <div class="tier-field refund-field">
+                  <div class="form-label-with-tag">
+                    <label class="form-label" for="inputRefundAmount">
+                      <span class="tier-tag refund-tag" id="formRefundTag">환불</span>
+                      <span>과오납 환불 결정액</span>
+                    </label>
+                    <span class="tier-auto-badge" id="formRefundBadge" title="과오납 차액에 따라 자동 계산되어 직접 수정 불가">
+                      <svg class="svg-icon xs" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#64748b;">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <span id="formRefundBadgeText">자동 산출 (수정 불가)</span>
+                    </span>
+                  </div>
+                  <input type="text" id="inputRefundAmount" class="form-input readonly-tier" value="0원" readonly tabindex="-1" title="기납부액과 확정 진료비의 차액 자동 반영">
                 </div>
               </div>
 
@@ -1286,6 +1340,57 @@
           </button>
         </div>
         <button type="button" class="btn-secondary" id="siemModalCancelBtn">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 트랜잭션 영구 삭제 커스텀 확인 다이얼로그 모달 -->
+  <div class="modal-overlay" id="confirmDeleteModal" role="dialog" aria-modal="true" aria-labelledby="confirmDeleteTitle">
+    <div class="modal-card confirm-card" role="document">
+      <div class="confirm-modal-top">
+        <div class="confirm-modal-icon-badge">
+          <svg class="svg-icon lg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+        </div>
+        <div class="confirm-modal-title-wrap">
+          <h3 class="confirm-modal-title" id="confirmDeleteTitle">트랜잭션 영구 삭제 확인</h3>
+          <p class="confirm-modal-sub">선택한 데이터를 정산 데이터셋에서 완전히 삭제합니다.</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="confirmDeleteCloseBtn" aria-label="닫기">
+          <svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="confirm-modal-body">
+        <div class="confirm-target-info" id="confirmDeleteTargetInfo">
+          <!-- 동적으로 트랜잭션 상세 정보 렌더링 -->
+        </div>
+        <div class="confirm-alert-box">
+          <svg class="svg-icon sm" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span>삭제 후 즉시 복구할 수 없으며, 의료정보보호 SIEM 감사 로그에 <strong>영구 삭제(WARN)</strong>로 실시간 기록됩니다.</span>
+        </div>
+      </div>
+
+      <div class="confirm-modal-footer">
+        <button type="button" class="btn-secondary" id="confirmDeleteCancelBtn">취소</button>
+        <button type="button" class="btn-danger" id="confirmDeleteProceedBtn">
+          <svg class="svg-icon sm" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+          <span>데이터셋에서 완전히 삭제</span>
+        </button>
       </div>
     </div>
   </div>

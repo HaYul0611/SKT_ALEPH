@@ -59,9 +59,15 @@
   <!-- 스크롤 진행률 인디케이터 (상단 2.5px 프로그레스 바) -->
   <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
 
-  <!-- 상단 내비게이션 (슬림 단일 행 고정) -->
-    <header class="nav" role="banner">
-    <span class="nav-year">2026</span>
+  <header class="nav" role="banner">
+    <div class="nav-left">
+      <span class="nav-year">2026</span>
+      <span class="nav-reading-status" id="navReadingIndicator" aria-live="polite">
+        <span class="reading-dot" aria-hidden="true"></span>
+        <span class="reading-prefix">현재 위치:</span>
+        <strong class="reading-target" id="navReadingTarget">01 Timeline</strong>
+      </span>
+    </div>
     <span class="nav-name">Ha Yul Oh</span>
     <div class="nav-right">
       <a href="#timeline" class="nav-link">Timeline</a>
@@ -371,13 +377,12 @@
 
     <!-- 타임라인 섹션 -->
 
-    
+
     <!-- 섹션 아코디언 뷰 컨트롤러 (Option B: 본제 & 설명 기반 목차 토글 모드) -->
     <div class="view-controller-bar" id="viewControllerBar">
       <div class="view-info-box">
         <span class="view-live-dot" aria-hidden="true"></span>
         <span class="view-info-text"><strong>섹션별 요약 아코디언</strong> · 각 섹션 헤더를 클릭하여 상세 본문을 접거나 펼칠 수 있습니다.</span>
-        <span class="view-reading-status" id="readingSectionIndicator">현재 위치: <strong>01 Timeline</strong></span>
       </div>
       <div class="view-action-group">
         <button type="button" class="btn-view-mode" id="btnExpandAll">전체 펼치기</button>
@@ -385,7 +390,7 @@
       </div>
     </div>
 
-<section class="timeline-section collapsible-section is-collapsed" id="timeline" aria-label="경력 전환 타임라인">
+    <section class="timeline-section collapsible-section is-collapsed" id="timeline" aria-label="경력 전환 타임라인">
       <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
         <div class="accordion-header-left">
           <span class="section-num-tag">01</span>
@@ -402,92 +407,92 @@
       <div class="section-collapsible-body">
         <div class="timeline" id="careerTimeline">
 
-        <div class="timeline-item done">
+          <div class="timeline-item done">
 
-          <span class="timeline-dot" aria-hidden="true"></span>
+            <span class="timeline-dot" aria-hidden="true"></span>
 
-          <p class="timeline-period">2019.12 ~ 2026.01</p>
+            <p class="timeline-period">2019.12 ~ 2026.01</p>
 
-          <p class="timeline-title">병원 행정</p>
+            <p class="timeline-title">병원 행정</p>
 
-          <p class="timeline-desc">원무 · 행정 중간관리자<br>프로세스 개선 · 민원 관리</p>
+            <p class="timeline-desc">원무 · 행정 중간관리자<br>프로세스 개선 · 민원 관리</p>
 
-          <div class="timeline-tags">
+            <div class="timeline-tags">
 
-            <span class="time-tag">인수인계 전산화</span>
+              <span class="time-tag">인수인계 전산화</span>
 
-            <span class="time-tag">의료정보 관리</span>
+              <span class="time-tag">의료정보 관리</span>
 
-            <span class="time-tag">매뉴얼 표준화</span>
+              <span class="time-tag">매뉴얼 표준화</span>
 
-          </div>
-
-        </div>
-
-        <div class="timeline-item done">
-
-          <span class="timeline-dot" aria-hidden="true"></span>
-
-          <p class="timeline-period">25.12 ~ 26.06</p>
-
-          <p class="timeline-title">웹 풀스택 이수</p>
-
-          <p class="timeline-desc">AI 기반 바이브코딩<br>웹 풀스택 개발 과정</p>
-
-          <div class="timeline-tags">
-
-            <span class="time-tag">Node.js · Express</span>
-
-            <span class="time-tag">MySQL · Supabase</span>
-
-            <span class="time-tag">REST API · JWT</span>
+            </div>
 
           </div>
 
-        </div>
+          <div class="timeline-item done">
 
-        <div class="timeline-item current active-track">
+            <span class="timeline-dot" aria-hidden="true"></span>
 
-          <span class="timeline-dot current-pulse" aria-hidden="true"></span>
+            <p class="timeline-period">25.12 ~ 26.06</p>
 
-          <p class="timeline-period">26.08 ~ <span class="current-badge">Active</span></p>
+            <p class="timeline-title">웹 풀스택 이수</p>
 
-          <p class="timeline-title">인프라 · 보안</p>
+            <p class="timeline-desc">AI 기반 바이브코딩<br>웹 풀스택 개발 과정</p>
 
-          <p class="timeline-desc">SKT ALEPH<br>네트워크 · 서버 · 클라우드</p>
+            <div class="timeline-tags">
 
-          <div class="timeline-tags">
+              <span class="time-tag">Node.js · Express</span>
 
-            <span class="time-tag highlight">인프라 보안 감지</span>
+              <span class="time-tag">MySQL · Supabase</span>
 
-            <span class="time-tag highlight">Linux · Network</span>
+              <span class="time-tag">REST API · JWT</span>
 
-            <span class="time-tag highlight">AI 실시간 이상탐지</span>
+            </div>
+
+          </div>
+
+          <div class="timeline-item current active-track">
+
+            <span class="timeline-dot current-pulse" aria-hidden="true"></span>
+
+            <p class="timeline-period">26.08 ~ <span class="current-badge">Active</span></p>
+
+            <p class="timeline-title">인프라 · 보안</p>
+
+            <p class="timeline-desc">SKT ALEPH<br>네트워크 · 서버 · 클라우드</p>
+
+            <div class="timeline-tags">
+
+              <span class="time-tag highlight">인프라 보안 감지</span>
+
+              <span class="time-tag highlight">Linux · Network</span>
+
+              <span class="time-tag highlight">AI 실시간 이상탐지</span>
+
+            </div>
 
           </div>
 
-        </div>
+          <div class="timeline-item goal">
 
-        <div class="timeline-item goal">
+            <span class="timeline-dot" aria-hidden="true"></span>
 
-          <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="timeline-period">목표</p>
 
-          <p class="timeline-period">목표</p>
+            <p class="timeline-title">보안 엔지니어</p>
 
-          <p class="timeline-title">보안 엔지니어</p>
+            <p class="timeline-desc">AI 기반 실시간<br>보안 감지 시스템 구축</p>
 
-          <p class="timeline-desc">AI 기반 실시간<br>보안 감지 시스템 구축</p>
+            <div class="timeline-tags">
 
-          <div class="timeline-tags">
+              <span class="time-tag">AI 위협 탐지</span>
 
-            <span class="time-tag">AI 위협 탐지</span>
+              <span class="time-tag">SOAR 대응 자동화</span>
 
-            <span class="time-tag">SOAR 대응 자동화</span>
+              <span class="time-tag">클라우드 인프라 보안</span>
 
-            <span class="time-tag">클라우드 인프라 보안</span>
-
+            </div>
           </div>
-      </div>
     </section>
     <hr class="divider">
 
@@ -499,7 +504,7 @@
           <span class="section-num-tag">02</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Records</h2>
-            <p class="section-summary-preview">출석 40일(100% 무결석) · 리추얼 40일 연속 · 과제 마스터 승인 12/13개 (Live)</p>
+            <p class="section-summary-preview" id="recordsSectionSummary">출석 42일(100% 무결석) · 리추얼 42일 연속 · 과제 마스터 승인 13/13개 (100% 완주)</p>
           </div>
         </div>
         <div class="accordion-header-right">
@@ -517,154 +522,477 @@
       <div class="section-collapsible-body">
         <div class="metrics-grid">
 
-        <!-- 1. 출석률 -->
+          <!-- 1. 출석률 -->
 
-        <div class="metric-card">
+          <div class="metric-card">
 
-          <div class="metric-header-part">
+            <div class="metric-header-part">
 
-            <div class="metric-num-wrap">
+              <div class="metric-num-wrap">
 
-              <span class="metric-num">39/39일</span>
+                <span class="metric-num">39/39일</span>
 
-              <span class="metric-rate">(100%)</span>
+                <span class="metric-rate">(100%)</span>
+
+              </div>
+
+              <p class="metric-label">출석률, 결석 0</p>
 
             </div>
 
-            <p class="metric-label">출석률, 결석 0</p>
+
+
+            <!-- 차트: 100% 원형 도넛 게이지 + 39일 연속 출석 도트 스트릭 -->
+
+            <div class="metric-chart-wrap" aria-label="출석률 100% 시각화">
+
+              <div class="attendance-visual">
+
+                <div class="live-clock-box" id="liveClock" title="실시간 아날로그 시계" aria-label="현재 시각 아날로그 시계">
+
+                  <svg class="analog-clock" viewBox="0 0 40 40">
+
+                    <circle class="clock-face" cx="20" cy="20" r="18" fill="none" stroke="currentColor"
+                      stroke-width="1.8" />
+
+                    <!-- 12, 3, 6, 9 눈금 -->
+
+                    <line class="clock-tick" x1="20" y1="4" x2="20" y2="7" stroke="currentColor" stroke-width="1.4" />
+
+                    <line class="clock-tick" x1="36" y1="20" x2="33" y2="20" stroke="currentColor" stroke-width="1.4" />
+
+                    <line class="clock-tick" x1="20" y1="36" x2="20" y2="33" stroke="currentColor" stroke-width="1.4" />
+
+                    <line class="clock-tick" x1="4" y1="20" x2="7" y2="20" stroke="currentColor" stroke-width="1.4" />
+
+                    <!-- 시침 / 분침 / 초침 회전 그룹 -->
+
+                    <g id="clockHourHand">
+
+                      <line x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" />
+
+                    </g>
+
+                    <g id="clockMinuteHand">
+
+                      <line x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" />
+
+                    </g>
+
+                    <g id="clockSecondHand">
+
+                      <line x1="20" y1="22" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round" />
+
+                    </g>
+
+                    <circle class="clock-pivot" cx="20" cy="20" r="1.8" fill="#ef4444" />
+
+                  </svg>
+
+                </div>
+
+                <div class="attendance-cal-area" title="한 달 31일 무결석 연속 출석 기록">
+
+                  <div class="cal-days-header" aria-hidden="true">
+
+                    <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>
+
+                  </div>
+
+                  <div class="cal-days-matrix" aria-hidden="true">
+
+                    <span class="cal-cell done" title="Day 1 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 2 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 3 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 4 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 5 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 6 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 7 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 8 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 9 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 10 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 11 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 12 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 13 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 14 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 15 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 16 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 17 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 18 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 19 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 20 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 21 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 22 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 23 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 24 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 25 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 26 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 27 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 28 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 29 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 30 (출석 완료)"></span>
+
+                    <span class="cal-cell done" title="Day 31 (출석 완료)"></span>
+
+                  </div>
+
+                  <span class="streak-caption">한 달 31일 기준 완전 연속 출석 달성</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="metric-source">
+
+              <span class="metric-source-dot" aria-hidden="true"></span>
+
+              <span>출처: 내 출석 기록</span>
+
+            </div>
 
           </div>
 
 
 
-          <!-- 차트: 100% 원형 도넛 게이지 + 39일 연속 출석 도트 스트릭 -->
+          <!-- 2. 리추얼 작성 일수 -->
 
-          <div class="metric-chart-wrap" aria-label="출석률 100% 시각화">
+          <div class="metric-card">
 
-            <div class="attendance-visual">
+            <div class="metric-header-part">
 
-              <div class="live-clock-box" id="liveClock" title="실시간 아날로그 시계" aria-label="현재 시각 아날로그 시계">
+              <div class="metric-num-wrap">
 
-                <svg class="analog-clock" viewBox="0 0 40 40">
+                <span class="metric-num">39일</span>
 
-                  <circle class="clock-face" cx="20" cy="20" r="18" fill="none" stroke="currentColor"
-                    stroke-width="1.8" />
+              </div>
 
-                  <!-- 12, 3, 6, 9 눈금 -->
+              <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range">(2026-08-11 ~ 10-08)</span></p>
 
-                  <line class="clock-tick" x1="20" y1="4" x2="20" y2="7" stroke="currentColor" stroke-width="1.4" />
+            </div>
 
-                  <line class="clock-tick" x1="36" y1="20" x2="33" y2="20" stroke="currentColor" stroke-width="1.4" />
 
-                  <line class="clock-tick" x1="20" y1="36" x2="20" y2="33" stroke="currentColor" stroke-width="1.4" />
 
-                  <line class="clock-tick" x1="4" y1="20" x2="7" y2="20" stroke="currentColor" stroke-width="1.4" />
+            <!-- 차트: 8주간 지속 누적 타임라인 트래커 -->
 
-                  <!-- 시침 / 분침 / 초침 회전 그룹 -->
+            <div class="metric-chart-wrap" aria-label="리추얼 지속 기간 타임라인">
 
-                  <g id="clockHourHand">
+              <div class="timeline-bar-chart">
 
-                    <line x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2"
-                      stroke-linecap="round" />
+                <div class="timeline-bar-track">
 
-                  </g>
+                  <div class="timeline-bar-fill" style="width: 100%;"></div>
 
-                  <g id="clockMinuteHand">
+                  <div class="timeline-bar-pointer"></div>
 
-                    <line x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" />
+                </div>
 
-                  </g>
+                <div class="timeline-bar-scale" aria-hidden="true">
 
-                  <g id="clockSecondHand">
+                  <span class="scale-label">08.11 (개강)</span>
 
-                    <line x1="20" y1="22" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round" />
+                  <span class="scale-mid">총 8주간 매일 기록</span>
 
-                  </g>
+                  <span class="scale-label">10.08 (현재)</span>
 
-                  <circle class="clock-pivot" cx="20" cy="20" r="1.8" fill="#ef4444" />
+                </div>
+
+                <div class="timeline-week-blocks" aria-hidden="true">
+
+                  <span class="week-pill active">1주</span>
+
+                  <span class="week-pill active">2주</span>
+
+                  <span class="week-pill active">3주</span>
+
+                  <span class="week-pill active">4주</span>
+
+                  <span class="week-pill active">5주</span>
+
+                  <span class="week-pill active">6주</span>
+
+                  <span class="week-pill active">7주</span>
+
+                  <span class="week-pill active">8주</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="metric-source">
+
+              <span class="metric-source-dot" aria-hidden="true"></span>
+
+              <span>출처: 리추얼 기록</span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 3. 강점 행동 실천 비율 + 고난 장면 짝짓기 -->
+
+          <div class="metric-card highlight-card">
+
+            <div class="metric-header-part">
+
+              <div class="metric-num-wrap">
+
+                <span class="metric-num">35/39일</span>
+
+                <span class="metric-rate">(90%)</span>
+
+              </div>
+
+              <p class="metric-label">강점 행동 "실천했다" 비율</p>
+
+            </div>
+
+
+
+            <!-- 차트: 90% 게이지 세그먼트 바 + 고난 인용 뱃지 -->
+
+            <div class="metric-chart-wrap" aria-label="강점 행동 실천율 90%">
+
+              <div class="practice-gauge-box">
+
+                <div class="segmented-bar" aria-hidden="true">
+
+                  <div class="segmented-fill" style="width: 89.7%;"></div>
+
+                  <div class="segmented-unfill" style="width: 10.3%;"></div>
+
+                </div>
+
+                <div class="gauge-meta-row">
+
+                  <span class="gauge-tag-success">실천 35일 (90%)</span>
+
+                  <span class="gauge-tag-rest">재정비 4일</span>
+
+                </div>
+
+              </div>
+
+              <div class="metric-quote-badge">
+
+                <span class="quote-mark">“</span>번아웃 이후에도 멈추지 않고 매일 기록한 숫자<span class="quote-mark">”</span>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="metric-source">
+
+              <span class="metric-source-dot" aria-hidden="true"></span>
+
+              <span>출처: 리추얼 기록</span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 4. 아침 호흡 시간 -->
+
+          <div class="metric-card">
+
+            <div class="metric-header-part">
+
+              <div class="metric-num-wrap">
+
+                <span class="metric-num">평균 3.1분</span>
+
+              </div>
+
+              <p class="metric-label">매일 아침 호흡 시간</p>
+
+            </div>
+
+
+
+            <!-- 차트: 안정적인 호흡 루틴 SVG 스파크라인 파형 -->
+
+            <div class="metric-chart-wrap" aria-label="아침 호흡 루틴 일자별 파형 그래프">
+
+              <div class="sparkline-chart-box">
+
+                <svg class="sparkline-svg" viewBox="0 0 240 56">
+
+                  <defs>
+
+                    <linearGradient id="breatheGrad" x1="0" y1="0" x2="0" y2="1">
+
+                      <stop offset="0%" stop-color="currentColor" stop-opacity="0.25" />
+
+                      <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />
+
+                    </linearGradient>
+
+                  </defs>
+
+                  <!-- 평균 3.1분 기준 점선 가이드 -->
+
+                  <line x1="0" y1="25" x2="240" y2="25" class="sparkline-guide" stroke-dasharray="3,3" />
+
+                  <!-- 부드러운 호흡 그라디언트 영역 -->
+
+                  <path class="sparkline-area"
+                    d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25 L 240,50 L 0,50 Z" />
+
+                  <!-- 메인 호흡 사인 파동 (들숨·날숨 리듬) -->
+
+                  <path class="sparkline-line"
+                    d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25" />
+
+                  <!-- 4구간 흡기 피크 인디케이터 (각 주기 정점 정확 배치) -->
+
+                  <circle cx="15" cy="17.5" r="3" class="sparkline-point" />
+
+                  <circle cx="75" cy="17.5" r="3" class="sparkline-point" />
+
+                  <circle cx="135" cy="17.5" r="3" class="sparkline-point" />
+
+                  <circle cx="195" cy="17.5" r="3" class="sparkline-point active" />
 
                 </svg>
 
-              </div>
+                <div class="sparkline-meta">
 
-              <div class="attendance-cal-area" title="한 달 31일 무결석 연속 출석 기록">
+                  <span>규칙적 4구간 들숨·날숨 리듬</span>
 
-                <div class="cal-days-header" aria-hidden="true">
-
-                  <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>
+                  <span class="sparkline-badge">일관도 98% (안정)</span>
 
                 </div>
 
-                <div class="cal-days-matrix" aria-hidden="true">
+              </div>
 
-                  <span class="cal-cell done" title="Day 1 (출석 완료)"></span>
+            </div>
 
-                  <span class="cal-cell done" title="Day 2 (출석 완료)"></span>
 
-                  <span class="cal-cell done" title="Day 3 (출석 완료)"></span>
 
-                  <span class="cal-cell done" title="Day 4 (출석 완료)"></span>
+            <div class="metric-source">
 
-                  <span class="cal-cell done" title="Day 5 (출석 완료)"></span>
+              <span class="metric-source-dot" aria-hidden="true"></span>
 
-                  <span class="cal-cell done" title="Day 6 (출석 완료)"></span>
+              <span>출처: 리추얼 기록</span>
 
-                  <span class="cal-cell done" title="Day 7 (출석 완료)"></span>
+            </div>
 
-                  <span class="cal-cell done" title="Day 8 (출석 완료)"></span>
+          </div>
 
-                  <span class="cal-cell done" title="Day 9 (출석 완료)"></span>
 
-                  <span class="cal-cell done" title="Day 10 (출석 완료)"></span>
 
-                  <span class="cal-cell done" title="Day 11 (출석 완료)"></span>
+          <!-- 5. 동료 피드백 교환 횟수 -->
 
-                  <span class="cal-cell done" title="Day 12 (출석 완료)"></span>
+          <div class="metric-card">
 
-                  <span class="cal-cell done" title="Day 13 (출석 완료)"></span>
+            <div class="metric-header-part">
 
-                  <span class="cal-cell done" title="Day 14 (출석 완료)"></span>
+              <div class="metric-num-wrap">
 
-                  <span class="cal-cell done" title="Day 15 (출석 완료)"></span>
+                <span class="metric-num">55회</span>
 
-                  <span class="cal-cell done" title="Day 16 (출석 완료)"></span>
+              </div>
 
-                  <span class="cal-cell done" title="Day 17 (출석 완료)"></span>
+              <p class="metric-label">동료 피드백 교환 횟수</p>
 
-                  <span class="cal-cell done" title="Day 18 (출석 완료)"></span>
+            </div>
 
-                  <span class="cal-cell done" title="Day 19 (출석 완료)"></span>
 
-                  <span class="cal-cell done" title="Day 20 (출석 완료)"></span>
 
-                  <span class="cal-cell done" title="Day 21 (출석 완료)"></span>
+            <!-- 차트: 주차별 피드백 교환 볼륨 미니 바 차트 -->
 
-                  <span class="cal-cell done" title="Day 22 (출석 완료)"></span>
+            <div class="metric-chart-wrap" aria-label="주차별 피드백 교환 빈도 막대 그래프">
 
-                  <span class="cal-cell done" title="Day 23 (출석 완료)"></span>
+              <div class="mini-bar-chart">
 
-                  <span class="cal-cell done" title="Day 24 (출석 완료)"></span>
+                <div class="bars-container" aria-hidden="true">
 
-                  <span class="cal-cell done" title="Day 25 (출석 완료)"></span>
+                  <div class="bar-col"><span class="bar-fill" style="height: 60%;" title="1주차: 6회"></span><span
+                      class="bar-x">W1</span></div>
 
-                  <span class="cal-cell done" title="Day 26 (출석 완료)"></span>
+                  <div class="bar-col"><span class="bar-fill" style="height: 70%;" title="2주차: 7회"></span><span
+                      class="bar-x">W2</span></div>
 
-                  <span class="cal-cell done" title="Day 27 (출석 완료)"></span>
+                  <div class="bar-col"><span class="bar-fill" style="height: 90%;" title="3주차: 9회"></span><span
+                      class="bar-x">W3</span></div>
 
-                  <span class="cal-cell done" title="Day 28 (출석 완료)"></span>
+                  <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="4주차: 8회"></span><span
+                      class="bar-x">W4</span></div>
 
-                  <span class="cal-cell done" title="Day 29 (출석 완료)"></span>
+                  <div class="bar-col"><span class="bar-fill" style="height: 95%;" title="5주차: 9회"></span><span
+                      class="bar-x">W5</span></div>
 
-                  <span class="cal-cell done" title="Day 30 (출석 완료)"></span>
+                  <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="6주차: 8회"></span><span
+                      class="bar-x">W6</span></div>
 
-                  <span class="cal-cell done" title="Day 31 (출석 완료)"></span>
+                  <div class="bar-col"><span class="bar-fill active" style="height: 85%;" title="7주차+: 8회"></span><span
+                      class="bar-x">W7</span></div>
 
                 </div>
 
-                <span class="streak-caption">한 달 31일 기준 완전 연속 출석 달성</span>
+                <div class="bar-chart-meta">
+
+                  <span>평균 주 7.8회 교환</span>
+
+                  <span class="bar-total-tag">상호 협업</span>
+
+                </div>
 
               </div>
+
+            </div>
+
+
+
+            <div class="metric-source">
+
+              <span class="metric-source-dot" aria-hidden="true"></span>
+
+              <span>출처: 리추얼 기록</span>
 
             </div>
 
@@ -672,407 +1000,47 @@
 
 
 
-          <div class="metric-source">
+          <!-- 6. 핵심 과제 마스터 승인 -->
+          <div class="metric-card">
+            <div class="metric-header-part">
+              <div class="metric-num-wrap">
+                <span class="metric-num">13/13개</span>
+              </div>
+              <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag">전체 마스터 완주</span></p>
+            </div>
 
-            <span class="metric-source-dot" aria-hidden="true"></span>
+            <!-- 차트: 13단계 과제 로드맵 스테퍼 파이프라인 -->
+            <div class="metric-chart-wrap" aria-label="13개 과제 진행 파이프라인">
+              <div class="stepper-pipeline">
+                <div class="stepper-track" aria-hidden="true">
+                  <span class="step-dot completed" title="1번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="2번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="3번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="4번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="5번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="6번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="7번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="8번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="9번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="10번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="11번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="12번 과제 완료">✓</span>
+                  <span class="step-dot completed" title="13번 과제 완료">✓</span>
+                </div>
+                <div class="stepper-meta">
+                  <span class="stepper-status">마스터 승인율 <strong>100.0%</strong></span>
+                  <span class="stepper-badge">전체 마스터 완주</span>
+                </div>
+              </div>
+            </div>
 
-            <span>출처: 내 출석 기록</span>
-
+            <div class="metric-source">
+              <span class="metric-source-dot" aria-hidden="true"></span>
+              <span>출처: <a href="https://aleph-omega.vercel.app/cortex?panel=tasks" target="_blank"
+                  rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">내 제출 현황</a></span>
+            </div>
           </div>
-
         </div>
-
-
-
-        <!-- 2. 리추얼 작성 일수 -->
-
-        <div class="metric-card">
-
-          <div class="metric-header-part">
-
-            <div class="metric-num-wrap">
-
-              <span class="metric-num">39일</span>
-
-            </div>
-
-            <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range">(2026-08-11 ~ 10-08)</span></p>
-
-          </div>
-
-
-
-          <!-- 차트: 8주간 지속 누적 타임라인 트래커 -->
-
-          <div class="metric-chart-wrap" aria-label="리추얼 지속 기간 타임라인">
-
-            <div class="timeline-bar-chart">
-
-              <div class="timeline-bar-track">
-
-                <div class="timeline-bar-fill" style="width: 100%;"></div>
-
-                <div class="timeline-bar-pointer"></div>
-
-              </div>
-
-              <div class="timeline-bar-scale" aria-hidden="true">
-
-                <span class="scale-label">08.11 (개강)</span>
-
-                <span class="scale-mid">총 8주간 매일 기록</span>
-
-                <span class="scale-label">10.08 (현재)</span>
-
-              </div>
-
-              <div class="timeline-week-blocks" aria-hidden="true">
-
-                <span class="week-pill active">1주</span>
-
-                <span class="week-pill active">2주</span>
-
-                <span class="week-pill active">3주</span>
-
-                <span class="week-pill active">4주</span>
-
-                <span class="week-pill active">5주</span>
-
-                <span class="week-pill active">6주</span>
-
-                <span class="week-pill active">7주</span>
-
-                <span class="week-pill active">8주</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="metric-source">
-
-            <span class="metric-source-dot" aria-hidden="true"></span>
-
-            <span>출처: 리추얼 기록</span>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 3. 강점 행동 실천 비율 + 고난 장면 짝짓기 -->
-
-        <div class="metric-card highlight-card">
-
-          <div class="metric-header-part">
-
-            <div class="metric-num-wrap">
-
-              <span class="metric-num">35/39일</span>
-
-              <span class="metric-rate">(90%)</span>
-
-            </div>
-
-            <p class="metric-label">강점 행동 "실천했다" 비율</p>
-
-          </div>
-
-
-
-          <!-- 차트: 90% 게이지 세그먼트 바 + 고난 인용 뱃지 -->
-
-          <div class="metric-chart-wrap" aria-label="강점 행동 실천율 90%">
-
-            <div class="practice-gauge-box">
-
-              <div class="segmented-bar" aria-hidden="true">
-
-                <div class="segmented-fill" style="width: 89.7%;"></div>
-
-                <div class="segmented-unfill" style="width: 10.3%;"></div>
-
-              </div>
-
-              <div class="gauge-meta-row">
-
-                <span class="gauge-tag-success">실천 35일 (90%)</span>
-
-                <span class="gauge-tag-rest">재정비 4일</span>
-
-              </div>
-
-            </div>
-
-            <div class="metric-quote-badge">
-
-              <span class="quote-mark">“</span>번아웃 이후에도 멈추지 않고 매일 기록한 숫자<span class="quote-mark">”</span>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="metric-source">
-
-            <span class="metric-source-dot" aria-hidden="true"></span>
-
-            <span>출처: 리추얼 기록</span>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 4. 아침 호흡 시간 -->
-
-        <div class="metric-card">
-
-          <div class="metric-header-part">
-
-            <div class="metric-num-wrap">
-
-              <span class="metric-num">평균 3.1분</span>
-
-            </div>
-
-            <p class="metric-label">매일 아침 호흡 시간</p>
-
-          </div>
-
-
-
-          <!-- 차트: 안정적인 호흡 루틴 SVG 스파크라인 파형 -->
-
-          <div class="metric-chart-wrap" aria-label="아침 호흡 루틴 일자별 파형 그래프">
-
-            <div class="sparkline-chart-box">
-
-              <svg class="sparkline-svg" viewBox="0 0 240 56">
-
-                <defs>
-
-                  <linearGradient id="breatheGrad" x1="0" y1="0" x2="0" y2="1">
-
-                    <stop offset="0%" stop-color="currentColor" stop-opacity="0.25" />
-
-                    <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />
-
-                  </linearGradient>
-
-                </defs>
-
-                <!-- 평균 3.1분 기준 점선 가이드 -->
-
-                <line x1="0" y1="25" x2="240" y2="25" class="sparkline-guide" stroke-dasharray="3,3" />
-
-                <!-- 부드러운 호흡 그라디언트 영역 -->
-
-                <path class="sparkline-area"
-                  d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25 L 240,50 L 0,50 Z" />
-
-                <!-- 메인 호흡 사인 파동 (들숨·날숨 리듬) -->
-
-                <path class="sparkline-line"
-                  d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25" />
-
-                <!-- 4구간 흡기 피크 인디케이터 (각 주기 정점 정확 배치) -->
-
-                <circle cx="15" cy="17.5" r="3" class="sparkline-point" />
-
-                <circle cx="75" cy="17.5" r="3" class="sparkline-point" />
-
-                <circle cx="135" cy="17.5" r="3" class="sparkline-point" />
-
-                <circle cx="195" cy="17.5" r="3" class="sparkline-point active" />
-
-              </svg>
-
-              <div class="sparkline-meta">
-
-                <span>규칙적 4구간 들숨·날숨 리듬</span>
-
-                <span class="sparkline-badge">일관도 98% (안정)</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="metric-source">
-
-            <span class="metric-source-dot" aria-hidden="true"></span>
-
-            <span>출처: 리추얼 기록</span>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 5. 동료 피드백 교환 횟수 -->
-
-        <div class="metric-card">
-
-          <div class="metric-header-part">
-
-            <div class="metric-num-wrap">
-
-              <span class="metric-num">55회</span>
-
-            </div>
-
-            <p class="metric-label">동료 피드백 교환 횟수</p>
-
-          </div>
-
-
-
-          <!-- 차트: 주차별 피드백 교환 볼륨 미니 바 차트 -->
-
-          <div class="metric-chart-wrap" aria-label="주차별 피드백 교환 빈도 막대 그래프">
-
-            <div class="mini-bar-chart">
-
-              <div class="bars-container" aria-hidden="true">
-
-                <div class="bar-col"><span class="bar-fill" style="height: 60%;" title="1주차: 6회"></span><span
-                    class="bar-x">W1</span></div>
-
-                <div class="bar-col"><span class="bar-fill" style="height: 70%;" title="2주차: 7회"></span><span
-                    class="bar-x">W2</span></div>
-
-                <div class="bar-col"><span class="bar-fill" style="height: 90%;" title="3주차: 9회"></span><span
-                    class="bar-x">W3</span></div>
-
-                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="4주차: 8회"></span><span
-                    class="bar-x">W4</span></div>
-
-                <div class="bar-col"><span class="bar-fill" style="height: 95%;" title="5주차: 9회"></span><span
-                    class="bar-x">W5</span></div>
-
-                <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="6주차: 8회"></span><span
-                    class="bar-x">W6</span></div>
-
-                <div class="bar-col"><span class="bar-fill active" style="height: 85%;" title="7주차+: 8회"></span><span
-                    class="bar-x">W7</span></div>
-
-              </div>
-
-              <div class="bar-chart-meta">
-
-                <span>평균 주 7.8회 교환</span>
-
-                <span class="bar-total-tag">상호 협업</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="metric-source">
-
-            <span class="metric-source-dot" aria-hidden="true"></span>
-
-            <span>출처: 리추얼 기록</span>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 6. 핵심 과제 마스터 승인 -->
-
-        <div class="metric-card">
-
-          <div class="metric-header-part">
-
-            <div class="metric-num-wrap">
-
-              <span class="metric-num">11/13개</span>
-
-            </div>
-
-            <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag">12번 진행 중</span></p>
-
-          </div>
-
-
-
-          <!-- 차트: 13단계 과제 로드맵 스테퍼 파이프라인 -->
-
-          <div class="metric-chart-wrap" aria-label="13개 과제 진행 파이프라인">
-
-            <div class="stepper-pipeline">
-
-              <div class="stepper-track" aria-hidden="true">
-
-                <span class="step-dot completed" title="1번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="2번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="3번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="4번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="5번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="6번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="7번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="8번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="9번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="10번 과제 완료">✓</span>
-
-                <span class="step-dot completed" title="11번 과제 완료">✓</span>
-
-                <span class="step-dot current" title="12번 과제 진행 중">12</span>
-
-                <span class="step-dot upcoming" title="13번 과제 대기">13</span>
-
-              </div>
-
-              <div class="stepper-meta">
-
-                <span class="stepper-status">마스터 승인율 <strong>84.6%</strong></span>
-
-                <span class="stepper-badge">최종 관문 진입</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="metric-source">
-
-            <span class="metric-source-dot" aria-hidden="true"></span>
-
-            <span>출처: 내 제출 현황</span>
-
-          </div>
-
-        </div>
-      </div>
     </section>
     <hr class="divider">
 
@@ -1095,52 +1063,167 @@
       <div class="section-collapsible-body">
         <div class="sar-list">
 
-        <div class="sar-item">
+          <div class="sar-item">
 
-          <button class="sar-toggle" type="button" aria-expanded="false" aria-controls="sar1-detail">
+            <button class="sar-toggle" type="button" aria-expanded="false" aria-controls="sar1-detail">
 
-            <span class="sar-number" aria-hidden="true">01</span>
+              <span class="sar-number" aria-hidden="true">01</span>
 
-            <span class="sar-name">문제 해결력</span>
+              <span class="sar-name">문제 해결력</span>
 
-            <span class="sar-arrow" aria-hidden="true">
+              <span class="sar-arrow" aria-hidden="true">
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14">
 
-                <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
 
-                <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
 
-              </svg>
+                </svg>
 
-            </span>
+              </span>
 
-          </button>
+            </button>
 
-          <div class="sar-detail" id="sar1-detail" hidden>
+            <div class="sar-detail" id="sar1-detail" hidden>
 
-            <div class="sar-step">
+              <div class="sar-step">
 
-              <span class="sar-label">상황</span>
+                <span class="sar-label">상황</span>
 
-              <p>응급실 교대 근무 시 구두 인수인계로 인해 업무 누락과 미신고가 반복 발생하여 민원 및 타 부서의 지적이 이어졌습니다.</p>
+                <p>응급실 교대 근무 시 구두 인수인계로 인해 업무 누락과 미신고가 반복 발생하여 민원 및 타 부서의 지적이 이어졌습니다.</p>
+
+              </div>
+
+              <div class="sar-step">
+
+                <span class="sar-label">행동</span>
+
+                <p>구글 스프레드시트와 Docs를 도입하여 고정 업무, 특이사항, 인수인계 내용을 기록하고 근무지 외 교대 근무자에게 실시간으로 공유되는 환경을 구축했습니다.</p>
+
+              </div>
+
+              <div class="sar-step">
+
+                <span class="sar-label">결과</span>
+
+                <p>야간 감염병 신고 누락이 감소하고, 상급자 지시와 특이 환자 정보가 빠르게 공유되면서 업무 실수와 근무자 스트레스가 줄었습니다.</p>
+
+              </div>
 
             </div>
 
-            <div class="sar-step">
+          </div>
 
-              <span class="sar-label">행동</span>
 
-              <p>구글 스프레드시트와 Docs를 도입하여 고정 업무, 특이사항, 인수인계 내용을 기록하고 근무지 외 교대 근무자에게 실시간으로 공유되는 환경을 구축했습니다.</p>
+
+          <div class="sar-item">
+
+            <button class="sar-toggle" type="button" aria-expanded="false" aria-controls="sar2-detail">
+
+              <span class="sar-number" aria-hidden="true">02</span>
+
+              <span class="sar-name">업무 프로세스 개선</span>
+
+              <span class="sar-arrow" aria-hidden="true">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14">
+
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+
+                </svg>
+
+              </span>
+
+            </button>
+
+            <div class="sar-detail" id="sar2-detail" hidden>
+
+              <div class="sar-step">
+
+                <span class="sar-label">상황</span>
+
+                <p>신규 입사자가 파트별 업무 구분이 불명확하여 혼동과 부담감으로 업무 실수가 발생했습니다.</p>
+
+              </div>
+
+              <div class="sar-step">
+
+                <span class="sar-label">행동</span>
+
+                <p>응급실, 외래, 의무기록, 제증명, 입원 등 5개 파트로 분류하고, 각 파트별 주요 업무 루틴과 매뉴얼을 문서화했습니다.</p>
+
+              </div>
+
+              <div class="sar-step">
+
+                <span class="sar-label">결과</span>
+
+                <p>파트 간 업무 구분이 명확해지면서 신규 입사자의 타 파트 업무 습득력이 향상되었습니다.</p>
+
+              </div>
 
             </div>
 
-            <div class="sar-step">
+          </div>
 
-              <span class="sar-label">결과</span>
 
-              <p>야간 감염병 신고 누락이 감소하고, 상급자 지시와 특이 환자 정보가 빠르게 공유되면서 업무 실수와 근무자 스트레스가 줄었습니다.</p>
+
+          <div class="sar-item">
+
+            <button class="sar-toggle" type="button" aria-expanded="false" aria-controls="sar3-detail">
+
+              <span class="sar-number" aria-hidden="true">03</span>
+
+              <span class="sar-name">커뮤니케이션</span>
+
+              <span class="sar-arrow" aria-hidden="true">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14">
+
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+
+                </svg>
+
+              </span>
+
+            </button>
+
+            <div class="sar-detail" id="sar3-detail" hidden>
+
+              <div class="sar-step">
+
+                <span class="sar-label">상황</span>
+
+                <p>의료진과 심사팀 간 비용 문제로 환자 및 보호자 민원이 발생하고, 외부 보험사 문의와 2차 민원으로 확대되었습니다.</p>
+
+              </div>
+
+              <div class="sar-step">
+
+                <span class="sar-label">행동</span>
+
+                <p>의료진에서 원무로 비용 안내, 심사팀에서 원무로 급여/비급여 확인, 원무에서 의료진으로 공유되는 정보 흐름을 정립하고, 외부 문의는 원무과에서 종합 답변하도록 프로세스를
+                  강화했습니다.
+
+                </p>
+
+              </div>
+
+              <div class="sar-step">
+
+                <span class="sar-label">결과</span>
+
+                <p>고비용 검사 시 사전 동의와 전자서명 절차가 도입되어 비용 민원이 감소했고, 환자에게 개인 보험 확인 방향을 안내하여 비용 부담을 낮출 수 있었습니다.</p>
+
+              </div>
 
             </div>
 
@@ -1150,142 +1233,28 @@
 
 
 
-        <div class="sar-item">
+        <div class="strengths-footer-link">
 
-          <button class="sar-toggle" type="button" aria-expanded="false" aria-controls="sar2-detail">
+          <button type="button" class="strengths-story-btn" id="strengthsStoryBtn" data-story-target="story-sec-2"
+            aria-label="서사 문서의 강점 지도 및 동료 리추얼 관찰 기록 열람">
 
-            <span class="sar-number" aria-hidden="true">02</span>
+            <span>서사 문서의 강점 지도 &amp; 동료 리추얼 관찰 기록 보기</span>
 
-            <span class="sar-name">업무 프로세스 개선</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" width="14" height="14" aria-hidden="true">
 
-            <span class="sar-arrow" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14">
-
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-
-              </svg>
-
-            </span>
+            </svg>
 
           </button>
-
-          <div class="sar-detail" id="sar2-detail" hidden>
-
-            <div class="sar-step">
-
-              <span class="sar-label">상황</span>
-
-              <p>신규 입사자가 파트별 업무 구분이 불명확하여 혼동과 부담감으로 업무 실수가 발생했습니다.</p>
-
-            </div>
-
-            <div class="sar-step">
-
-              <span class="sar-label">행동</span>
-
-              <p>응급실, 외래, 의무기록, 제증명, 입원 등 5개 파트로 분류하고, 각 파트별 주요 업무 루틴과 매뉴얼을 문서화했습니다.</p>
-
-            </div>
-
-            <div class="sar-step">
-
-              <span class="sar-label">결과</span>
-
-              <p>파트 간 업무 구분이 명확해지면서 신규 입사자의 타 파트 업무 습득력이 향상되었습니다.</p>
-
-            </div>
-
-          </div>
-
         </div>
-
-
-
-        <div class="sar-item">
-
-          <button class="sar-toggle" type="button" aria-expanded="false" aria-controls="sar3-detail">
-
-            <span class="sar-number" aria-hidden="true">03</span>
-
-            <span class="sar-name">커뮤니케이션</span>
-
-            <span class="sar-arrow" aria-hidden="true">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14">
-
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-
-              </svg>
-
-            </span>
-
-          </button>
-
-          <div class="sar-detail" id="sar3-detail" hidden>
-
-            <div class="sar-step">
-
-              <span class="sar-label">상황</span>
-
-              <p>의료진과 심사팀 간 비용 문제로 환자 및 보호자 민원이 발생하고, 외부 보험사 문의와 2차 민원으로 확대되었습니다.</p>
-
-            </div>
-
-            <div class="sar-step">
-
-              <span class="sar-label">행동</span>
-
-              <p>의료진에서 원무로 비용 안내, 심사팀에서 원무로 급여/비급여 확인, 원무에서 의료진으로 공유되는 정보 흐름을 정립하고, 외부 문의는 원무과에서 종합 답변하도록 프로세스를 강화했습니다.
-
-              </p>
-
-            </div>
-
-            <div class="sar-step">
-
-              <span class="sar-label">결과</span>
-
-              <p>고비용 검사 시 사전 동의와 전자서명 절차가 도입되어 비용 민원이 감소했고, 환자에게 개인 보험 확인 방향을 안내하여 비용 부담을 낮출 수 있었습니다.</p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="strengths-footer-link">
-
-        <button type="button" class="strengths-story-btn" id="strengthsStoryBtn" data-story-target="story-sec-2"
-          aria-label="서사 문서의 강점 지도 및 동료 리추얼 관찰 기록 열람">
-
-          <span>서사 문서의 강점 지도 &amp; 동료 리추얼 관찰 기록 보기</span>
-
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" width="14" height="14" aria-hidden="true">
-
-            <polyline points="9 18 15 12 9 6"></polyline>
-
-          </svg>
-
-        </button>
-      </div>
     </section>
     <hr class="divider">
 
     <!-- 프로젝트 섹션 -->
 
-        <section class="projects collapsible-section is-collapsed" id="projects" aria-label="프로젝트">
+    <section class="projects collapsible-section is-collapsed" id="projects" aria-label="프로젝트">
       <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
         <div class="accordion-header-left">
           <span class="section-num-tag">04</span>
@@ -1301,739 +1270,744 @@
       </div>
       <div class="section-collapsible-body">
 
-      <div class="projects-header-wrap">
+        <div class="projects-header-wrap">
 
-        <div>
+          <div>
 
-          <h2 class="section-title">Projects</h2>
+            <h2 class="section-title">Projects</h2>
 
-          <p class="section-slash" aria-hidden="true">/</p>
+            <p class="section-slash" aria-hidden="true">/</p>
+
+          </div>
+
+          <div class="project-filter-bar" role="tablist" aria-label="프로젝트 분류 필터">
+
+            <button type="button" class="proj-chip active" data-filter="all">전체 (9)</button>
+
+            <button type="button" class="proj-chip" data-filter="platform">플랫폼 &amp; 풀스택 (4)</button>
+
+            <button type="button" class="proj-chip" data-filter="security">SKT ALEPH &amp; 보안 (3)</button>
+
+            <button type="button" class="proj-chip" data-filter="interactive">인터랙티브 &amp; 캔버스 (2)</button>
+
+          </div>
 
         </div>
 
-        <div class="project-filter-bar" role="tablist" aria-label="프로젝트 분류 필터">
+        <div class="project-grid" id="projectGrid">
 
-          <button type="button" class="proj-chip active" data-filter="all">전체 (9)</button>
+          <!-- 01. MediMatch (대표작 · 논문 연계 애플리케이션) -->
 
-          <button type="button" class="proj-chip" data-filter="platform">플랫폼 &amp; 풀스택 (4)</button>
+          <div class="project-item featured-project" data-category="platform">
 
-          <button type="button" class="proj-chip" data-filter="security">SKT ALEPH &amp; 보안 (3)</button>
+            <div class="project-item-top">
 
-          <button type="button" class="proj-chip" data-filter="interactive">인터랙티브 &amp; 캔버스 (2)</button>
+              <span class="project-num" aria-hidden="true">01</span>
 
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag" style="background:#0284c7; color:#fff; font-weight:700;">대표작 · 논문 연계</span>
+
+                <span class="proj-type-tag">Web Application</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="app/index.html" target="_blank" rel="noopener noreferrer">MediMatch — 진료비 예외정산 &amp; 공공관리 솔루션<svg
+                  class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">학술 논문 결과를 반영한 의료기관 진료비 미식별 입금 및 사망환자 미수령 환불금 검증 앱</p>
+
+            <p class="project-highlight"><strong>[앱 한 문장]</strong> 병원 원무과 행정 담당자가 타인명의 송금이나 사망환자 진료비 환불금을 정산할 때, 이 앱이
+              논문에서
+              규명한 '5단계 다차원 교차검증 및 안심상속 공공연계 모형'을 통해 미식별 입금을 즉시 대조하고 적법 상속권자를 검증하여 오지급 위험 없이 해결해 줍니다.</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">Vanilla JS</span>
+
+              <span class="tech-pill">5단계 다차원 모형</span>
+
+              <span class="tech-pill">공공행정연계</span>
+
+              <span class="tech-pill">감사 증적 리포트</span>
+
+            </div>
+
+            <div class="project-peer-review">
+              <span class="peer-quote-badge">동료 한 줄 감상</span>
+              <p class="peer-quote-text">"입금자명이 달라서 매번 계좌랑 차트 일일이 대조하던 일이었는데, 케이스 선택하고 검증 누르면 바로 확인돼서 실무에서 쓰기 정말 편할 것
+                같아요."</p>
+            </div>
+
+            <div class="project-links">
+
+              <a href="app/index.html" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn app-launch-btn primary-action"
+                style="background:#0284c7; color:#fff; border-color:#0284c7;" aria-label="MediMatch 웹 앱 새 탭에서 실행">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+
+                </svg>
+
+                <span>애플리케이션 실행</span>
+
+              </a>
+
+              <a href="research_paper/논문_오하율_261009.pdf" download class="proj-link-btn" aria-label="연계 논문 PDF 다운로드">
+
+                <span>연계 논문 PDF</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 02. Fastival-management (팀 프로젝트 / 플랫폼) -->
+
+          <div class="project-item" data-category="platform">
+
+            <div class="project-item-top">
+
+              <span class="project-num" aria-hidden="true">02</span>
+
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag team">팀 프로젝트</span>
+
+                <span class="proj-type-tag">Full-Stack</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
+                rel="noopener noreferrer">Fastival-management<svg class="project-ext-icon" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">축제 올인원 O2O 통합 플랫폼</p>
+
+            <p class="project-highlight">부스 실시간 대기열·예약 시스템 및 관리자/운영자/방문객 3계층 역할 권한 제어</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">Node.js</span>
+
+              <span class="tech-pill">Express</span>
+
+              <span class="tech-pill">MySQL</span>
+
+              <span class="tech-pill">REST API</span>
+
+            </div>
+
+            <div class="project-links">
+
+              <button type="button" class="proj-link-btn proof-btn" data-proj-id="fastival"
+                aria-label="Fastival-management 엔지니어링 증적 및 상세 프리뷰">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M2 12l10 5 10-5"></path>
+
+                  <path d="M2 17l10 5 10-5"></path>
+
+                  <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+
+                </svg>
+
+                <span>엔지니어링 증적</span>
+
+              </button>
+
+              <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
+                rel="noopener noreferrer" class="proj-link-btn" aria-label="Fastival-management 깃허브 코드">
+
+                <span>GitHub</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 03. WeddingPlatform (플랫폼) -->
+
+          <div class="project-item" data-category="platform">
+
+            <div class="project-item-top">
+
+              <span class="project-num" aria-hidden="true">03</span>
+
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag">Platform</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank"
+                rel="noopener noreferrer">WeddingPlatform<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">웨딩 올인원 통합 플랫폼</p>
+
+            <p class="project-highlight">전문가 컨설팅 예약, 모바일 청첩장 커스텀 빌더, 뷰티·헬스케어 매칭 및 CRM 일체화</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">Node.js</span>
+
+              <span class="tech-pill">Express</span>
+
+              <span class="tech-pill">MySQL</span>
+
+              <span class="tech-pill">JWT</span>
+
+              <span class="tech-pill">EJS</span>
+
+            </div>
+
+            <div class="project-links">
+
+              <button type="button" class="proj-link-btn proof-btn" data-proj-id="wedding"
+                aria-label="WeddingPlatform 엔지니어링 증적 및 상세 프리뷰">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M2 12l10 5 10-5"></path>
+
+                  <path d="M2 17l10 5 10-5"></path>
+
+                  <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+
+                </svg>
+
+                <span>엔지니어링 증적</span>
+
+              </button>
+
+              <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn" aria-label="WeddingPlatform 깃허브 코드">
+
+                <span>GitHub</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 03. VARO (플랫폼) -->
+
+          <div class="project-item" data-category="platform">
+
+            <div class="project-item-top">
+
+              <span class="project-num" aria-hidden="true">04</span>
+
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag">E-Commerce</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank"
+                rel="noopener noreferrer">VARO<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">남성 패션 커뮤니티 쇼핑몰</p>
+
+            <p class="project-highlight">스타일링 OOTD 피드와 실시간 장바구니/주문 트랜잭션 무결성 보장 및 인증 관리</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">Node.js</span>
+
+              <span class="tech-pill">Express</span>
+
+              <span class="tech-pill">MySQL</span>
+
+              <span class="tech-pill">JWT</span>
+
+            </div>
+
+            <div class="project-links">
+
+              <button type="button" class="proj-link-btn proof-btn" data-proj-id="varo"
+                aria-label="VARO 엔지니어링 증적 및 상세 프리뷰">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M2 12l10 5 10-5"></path>
+
+                  <path d="M2 17l10 5 10-5"></path>
+
+                  <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+
+                </svg>
+
+                <span>엔지니어링 증적</span>
+
+              </button>
+
+              <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn" aria-label="VARO 깃허브 코드">
+
+                <span>GitHub</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 04. 최부장 시크릿 볼트 (SKT ALEPH 보안 방어전) -->
+
+          <div class="project-item featured-project" data-category="security">
+
+            <div class="project-item-top">
+
+              <span class="project-num" aria-hidden="true">05</span>
+
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+
+                <span class="proj-type-tag security-tag">보안 방어전</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer">최부장
+                시크릿
+
+                볼트<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">BYTE BACK 가상 자료실 침해 방어전 실습</p>
+
+            <p class="project-highlight">공개 엔드포인트 비인가 접근 차단, 데이터 캡슐화, 자동 공격 판정 엔진(Attack Check) 무결성 통과</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">Vercel</span>
+
+              <span class="tech-pill">Security Policy</span>
+
+              <span class="tech-pill">API Hardening</span>
+
+              <span class="tech-pill">Node.js</span>
+
+            </div>
+
+            <div class="project-links">
+
+              <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="secret-vault"
+                aria-label="최부장 시크릿 볼트 엔지니어링 증적 및 보안 방어 로그">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+
+                </svg>
+
+                <span>보안 방어 증적</span>
+
+              </button>
+
+              <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn demo-btn" aria-label="최부장 시크릿 볼트 실시간 사이트 체험">
+
+                <span class="live-dot" aria-hidden="true"></span>
+
+                <span>Live Demo</span> &rarr;
+
+              </a>
+
+              <a href="https://github.com/HaYul0611/choi-bujang-secret-vault" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn" aria-label="최부장 시크릿 볼트 GitHub 저장소">
+
+                <span>GitHub</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 05. P.D.S Canvas (SKT ALEPH / 플랫폼) -->
+
+          <div class="project-item featured-project" data-category="security platform">
+
+            <div class="project-item-top">
+
+              <span class="project-num" aria-hidden="true">06</span>
+
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+
+                <span class="proj-type-tag">3D 양장본 다이어리</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer">P.D.S Canvas —
+
+                플랜두씨 다이어리<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">계획(Plan) &rarr; 실행(Do) &rarr; 회고(See) 성장 메트릭 다이어리</p>
+
+            <p class="project-highlight">0ms FOUC 차단 로그인, 캔들라이트 심야 서재 모드, 계획-실행 시간 오차 및 Blocker 시각화, Supabase 연동</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">JavaScript</span>
+
+              <span class="tech-pill">CSS 3D Transforms</span>
+
+              <span class="tech-pill">Supabase</span>
+
+              <span class="tech-pill">LocalStorage</span>
+
+            </div>
+
+            <div class="project-links">
+
+              <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="pds-diary"
+                aria-label="PDS 다이어리 엔지니어링 증적 및 아키텍처 상세 보기">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M2 12l10 5 10-5"></path>
+
+                  <path d="M2 17l10 5 10-5"></path>
+
+                  <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+
+                </svg>
+
+                <span>엔지니어링 증적</span>
+
+              </button>
+
+              <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn demo-btn" aria-label="PDS 다이어리 실시간 체험">
+
+                <span class="live-dot" aria-hidden="true"></span>
+
+                <span>Live Demo</span> &rarr;
+
+              </a>
+
+              <a href="https://github.com/HaYul0611/PDS-Diary" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn" aria-label="PDS 다이어리 GitHub 저장소">
+
+                <span>GitHub</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 06. 또햄찌 공방 (SKT ALEPH / 인터랙티브 캔버스) -->
+
+          <div class="project-item" data-category="interactive">
+
+            <div class="project-item-top">
+
+              <span class="project-num" aria-hidden="true">07</span>
+
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+
+                <span class="proj-type-tag">Canvas Studio</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer">또햄찌 공방
+
+                (Hamzzi Studio)<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">60FPS 캔버스 기반 고화질 웹 짤방 &amp; 스티커 에디터</p>
+
+            <p class="project-highlight">피사체 지향 8방향 자동 꼬리 계산 말풍선 알고리즘, 실시간 휠 줌/팬(-100~100), 원클릭 레이어 편집</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">HTML5 Canvas</span>
+
+              <span class="tech-pill">60FPS Drag/Zoom</span>
+
+              <span class="tech-pill">Geometry Algorithm</span>
+
+              <span class="tech-pill">Vanilla JS</span>
+
+            </div>
+
+            <div class="project-links">
+
+              <button type="button" class="proj-link-btn proof-btn" data-proj-id="hamzzi-studio"
+                aria-label="또햄찌 공방 엔지니어링 증적 및 알고리즘 상세 보기">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M2 12l10 5 10-5"></path>
+
+                  <path d="M2 17l10 5 10-5"></path>
+
+                  <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+
+                </svg>
+
+                <span>엔지니어링 증적</span>
+
+              </button>
+
+              <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn demo-btn" aria-label="또햄찌 공방 실시간 체험">
+
+                <span class="live-dot" aria-hidden="true"></span>
+
+                <span>Live Demo</span> &rarr;
+
+              </a>
+
+              <a href="https://github.com/HaYul0611/Hamzzi-Studio" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn" aria-label="또햄찌 공방 GitHub 저장소">
+
+                <span>GitHub</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 07. Apple 10 (SKT ALEPH / 인터랙티브 웹 퍼즐) -->
+
+          <div class="project-item" data-category="interactive">
+
+            <div class="project-item-top">
+
+              <span class="project-num" aria-hidden="true">08</span>
+
+              <div class="project-badge-group">
+
+                <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
+
+                <span class="proj-type-tag">Puzzle Game</span>
+
+              </div>
+
+            </div>
+
+            <h3 class="project-name">
+
+              <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer">Apple 10 —
+                사과게임
+
+                (닌텐도 에디션)<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg></a>
+
+            </h3>
+
+            <p class="project-desc">클래식 콘솔 프레임 감성의 수학 퍼즐 &amp; 랭킹 시스템</p>
+
+            <p class="project-highlight">1~10단계 정밀 난이도 가중치 알고리즘, 실물 사과 SVG 렌더링, Web Audio BGM 선택 및 명예의 전당</p>
+
+            <div class="project-tech-tags">
+
+              <span class="tech-pill">Vanilla JS</span>
+
+              <span class="tech-pill">SVG Graphics</span>
+
+              <span class="tech-pill">Web Audio API</span>
+
+              <span class="tech-pill">LocalStorage</span>
+
+            </div>
+
+            <div class="project-links">
+
+              <button type="button" class="proj-link-btn proof-btn" data-proj-id="apple-game"
+                aria-label="사과게임 엔지니어링 증적 및 알고리즘 상세 보기">
+
+                <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                  <path d="M2 12l10 5 10-5"></path>
+
+                  <path d="M2 17l10 5 10-5"></path>
+
+                  <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+
+                </svg>
+
+                <span>엔지니어링 증적</span>
+
+              </button>
+
+              <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn demo-btn" aria-label="사과게임 실시간 플레이">
+
+                <span class="live-dot" aria-hidden="true"></span>
+
+                <span>Live Demo</span> &rarr;
+
+              </a>
+
+              <a href="https://github.com/HaYul0611/apple-game" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn" aria-label="사과게임 GitHub 저장소">
+
+                <span>GitHub</span> &rarr;
+
+              </a>
+
+            </div>
+
+          </div>
         </div>
-
       </div>
-
-      <div class="project-grid" id="projectGrid">
-
-        <!-- 01. MediMatch (대표작 · 논문 연계 애플리케이션) -->
-
-        <div class="project-item featured-project" data-category="platform">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">01</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag" style="background:#0284c7; color:#fff; font-weight:700;">대표작 · 논문 연계</span>
-
-              <span class="proj-type-tag">Web Application</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="app/index.html" target="_blank" rel="noopener noreferrer">MediMatch — 진료비 예외정산 &amp; 공공관리 솔루션<svg
-                class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">학술 논문 결과를 반영한 의료기관 진료비 미식별 입금 및 사망환자 미수령 환불금 검증 앱</p>
-
-          <p class="project-highlight"><strong>[앱 한 문장]</strong> 병원 원무과 행정 담당자가 타인명의 송금이나 사망환자 진료비 환불금을 정산할 때, 이 앱이 논문에서
-            규명한 '5단계 다차원 교차검증 및 안심상속 공공연계 모형'을 통해 미식별 입금을 즉시 대조하고 적법 상속권자를 검증하여 오지급 위험 없이 해결해 줍니다.</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">Vanilla JS</span>
-
-            <span class="tech-pill">5단계 다차원 모형</span>
-
-            <span class="tech-pill">공공행정연계</span>
-
-            <span class="tech-pill">감사 증적 리포트</span>
-
-          </div>
-
-                    <div class="project-peer-review">
-            <span class="peer-quote-badge">동료 한 줄 감상</span>
-            <p class="peer-quote-text">"입금자명이 달라서 매번 계좌랑 차트 일일이 대조하던 일이었는데, 케이스 선택하고 검증 누르면 바로 확인돼서 실무에서 쓰기 정말 편할 것 같아요."</p>
-          </div>
-
-          <div class="project-links">
-
-            <a href="app/index.html" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn app-launch-btn primary-action"
-              style="background:#0284c7; color:#fff; border-color:#0284c7;" aria-label="MediMatch 웹 앱 새 탭에서 실행">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-
-              </svg>
-
-              <span>애플리케이션 실행</span>
-
-            </a>
-
-            <a href="research_paper/논문_오하율_261009.pdf" download class="proj-link-btn" aria-label="연계 논문 PDF 다운로드">
-
-              <span>연계 논문 PDF</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 02. Fastival-management (팀 프로젝트 / 플랫폼) -->
-
-        <div class="project-item" data-category="platform">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">02</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag team">팀 프로젝트</span>
-
-              <span class="proj-type-tag">Full-Stack</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
-              rel="noopener noreferrer">Fastival-management<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">축제 올인원 O2O 통합 플랫폼</p>
-
-          <p class="project-highlight">부스 실시간 대기열·예약 시스템 및 관리자/운영자/방문객 3계층 역할 권한 제어</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">Node.js</span>
-
-            <span class="tech-pill">Express</span>
-
-            <span class="tech-pill">MySQL</span>
-
-            <span class="tech-pill">REST API</span>
-
-          </div>
-
-          <div class="project-links">
-
-            <button type="button" class="proj-link-btn proof-btn" data-proj-id="fastival"
-              aria-label="Fastival-management 엔지니어링 증적 및 상세 프리뷰">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M2 12l10 5 10-5"></path>
-
-                <path d="M2 17l10 5 10-5"></path>
-
-                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
-
-              </svg>
-
-              <span>엔지니어링 증적</span>
-
-            </button>
-
-            <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
-              rel="noopener noreferrer" class="proj-link-btn" aria-label="Fastival-management 깃허브 코드">
-
-              <span>GitHub</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 03. WeddingPlatform (플랫폼) -->
-
-        <div class="project-item" data-category="platform">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">03</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag">Platform</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank"
-              rel="noopener noreferrer">WeddingPlatform<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">웨딩 올인원 통합 플랫폼</p>
-
-          <p class="project-highlight">전문가 컨설팅 예약, 모바일 청첩장 커스텀 빌더, 뷰티·헬스케어 매칭 및 CRM 일체화</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">Node.js</span>
-
-            <span class="tech-pill">Express</span>
-
-            <span class="tech-pill">MySQL</span>
-
-            <span class="tech-pill">JWT</span>
-
-            <span class="tech-pill">EJS</span>
-
-          </div>
-
-          <div class="project-links">
-
-            <button type="button" class="proj-link-btn proof-btn" data-proj-id="wedding"
-              aria-label="WeddingPlatform 엔지니어링 증적 및 상세 프리뷰">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M2 12l10 5 10-5"></path>
-
-                <path d="M2 17l10 5 10-5"></path>
-
-                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
-
-              </svg>
-
-              <span>엔지니어링 증적</span>
-
-            </button>
-
-            <a href="https://github.com/HaYul0611/WeddingPlatform" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn" aria-label="WeddingPlatform 깃허브 코드">
-
-              <span>GitHub</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 03. VARO (플랫폼) -->
-
-        <div class="project-item" data-category="platform">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">04</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag">E-Commerce</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer">VARO<svg
-                class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">남성 패션 커뮤니티 쇼핑몰</p>
-
-          <p class="project-highlight">스타일링 OOTD 피드와 실시간 장바구니/주문 트랜잭션 무결성 보장 및 인증 관리</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">Node.js</span>
-
-            <span class="tech-pill">Express</span>
-
-            <span class="tech-pill">MySQL</span>
-
-            <span class="tech-pill">JWT</span>
-
-          </div>
-
-          <div class="project-links">
-
-            <button type="button" class="proj-link-btn proof-btn" data-proj-id="varo"
-              aria-label="VARO 엔지니어링 증적 및 상세 프리뷰">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M2 12l10 5 10-5"></path>
-
-                <path d="M2 17l10 5 10-5"></path>
-
-                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
-
-              </svg>
-
-              <span>엔지니어링 증적</span>
-
-            </button>
-
-            <a href="https://github.com/HaYul0611/varo-shopping-mall" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn" aria-label="VARO 깃허브 코드">
-
-              <span>GitHub</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 04. 최부장 시크릿 볼트 (SKT ALEPH 보안 방어전) -->
-
-        <div class="project-item featured-project" data-category="security">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">05</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
-
-              <span class="proj-type-tag security-tag">보안 방어전</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer">최부장 시크릿
-
-              볼트<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">BYTE BACK 가상 자료실 침해 방어전 실습</p>
-
-          <p class="project-highlight">공개 엔드포인트 비인가 접근 차단, 데이터 캡슐화, 자동 공격 판정 엔진(Attack Check) 무결성 통과</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">Vercel</span>
-
-            <span class="tech-pill">Security Policy</span>
-
-            <span class="tech-pill">API Hardening</span>
-
-            <span class="tech-pill">Node.js</span>
-
-          </div>
-
-          <div class="project-links">
-
-            <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="secret-vault"
-              aria-label="최부장 시크릿 볼트 엔지니어링 증적 및 보안 방어 로그">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-
-              </svg>
-
-              <span>보안 방어 증적</span>
-
-            </button>
-
-            <a href="https://choi-bujang-secret-vault-teal.vercel.app" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn demo-btn" aria-label="최부장 시크릿 볼트 실시간 사이트 체험">
-
-              <span class="live-dot" aria-hidden="true"></span>
-
-              <span>Live Demo</span> &rarr;
-
-            </a>
-
-            <a href="https://github.com/HaYul0611/choi-bujang-secret-vault" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn" aria-label="최부장 시크릿 볼트 GitHub 저장소">
-
-              <span>GitHub</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 05. P.D.S Canvas (SKT ALEPH / 플랫폼) -->
-
-        <div class="project-item featured-project" data-category="security platform">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">06</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
-
-              <span class="proj-type-tag">3D 양장본 다이어리</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer">P.D.S Canvas —
-
-              플랜두씨 다이어리<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">계획(Plan) &rarr; 실행(Do) &rarr; 회고(See) 성장 메트릭 다이어리</p>
-
-          <p class="project-highlight">0ms FOUC 차단 로그인, 캔들라이트 심야 서재 모드, 계획-실행 시간 오차 및 Blocker 시각화, Supabase 연동</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">JavaScript</span>
-
-            <span class="tech-pill">CSS 3D Transforms</span>
-
-            <span class="tech-pill">Supabase</span>
-
-            <span class="tech-pill">LocalStorage</span>
-
-          </div>
-
-          <div class="project-links">
-
-            <button type="button" class="proj-link-btn proof-btn highlight-proof-btn" data-proj-id="pds-diary"
-              aria-label="PDS 다이어리 엔지니어링 증적 및 아키텍처 상세 보기">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M2 12l10 5 10-5"></path>
-
-                <path d="M2 17l10 5 10-5"></path>
-
-                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
-
-              </svg>
-
-              <span>엔지니어링 증적</span>
-
-            </button>
-
-            <a href="https://hayul0611.github.io/PDS-Diary/" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn demo-btn" aria-label="PDS 다이어리 실시간 체험">
-
-              <span class="live-dot" aria-hidden="true"></span>
-
-              <span>Live Demo</span> &rarr;
-
-            </a>
-
-            <a href="https://github.com/HaYul0611/PDS-Diary" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn" aria-label="PDS 다이어리 GitHub 저장소">
-
-              <span>GitHub</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 06. 또햄찌 공방 (SKT ALEPH / 인터랙티브 캔버스) -->
-
-        <div class="project-item" data-category="interactive">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">07</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
-
-              <span class="proj-type-tag">Canvas Studio</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer">또햄찌 공방
-
-              (Hamzzi Studio)<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">60FPS 캔버스 기반 고화질 웹 짤방 &amp; 스티커 에디터</p>
-
-          <p class="project-highlight">피사체 지향 8방향 자동 꼬리 계산 말풍선 알고리즘, 실시간 휠 줌/팬(-100~100), 원클릭 레이어 편집</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">HTML5 Canvas</span>
-
-            <span class="tech-pill">60FPS Drag/Zoom</span>
-
-            <span class="tech-pill">Geometry Algorithm</span>
-
-            <span class="tech-pill">Vanilla JS</span>
-
-          </div>
-
-          <div class="project-links">
-
-            <button type="button" class="proj-link-btn proof-btn" data-proj-id="hamzzi-studio"
-              aria-label="또햄찌 공방 엔지니어링 증적 및 알고리즘 상세 보기">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M2 12l10 5 10-5"></path>
-
-                <path d="M2 17l10 5 10-5"></path>
-
-                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
-
-              </svg>
-
-              <span>엔지니어링 증적</span>
-
-            </button>
-
-            <a href="https://hayul0611.github.io/Hamzzi-Studio/" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn demo-btn" aria-label="또햄찌 공방 실시간 체험">
-
-              <span class="live-dot" aria-hidden="true"></span>
-
-              <span>Live Demo</span> &rarr;
-
-            </a>
-
-            <a href="https://github.com/HaYul0611/Hamzzi-Studio" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn" aria-label="또햄찌 공방 GitHub 저장소">
-
-              <span>GitHub</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 07. Apple 10 (SKT ALEPH / 인터랙티브 웹 퍼즐) -->
-
-        <div class="project-item" data-category="interactive">
-
-          <div class="project-item-top">
-
-            <span class="project-num" aria-hidden="true">08</span>
-
-            <div class="project-badge-group">
-
-              <span class="proj-type-tag aleph-tag">SKT ALEPH</span>
-
-              <span class="proj-type-tag">Puzzle Game</span>
-
-            </div>
-
-          </div>
-
-          <h3 class="project-name">
-
-            <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer">Apple 10 — 사과게임
-
-              (닌텐도 에디션)<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg></a>
-
-          </h3>
-
-          <p class="project-desc">클래식 콘솔 프레임 감성의 수학 퍼즐 &amp; 랭킹 시스템</p>
-
-          <p class="project-highlight">1~10단계 정밀 난이도 가중치 알고리즘, 실물 사과 SVG 렌더링, Web Audio BGM 선택 및 명예의 전당</p>
-
-          <div class="project-tech-tags">
-
-            <span class="tech-pill">Vanilla JS</span>
-
-            <span class="tech-pill">SVG Graphics</span>
-
-            <span class="tech-pill">Web Audio API</span>
-
-            <span class="tech-pill">LocalStorage</span>
-
-          </div>
-
-          <div class="project-links">
-
-            <button type="button" class="proj-link-btn proof-btn" data-proj-id="apple-game"
-              aria-label="사과게임 엔지니어링 증적 및 알고리즘 상세 보기">
-
-              <svg class="proof-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M2 12l10 5 10-5"></path>
-
-                <path d="M2 17l10 5 10-5"></path>
-
-                <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
-
-              </svg>
-
-              <span>엔지니어링 증적</span>
-
-            </button>
-
-            <a href="https://hayul0611.github.io/apple-game/" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn demo-btn" aria-label="사과게임 실시간 플레이">
-
-              <span class="live-dot" aria-hidden="true"></span>
-
-              <span>Live Demo</span> &rarr;
-
-            </a>
-
-            <a href="https://github.com/HaYul0611/apple-game" target="_blank" rel="noopener noreferrer"
-              class="proj-link-btn" aria-label="사과게임 GitHub 저장소">
-
-              <span>GitHub</span> &rarr;
-
-            </a>
-
-          </div>
-
-        </div>
-      </div>
-          </div>
     </section>
     <hr class="divider">
 
     <!-- 학술 연구 논문 섹션 -->
 
-        <section class="research-section collapsible-section is-collapsed" id="research" aria-label="학술 연구 및 전문성">
+    <section class="research-section collapsible-section is-collapsed" id="research" aria-label="학술 연구 및 전문성">
       <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
         <div class="accordion-header-left">
           <span class="section-num-tag">05</span>
@@ -2049,178 +2023,178 @@
       </div>
       <div class="section-collapsible-body">
 
-      <div class="research-header-wrap">
+        <div class="research-header-wrap">
 
-        <div>
+          <div>
 
-          <h2 class="section-title">Research</h2>
+            <h2 class="section-title">Research</h2>
 
-          <p class="section-slash" aria-hidden="true">/</p>
+            <p class="section-slash" aria-hidden="true">/</p>
+
+          </div>
+
+          <span class="research-sub-label">Academic Paper · Domain Expertise</span>
 
         </div>
 
-        <span class="research-sub-label">Academic Paper · Domain Expertise</span>
 
-      </div>
 
+        <div class="research-container">
 
+          <div class="research-main-info">
 
-      <div class="research-container">
+            <div class="research-tags">
 
-        <div class="research-main-info">
+              <span class="research-tag">병원정보시스템 (HIS)</span>
 
-          <div class="research-tags">
+              <span class="research-tag">원무행정 도메인</span>
 
-            <span class="research-tag">병원정보시스템 (HIS)</span>
+              <span class="research-tag">공공행정정보 연계</span>
 
-            <span class="research-tag">원무행정 도메인</span>
+              <span class="research-tag">개인정보보호법</span>
 
-            <span class="research-tag">공공행정정보 연계</span>
+            </div>
 
-            <span class="research-tag">개인정보보호법</span>
 
-          </div>
 
+            <h3 class="research-title">
 
+              의료기관 진료비 미식별 입금 및 사망환자 미수령 환불금의<br>공공관리체계 구축 방안
 
-          <h3 class="research-title">
+            </h3>
 
-            의료기관 진료비 미식별 입금 및 사망환자 미수령 환불금의<br>공공관리체계 구축 방안
+            <p class="research-subtitle">
 
-          </h3>
+              A Study on Establishing a Public Management System for Unidentified Medical Payment Deposits and Unclaimed
 
-          <p class="research-subtitle">
+              Refunds of Deceased Patients
 
-            A Study on Establishing a Public Management System for Unidentified Medical Payment Deposits and Unclaimed
+            </p>
 
-            Refunds of Deceased Patients
 
-          </p>
 
+            <div class="research-meta-row">
 
+              <span class="meta-item">저자: 오하율 (개인 연구자)</span>
 
-          <div class="research-meta-row">
+              <span class="meta-dot" aria-hidden="true">·</span>
 
-            <span class="meta-item">저자: 오하율 (개인 연구자)</span>
+              <span class="meta-item">작성일: 2026. 10. 09</span>
 
-            <span class="meta-dot" aria-hidden="true">·</span>
+              <span class="meta-dot" aria-hidden="true">·</span>
 
-            <span class="meta-item">작성일: 2026. 10. 09</span>
+              <span class="meta-item">분야: 병원정보시스템(HIS) · 공공인프라 연계</span>
 
-            <span class="meta-dot" aria-hidden="true">·</span>
+            </div>
 
-            <span class="meta-item">분야: 병원정보시스템(HIS) · 공공인프라 연계</span>
 
-          </div>
 
+            <p class="research-summary">
 
+              진료비 수납·정산 과정에서 발생하는 타인명의 대납·개명 등으로 인한 <strong>미식별 입금</strong>과, 퇴원 후 사후 환불금 중 환자 사망으로 상속 권리자를 확인하지 못해 장기
 
-          <p class="research-summary">
+              잔류하는 <strong>미수령 환불금</strong> 문제를 다룹니다. 병원 내부 정보시스템의 한계를 극복하기 위해 <strong>의료기관 내부 확인 ➔ 다차원 교차검증 ➔ 예외대상 분류 ➔
 
-            진료비 수납·정산 과정에서 발생하는 타인명의 대납·개명 등으로 인한 <strong>미식별 입금</strong>과, 퇴원 후 사후 환불금 중 환자 사망으로 상속 권리자를 확인하지 못해 장기
+                공공행정정보(정부24 안심상속 등) 연계 ➔ 적법 후속처리</strong>로 이어지는 단계적 공공관리 모형을 설계하고, 개인정보 보호 및 법제도적 실현 방향을 제시한 연구입니다.
 
-            잔류하는 <strong>미수령 환불금</strong> 문제를 다룹니다. 병원 내부 정보시스템의 한계를 극복하기 위해 <strong>의료기관 내부 확인 ➔ 다차원 교차검증 ➔ 예외대상 분류 ➔
+            </p>
 
-              공공행정정보(정부24 안심상속 등) 연계 ➔ 적법 후속처리</strong>로 이어지는 단계적 공공관리 모형을 설계하고, 개인정보 보호 및 법제도적 실현 방향을 제시한 연구입니다.
 
-          </p>
 
+            <div class="research-actions">
 
+              <a href="app/index.html" class="research-btn"
+                style="background:#0284c7; color:#fff; border-color:#0284c7; font-weight:700;"
+                aria-label="논문 연계 웹 앱 MediMatch 실행">
 
-          <div class="research-actions">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="15" height="15" aria-hidden="true">
 
-            <a href="app/index.html" class="research-btn"
-              style="background:#0284c7; color:#fff; border-color:#0284c7; font-weight:700;"
-              aria-label="논문 연계 웹 앱 MediMatch 실행">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                </svg>
 
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                <span>논문 연계 웹 앱 실행 (MediMatch)</span>
 
-              </svg>
+              </a>
 
-              <span>논문 연계 웹 앱 실행 (MediMatch)</span>
+              <button type="button" class="research-btn primary" id="paperMainOpenBtn" aria-label="논문 전문 뷰어 열람">
 
-            </a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="15" height="15" aria-hidden="true">
 
-            <button type="button" class="research-btn primary" id="paperMainOpenBtn" aria-label="논문 전문 뷰어 열람">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
 
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                </svg>
 
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                <span>논문 전문 뷰어 열람</span>
 
-              </svg>
+              </button>
 
-              <span>논문 전문 뷰어 열람</span>
+              <a href="research_paper/논문_오하율_261009.docx" download class="research-btn" aria-label="논문 DOCX 다운로드">
 
-            </button>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="15" height="15" aria-hidden="true">
 
-            <a href="research_paper/논문_오하율_261009.docx" download class="research-btn" aria-label="논문 DOCX 다운로드">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                  <polyline points="14 2 14 8 20 8"></polyline>
 
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
 
-                <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
 
-                <line x1="16" y1="13" x2="8" y2="13"></line>
+                </svg>
 
-                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <span>DOCX 다운로드</span>
 
-              </svg>
+              </a>
 
-              <span>DOCX 다운로드</span>
+              <a href="research_paper/논문_오하율_261009.pdf" download class="research-btn" aria-label="논문 PDF 다운로드">
 
-            </a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="15" height="15" aria-hidden="true">
 
-            <a href="research_paper/논문_오하율_261009.pdf" download class="research-btn" aria-label="논문 PDF 다운로드">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                  <polyline points="14 2 14 8 20 8"></polyline>
 
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
 
-                <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="9" y1="15" x2="15" y2="15"></line>
 
-                <line x1="12" y1="18" x2="12" y2="12"></line>
+                </svg>
 
-                <line x1="9" y1="15" x2="15" y2="15"></line>
+                <span>PDF 다운로드</span>
 
-              </svg>
+              </a>
 
-              <span>PDF 다운로드</span>
+              <a href="research_paper/재현패키지_오하율.zip" download class="research-btn" aria-label="재현 패키지 다운로드">
 
-            </a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="15" height="15" aria-hidden="true">
 
-            <a href="research_paper/재현패키지_오하율.zip" download class="research-btn" aria-label="재현 패키지 다운로드">
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+                  </path>
 
-                <path
-                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
 
-                </path>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
 
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                </svg>
 
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                <span>재현 패키지 (.zip)</span>
 
-              </svg>
+              </a>
 
-              <span>재현 패키지 (.zip)</span>
-
-            </a>
-
+            </div>
           </div>
         </div>
       </div>
-          </div>
     </section>
     <hr class="divider">
 
@@ -2243,83 +2217,83 @@
       <div class="section-collapsible-body">
         <div class="vision-content">
 
-        <p class="vision-statement">AI 기반 실시간 인프라 보안 감지 시스템을 구축하여,<br>기업 환경에 맞게 활용할 수 있는 보안 솔루션을 만드는 것이 목표입니다.</p>
+          <p class="vision-statement">AI 기반 실시간 인프라 보안 감지 시스템을 구축하여,<br>기업 환경에 맞게 활용할 수 있는 보안 솔루션을 만드는 것이 목표입니다.</p>
 
-        <div class="vision-pipeline-wrap">
+          <div class="vision-pipeline-wrap">
 
-          <div class="vision-diagram" id="visionDiagram" role="tablist" aria-label="보안 시스템 파이프라인 단계">
+            <div class="vision-diagram" id="visionDiagram" role="tablist" aria-label="보안 시스템 파이프라인 단계">
 
-            <button type="button" class="vision-node" data-step="0" role="tab" aria-selected="false">
+              <button type="button" class="vision-node" data-step="0" role="tab" aria-selected="false">
 
-              <span class="node-step">01</span>
+                <span class="node-step">01</span>
 
-              <span class="node-title">네트워크 모니터링</span>
+                <span class="node-title">네트워크 모니터링</span>
 
-            </button>
+              </button>
 
-            <div class="vision-arrow" aria-hidden="true"><span class="signal-dot"></span></div>
+              <div class="vision-arrow" aria-hidden="true"><span class="signal-dot"></span></div>
 
-            <button type="button" class="vision-node active" data-step="1" role="tab" aria-selected="true">
+              <button type="button" class="vision-node active" data-step="1" role="tab" aria-selected="true">
 
-              <span class="node-step">02</span>
+                <span class="node-step">02</span>
 
-              <span class="node-title">AI 실시간 분석</span>
+                <span class="node-title">AI 실시간 분석</span>
 
-            </button>
+              </button>
 
-            <div class="vision-arrow" aria-hidden="true"><span class="signal-dot"></span></div>
+              <div class="vision-arrow" aria-hidden="true"><span class="signal-dot"></span></div>
 
-            <button type="button" class="vision-node" data-step="2" role="tab" aria-selected="false">
+              <button type="button" class="vision-node" data-step="2" role="tab" aria-selected="false">
 
-              <span class="node-step">03</span>
+                <span class="node-step">03</span>
 
-              <span class="node-title">위협 탐지 · 대응</span>
+                <span class="node-title">위협 탐지 · 대응</span>
 
-            </button>
+              </button>
 
-            <div class="vision-arrow" aria-hidden="true"><span class="signal-dot"></span></div>
+              <div class="vision-arrow" aria-hidden="true"><span class="signal-dot"></span></div>
 
-            <button type="button" class="vision-node" data-step="3" role="tab" aria-selected="false">
+              <button type="button" class="vision-node" data-step="3" role="tab" aria-selected="false">
 
-              <span class="node-step">04</span>
+                <span class="node-step">04</span>
 
-              <span class="node-title">기업 맞춤 배포</span>
+                <span class="node-title">기업 맞춤 배포</span>
 
-            </button>
-
-          </div>
-
-
-
-          <div class="vision-detail-card" id="visionDetailCard" aria-live="polite">
-
-            <div class="detail-header">
-
-              <span class="detail-badge" id="visionStepBadge">STEP 02 · 핵심 아키텍처</span>
-
-              <h4 class="detail-title" id="visionStepTitle">AI 실시간 분석 (Real-time Anomaly Detection)</h4>
+              </button>
 
             </div>
 
-            <p class="detail-desc" id="visionStepDesc">수집된 패킷 및 시스템 로그 벡터를 사전 학습된 머신러닝 이상치 탐지 모델(Isolation Forest /
 
-              AutoEncoder)로 실시간 추론하여 제로데이 공격 및 비정상 접근 패턴을 즉시 식별합니다.</p>
 
-            <div class="detail-tags" id="visionStepTags">
+            <div class="vision-detail-card" id="visionDetailCard" aria-live="polite">
 
-              <span class="detail-tag">Machine Learning</span>
+              <div class="detail-header">
 
-              <span class="detail-tag">Anomaly Detection</span>
+                <span class="detail-badge" id="visionStepBadge">STEP 02 · 핵심 아키텍처</span>
 
-              <span class="detail-tag">AutoEncoder</span>
+                <h4 class="detail-title" id="visionStepTitle">AI 실시간 분석 (Real-time Anomaly Detection)</h4>
 
-              <span class="detail-tag">Real-time Inference</span>
+              </div>
+
+              <p class="detail-desc" id="visionStepDesc">수집된 패킷 및 시스템 로그 벡터를 사전 학습된 머신러닝 이상치 탐지 모델(Isolation Forest /
+
+                AutoEncoder)로 실시간 추론하여 제로데이 공격 및 비정상 접근 패턴을 즉시 식별합니다.</p>
+
+              <div class="detail-tags" id="visionStepTags">
+
+                <span class="detail-tag">Machine Learning</span>
+
+                <span class="detail-tag">Anomaly Detection</span>
+
+                <span class="detail-tag">AutoEncoder</span>
+
+                <span class="detail-tag">Real-time Inference</span>
+
+              </div>
 
             </div>
-
           </div>
         </div>
-      </div>
     </section>
     <hr class="divider">
 
@@ -2342,56 +2316,58 @@
       <div class="section-collapsible-body">
         <div class="evidence-grid">
 
-        <a href="https://github.com/HaYul0611" target="_blank" rel="noopener noreferrer" class="evidence-item">
+          <a href="https://github.com/HaYul0611" target="_blank" rel="noopener noreferrer" class="evidence-item">
 
-          <span class="evidence-label">GitHub</span>
+            <span class="evidence-label">GitHub</span>
 
-          <span class="evidence-desc">github.com/HaYul0611</span>
+            <span class="evidence-desc">github.com/HaYul0611</span>
 
-        </a>
+          </a>
 
-        <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
-          rel="noopener noreferrer" class="evidence-item">
+          <a href="https://github.com/rkdwlsdnjs9-prog/Fastival-management-master" target="_blank"
+            rel="noopener noreferrer" class="evidence-item">
 
-          <span class="evidence-label">팀 프로젝트</span>
+            <span class="evidence-label">팀 프로젝트</span>
 
-          <span class="evidence-desc">Festival O2O 플랫폼</span>
+            <span class="evidence-desc">Festival O2O 플랫폼</span>
 
-        </a>
+          </a>
 
-        <button class="evidence-item" type="button" id="certBtn" aria-label="수료증 보기">
+          <button class="evidence-item" type="button" id="certBtn" aria-label="수료증 보기">
 
-          <span class="evidence-label">수료증</span>
+            <span class="evidence-label">수료증</span>
 
-          <span class="evidence-desc">웹풀스택 과정 이수</span>
+            <span class="evidence-desc">웹풀스택 과정 이수</span>
 
-        </button>
+          </button>
 
-        <button class="evidence-item" type="button" id="storyBtn" aria-label="나를 말하는 서사 문서 보기">
+          <button class="evidence-item" type="button" id="storyBtn" aria-label="나를 말하는 서사 문서 보기">
 
-          <span class="evidence-label">서사 문서 <span class="dynamic-badge" data-created="2026-10-06" hidden></span></span>
+            <span class="evidence-label">서사 문서 <span class="dynamic-badge" data-created="2026-10-06"
+                hidden></span></span>
 
-          <span class="evidence-desc">나를 말하는 서사 · 강점 지도</span>
+            <span class="evidence-desc">나를 말하는 서사 · 강점 지도</span>
 
-        </button>
+          </button>
 
-        <button class="evidence-item" type="button" id="paperEvidenceBtn" aria-label="학술 연구 논문 보기">
+          <button class="evidence-item" type="button" id="paperEvidenceBtn" aria-label="학술 연구 논문 보기">
 
-          <span class="evidence-label">학술 논문 <span class="dynamic-badge" data-created="2026-10-09" hidden></span></span>
+            <span class="evidence-label">학술 논문 <span class="dynamic-badge" data-created="2026-10-09"
+                hidden></span></span>
 
-          <span class="evidence-desc">의료기관 예외정산 공공관리체계</span>
+            <span class="evidence-desc">의료기관 예외정산 공공관리체계</span>
 
-        </button>
+          </button>
 
-        <a href="app/index.html" class="evidence-item" aria-label="논문 연계 웹 앱 실행">
+          <a href="app/index.html" class="evidence-item" aria-label="논문 연계 웹 앱 실행">
 
-          <span class="evidence-label" >논문 연계 앱</span>
+            <span class="evidence-label">논문 연계 앱</span>
 
-          <span class="evidence-desc">MediMatch (예외정산 솔루션)</span>
+            <span class="evidence-desc">MediMatch (예외정산 솔루션)</span>
 
-        </a>
+          </a>
 
-      </div>
+        </div>
       </div>
     </section>
 
@@ -2420,439 +2396,441 @@
       <div class="section-collapsible-body">
         <div class="documents-grid">
 
-        <!-- 1. 이력서 -->
+          <!-- 1. 이력서 -->
 
-        <div class="document-card">
+          <div class="document-card">
 
-          <div class="document-card-header">
+            <div class="document-card-header">
 
-            <div class="document-icon-badge" aria-hidden="true">
+              <div class="document-icon-badge" aria-hidden="true">
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="22" height="22">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="22" height="22">
 
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 
-                <polyline points="14 2 14 8 20 8"></polyline>
+                  <polyline points="14 2 14 8 20 8"></polyline>
 
-                <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
 
-                <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
 
-                <polyline points="10 9 9 9 8 9"></polyline>
+                  <polyline points="10 9 9 9 8 9"></polyline>
 
-              </svg>
+                </svg>
 
-            </div>
+              </div>
 
-            <span class="document-type-badge">PDF · DOCX · Resume</span>
-
-          </div>
-
-          <div class="document-card-body">
-
-            <h3 class="document-title">이력서</h3>
-
-            <p class="document-subtitle">오하율 입사지원 이력서</p>
-
-            <p class="document-desc">기본 인적사항, 학력, 자격사항(병원행정사 등), 보유 기술 스택 및 직무 교육 이수 내역</p>
-
-          </div>
-
-          <div class="document-card-footer">
-
-            <a href="docs/이력서_오하율.pdf" download class="document-download-btn" aria-label="이력서 PDF 다운로드">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
-
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-
-                <polyline points="7 10 12 15 17 10"></polyline>
-
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-
-              </svg>
-
-              <span>PDF</span>
-
-            </a>
-
-            <a href="docs/이력서_오하율.docx" download class="document-download-btn docx-btn" aria-label="이력서 DOCX 다운로드">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
-
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-
-                <polyline points="14 2 14 8 20 8"></polyline>
-
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-
-              </svg>
-
-              <span>DOCX</span>
-
-            </a>
-
-            <a href="docs/이력서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
-              aria-label="이력서 PDF 미리보기">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="13" height="13" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg>
-
-              <span>미리보기</span>
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 2. 자기소개서 -->
-
-        <div class="document-card">
-
-          <div class="document-card-header">
-
-            <div class="document-icon-badge" aria-hidden="true">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="22" height="22">
-
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-
-                <polyline points="14 2 14 8 20 8"></polyline>
-
-                <line x1="12" y1="18" x2="12" y2="12"></line>
-
-                <line x1="9" y1="15" x2="15" y2="15"></line>
-
-              </svg>
+              <span class="document-type-badge">PDF · DOCX · Resume</span>
 
             </div>
 
-            <span class="document-type-badge">PDF · DOCX · Cover Letter</span>
+            <div class="document-card-body">
 
-          </div>
+              <h3 class="document-title">이력서</h3>
 
-          <div class="document-card-body">
+              <p class="document-subtitle">오하율 입사지원 이력서</p>
 
-            <h3 class="document-title">자기소개서</h3>
-
-            <p class="document-subtitle">오하율 자기소개서</p>
-
-            <p class="document-desc">성장 과정, 원무행정에서의 직무 경험 및 위기 대처, 가치관과 IT 인프라/보안 엔지니어로의 포부</p>
-
-          </div>
-
-          <div class="document-card-footer">
-
-            <a href="docs/자기소개서_오하율.pdf" download class="document-download-btn" aria-label="자기소개서 PDF 다운로드">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
-
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-
-                <polyline points="7 10 12 15 17 10"></polyline>
-
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-
-              </svg>
-
-              <span>PDF</span>
-
-            </a>
-
-            <a href="docs/자기소개서_오하율.docx" download class="document-download-btn docx-btn" aria-label="자기소개서 DOCX 다운로드">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
-
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-
-                <polyline points="14 2 14 8 20 8"></polyline>
-
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-
-              </svg>
-
-              <span>DOCX</span>
-
-            </a>
-
-            <a href="docs/자기소개서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
-              aria-label="자기소개서 PDF 미리보기">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="13" height="13" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg>
-
-              <span>미리보기</span>
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 3. 경력기술서 -->
-
-        <div class="document-card">
-
-          <div class="document-card-header">
-
-            <div class="document-icon-badge" aria-hidden="true">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="22" height="22">
-
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-
-                <polyline points="14 2 14 8 20 8"></polyline>
-
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-
-              </svg>
+              <p class="document-desc">기본 인적사항, 학력, 자격사항(병원행정사 등), 보유 기술 스택 및 직무 교육 이수 내역</p>
 
             </div>
 
-            <span class="document-type-badge">PDF · DOCX · Career</span>
+            <div class="document-card-footer">
 
-          </div>
+              <a href="docs/이력서_오하율.pdf" download class="document-download-btn" aria-label="이력서 PDF 다운로드">
 
-          <div class="document-card-body">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
 
-            <h3 class="document-title">경력기술서</h3>
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
 
-            <p class="document-subtitle">오하율 직무 경력기술서</p>
+                  <polyline points="7 10 12 15 17 10"></polyline>
 
-            <p class="document-desc">병원 원무·행정 중간관리자 실무 성과, 시스템 디지털 전환, 5개 파트 매뉴얼 수립 및 의료비 프로세스 개선</p>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
 
-          </div>
+                </svg>
 
-          <div class="document-card-footer">
+                <span>PDF</span>
 
-            <a href="docs/경력기술서_오하율.pdf" download class="document-download-btn" aria-label="경력기술서 PDF 다운로드">
+              </a>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+              <a href="docs/이력서_오하율.docx" download class="document-download-btn docx-btn" aria-label="이력서 DOCX 다운로드">
 
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
 
-                <polyline points="7 10 12 15 17 10"></polyline>
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 
-                <line x1="12" y1="15" x2="12" y2="3"></line>
+                  <polyline points="14 2 14 8 20 8"></polyline>
 
-              </svg>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
 
-              <span>PDF</span>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
 
-            </a>
+                </svg>
 
-            <a href="docs/경력기술서_오하율.docx" download class="document-download-btn docx-btn" aria-label="경력기술서 DOCX 다운로드">
+                <span>DOCX</span>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+              </a>
 
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <a href="docs/이력서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
+                aria-label="이력서 PDF 미리보기">
 
-                <polyline points="14 2 14 8 20 8"></polyline>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="13" height="13" aria-hidden="true">
 
-                <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
 
-                <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="15 3 21 3 21 9"></polyline>
 
-              </svg>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
 
-              <span>DOCX</span>
+                </svg>
 
-            </a>
+                <span>미리보기</span>
 
-            <a href="docs/경력기술서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
-              aria-label="경력기술서 PDF 미리보기">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="13" height="13" aria-hidden="true">
-
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-
-                <polyline points="15 3 21 3 21 9"></polyline>
-
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-
-              </svg>
-
-              <span>미리보기</span>
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- 4. 데이터 자동화 분석 장치 (장치_오하율.zip) -->
-
-        <div class="document-card document-card-highlight">
-
-          <div class="document-card-header">
-
-            <div class="document-icon-badge" aria-hidden="true">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="22" height="22">
-
-                <path
-                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                </path>
-
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-
-              </svg>
+              </a>
 
             </div>
 
-            <span class="document-type-badge">Python · ZIP Engine</span>
-
           </div>
 
-          <div class="document-card-body">
-
-            <h3 class="document-title">데이터 분석 장치</h3>
-
-            <p class="document-subtitle">장치_오하율.zip</p>
-
-            <p class="document-desc">리추얼·출석·과제 원문 데이터를 정밀 파싱하여 숫자 칸 지표와 능력별 문단 후보를 자동 산출하는 Python 엔진(run.py) 및 데이터셋/결과
-              패키지</p>
-
-          </div>
-
-          <div class="document-card-footer">
-
-            <a href="docs/장치_오하율.zip" download class="document-download-btn" aria-label="장치_오하율 ZIP 다운로드">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
-
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-
-                <polyline points="7 10 12 15 17 10"></polyline>
-
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-
-              </svg>
-
-              <span>ZIP 패키지 다운로드</span>
-
-            </a>
-
-          </div>
-
-        </div>
 
 
+          <!-- 2. 자기소개서 -->
 
-        <!-- 5. 성장 소설 · 장편 에세이 -->
+          <div class="document-card">
 
-        <div class="document-card document-card-highlight">
+            <div class="document-card-header">
 
-          <div class="document-card-header">
+              <div class="document-icon-badge" aria-hidden="true">
 
-            <div class="document-icon-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="22" height="22">
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="22" height="22">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
 
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
 
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
 
-              </svg>
+                  <line x1="9" y1="15" x2="15" y2="15"></line>
+
+                </svg>
+
+              </div>
+
+              <span class="document-type-badge">PDF · DOCX · Cover Letter</span>
 
             </div>
 
-            <span class="document-type-badge">Essay · 전 11장</span>
+            <div class="document-card-body">
+
+              <h3 class="document-title">자기소개서</h3>
+
+              <p class="document-subtitle">오하율 자기소개서</p>
+
+              <p class="document-desc">성장 과정, 원무행정에서의 직무 경험 및 위기 대처, 가치관과 IT 인프라/보안 엔지니어로의 포부</p>
+
+            </div>
+
+            <div class="document-card-footer">
+
+              <a href="docs/자기소개서_오하율.pdf" download class="document-download-btn" aria-label="자기소개서 PDF 다운로드">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+
+                  <polyline points="7 10 12 15 17 10"></polyline>
+
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+
+                </svg>
+
+                <span>PDF</span>
+
+              </a>
+
+              <a href="docs/자기소개서_오하율.docx" download class="document-download-btn docx-btn"
+                aria-label="자기소개서 DOCX 다운로드">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+
+                  <polyline points="14 2 14 8 20 8"></polyline>
+
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+
+                </svg>
+
+                <span>DOCX</span>
+
+              </a>
+
+              <a href="docs/자기소개서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
+                aria-label="자기소개서 PDF 미리보기">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="13" height="13" aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg>
+
+                <span>미리보기</span>
+
+              </a>
+
+            </div>
 
           </div>
 
-          <div class="document-card-body">
 
-            <h3 class="document-title">성장 소설 · 에세이</h3>
 
-            <p class="document-subtitle">오하율 — 아는 만큼 보인다 (전 11장)</p>
+          <!-- 3. 경력기술서 -->
 
-            <p class="document-desc">초등학교 시절 약봉지 정리부터 응급실 야간, 전산화 시도, 그리고 코드 앞의 엔지니어가 되기까지 11장의 성장 서사 소설</p>
+          <div class="document-card">
+
+            <div class="document-card-header">
+
+              <div class="document-icon-badge" aria-hidden="true">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="22" height="22">
+
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+
+                  <polyline points="14 2 14 8 20 8"></polyline>
+
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+
+                </svg>
+
+              </div>
+
+              <span class="document-type-badge">PDF · DOCX · Career</span>
+
+            </div>
+
+            <div class="document-card-body">
+
+              <h3 class="document-title">경력기술서</h3>
+
+              <p class="document-subtitle">오하율 직무 경력기술서</p>
+
+              <p class="document-desc">병원 원무·행정 중간관리자 실무 성과, 시스템 디지털 전환, 5개 파트 매뉴얼 수립 및 의료비 프로세스 개선</p>
+
+            </div>
+
+            <div class="document-card-footer">
+
+              <a href="docs/경력기술서_오하율.pdf" download class="document-download-btn" aria-label="경력기술서 PDF 다운로드">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+
+                  <polyline points="7 10 12 15 17 10"></polyline>
+
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+
+                </svg>
+
+                <span>PDF</span>
+
+              </a>
+
+              <a href="docs/경력기술서_오하율.docx" download class="document-download-btn docx-btn"
+                aria-label="경력기술서 DOCX 다운로드">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+
+                  <polyline points="14 2 14 8 20 8"></polyline>
+
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+
+                </svg>
+
+                <span>DOCX</span>
+
+              </a>
+
+              <a href="docs/경력기술서_오하율.pdf" target="_blank" rel="noopener noreferrer" class="document-preview-btn"
+                aria-label="경력기술서 PDF 미리보기">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="13" height="13" aria-hidden="true">
+
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+
+                  <polyline points="15 3 21 3 21 9"></polyline>
+
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+
+                </svg>
+
+                <span>미리보기</span>
+
+              </a>
+
+            </div>
 
           </div>
 
-          <div class="document-card-footer">
 
-            <button type="button" class="document-download-btn doc-modal-trigger" id="docNovelBtn"
-              aria-label="성장 소설 전문 읽기">
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+          <!-- 4. 데이터 자동화 분석 장치 (장치_오하율.zip) -->
 
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <div class="document-card document-card-highlight">
 
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            <div class="document-card-header">
 
-              </svg>
+              <div class="document-icon-badge" aria-hidden="true">
 
-              <span>전문 읽기</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="22" height="22">
 
-            </button>
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                  </path>
 
-            <a href="docs/오하율_성장에세이_아는만큼보인다.md" download class="document-preview-btn" aria-label="성장 소설 마크다운 원문 다운로드">
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
 
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                </svg>
 
-                <polyline points="7 10 12 15 17 10"></polyline>
+              </div>
 
-                <line x1="12" y1="15" x2="12" y2="3"></line>
+              <span class="document-type-badge">Python · ZIP Engine</span>
 
-              </svg>
+            </div>
 
-              <span>MD 다운로드</span>
+            <div class="document-card-body">
 
-            </a>
+              <h3 class="document-title">데이터 분석 장치</h3>
 
+              <p class="document-subtitle">장치_오하율.zip</p>
+
+              <p class="document-desc">리추얼·출석·과제 원문 데이터를 정밀 파싱하여 숫자 칸 지표와 능력별 문단 후보를 자동 산출하는 Python 엔진(run.py) 및 데이터셋/결과
+                패키지</p>
+
+            </div>
+
+            <div class="document-card-footer">
+
+              <a href="docs/장치_오하율.zip" download class="document-download-btn" aria-label="장치_오하율 ZIP 다운로드">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+
+                  <polyline points="7 10 12 15 17 10"></polyline>
+
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+
+                </svg>
+
+                <span>ZIP 패키지 다운로드</span>
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 5. 성장 소설 · 장편 에세이 -->
+
+          <div class="document-card document-card-highlight">
+
+            <div class="document-card-header">
+
+              <div class="document-icon-badge" aria-hidden="true">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="22" height="22">
+
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+
+                </svg>
+
+              </div>
+
+              <span class="document-type-badge">Essay · 전 11장</span>
+
+            </div>
+
+            <div class="document-card-body">
+
+              <h3 class="document-title">성장 소설 · 에세이</h3>
+
+              <p class="document-subtitle">오하율 — 아는 만큼 보인다 (전 11장)</p>
+
+              <p class="document-desc">초등학교 시절 약봉지 정리부터 응급실 야간, 전산화 시도, 그리고 코드 앞의 엔지니어가 되기까지 11장의 성장 서사 소설</p>
+
+            </div>
+
+            <div class="document-card-footer">
+
+              <button type="button" class="document-download-btn doc-modal-trigger" id="docNovelBtn"
+                aria-label="성장 소설 전문 읽기">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+
+                </svg>
+
+                <span>전문 읽기</span>
+
+              </button>
+
+              <a href="docs/오하율_성장에세이_아는만큼보인다.md" download class="document-preview-btn" aria-label="성장 소설 마크다운 원문 다운로드">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+
+                  <polyline points="7 10 12 15 17 10"></polyline>
+
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+
+                </svg>
+
+                <span>MD 다운로드</span>
+
+              </a>
+
+            </div>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- 자기소개서 전용 모달 -->
@@ -6377,58 +6355,16 @@
 
         <div class="sync-status-card">
           <div class="status-row">
-            <span class="status-label">현재 데이터 출처</span>
-            <span class="status-val highlight" id="modalCurrentSource">로컬 최신 캐시 (2026-10-12 최신)</span>
+            <span class="status-label">동기화 연동 방식</span>
+            <span class="status-val highlight" id="modalCurrentSource">사이트 접속 시 100% 실시간 자동 갱신</span>
           </div>
           <div class="status-row">
-            <span class="status-label">현재 지표 현황</span>
-            <span class="status-val" id="modalCurrentMetrics">출석 39일 · 리추얼 39일 · 과제 마스터 승인 11/13개 (84.6%)</span>
+            <span class="status-label">현재 실시간 지표</span>
+            <span class="status-val" id="modalCurrentMetrics">실시간 계산 중...</span>
           </div>
-        </div>
-
-        <!-- 메인 액션: 오늘 날짜 기준 스마트 자동 갱신 -->
-        <div class="sync-hero-action">
-          <button type="button" class="btn-auto-sync-hero" id="btnAutoSyncToday">
-            <span class="hero-sync-icon" aria-hidden="true">⚡</span>
-            <div class="hero-sync-text">
-              <strong>오늘 날짜(10.12) 기준 자동 갱신</strong>
-              <small>출석 40일 (100%) · 리추얼 40일 · 과제 12/13개 (92.3%) 즉시 계산 &amp; 반영</small>
-            </div>
-          </button>
-        </div>
-
-        <!-- 미세 조정 컨트롤: 출석일수 증감 & 직접 입력 -->
-        <div class="sync-actions-group">
-          <span class="sync-actions-label">🎯 지표 직접 조정 및 원클릭 변경</span>
-
-          <!-- 출석일수 스텝 컨트롤 -->
-          <div class="sync-control-row">
-            <span class="control-label">출석 / 리추얼 일수:</span>
-            <div class="stepping-control">
-              <button type="button" class="step-btn minus" id="btnAttMinus" title="1일 감소">- 1일</button>
-              <input type="number" class="step-input" id="attDayInput" value="40" min="1" max="100"
-                aria-label="출석 일수 직접 입력">
-              <span class="step-unit">일</span>
-              <button type="button" class="step-btn plus" id="btnAttPlus" title="1일 증가">+ 1일</button>
-              <button type="button" class="step-apply-btn" id="btnApplyAttInput">적용</button>
-            </div>
-          </div>
-
-          <!-- 과제 단계 스위처 -->
-          <div class="sync-control-row">
-            <span class="control-label">과제 마스터 승인:</span>
-            <div class="task-switch-chips">
-              <button type="button" class="task-chip" data-task="11" id="chipTask11">11/13개 (84.6%)</button>
-              <button type="button" class="task-chip active" data-task="12" id="chipTask12">12/13개 (92.3%) ✓</button>
-              <button type="button" class="task-chip" data-task="13" id="chipTask13">13/13개 (100%)</button>
-            </div>
-          </div>
-
-          <!-- 기본값 초기화 -->
-          <div class="sync-reset-row">
-            <button type="button" class="sync-quick-btn danger" id="btnResetDefault">
-              <span>기본 records.json 수치로 초기화</span>
-            </button>
+          <div class="status-row">
+            <span class="status-label">동기화 엔진 상태</span>
+            <span class="status-val" style="color: #10b981; font-weight: 700;">● LIVE (정상 가동 중)</span>
           </div>
         </div>
 
@@ -6439,8 +6375,8 @@
             </summary>
             <div class="sync-details-content">
               <p class="details-desc">
-                Cortex 학생 대시보드(<a href="https://aleph-omega.vercel.app/cortex" target="_blank"
-                  rel="noopener noreferrer">열기</a>)에 로그인 후, 개발자 도구(F12) 콘솔(Console)에 아래 스크립트를 붙여넣으면 현재 출석·리추얼·과제 승인 현황을
+                Cortex 과제 현황(<a href="https://aleph-omega.vercel.app/cortex?panel=tasks" target="_blank"
+                  rel="noopener noreferrer">cortex?panel=tasks</a>)에 로그인 후, 개발자 도구(F12) 콘솔(Console)에 아래 스크립트를 붙여넣으면 현재 출석·리추얼·과제 13개 전체 승인 현황을
                 1초 만에 추출할 수 있습니다.
               </p>
               <div class="snippet-box">

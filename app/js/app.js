@@ -173,6 +173,13 @@
     dom.distChartTitle = document.getElementById('distChartTitle');
     dom.distChartDesc = document.getElementById('distChartDesc');
 
+    // 3대 정산 금액 체계 (납부 · 확정 · 환불) 폼 필드
+    dom.inputConfirmedCost = document.getElementById('inputConfirmedCost');
+    dom.inputRefundAmount = document.getElementById('inputRefundAmount');
+    dom.formRefundTag = document.getElementById('formRefundTag');
+    dom.formRefundBadge = document.getElementById('formRefundBadge');
+    dom.formRefundBadgeText = document.getElementById('formRefundBadgeText');
+
     // Report Modal
     dom.reportModal = document.getElementById('reportModal');
     dom.modalCloseBtn = document.getElementById('modalCloseBtn');
@@ -189,6 +196,13 @@
     dom.sendSiemTelemetryBtn = document.getElementById('sendSiemTelemetryBtn');
     dom.exportSiemLogBtn = document.getElementById('exportSiemLogBtn');
     dom.siemTerminalLogs = document.getElementById('siemTerminalLogs');
+
+    // Confirm Delete Modal
+    dom.confirmDeleteModal = document.getElementById('confirmDeleteModal');
+    dom.confirmDeleteCloseBtn = document.getElementById('confirmDeleteCloseBtn');
+    dom.confirmDeleteCancelBtn = document.getElementById('confirmDeleteCancelBtn');
+    dom.confirmDeleteProceedBtn = document.getElementById('confirmDeleteProceedBtn');
+    dom.confirmDeleteTargetInfo = document.getElementById('confirmDeleteTargetInfo');
 
     dom.toastContainer = document.getElementById('toastContainer');
   }
@@ -490,19 +504,78 @@
     dom.checkPublicProof.checked = data.hasHeirPublicProof;
 
     updateKoreanAmountReadout(data.amount);
+
+    var depAmt = data.depositAmount || data.amount || 0;
+    var confAmt = (data.confirmedCost !== undefined) ? data.confirmedCost : (data.caseType === 'REFUND' ? Math.max(0, depAmt - data.amount) : depAmt);
+    var refAmt = (data.refundAmount !== undefined) ? data.refundAmount : (data.caseType === 'REFUND' ? data.amount : 0);
+    updateFormTierAmounts(depAmt, confAmt, refAmt);
+
     updateTargetIndicator(null, presetKey);
     hideFormError();
     executePipeline();
     renderBatchTable();
   }
 
+  // 3대 정산 금액 체계 (납부 · 확정 · 환불) 실시간 자동 산출 및 노출 연동
+  function updateFormTierAmounts(forcedDeposit, forcedConf, forcedRef) {
+    var rawVal = (dom.inputAmount && dom.inputAmount.value) ? dom.inputAmount.value.replace(/[^0-9]/g, '') : '0';
+    var depAmt = (forcedDeposit !== undefined && forcedDeposit !== null) ? Number(forcedDeposit) : (Number(rawVal) || 0);
+    var caseType = dom.inputCaseType ? dom.inputCaseType.value : 'DEPOSIT';
+    var confAmt, refAmt;
+
+    if (forcedConf !== undefined && forcedConf !== null && forcedRef !== undefined && forcedRef !== null) {
+      confAmt = Number(forcedConf);
+      refAmt = Number(forcedRef);
+    } else {
+      if (caseType === 'REFUND') {
+        var selectedItem = state.selectedRowId ? (window.MEDIMATCH_DATA && window.MEDIMATCH_DATA.samples.find(function (s) { return s.id === state.selectedRowId; })) : null;
+        if (selectedItem && selectedItem.caseType === 'REFUND' && (selectedItem.depositAmount === depAmt || selectedItem.amount === depAmt)) {
+          confAmt = (selectedItem.confirmedCost !== undefined) ? selectedItem.confirmedCost : Math.max(0, depAmt - selectedItem.amount);
+          refAmt = (selectedItem.refundAmount !== undefined) ? selectedItem.refundAmount : selectedItem.amount;
+        } else {
+          // 환불 케이스: 원납부액의 30%를 과오납 환불금으로 자동 산정 (확정 70%, 환불 30%)
+          refAmt = Math.round(depAmt * 0.3);
+          confAmt = Math.max(0, depAmt - refAmt);
+        }
+      } else {
+        // 진료비 수납(DEPOSIT) 및 선수금(PREPAYMENT): 전액 확정, 환불 0원
+        confAmt = depAmt;
+        refAmt = 0;
+      }
+    }
+
+    if (dom.inputConfirmedCost) {
+      dom.inputConfirmedCost.value = confAmt.toLocaleString('ko-KR') + '원';
+    }
+    if (dom.inputRefundAmount) {
+      dom.inputRefundAmount.value = refAmt.toLocaleString('ko-KR') + '원';
+      if (refAmt > 0) {
+        dom.inputRefundAmount.classList.add('has-refund');
+        if (dom.formRefundTag) dom.formRefundTag.classList.add('has-refund');
+        if (dom.formRefundBadge) dom.formRefundBadge.classList.add('has-refund');
+        if (dom.formRefundBadgeText) dom.formRefundBadgeText.textContent = '환불 발생 (' + refAmt.toLocaleString('ko-KR') + '원)';
+      } else {
+        dom.inputRefundAmount.classList.remove('has-refund');
+        if (dom.formRefundTag) dom.formRefundTag.classList.remove('has-refund');
+        if (dom.formRefundBadge) dom.formRefundBadge.classList.remove('has-refund');
+        if (dom.formRefundBadgeText) dom.formRefundBadgeText.textContent = '자동 산출 (수정 불가)';
+      }
+    }
+  }
+
   // Get Current Form Data Safely
   function getFormData() {
     var rawAmount = dom.inputAmount.value.replace(/[^0-9]/g, '');
+    var depAmt = Number(rawAmount) || 0;
+    var confAmt = dom.inputConfirmedCost ? (Number(dom.inputConfirmedCost.value.replace(/[^0-9]/g, '')) || 0) : depAmt;
+    var refAmt = dom.inputRefundAmount ? (Number(dom.inputRefundAmount.value.replace(/[^0-9]/g, '')) || 0) : 0;
     return {
       depositorName: dom.inputDepositor.value,
       patientName: dom.inputPatient.value,
       amount: rawAmount,
+      depositAmount: depAmt,
+      confirmedCost: confAmt,
+      refundAmount: refAmt,
       caseType: dom.inputCaseType.value,
       relationType: dom.inputRelation.value,
       guardianRegistered: dom.checkGuardianReg.checked,
@@ -852,12 +925,65 @@
         }
 
         updateKoreanAmountReadout(targetRow.amount);
+
+        var depAmt = targetRow.depositAmount || targetRow.amount || 0;
+        var confAmt = (targetRow.confirmedCost !== undefined) ? targetRow.confirmedCost : (targetRow.caseType === 'REFUND' ? Math.max(0, depAmt - targetRow.amount) : depAmt);
+        var refAmt = (targetRow.refundAmount !== undefined) ? targetRow.refundAmount : (targetRow.caseType === 'REFUND' ? targetRow.amount : 0);
+        updateFormTierAmounts(depAmt, confAmt, refAmt);
+
         updateTargetIndicator(targetRow);
         executePipeline();
         renderBatchTable();
         showToast('트랜잭션 [' + targetRow.id + ']가 로드되었습니다. 수정 후 [수정 내역 저장]을 클릭하십시오.');
         dom.simForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
+    });
+  }
+
+  // 커스텀 트랜잭션 삭제 확인 다이얼로그 모달 제어
+  var activeDeleteResolve = null;
+
+  function closeConfirmDeleteModal(confirmed) {
+    if (dom.confirmDeleteModal) {
+      dom.confirmDeleteModal.classList.remove('active');
+    }
+    if (activeDeleteResolve) {
+      activeDeleteResolve(Boolean(confirmed));
+      activeDeleteResolve = null;
+    }
+  }
+
+  function requestDeleteConfirmation(targetRow) {
+    return new Promise(function (resolve) {
+      if (!dom.confirmDeleteModal) {
+        var fallbackConfirm = window.confirm('트랜잭션 [' + targetRow.id + ' (' + targetRow.patientName + ' / ' + Number(targetRow.amount).toLocaleString('ko-KR') + '원)]을(를) 데이터셋에서 완전히 삭제하시겠습니까?');
+        resolve(fallbackConfirm);
+        return;
+      }
+
+      activeDeleteResolve = resolve;
+
+      var caseTypeBadgeMap = {
+        'DEPOSIT': '<span class="tier-tag deposit-tag">진료비 수납</span>',
+        'PREPAYMENT': '<span class="tier-tag confirmed-tag">선수금 수납</span>',
+        'REFUND': '<span class="tier-tag refund-tag">진료비 환불</span>'
+      };
+      var cBadge = caseTypeBadgeMap[targetRow.caseType] || targetRow.caseType;
+      var depAmt = targetRow.depositAmount || targetRow.amount || 0;
+      var confAmt = (targetRow.confirmedCost !== undefined) ? targetRow.confirmedCost : (targetRow.caseType === 'REFUND' ? Math.max(0, depAmt - targetRow.amount) : depAmt);
+      var refAmt = (targetRow.refundAmount !== undefined) ? targetRow.refundAmount : (targetRow.caseType === 'REFUND' ? targetRow.amount : 0);
+
+      var infoHtml = '<div class="confirm-info-row"><span class="confirm-info-label">트랜잭션 식별 ID</span><span class="confirm-info-val bold-mono">' + targetRow.id + '</span></div>' +
+        '<div class="confirm-info-row"><span class="confirm-info-label">대상 환자명 / 입금자명</span><span class="confirm-info-val">' + targetRow.patientName + ' / ' + targetRow.depositorName + '</span></div>' +
+        '<div class="confirm-info-row"><span class="confirm-info-label">원납부 정산 금액</span><span class="confirm-info-val amount-bold">' + Number(depAmt).toLocaleString('ko-KR') + '원</span></div>' +
+        '<div class="confirm-info-row"><span class="confirm-info-label">심평원 확정 / 환불</span><span class="confirm-info-val">' + Number(confAmt).toLocaleString('ko-KR') + '원 / ' + Number(refAmt).toLocaleString('ko-KR') + '원</span></div>' +
+        '<div class="confirm-info-row"><span class="confirm-info-label">정산 구분 유형</span><span class="confirm-info-val">' + cBadge + '</span></div>';
+
+      if (dom.confirmDeleteTargetInfo) {
+        dom.confirmDeleteTargetInfo.innerHTML = infoHtml;
+      }
+
+      dom.confirmDeleteModal.classList.add('active');
     });
   }
 
@@ -874,27 +1000,29 @@
     }
 
     var targetRow = list[targetIndex];
-    var confirmed = window.confirm('트랜잭션 [' + targetRow.id + ' (' + targetRow.patientName + ' / ' + Number(targetRow.amount).toLocaleString('ko-KR') + '원)]을(를) 데이터셋에서 완전히 삭제하시겠습니까?');
-    if (!confirmed) return;
 
-    list.splice(targetIndex, 1);
+    requestDeleteConfirmation(targetRow).then(function (confirmed) {
+      if (!confirmed) return;
 
-    if (state.selectedRowId === id) {
-      resetForm();
-    }
+      list.splice(targetIndex, 1);
 
-    SiemService.recordEvent({
-      action: 'TRANSACTION_DELETE',
-      severity: 'WARN',
-      targetId: targetRow.id,
-      patientName: targetRow.patientName,
-      amount: targetRow.amount,
-      detail: '트랜잭션 [' + targetRow.id + '] 영구 삭제 완료 (환자: ' + targetRow.patientName + ', ' + Number(targetRow.amount).toLocaleString('ko-KR') + '원)'
+      if (state.selectedRowId === id) {
+        resetForm();
+      }
+
+      SiemService.recordEvent({
+        action: 'TRANSACTION_DELETE',
+        severity: 'WARN',
+        targetId: targetRow.id,
+        patientName: targetRow.patientName,
+        amount: targetRow.amount,
+        detail: '트랜잭션 [' + targetRow.id + '] 영구 삭제 완료 (환자: ' + targetRow.patientName + ', ' + Number(targetRow.amount).toLocaleString('ko-KR') + '원)'
+      });
+
+      renderBatchTable();
+      updateBatchMetrics();
+      showToast('트랜잭션 [' + id + ']가 성공적으로 삭제되었습니다.');
     });
-
-    renderBatchTable();
-    updateBatchMetrics();
-    showToast('트랜잭션 [' + id + ']가 성공적으로 삭제되었습니다.');
   }
 
   // Save Modifications to Current Transaction in Dataset
@@ -921,6 +1049,9 @@
       if (!targetRow._original) {
         targetRow._original = {
           amount: targetRow.amount,
+          depositAmount: targetRow.depositAmount || targetRow.amount,
+          confirmedCost: targetRow.confirmedCost,
+          refundAmount: targetRow.refundAmount,
           depositorName: targetRow.depositorName,
           patientName: targetRow.patientName,
           caseType: targetRow.caseType,
@@ -938,6 +1069,9 @@
       targetRow.depositorName = rawInput.depositorName;
       targetRow.patientName = rawInput.patientName;
       targetRow.amount = Math.round(Number(rawInput.amount));
+      targetRow.depositAmount = rawInput.depositAmount;
+      targetRow.confirmedCost = rawInput.confirmedCost;
+      targetRow.refundAmount = rawInput.refundAmount;
       targetRow.caseType = rawInput.caseType;
       targetRow.isDeceased = rawInput.isDeceased;
       targetRow.heirConfirmed = rawInput.hasHeirPublicProof;
@@ -988,6 +1122,9 @@
       id: newId,
       caseType: rawInput.caseType,
       amount: Math.round(Number(rawInput.amount)),
+      depositAmount: rawInput.depositAmount,
+      confirmedCost: rawInput.confirmedCost,
+      refundAmount: rawInput.refundAmount,
       depositorName: rawInput.depositorName,
       patientName: rawInput.patientName,
       reasonCode: rawInput.caseType === 'PREPAYMENT' ? 'INPATIENT_ADVANCE' : (rawInput.relationType === 'GUARDIAN' ? 'GUARDIAN_PAY' : (rawInput.isRenamed ? 'RENAMED' : 'MANUAL_ENTRY')),
@@ -1098,6 +1235,7 @@
     dom.checkDeceased.checked = false;
     dom.checkPublicProof.checked = false;
     updateKoreanAmountReadout(0);
+    updateFormTierAmounts(0, 0, 0);
     updateTargetIndicator(null);
     hideFormError();
     renderBatchTable();
@@ -1402,6 +1540,7 @@
       if (!raw) {
         this.value = '';
         updateKoreanAmountReadout('');
+        updateFormTierAmounts(0, 0, 0);
         executePipeline();
         return;
       }
@@ -1409,6 +1548,7 @@
       if (num > 100000000) num = 100000000;
       this.value = num.toLocaleString('ko-KR');
       updateKoreanAmountReadout(num);
+      updateFormTierAmounts();
       executePipeline();
     });
 
@@ -1479,10 +1619,11 @@
       });
     }
 
-    // Form inputs change triggers instant safe evaluation
+    // Form inputs change triggers instant safe evaluation & tier amount recalculation
     var inputs = dom.simForm.querySelectorAll('input, select');
     inputs.forEach(function (input) {
       input.addEventListener('change', function () {
+        updateFormTierAmounts();
         executePipeline();
       });
     });
@@ -1514,8 +1655,33 @@
           var newNum = Math.min(100000000, curNum + delta);
           dom.inputAmount.value = newNum.toLocaleString('ko-KR');
           updateKoreanAmountReadout(newNum);
+          updateFormTierAmounts();
           executePipeline();
         });
+      });
+    }
+
+    // Confirm Delete Modal Actions
+    if (dom.confirmDeleteCloseBtn) {
+      dom.confirmDeleteCloseBtn.addEventListener('click', function () {
+        closeConfirmDeleteModal(false);
+      });
+    }
+    if (dom.confirmDeleteCancelBtn) {
+      dom.confirmDeleteCancelBtn.addEventListener('click', function () {
+        closeConfirmDeleteModal(false);
+      });
+    }
+    if (dom.confirmDeleteProceedBtn) {
+      dom.confirmDeleteProceedBtn.addEventListener('click', function () {
+        closeConfirmDeleteModal(true);
+      });
+    }
+    if (dom.confirmDeleteModal) {
+      dom.confirmDeleteModal.addEventListener('click', function (e) {
+        if (e.target === dom.confirmDeleteModal) {
+          closeConfirmDeleteModal(false);
+        }
       });
     }
 
@@ -1779,6 +1945,9 @@
     // ESC key close modals
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
+        if (dom.confirmDeleteModal && dom.confirmDeleteModal.classList.contains('active')) {
+          closeConfirmDeleteModal(false);
+        }
         if (dom.reportModal && dom.reportModal.classList.contains('active')) {
           closeAuditReport();
         }

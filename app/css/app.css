@@ -1283,9 +1283,20 @@ th {
 }
 
 @keyframes indicatorPulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 rgba(14, 165, 233, 0.4); }
-  50% { transform: scale(1.008); box-shadow: 0 0 16px rgba(14, 165, 233, 0.6); }
-  100% { transform: scale(1); box-shadow: none; }
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(14, 165, 233, 0.4);
+  }
+
+  50% {
+    transform: scale(1.008);
+    box-shadow: 0 0 16px rgba(14, 165, 233, 0.6);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
 }
 
 .target-indicator-left {
@@ -1329,10 +1340,13 @@ th {
 }
 
 @keyframes dotGlowPulseGreen {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 6px rgba(16, 185, 129, 0.7), 0 0 1px #10b981;
   }
+
   50% {
     transform: scale(1.18);
     box-shadow: 0 0 12px rgba(16, 185, 129, 0.95), 0 0 3px #10b981;
@@ -1340,10 +1354,13 @@ th {
 }
 
 @keyframes dotGlowPulseBlue {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 6px rgba(37, 99, 235, 0.7), 0 0 1px var(--primary);
   }
+
   50% {
     transform: scale(1.18);
     box-shadow: 0 0 13px rgba(37, 99, 235, 0.95), 0 0 3px var(--primary);
@@ -1351,10 +1368,13 @@ th {
 }
 
 @keyframes dotGlowPulsePurple {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 6px rgba(139, 92, 246, 0.7), 0 0 1px #8b5cf6;
   }
+
   50% {
     transform: scale(1.18);
     box-shadow: 0 0 13px rgba(139, 92, 246, 0.95), 0 0 3px #8b5cf6;
@@ -2428,9 +2448,17 @@ th {
   display: inline-block;
 }
 
-.siem-dot.red { background: #ef4444; }
-.siem-dot.yellow { background: #f59e0b; }
-.siem-dot.green { background: #10b981; }
+.siem-dot.red {
+  background: #ef4444;
+}
+
+.siem-dot.yellow {
+  background: #f59e0b;
+}
+
+.siem-dot.green {
+  background: #10b981;
+}
 
 .siem-btn-sub {
   background: rgba(255, 255, 255, 0.05);
@@ -2467,6 +2495,7 @@ th {
 .siem-terminal-body::-webkit-scrollbar {
   width: 6px;
 }
+
 .siem-terminal-body::-webkit-scrollbar-thumb {
   background: #334155;
   border-radius: 3px;
@@ -3008,69 +3037,86 @@ th {
 .amount-three-tier {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  min-width: 165px;
-  font-family: var(--font-mono, monospace);
+  gap: 5px;
+  min-width: 185px;
+  font-family: 'Noto Sans KR', 'Pretendard', 'Malgun Gothic', '맑은 고딕', -apple-system, sans-serif;
 }
 
 .amount-three-tier .tier-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
-  font-size: 11.5px;
-  padding: 1px 4px;
-  border-radius: 4px;
-  background: rgba(148, 163, 184, 0.08);
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 3.5px 8px;
+  border-radius: 5px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all 0.15s ease;
 }
 
 .amount-three-tier .tier-row.deposit {
-  border-left: 2.5px solid var(--primary);
+  border-left: 3.5px solid #0284c7;
+  background: rgba(2, 132, 199, 0.04);
 }
 
 .amount-three-tier .tier-row.confirmed {
-  border-left: 2.5px solid #64748b;
+  border-left: 3.5px solid #0f172a;
+  background: rgba(15, 23, 42, 0.03);
 }
 
 .amount-three-tier .tier-row.refund {
-  border-left: 2.5px solid #94a3b8;
+  border-left: 3.5px solid #334155;
+  background: rgba(51, 65, 85, 0.03);
 }
 
 .amount-three-tier .tier-row.refund.has-refund {
-  border-left: 2.5px solid #ef4444;
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  border-left: 3.5px solid #dc2626;
+  background: rgba(220, 38, 38, 0.07);
+  color: #dc2626;
   font-weight: 700;
 }
 
 .amount-three-tier .tier-tag {
-  font-size: 9.5px;
-  font-weight: 800;
-  padding: 1px 4px;
-  border-radius: 3px;
-  color: #fff;
+  font-family: 'Noto Sans KR', 'Pretendard', 'Malgun Gothic', '맑은 고딕', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2.5px 6.5px;
+  min-width: 36px;
+  height: 20px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #ffffff;
   white-space: nowrap;
+  letter-spacing: 0.6px;
+  text-rendering: optimizeLegibility;
 }
 
 .amount-three-tier .tier-tag.deposit-tag {
-  background: var(--primary);
+  background: #0284c7;
 }
 
 .amount-three-tier .tier-tag.confirmed-tag {
-  background: #64748b;
+  background: #0f172a;
 }
 
 .amount-three-tier .tier-tag.refund-tag {
-  background: #94a3b8;
+  background: #334155;
 }
 
 .amount-three-tier .tier-row.refund.has-refund .tier-tag.refund-tag {
-  background: #ef4444;
+  background: #dc2626;
 }
 
 .amount-three-tier .refund-zero {
-  color: var(--text-light);
-  font-weight: normal;
+  color: #475569;
+  font-weight: 500;
 }
 
 /* 거래 주체 컴팩트 스택 */
@@ -3125,4 +3171,294 @@ th {
   padding: 1px 5px;
   border-radius: 4px;
   margin-left: 4px;
+}
+
+/* ==========================================================================
+   단건 입력 폼 3대 정산 금액 체계 (납부 · 확정 · 환불) 카드
+   ========================================================================== */
+.form-three-tier-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.form-tier-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.form-tier-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark, #0f172a);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-tier-desc {
+  font-size: 11px;
+  color: var(--text-muted, #64748b);
+  line-height: 1.4;
+}
+
+.form-label-with-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.form-label-with-tag .form-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.tier-auto-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3.5px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.tier-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.tier-field.confirmed-field,
+.tier-field.refund-field {
+  padding-top: 6px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.form-input.readonly-tier {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  font-family: var(--font-mono, 'Pretendard', -apple-system, sans-serif);
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: not-allowed;
+  user-select: all;
+  letter-spacing: -0.2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.form-input.readonly-tier:focus {
+  outline: none;
+  border-color: #94a3b8;
+  box-shadow: none;
+}
+
+.form-input.readonly-tier.has-refund {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #dc2626;
+  font-weight: 800;
+}
+
+.tier-auto-badge.has-refund {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+/* ==========================================================================
+   트랜잭션 삭제 커스텀 확인 다이얼로그 모달 (Confirm Modal)
+   ========================================================================== */
+.modal-card.confirm-card {
+  max-width: 480px;
+  width: 90%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  animation: confirmPop 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+@keyframes confirmPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.confirm-modal-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px 24px 16px;
+  background: #ffffff;
+}
+
+.confirm-modal-icon-badge {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 12px;
+  background: #fee2e2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.15);
+}
+
+.confirm-modal-icon-badge svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.2;
+}
+
+.confirm-modal-title-wrap {
+  flex: 1;
+}
+
+.confirm-modal-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.3px;
+}
+
+.confirm-modal-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.confirm-modal-body {
+  padding: 0 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.confirm-target-info {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.confirm-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+}
+
+.confirm-info-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.confirm-info-val {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.confirm-info-val.bold-mono {
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  background: #e2e8f0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.confirm-info-val.amount-bold {
+  color: #0284c7;
+  font-weight: 800;
+  font-size: 14px;
+  font-family: var(--font-mono, monospace);
+}
+
+.confirm-alert-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 10px 12px;
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 3.5px solid #d97706;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #92400e;
+}
+
+.confirm-alert-box svg {
+  flex-shrink: 0;
+  stroke: #d97706;
+  margin-top: 1px;
+}
+
+.confirm-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.confirm-modal-footer .btn-secondary,
+.confirm-modal-footer .btn-danger {
+  padding: 9px 18px;
+  font-size: 13.5px;
+  font-weight: 700;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.confirm-modal-footer .btn-danger {
+  background: #dc2626;
+  color: #ffffff;
+  border: 1px solid #b91c1c;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
+}
+
+.confirm-modal-footer .btn-danger:hover {
+  background: #b91c1c;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.35);
 }
