@@ -19,7 +19,7 @@
   --border: #ddd;
   --accent: #333;
   --link: #111;
-  --transition: 0.3s ease;
+  --transition: 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] {
@@ -1021,6 +1021,17 @@ img {
   opacity: 0.55;
 }
 
+#clockHourHand,
+#clockMinuteHand,
+#clockSecondHand {
+  transform-origin: 20px 20px;
+  transform-box: view-box;
+}
+
+#clockSecondHand {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 #clockHourHand line,
 .hour-hand {
   stroke: var(--text) !important;
@@ -1268,17 +1279,48 @@ img {
   stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: opacity 0.3s ease;
 }
 
 .sparkline-point {
   fill: var(--bg);
   stroke: var(--text);
   stroke-width: 1.8;
+  transition: all 0.25s ease;
 }
 
 .sparkline-point.active {
   fill: var(--text);
   stroke: var(--text);
+  animation: breathePulseRing 3.2s infinite ease-in-out;
+  transform-origin: 195px 17.5px;
+  transform-box: view-box;
+}
+
+@keyframes breathePulseRing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 1;
+  }
+}
+
+[data-theme="dark"] .sparkline-point.active {
+  animation: breathePulseRingDark 3.2s infinite ease-in-out;
+}
+
+@keyframes breathePulseRingDark {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 1;
+  }
 }
 
 .sparkline-meta {
@@ -3143,22 +3185,39 @@ a.evidence-item {
 
 
 /* ===========================
-   Modal
+   Modal & Scroll Lock System
    =========================== */
+
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
 
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 200;
+  z-index: 1200;
   padding: 24px;
+  animation: modalFadeIn 0.22s ease-out;
 }
 
 .modal-overlay[hidden] {
   display: none;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-content {
@@ -3496,7 +3555,7 @@ a.evidence-item {
   height: 3px;
   background: #10b981;
   border-radius: 2px;
-  animation: signalFlow 4.5s infinite ease-in-out;
+  animation: signalFlow 2.4s infinite ease-in-out;
   opacity: 0;
 }
 
@@ -3505,11 +3564,11 @@ a.evidence-item {
 }
 
 .vision-diagram .vision-arrow:nth-of-type(2) .signal-dot {
-  animation-delay: 1.5s;
+  animation-delay: 0.8s;
 }
 
 .vision-diagram .vision-arrow:nth-of-type(3) .signal-dot {
-  animation-delay: 3s;
+  animation-delay: 1.6s;
 }
 
 @keyframes signalFlow {
@@ -3772,13 +3831,14 @@ a.evidence-item {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 210;
+  z-index: 1200;
   padding: 20px;
+  animation: modalFadeIn 0.22s ease-out;
 }
 
 .story-modal-overlay[hidden] {
@@ -3792,11 +3852,11 @@ a.evidence-item {
   max-height: 88vh;
   background: var(--bg);
   border: 0.5px solid var(--border);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  animation: cardFadeIn 0.25s ease-out;
-  border-radius: 4px;
+  animation: modalSlideUp 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -5515,11 +5575,26 @@ a.evidence-item {
 
 /* 아코디언 본문 접기/펼치기 */
 .section-collapsible-body {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .collapsible-section.is-collapsed .section-collapsible-body {
   display: none !important;
+}
+
+.collapsible-section:not(.is-collapsed) .section-collapsible-body {
+  animation: sectionExpandFade 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sectionExpandFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .collapsible-section.is-collapsed {

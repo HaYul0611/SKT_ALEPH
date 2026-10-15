@@ -49,6 +49,7 @@
   function openModal() {
     lastFocused = document.activeElement;
     modal.hidden = false;
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
     if (closeBtn) {
       closeBtn.focus();
@@ -57,6 +58,7 @@
 
   function closeModal() {
     modal.hidden = true;
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     if (lastFocused) {
       lastFocused.focus();
@@ -131,12 +133,14 @@
   function openModal() {
     lastFocused = document.activeElement;
     modal.hidden = false;
-    closeBtn.focus();
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
+    closeBtn.focus();
   }
 
   function closeModal() {
     modal.hidden = true;
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     if (lastFocused) {
       lastFocused.focus();
@@ -250,6 +254,7 @@
   function openModal(defaultTargetId) {
     lastFocused = document.activeElement;
     modal.hidden = false;
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
 
     var target = (typeof defaultTargetId === 'string' && defaultTargetId) ? defaultTargetId : 'story-sec-1';
@@ -267,6 +272,7 @@
 
   function closeModal() {
     modal.hidden = true;
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     if (lastFocused) {
       lastFocused.focus();
@@ -343,7 +349,13 @@
     }
   ];
 
-  function setActiveStep(idx) {
+  var currentStep = 0;
+  var autoPlayTimer = null;
+  var isUserInteracting = false;
+  var resumeTimer = null;
+
+  function setActiveStep(idx, fromUser) {
+    currentStep = idx;
     nodes.forEach(function (n, i) {
       if (i === idx) {
         n.classList.add('active');
@@ -359,7 +371,7 @@
 
     var card = document.getElementById('visionDetailCard');
     if (card) {
-      card.style.opacity = '0.4';
+      card.style.opacity = '0.35';
       card.style.transform = 'translateY(3px)';
       setTimeout(function () {
         badge.textContent = data.badge;
@@ -370,18 +382,91 @@
         }).join('');
         card.style.opacity = '1';
         card.style.transform = 'translateY(0)';
-      }, 120);
+      }, 140);
     }
+  }
+
+  function startAutoCycle() {
+    stopAutoCycle();
+    autoPlayTimer = setInterval(function () {
+      if (!isUserInteracting) {
+        var next = (currentStep + 1) % nodes.length;
+        setActiveStep(next, false);
+      }
+    }, 4500);
+  }
+
+  function stopAutoCycle() {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  }
+
+  function pauseAndResumeLater(ms) {
+    isUserInteracting = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function () {
+      isUserInteracting = false;
+    }, ms || 6000);
   }
 
   nodes.forEach(function (node) {
     node.addEventListener('click', function () {
       var step = parseInt(this.getAttribute('data-step'), 10);
       if (!isNaN(step)) {
-        setActiveStep(step);
+        setActiveStep(step, true);
+        pauseAndResumeLater(7000);
       }
     });
+
+    node.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        var step = parseInt(this.getAttribute('data-step'), 10);
+        if (!isNaN(step)) {
+          setActiveStep(step, true);
+          pauseAndResumeLater(7000);
+        }
+      }
+    });
+
+    node.addEventListener('mouseenter', function () {
+      isUserInteracting = true;
+    });
+
+    node.addEventListener('mouseleave', function () {
+      pauseAndResumeLater(4000);
+    });
   });
+
+  var diagramContainer = document.querySelector('.vision-diagram');
+  if (diagramContainer) {
+    diagramContainer.addEventListener('mouseenter', function () {
+      isUserInteracting = true;
+    });
+    diagramContainer.addEventListener('mouseleave', function () {
+      pauseAndResumeLater(4000);
+    });
+  }
+
+  // 뷰포트에 비전 다이어그램이 보일 때만 자연스럽게 자동 순환 가동
+  if ('IntersectionObserver' in window && diagramContainer) {
+    var visionObserver = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        var vSec = document.getElementById('vision');
+        if (!vSec || !vSec.classList.contains('is-collapsed')) {
+          startAutoCycle();
+        }
+      } else {
+        stopAutoCycle();
+      }
+    }, { threshold: 0.2 });
+    visionObserver.observe(diagramContainer);
+  }
+
+  window.startVisionCycle = startAutoCycle;
+  window.stopVisionCycle = stopAutoCycle;
 })();
 
 /* ===========================
@@ -442,6 +527,7 @@
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
     if (modalBody) modalBody.scrollTop = 0;
     if (navLinks.length) {
       navLinks.forEach(function (link, idx) {
@@ -455,6 +541,7 @@
   function closePaperModal() {
     modal.hidden = true;
     document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
   }
 
@@ -480,7 +567,7 @@
     }
   });
 
-  // 퀵 내비게이션 스크롤 이동
+  // 퀵 내비게이션 스크롤 이동 (헤더 오프셋 고려한 부드러운 내부 스크롤)
   navLinks.forEach(function (link) {
     link.addEventListener('click', function (e) {
       var href = link.getAttribute('href');
@@ -488,25 +575,40 @@
         e.preventDefault();
         var targetSec = modal.querySelector(href);
         if (targetSec) {
-          targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          navLinks.forEach(function (l) { l.classList.remove('active'); });
+          link.classList.add('active');
+
+          var bodyRect = modalBody.getBoundingClientRect();
+          var targetRect = targetSec.getBoundingClientRect();
+          var offset = targetRect.top - bodyRect.top + modalBody.scrollTop - 14;
+
+          modalBody.scrollTo({
+            top: Math.max(0, offset),
+            behavior: 'smooth'
+          });
         }
       }
     });
   });
 
-  // 논문 모달 내부 스크롤스파이 (현재 섹션 탭 활성화)
+  // 논문 모달 내부 스크롤스파이 (현재 섹션 탭 실시간 활성화)
   if (modalBody && navLinks.length) {
     var paperSections = modal.querySelectorAll('.paper-article-section');
     modalBody.addEventListener('scroll', function () {
-      var bodyTop = modalBody.getBoundingClientRect().top + 70;
+      var bodyRect = modalBody.getBoundingClientRect();
+      var triggerLine = bodyRect.top + 80;
       var currentId = '';
 
-      paperSections.forEach(function (sec) {
-        var rect = sec.getBoundingClientRect();
-        if (rect.top <= bodyTop) {
-          currentId = sec.id;
-        }
-      });
+      if (modalBody.scrollHeight - modalBody.scrollTop <= modalBody.clientHeight + 25) {
+        if (paperSections.length) currentId = paperSections[paperSections.length - 1].id;
+      } else {
+        paperSections.forEach(function (sec) {
+          var rect = sec.getBoundingClientRect();
+          if (rect.top <= triggerLine) {
+            currentId = sec.id;
+          }
+        });
+      }
 
       if (currentId) {
         navLinks.forEach(function (link) {
@@ -517,7 +619,7 @@
           }
         });
       }
-    });
+    }, { passive: true });
   }
 })();
 
@@ -1125,6 +1227,7 @@
   function openSyncModal() {
     if (!syncModal) return;
     syncModal.hidden = false;
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
     if (snippetTextarea) {
       snippetTextarea.value = EXTRACTION_SNIPPET;
@@ -1134,6 +1237,7 @@
   function closeSyncModal() {
     if (!syncModal) return;
     syncModal.hidden = true;
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
   }
 
@@ -1169,14 +1273,28 @@
   var btnCopyBookmarklet = document.getElementById('btnCopyBookmarklet');
   if (btnCopyBookmarklet) {
     btnCopyBookmarklet.addEventListener('click', function () {
+      var origText = btnCopyBookmarklet.textContent;
+      function setSuccess() {
+        btnCopyBookmarklet.textContent = '복사 완료! ✓';
+        btnCopyBookmarklet.style.background = 'var(--text)';
+        btnCopyBookmarklet.style.color = 'var(--bg)';
+        setTimeout(function () {
+          btnCopyBookmarklet.textContent = origText;
+          btnCopyBookmarklet.style.background = '';
+          btnCopyBookmarklet.style.color = '';
+        }, 1800);
+      }
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(EXTRACTION_SNIPPET).then(function () {
+          setSuccess();
           showToastMsg('추출 스크립트가 클립보드에 복사되었습니다!');
         });
       } else {
         if (snippetTextarea) {
           snippetTextarea.select();
           document.execCommand('copy');
+          setSuccess();
           showToastMsg('추출 스크립트가 클립보드에 복사되었습니다!');
         }
       }
@@ -1323,6 +1441,7 @@
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
 
     if (chapterId) {
       setTimeout(function () { scrollToChapter(chapterId, false); }, 50);
@@ -1337,6 +1456,7 @@
   function closeNovelModal() {
     modal.hidden = true;
     document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
   }
 
@@ -1430,13 +1550,28 @@
     var secondHand = document.getElementById('clockSecondHand');
     var clockBox = document.getElementById('liveClock');
 
-    if (hourHand) hourHand.setAttribute('transform', 'rotate(' + hourDeg + ' 20 20)');
-    if (minuteHand) minuteHand.setAttribute('transform', 'rotate(' + minDeg + ' 20 20)');
-    if (secondHand) secondHand.setAttribute('transform', 'rotate(' + secDeg + ' 20 20)');
+    if (hourHand) {
+      hourHand.removeAttribute('transform');
+      hourHand.style.transform = 'rotate(' + hourDeg.toFixed(2) + 'deg)';
+    }
+    if (minuteHand) {
+      minuteHand.removeAttribute('transform');
+      minuteHand.style.transform = 'rotate(' + minDeg.toFixed(2) + 'deg)';
+    }
+    if (secondHand) {
+      secondHand.removeAttribute('transform');
+      if (sec === 0) {
+        secondHand.style.transition = 'none';
+        secondHand.style.transform = 'rotate(0deg)';
+        void secondHand.offsetWidth;
+        secondHand.style.transition = '';
+      } else {
+        secondHand.style.transform = 'rotate(' + secDeg + 'deg)';
+      }
+    }
 
     var timeStr = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
     if (clockBox) {
-      var timeStr = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
       clockBox.setAttribute('title', '실시간 시계 (현재 시각: ' + timeStr + ')');
     }
   }
@@ -1942,12 +2077,15 @@
     });
 
     renderTabContent();
+    if (bodyEl) bodyEl.scrollTop = 0;
     modal.hidden = false;
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeProjectModal() {
     modal.hidden = true;
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
   }
 
@@ -1958,6 +2096,7 @@
       chip.classList.add('active');
       currentTab = chip.getAttribute('data-tab') || 'arch';
       renderTabContent();
+      if (bodyEl) bodyEl.scrollTop = 0;
     });
   });
 
@@ -2032,8 +2171,17 @@
   function setSectionState(sec, isCollapsed) {
     if (isCollapsed) {
       sec.classList.add('is-collapsed');
+      if (sec.id === 'vision' && typeof window.stopVisionCycle === 'function') {
+        window.stopVisionCycle();
+      }
     } else {
       sec.classList.remove('is-collapsed');
+      if (sec.id === 'metrics' && typeof runMetricsCountUp === 'function') {
+        setTimeout(runMetricsCountUp, 60);
+      }
+      if (sec.id === 'vision' && typeof window.startVisionCycle === 'function') {
+        window.startVisionCycle();
+      }
     }
     var header = sec.querySelector('.section-accordion-header');
     if (header) {
@@ -2200,11 +2348,28 @@
 
   function animateVal(el, start, end, duration, formatFn) {
     var startTime = null;
+    var dur = duration || 750;
     function step(timestamp) {
       if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var progress = Math.min((timestamp - startTime) / dur, 1);
       var ease = 1 - Math.pow(1 - progress, 3);
       var current = Math.round(start + (end - start) * ease);
+      el.textContent = formatFn(current);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    }
+    window.requestAnimationFrame(step);
+  }
+
+  function animateValFloat(el, start, end, duration, formatFn) {
+    var startTime = null;
+    var dur = duration || 750;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / dur, 1);
+      var ease = 1 - Math.pow(1 - progress, 3);
+      var current = start + (end - start) * ease;
       el.textContent = formatFn(current);
       if (progress < 1) {
         window.requestAnimationFrame(step);
@@ -2225,8 +2390,18 @@
         var targetVal = parseInt(ratioMatch[1], 10);
         var totalVal = ratioMatch[2];
         var unit = ratioMatch[3];
-        animateVal(el, 0, targetVal, 950, function (v) {
+        animateVal(el, 0, targetVal, 750, function (v) {
           return v + '/' + totalVal + unit;
+        });
+        return;
+      }
+      var floatMatch = raw.match(/^([^\d]*)(\d+\.\d+)(.*)$/);
+      if (floatMatch) {
+        var prefix = floatMatch[1];
+        var targetVal = parseFloat(floatMatch[2]);
+        var suffix = floatMatch[3];
+        animateValFloat(el, 0, targetVal, 750, function (v) {
+          return prefix + v.toFixed(1) + suffix;
         });
         return;
       }
@@ -2235,7 +2410,7 @@
         var prefix = numMatch[1];
         var targetVal = parseInt(numMatch[2], 10);
         var suffix = numMatch[3];
-        animateVal(el, 0, targetVal, 950, function (v) {
+        animateVal(el, 0, targetVal, 750, function (v) {
           return prefix + v + suffix;
         });
       }
