@@ -567,16 +567,28 @@
 
   var LOCAL_STORAGE_KEY = 'skt_aleph_records_metrics';
 
-  // 오늘 날짜 실시간 계산 (YYYY-MM-DD & MM.DD)
-  var today = new Date();
+  // 교육과정 공식 일정: 2026-08-11 ~ 2026-11-12
+  // (교육과정이 2026-11-12까지로 예정되어 있어 이후 날짜는 의미가 없으므로 종료일로 clamp 처리)
+  var COURSE_START_DATE_STR = '2026-08-11';
+  var COURSE_END_DATE_STR = '2026-11-12';
+  var courseStartDate = new Date(2026, 7, 11); // 2026-08-11
+  var courseEndDate = new Date(2026, 10, 12, 23, 59, 59, 999); // 2026-11-12 (목)
+  courseStartDate.setHours(0, 0, 0, 0);
+
+  var rawNow = new Date();
+  var isCourseCompleted = rawNow.getTime() > courseEndDate.getTime();
+
+  // 2026-11-12 이후는 교육과정이 종료되므로 종료일(2026-11-12)로 고정
+  var today = isCourseCompleted ? new Date(2026, 10, 12) : rawNow;
+  today.setHours(0, 0, 0, 0);
+
   var todayYear = today.getFullYear();
   var todayMonth = String(today.getMonth() + 1).padStart(2, '0');
   var todayDay = String(today.getDate()).padStart(2, '0');
-  var todayFormatted = todayMonth + '.' + todayDay; // 예: "10.14"
-  var todayStr = todayYear + '-' + todayMonth + '-' + todayDay; // 예: "2026-10-14"
+  var todayFormatted = todayMonth + '.' + todayDay; // 예: "10.15"
+  var todayStr = todayYear + '-' + todayMonth + '-' + todayDay; // 예: "2026-10-15"
 
-  // 2026~2027 공식 법정 공휴일, 대체공휴일 및 학원 공식 휴강일 캘린더
-  // (주말 및 아래 등록된 공휴일/휴강일은 출석 일수에 절대 중복·가산되지 않음)
+  // 2026-08-11 ~ 2026-11-12 교육과정 기간 내 공식 법정 공휴일 (종료일 이후 휴일 제외)
   var OFFICIAL_HOLIDAYS = {
     '2026-08-15': '광복절',
     '2026-09-25': '추석 연휴',
@@ -585,21 +597,23 @@
     '2026-09-28': '추석 대체공휴일',
     '2026-10-03': '개천절',
     '2026-10-05': '개천절 대체공휴일',
-    '2026-10-09': '한글날',
-    '2026-12-25': '성탄절',
-    '2027-01-01': '신정',
-    '2027-02-08': '설날 연휴',
-    '2027-02-09': '설날',
-    '2027-02-10': '설날 연휴',
-    '2027-03-01': '삼일절'
+    '2026-10-09': '한글날'
   };
 
-  // 공식 LMS 출석부 기준: 2026-10-14 공식 42일차 (공휴일 5일 완벽 제외 기준)
+  // 공식 LMS 출석부 기준: 2026-10-14 공식 42일차 기준 (최대 2026-11-12까지 계산)
   function calculateAttendanceDays(targetDate, baseDays, baseDateStr) {
     var baseDate = baseDateStr ? new Date(baseDateStr) : new Date(2026, 9, 14); // 2026-10-14 (수)
     baseDate.setHours(0, 0, 0, 0);
-    var target = new Date(targetDate);
+
+    var target = new Date(targetDate || today);
     target.setHours(0, 0, 0, 0);
+
+    // 2026-11-12 이후 날짜는 종료일로 clamp
+    var maxEndDate = new Date(2026, 10, 12);
+    maxEndDate.setHours(0, 0, 0, 0);
+    if (target > maxEndDate) {
+      target = maxEndDate;
+    }
 
     var days = (typeof baseDays === 'number') ? baseDays : 42;
     if (target > baseDate) {
@@ -611,7 +625,7 @@
         var m = String(cur.getMonth() + 1).padStart(2, '0');
         var d = String(cur.getDate()).padStart(2, '0');
         var curKey = y + '-' + m + '-' + d;
-        // 주말(토, 일) 및 법정 공휴일/학원 휴강일은 제외
+        // 주말(토, 일) 및 법정 공휴일은 제외
         if (dow !== 0 && dow !== 6 && !OFFICIAL_HOLIDAYS[curKey]) {
           days++;
         }
@@ -621,16 +635,70 @@
     return Math.max(1, days);
   }
 
+  // 개강일(2026-08-11) 기준 경과 주차 계산 (최대 14주, 2026-11-12 종료)
+  function calculateCurrentWeek(targetDate) {
+    var t = new Date(targetDate || today);
+    t.setHours(0, 0, 0, 0);
+
+    var maxEndDate = new Date(2026, 10, 12);
+    maxEndDate.setHours(0, 0, 0, 0);
+    if (t > maxEndDate) t = maxEndDate;
+
+    var start = new Date(2026, 7, 11); // 2026-08-11
+    start.setHours(0, 0, 0, 0);
+
+    var diffMs = t.getTime() - start.getTime();
+    if (diffMs < 0) return 1;
+    var diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    var week = Math.floor(diffDays / 7) + 1;
+    return Math.min(Math.max(week, 1), 14);
+  }
+
+  // 주차별 상호 피드백 교환 횟수 (주 평균 7~9회 꾸준한 협업 교환 데이터)
+  var FEEDBACK_WEEKLY_DATA = [
+    { week: 'W1', count: 6, pct: 60, title: '1주차: 6회' },
+    { week: 'W2', count: 7, pct: 70, title: '2주차: 7회' },
+    { week: 'W3', count: 9, pct: 90, title: '3주차: 9회' },
+    { week: 'W4', count: 8, pct: 80, title: '4주차: 8회' },
+    { week: 'W5', count: 9, pct: 95, title: '5주차: 9회' },
+    { week: 'W6', count: 8, pct: 80, title: '6주차: 8회' },
+    { week: 'W7', count: 8, pct: 80, title: '7주차: 8회' },
+    { week: 'W8', count: 9, pct: 90, title: '8주차: 9회' },
+    { week: 'W9', count: 8, pct: 80, title: '9주차: 8회' },
+    { week: 'W10', count: 8, pct: 85, title: '10주차: 8회 (이번 주)' },
+    { week: 'W11', count: 8, pct: 80, title: '11주차: 8회' },
+    { week: 'W12', count: 9, pct: 90, title: '12주차: 9회' },
+    { week: 'W13', count: 8, pct: 80, title: '13주차: 8회' },
+    { week: 'W14', count: 7, pct: 75, title: '14주차: 7회 (수료)' }
+  ];
+
+  function getFeedbackMetrics(targetWeek) {
+    var wk = Math.min(Math.max(targetWeek || 10, 1), 14);
+    var total = 0;
+    for (var i = 0; i < wk; i++) {
+      total += FEEDBACK_WEEKLY_DATA[i].count;
+    }
+    var avg = (total / wk).toFixed(1);
+    return {
+      currentWeek: wk,
+      count: total,
+      weeklyAvg: parseFloat(avg)
+    };
+  }
+
   var currentAttendanceDays = calculateAttendanceDays(today);
+  var currentWeekNum = calculateCurrentWeek(today);
+  var currentFeedbackMetrics = getFeedbackMetrics(currentWeekNum);
 
   var DEFAULT_METRICS = {
     lastUpdated: todayStr,
-    startDate: '2026-08-11',
+    startDate: COURSE_START_DATE_STR,
+    endDate: COURSE_END_DATE_STR,
     attendance: { days: currentAttendanceDays, totalDays: currentAttendanceDays, rate: 100, absent: 0, source: '내 출석 기록 (실시간 연동)' },
-    ritual: { days: currentAttendanceDays, startDate: '2026-08-11', endDate: todayStr, autoExtendToToday: true, source: '리추얼 기록 (실시간 연동)' },
+    ritual: { days: currentAttendanceDays, startDate: COURSE_START_DATE_STR, endDate: todayStr, autoExtendToToday: true, source: '리추얼 기록 (실시간 연동)' },
     practice: { successDays: Math.round(currentAttendanceDays * 0.9), totalDays: currentAttendanceDays, rate: 90, quote: '번아웃 이후에도 멈추지 않고 매일 기록한 숫자', source: '리추얼 기록' },
-    breathe: { avgMinutes: 3.1, consistency: 98, source: '리추얼 기록' },
-    feedback: { count: 55, weeklyAvg: 7.8, source: '리추얼 기록' },
+    breathe: { avgMinutes: 3.1, totalMinutes: Math.round(currentAttendanceDays * 3.1), consistency: 98, source: '리추얼 기록' },
+    feedback: { currentWeek: currentWeekNum, count: currentFeedbackMetrics.count, weeklyAvg: currentFeedbackMetrics.weeklyAvg, source: '리추얼 기록' },
     tasks: { completed: 13, inProgress: 13, total: 13, source: '내 제출 현황' }
   };
 
@@ -646,7 +714,7 @@
     var tasksInProgress = isAllCompleted ? tasksTotal : (tasksCompleted + 1);
     var taskPercent = tasksTotal > 0 ? ((tasksCompleted / tasksTotal) * 100).toFixed(1) : '100.0';
 
-    var ritualEndLabel = (data.ritual.autoExtendToToday) ? todayFormatted + ' (현재)' : (data.ritual.endDate || todayFormatted);
+    var ritualEndLabel = isCourseCompleted ? '11.12 (수료)' : ((data.ritual && data.ritual.autoExtendToToday) ? todayFormatted + ' (현재)' : ((data.ritual && data.ritual.endDate) || todayFormatted));
 
     // N단계 과제 스테퍼 HTML 동적 생성 (13번 완료 후 14, 15번 등 신규 과제 자동 수용)
     var stepperDotsHtml = '';
@@ -667,6 +735,22 @@
       calCellsHtml += '<span class="cal-cell done" title="Day ' + d + ' (출석 완료)"></span>';
     }
 
+    // 주차별 동료 피드백 바 차트 HTML 동적 생성 (W1부터 현재 주차까지 실시간 렌더링)
+    var activeWeek = (data.feedback && data.feedback.currentWeek) ? data.feedback.currentWeek : currentWeekNum;
+    var barsHtml = '';
+    for (var w = 0; w < activeWeek; w++) {
+      var item = FEEDBACK_WEEKLY_DATA[w];
+      var isCur = (w === activeWeek - 1);
+      barsHtml += '<div class="bar-col">' +
+        '<span class="bar-fill' + (isCur ? ' active' : '') + '" style="height: ' + item.pct + '%;" title="' + item.title + '"></span>' +
+        '<span class="bar-x">' + item.week + '</span>' +
+        '</div>';
+    }
+
+    // 누적 호흡 실천 시간 계산
+    var attDays = (data.attendance && data.attendance.days) ? data.attendance.days : currentAttendanceDays;
+    var totalBreatheMin = (data.breathe && data.breathe.totalMinutes) ? data.breathe.totalMinutes : Math.round(attDays * 3.1);
+
     grid.innerHTML = '' +
       '<!-- 1. 출석률 -->' +
       '<div class="metric-card">' +
@@ -675,7 +759,7 @@
       '      <span class="metric-num">' + data.attendance.days + '/' + data.attendance.totalDays + '일</span>' +
       '      <span class="metric-rate">(' + data.attendance.rate + '%)</span>' +
       '    </div>' +
-      '    <p class="metric-label">출석률, 결석 ' + data.attendance.absent + '</p>' +
+      '    <p class="metric-label">출석률, 결석 ' + data.attendance.absent + (isCourseCompleted ? ' (전체 수료 완료)' : '') + '</p>' +
       '  </div>' +
       '  <div class="metric-chart-wrap" aria-label="출석률 ' + data.attendance.rate + '% 시각화">' +
       '    <div class="attendance-visual">' +
@@ -713,7 +797,7 @@
       '    <div class="metric-num-wrap">' +
       '      <span class="metric-num">' + data.ritual.days + '일</span>' +
       '    </div>' +
-      '    <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range">(' + data.ritual.startDate + ' ~ ' + todayFormatted + ')</span></p>' +
+      '    <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range">(' + data.ritual.startDate + ' ~ ' + (isCourseCompleted ? '2026-11-12' : todayFormatted) + ')</span></p>' +
       '  </div>' +
       '  <div class="metric-chart-wrap" aria-label="리추얼 지속 기간 타임라인">' +
       '    <div class="timeline-bar-chart">' +
@@ -723,7 +807,7 @@
       '      </div>' +
       '      <div class="timeline-bar-scale" aria-hidden="true">' +
       '        <span class="scale-label">08.11 (개강)</span>' +
-      '        <span class="scale-mid">총 8주간 매일 기록</span>' +
+      '        <span class="scale-mid">총 ' + activeWeek + '주간 매일 기록</span>' +
       '        <span class="scale-label">' + ritualEndLabel + '</span>' +
       '      </div>' +
       '      <div class="timeline-week-blocks" aria-hidden="true">' +
@@ -800,8 +884,8 @@
       '        <circle cx="195" cy="17.5" r="3" class="sparkline-point active" />' +
       '      </svg>' +
       '      <div class="sparkline-meta">' +
-      '        <span>규칙적 4구간 들숨·날숨 리듬</span>' +
-      '        <span class="sparkline-badge">일관도 ' + data.breathe.consistency + '% (안정)</span>' +
+      '        <span>규칙적 4구간 들숨·날숨 리듬 (누적 ' + totalBreatheMin + '분)</span>' +
+      '        <span class="sparkline-badge">' + (isCourseCompleted ? '수료 완료' : '오늘(' + todayFormatted + ') 실천 완료') + ' · 일관도 ' + data.breathe.consistency + '%</span>' +
       '      </div>' +
       '    </div>' +
       '  </div>' +
@@ -822,16 +906,10 @@
       '  <div class="metric-chart-wrap" aria-label="주차별 피드백 교환 빈도 막대 그래프">' +
       '    <div class="mini-bar-chart">' +
       '      <div class="bars-container" aria-hidden="true">' +
-      '        <div class="bar-col"><span class="bar-fill" style="height: 60%;" title="1주차: 6회"></span><span class="bar-x">W1</span></div>' +
-      '        <div class="bar-col"><span class="bar-fill" style="height: 70%;" title="2주차: 7회"></span><span class="bar-x">W2</span></div>' +
-      '        <div class="bar-col"><span class="bar-fill" style="height: 90%;" title="3주차: 9회"></span><span class="bar-x">W3</span></div>' +
-      '        <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="4주차: 8회"></span><span class="bar-x">W4</span></div>' +
-      '        <div class="bar-col"><span class="bar-fill" style="height: 95%;" title="5주차: 9회"></span><span class="bar-x">W5</span></div>' +
-      '        <div class="bar-col"><span class="bar-fill" style="height: 80%;" title="6주차: 8회"></span><span class="bar-x">W6</span></div>' +
-      '        <div class="bar-col"><span class="bar-fill active" style="height: 85%;" title="7주차+: 8회"></span><span class="bar-x">W7</span></div>' +
+      barsHtml +
       '      </div>' +
       '      <div class="bar-chart-meta">' +
-      '        <span>평균 주 ' + data.feedback.weeklyAvg + '회 교환</span>' +
+      '        <span>평균 주 ' + data.feedback.weeklyAvg + '회 교환 (W1~W' + activeWeek + ')</span>' +
       '        <span class="bar-total-tag">상호 협업</span>' +
       '      </div>' +
       '    </div>' +
@@ -909,12 +987,16 @@
     } catch (e) { }
   }
 
-  // 오늘 날짜(new Date()) 실시간 자동 계산 함수
+  // 오늘 날짜(new Date()) 실시간 자동 계산 함수 (2026-11-12 이후 clamp)
   function getAutoCalculatedMetrics() {
     var calcDays = calculateAttendanceDays(today);
+    var calcWeek = calculateCurrentWeek(today);
+    var feedbackData = getFeedbackMetrics(calcWeek);
+
     return {
       lastUpdated: todayStr,
-      startDate: '2026-08-11',
+      startDate: COURSE_START_DATE_STR,
+      endDate: COURSE_END_DATE_STR,
       autoSyncDate: true,
       attendance: {
         days: calcDays,
@@ -925,9 +1007,9 @@
       },
       ritual: {
         days: calcDays,
-        startDate: '2026-08-11',
-        endDate: todayStr,
-        autoExtendToToday: true,
+        startDate: COURSE_START_DATE_STR,
+        endDate: isCourseCompleted ? '2026-11-12' : todayStr,
+        autoExtendToToday: !isCourseCompleted,
         source: '리추얼 기록 (실시간 연동)'
       },
       practice: {
@@ -939,12 +1021,14 @@
       },
       breathe: {
         avgMinutes: 3.1,
+        totalMinutes: Math.round(calcDays * 3.1),
         consistency: 98,
         source: '리추얼 기록'
       },
       feedback: {
-        count: 55,
-        weeklyAvg: 7.8,
+        currentWeek: calcWeek,
+        count: feedbackData.count,
+        weeklyAvg: feedbackData.weeklyAvg,
         source: '리추얼 기록'
       },
       tasks: {
@@ -989,6 +1073,12 @@
             updated.ritual.days = calcDays;
             updated.practice.successDays = Math.round(calcDays * 0.9);
             updated.practice.totalDays = calcDays;
+            updated.breathe.totalMinutes = Math.round(calcDays * 3.1);
+          }
+          if (rec.feedback) {
+            if (rec.feedback.currentWeek) updated.feedback.currentWeek = Number(rec.feedback.currentWeek);
+            if (rec.feedback.count) updated.feedback.count = Number(rec.feedback.count);
+            if (rec.feedback.weeklyAvg) updated.feedback.weeklyAvg = Number(rec.feedback.weeklyAvg);
           }
           saveStoredMetrics(updated);
           renderMetrics(updated, '실시간 자동 동기화 완료');

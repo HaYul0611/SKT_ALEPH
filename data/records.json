@@ -1,36 +1,39 @@
 {
-  "lastUpdated": "2026-10-14",
+  "lastUpdated": "2026-10-15",
   "startDate": "2026-08-11",
+  "endDate": "2026-11-12",
   "autoSyncDate": true,
   "attendance": {
-    "days": 42,
-    "totalDays": 42,
+    "days": 43,
+    "totalDays": 43,
     "rate": 100,
     "absent": 0,
     "source": "내 출석 기록 (실시간 연동)"
   },
   "ritual": {
-    "days": 42,
+    "days": 43,
     "startDate": "2026-08-11",
-    "endDate": "2026-10-14",
+    "endDate": "2026-10-15",
     "autoExtendToToday": true,
     "source": "리추얼 기록 (실시간 연동)"
   },
   "practice": {
-    "successDays": 38,
-    "totalDays": 42,
-    "rate": 90,
+    "successDays": 39,
+    "totalDays": 43,
+    "rate": 91,
     "quote": "번아웃 이후에도 멈추지 않고 매일 기록한 숫자",
     "source": "리추얼 기록"
   },
   "breathe": {
     "avgMinutes": 3.1,
+    "totalMinutes": 133,
     "consistency": 98,
     "source": "리추얼 기록"
   },
   "feedback": {
-    "count": 55,
-    "weeklyAvg": 7.8,
+    "currentWeek": 10,
+    "count": 80,
+    "weeklyAvg": 8.0,
     "source": "리추얼 기록"
   },
   "tasks": {
