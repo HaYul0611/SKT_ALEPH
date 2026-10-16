@@ -5467,33 +5467,17 @@ body.modal-open {
 }
 
 /* 2. 섹션 아코디언 헤더 */
-.collapsible-section {
-  transition: padding-bottom 0.25s ease;
-}
-
-.section-accordion-header {
+/* 정갈하고 품격 있는 원페이지 섹션 타이틀 블록 */
+.section-header-block {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
-  margin: 0 -18px 24px;
-  border-radius: 6px;
-  border: 0.5px solid transparent;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  padding: 10px 0 20px 0;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
 }
 
-.section-accordion-header:hover {
-  background: rgba(0, 0, 0, 0.02);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] .section-accordion-header:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.accordion-header-left {
+.section-header-left {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -5518,98 +5502,42 @@ body.modal-open {
 
 .section-title-wrap .section-title {
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 700;
   line-height: 1.2;
+  color: var(--text-dark);
 }
 
 .section-summary-preview {
   margin: 0;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--text-light);
   line-height: 1.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.accordion-header-right {
+.section-header-right {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
 }
 
-.accordion-badge {
+.section-badge {
   font-size: 11px;
   font-weight: 600;
   color: var(--text-mid);
   background: rgba(0, 0, 0, 0.04);
   border: 0.5px solid var(--border);
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 12px;
 }
 
-[data-theme="dark"] .accordion-badge {
+[data-theme="dark"] .section-badge {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.accordion-chevron {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  color: var(--text-mid);
-  font-size: 11px;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
-}
-
-.collapsible-section.is-collapsed .accordion-chevron {
-  transform: rotate(-90deg);
-}
-
-.collapsible-section:not(.is-collapsed) .accordion-chevron {
-  transform: rotate(0deg);
-}
-
-/* 아코디언 본문 접기/펼치기 */
-.section-collapsible-body {
-  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.collapsible-section.is-collapsed .section-collapsible-body {
-  display: none !important;
-}
-
-.collapsible-section:not(.is-collapsed) .section-collapsible-body {
-  animation: sectionExpandFade 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes sectionExpandFade {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.collapsible-section.is-collapsed {
-  padding-bottom: 12px !important;
-}
-
-.documents-section.collapsible-section.is-collapsed {
-  padding-bottom: 36px !important;
-  margin-bottom: 20px;
-}
-
-.collapsible-section.is-collapsed .section-accordion-header {
-  margin-bottom: 0;
-  background: rgba(0, 0, 0, 0.015);
-  border-color: var(--border);
+.section-body {
+  width: 100%;
 }
 
 /* 3. 스크롤 리빌 (Scroll Reveal) 자연스러운 동적 페이드업 */

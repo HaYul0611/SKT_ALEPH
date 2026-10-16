@@ -378,33 +378,20 @@
     <!-- 타임라인 섹션 -->
 
 
-    <!-- 섹션 아코디언 뷰 컨트롤러 (Option B: 본제 & 설명 기반 목차 토글 모드) -->
-    <div class="view-controller-bar" id="viewControllerBar">
-      <div class="view-info-box">
-        <span class="view-live-dot" aria-hidden="true"></span>
-        <span class="view-info-text"><strong>섹션별 요약 아코디언</strong> · 각 섹션 헤더를 클릭하여 상세 본문을 접거나 펼칠 수 있습니다.</span>
-      </div>
-      <div class="view-action-group">
-        <button type="button" class="btn-view-mode" id="btnExpandAll">전체 펼치기</button>
-        <button type="button" class="btn-view-mode active" id="btnCollapseAll">전체 접기 (목차 요약 모드)</button>
-      </div>
-    </div>
-
-    <section class="timeline-section collapsible-section is-collapsed" id="timeline" aria-label="경력 전환 타임라인">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="timeline-section" id="timeline" aria-label="경력 전환 타임라인">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">01</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Timeline</h2>
             <p class="section-summary-preview">의료 행정 실무 8년 경험 → SKT ALEPH 인프라·보안 엔지니어링 집중 훈련 로드맵</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <span class="accordion-badge">Current: SKT ALEPH 보안 인프라</span>
-          <span class="accordion-chevron" aria-hidden="true">▼</span>
+        <div class="section-header-right">
+          <span class="section-badge">Current: SKT ALEPH 보안 인프라</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
         <div class="timeline" id="careerTimeline">
 
           <div class="timeline-item done">
@@ -498,28 +485,20 @@
 
     <!-- 숫자 칸 섹션 (Records) -->
 
-    <section class="metrics-section collapsible-section is-collapsed" id="metrics" aria-label="숫자로 증명하는 기록">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="metrics-section" id="metrics" aria-label="숫자로 증명하는 기록">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">02</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Records</h2>
             <p class="section-summary-preview" id="recordsSectionSummary">출석 42일(100% 무결석) · 리추얼 42일 연속 · 과제 마스터 승인 13/13개 (100% 완주)</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <button type="button" class="cortex-sync-btn" id="openCortexSyncBtn" aria-label="Cortex 실시간 하이브리드 동기화 관리">
-            <svg class="sync-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-            </svg>
-            <span>Cortex 동기화</span>
-            <span class="sync-badge-status" id="cortexSyncStatusTag">LIVE</span>
-          </button>
-          <span class="accordion-chevron" aria-hidden="true">▼</span>
+        <div class="section-header-right">
+          <span class="section-badge">100% 무결석 완주</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
         <div class="metrics-grid">
 
           <!-- 1. 출석률 -->
@@ -548,49 +527,11 @@
 
               <div class="attendance-visual">
 
-                <div class="live-clock-box" id="liveClock" title="실시간 아날로그 시계" aria-label="현재 시각 아날로그 시계">
-
-                  <svg class="analog-clock" viewBox="0 0 40 40">
-
-                    <circle class="clock-face" cx="20" cy="20" r="18" fill="none" stroke="currentColor"
-                      stroke-width="1.8" />
-
-                    <!-- 12, 3, 6, 9 눈금 -->
-
-                    <line class="clock-tick" x1="20" y1="4" x2="20" y2="7" stroke="currentColor" stroke-width="1.4" />
-
-                    <line class="clock-tick" x1="36" y1="20" x2="33" y2="20" stroke="currentColor" stroke-width="1.4" />
-
-                    <line class="clock-tick" x1="20" y1="36" x2="20" y2="33" stroke="currentColor" stroke-width="1.4" />
-
-                    <line class="clock-tick" x1="4" y1="20" x2="7" y2="20" stroke="currentColor" stroke-width="1.4" />
-
-                    <!-- 시침 / 분침 / 초침 회전 그룹 -->
-
-                    <g id="clockHourHand">
-
-                      <line x1="20" y1="20" x2="20" y2="11" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" />
-
-                    </g>
-
-                    <g id="clockMinuteHand">
-
-                      <line x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="1.6"
-                        stroke-linecap="round" />
-
-                    </g>
-
-                    <g id="clockSecondHand">
-
-                      <line x1="20" y1="22" x2="20" y2="5" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round" />
-
-                    </g>
-
-                    <circle class="clock-pivot" cx="20" cy="20" r="1.8" fill="#ef4444" />
-
+                <div class="attendance-badge-icon" title="출석 무결석 달성 100%" aria-label="출석 100% 달성 배지">
+                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="1.8" />
+                    <polyline points="13 20 18 25 27 15" stroke="var(--primary, #0284c7)" stroke-width="2.5" />
                   </svg>
-
                 </div>
 
                 <div class="attendance-cal-area" title="한 달 31일 무결석 연속 출석 기록">
@@ -1055,21 +996,20 @@
 
     <!-- 강점 SAR 섹션 -->
 
-    <section class="strengths collapsible-section is-collapsed" id="strengths" aria-label="핵심 강점">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="strengths" id="strengths" aria-label="핵심 강점">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">03</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Strengths</h2>
             <p class="section-summary-preview">의료 행정 실무 경험이 증명하는 3대 차별화 핵심 역량 (장애 대응 · 팀 빌딩 · 규제 이해)</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <span class="accordion-badge">SAR 심층 서사 3편</span>
-          <span class="accordion-chevron" aria-hidden="true">▼</span>
+        <div class="section-header-right">
+          <span class="section-badge">SAR 심층 서사 3편</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
         <div class="sar-list">
 
           <div class="sar-item">
@@ -1263,31 +1203,22 @@
 
     <!-- 프로젝트 섹션 -->
 
-    <section class="projects collapsible-section is-collapsed" id="projects" aria-label="프로젝트">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="projects" id="projects" aria-label="프로젝트">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">04</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Projects</h2>
             <p class="section-summary-preview">AI 이상탐지, 네트워크 패킷 관제, MediMatch 웹 앱 등 8대 프로덕션 증적</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <span class="accordion-badge">8 Projects</span>
-          <span class="accordion-chevron" aria-hidden="true">▾</span>
+        <div class="section-header-right">
+          <span class="section-badge">8 Projects</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
 
-        <div class="projects-header-wrap">
-
-          <div>
-
-            <h2 class="section-title">Projects</h2>
-
-            <p class="section-slash" aria-hidden="true">/</p>
-
-          </div>
+        <div class="projects-filter-wrap">
 
           <div class="project-filter-bar" role="tablist" aria-label="프로젝트 분류 필터">
 
@@ -1325,7 +1256,7 @@
 
             <h3 class="project-name">
 
-              <a href="app/index.html" target="_blank" rel="noopener noreferrer">MediMatch — 진료비 예외정산 &amp; 공공관리 솔루션<svg
+              <a href="MediMatch/index.html" target="_blank" rel="noopener noreferrer">MediMatch — 진료비 예외정산 &amp; 공공관리 솔루션<svg
                   class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 
@@ -1343,7 +1274,7 @@
 
             <p class="project-highlight"><strong>[앱 한 문장]</strong> 병원 원무과 행정 담당자가 타인명의 송금이나 사망환자 진료비 환불금을 정산할 때, 이 앱이
               논문에서
-              규명한 '5단계 다차원 교차검증 및 안심상속 공공연계 모형'을 통해 미식별 입금을 즉시 대조하고 적법 상속권자를 검증하여 오지급 위험 없이 해결해 줍니다.</p>
+              규명한 '5단계 다차원 교차검증 및 안심상속 공공연계 모형'을 통해 미식별 입금을 신속히 대조하고 적법 상속권자를 다각도로 검증하여 오지급 위험을 획기적으로 낮추고 실무 착오 리스크를 최소화해 줍니다.</p>
 
             <div class="project-tech-tags">
 
@@ -1365,7 +1296,7 @@
 
             <div class="project-links">
 
-              <a href="app/index.html" target="_blank" rel="noopener noreferrer"
+              <a href="MediMatch/index.html" target="_blank" rel="noopener noreferrer"
                 class="proj-link-btn app-launch-btn primary-action"
                 style="background:#0284c7; color:#fff; border-color:#0284c7;" aria-label="MediMatch 웹 앱 새 탭에서 실행">
 
@@ -1377,6 +1308,17 @@
                 </svg>
 
                 <span>애플리케이션 실행</span>
+
+              </a>
+
+              <a href="https://github.com/HaYul0611/MediMatch" target="_blank" rel="noopener noreferrer"
+                class="proj-link-btn" aria-label="MediMatch GitHub 저장소 바로가기">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+
+                <span>GitHub</span> &rarr;
 
               </a>
 
@@ -2016,34 +1958,23 @@
 
     <!-- 학술 연구 논문 섹션 -->
 
-    <section class="research-section collapsible-section is-collapsed" id="research" aria-label="학술 연구 및 전문성">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="research-section" id="research" aria-label="학술 연구 및 전문성">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">05</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Research</h2>
             <p class="section-summary-preview">진료비 예외정산 이상치 탐지 연구 논문 (KCI 규격, 150건 실데이터 표본 & 재현 패키지)</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <span class="accordion-badge">KCI 규격 논문 &amp; 패키지</span>
-          <span class="accordion-chevron" aria-hidden="true">▾</span>
+        <div class="section-header-right">
+          <span class="section-badge">KCI 규격 논문 &amp; 패키지</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
 
-        <div class="research-header-wrap">
-
-          <div>
-
-            <h2 class="section-title">Research</h2>
-
-            <p class="section-slash" aria-hidden="true">/</p>
-
-          </div>
-
+        <div class="research-sub-bar">
           <span class="research-sub-label">Academic Paper · Domain Expertise</span>
-
         </div>
 
 
@@ -2112,7 +2043,7 @@
 
             <div class="research-actions">
 
-              <a href="app/index.html" class="research-btn"
+              <a href="MediMatch/index.html" class="research-btn"
                 style="background:#0284c7; color:#fff; border-color:#0284c7; font-weight:700;"
                 aria-label="논문 연계 웹 앱 MediMatch 실행">
 
@@ -2209,21 +2140,20 @@
 
     <!-- 목표 비전 섹션 -->
 
-    <section class="vision collapsible-section is-collapsed" id="vision" aria-label="목표 비전">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="vision" id="vision" aria-label="목표 비전">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">06</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Vision</h2>
             <p class="section-summary-preview">네트워크 센싱 → 머신러닝 이상탐지 → SOAR 자동 방어 → 기업 배포 4단계 파이프라인</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <span class="accordion-badge">Pipeline Architecture</span>
-          <span class="accordion-chevron" aria-hidden="true">▼</span>
+        <div class="section-header-right">
+          <span class="section-badge">Pipeline Architecture</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
         <div class="vision-content">
 
           <p class="vision-statement">AI 기반 실시간 인프라 보안 감지 시스템을 구축하여,<br>기업 환경에 맞게 활용할 수 있는 보안 솔루션을 만드는 것이 목표입니다.</p>
@@ -2308,21 +2238,20 @@
 
     <!-- 공개 근거 섹션 -->
 
-    <section class="evidence collapsible-section is-collapsed" id="evidence" aria-label="실무 근거">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="evidence" id="evidence" aria-label="실무 근거">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">07</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Evidence</h2>
             <p class="section-summary-preview">GitHub, 자격증, 실무 에세이, 소설, MediMatch 웹 앱 등 6대 실무 증빙 링크</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <span class="accordion-badge">6 Evidence Links</span>
-          <span class="accordion-chevron" aria-hidden="true">▾</span>
+        <div class="section-header-right">
+          <span class="section-badge">6 Evidence Links</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
         <div class="evidence-grid">
 
           <a href="https://github.com/HaYul0611" target="_blank" rel="noopener noreferrer" class="evidence-item">
@@ -2368,7 +2297,7 @@
 
           </button>
 
-          <a href="app/index.html" class="evidence-item" aria-label="논문 연계 웹 앱 실행">
+          <a href="MediMatch/index.html" class="evidence-item" aria-label="논문 연계 웹 앱 실행">
 
             <span class="evidence-label">논문 연계 앱</span>
 
@@ -2388,21 +2317,20 @@
 
     <!-- 문서 다운로드 섹션 (Documents) -->
 
-    <section class="documents-section collapsible-section is-collapsed" id="documents" aria-label="문서 다운로드">
-      <div class="section-accordion-header" role="button" tabindex="0" aria-expanded="false" title="클릭하여 섹션 접기/펼치기">
-        <div class="accordion-header-left">
+    <section class="documents-section" id="documents" aria-label="문서 다운로드">
+      <div class="section-header-block">
+        <div class="section-header-left">
           <span class="section-num-tag">08</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Documents</h2>
             <p class="section-summary-preview">기술 성장 소설(11개 챕터), 입사지원서, 포트폴리오 패키지 다운로드</p>
           </div>
         </div>
-        <div class="accordion-header-right">
-          <span class="accordion-badge">Docs Hub</span>
-          <span class="accordion-chevron" aria-hidden="true">▼</span>
+        <div class="section-header-right">
+          <span class="section-badge">Docs Hub</span>
         </div>
       </div>
-      <div class="section-collapsible-body">
+      <div class="section-body">
         <div class="documents-grid">
 
           <!-- 1. 이력서 -->
@@ -6285,92 +6213,7 @@
 
 
 
-  <!-- Cortex 실시간 하이브리드 동기화 모달 -->
-  <div class="cortex-sync-modal-overlay" id="cortexSyncModal" hidden role="dialog" aria-modal="true"
-    aria-labelledby="cortexSyncModalTitle">
-    <div class="cortex-sync-dialog">
-      <div class="cortex-sync-modal-header">
-        <div class="cortex-modal-title-wrap">
-          <div class="sync-chip-badge">ALEPH CORTEX HYBRID SYNC</div>
-          <h3 id="cortexSyncModalTitle" class="cortex-modal-title">Cortex 실시간 하이브리드 동기화 센터</h3>
-        </div>
-        <button type="button" class="project-modal-close" id="closeCortexSyncModal" aria-label="닫기">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-            stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
 
-      <div class="cortex-sync-modal-body">
-        <div class="sync-info-box">
-          <div class="sync-info-icon" aria-hidden="true">🔄</div>
-          <div class="sync-info-content">
-            <strong>실시간 하이브리드 동기화(Hybrid Sync) 원리</strong>
-            <p>
-              ALEPH Cortex(<a href="https://aleph-omega.vercel.app/cortex" target="_blank"
-                rel="noopener noreferrer">aleph-omega.vercel.app/cortex</a>)는 학생 개인 계정 세션 및 보안(CORS)으로 보호되는 비공개
-              LMS입니다.<br>
-              포트폴리오는 <strong>[1] 오늘 날짜 자동 연동</strong> &times; <strong>[2] 브라우저 영구 캐시(localStorage)</strong> &times;
-              <strong>[3] data/records.json</strong>의 하이브리드 엔진을 통해 실시간 최신성을 유지합니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="sync-status-card">
-          <div class="status-row">
-            <span class="status-label">동기화 연동 방식</span>
-            <span class="status-val highlight" id="modalCurrentSource">사이트 접속 시 100% 실시간 자동 갱신</span>
-          </div>
-          <div class="status-row">
-            <span class="status-label">현재 실시간 지표</span>
-            <span class="status-val" id="modalCurrentMetrics">실시간 계산 중...</span>
-          </div>
-          <div class="status-row">
-            <span class="status-label">동기화 엔진 상태</span>
-            <span class="status-val" style="color: #10b981; font-weight: 700;">● LIVE (정상 가동 중)</span>
-          </div>
-        </div>
-
-        <div class="sync-accordion-section">
-          <details class="sync-details">
-            <summary class="sync-summary">
-              <span>🔗 Cortex 탭에서 원클릭 데이터 추출하기 (콘솔 스크립트)</span>
-            </summary>
-            <div class="sync-details-content">
-              <p class="details-desc">
-                Cortex 과제 현황(<a href="https://aleph-omega.vercel.app/cortex?panel=tasks" target="_blank"
-                  rel="noopener noreferrer">cortex?panel=tasks</a>)에 로그인 후, 개발자 도구(F12) 콘솔(Console)에 아래 스크립트를 붙여넣으면 현재 출석·리추얼·과제 13개 전체 승인 현황을
-                1초 만에 추출할 수 있습니다.
-              </p>
-              <div class="snippet-box">
-                <button type="button" class="copy-snippet-btn" id="btnCopyBookmarklet">📋 추출 스크립트 복사</button>
-                <textarea class="snippet-code-area" id="snippetCodeDisplay" readonly></textarea>
-              </div>
-            </div>
-          </details>
-
-          <details class="sync-details">
-            <summary class="sync-summary">
-              <span>📝 JSON 직접 붙여넣기 및 즉시 적용</span>
-            </summary>
-            <div class="sync-details-content">
-              <textarea id="customSyncJsonInput" class="sync-json-textarea"
-                placeholder="Cortex에서 복사한 JSON 데이터를 여기에 붙여넣으세요..."></textarea>
-              <div class="custom-json-actions">
-                <button type="button" class="btn-apply-json" id="btnApplyCustomJson">지금 바로 포트폴리오에 적용</button>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-
-      <div class="cortex-sync-modal-footer">
-        <button type="button" class="modal-close-action-btn" id="bottomCloseCortexSyncModal">닫기</button>
-      </div>
-    </div>
-  </div>
 
   <script src="js/main.js?v=20261012_v20"></script>
 

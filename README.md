@@ -23,7 +23,7 @@
 ```
 SKT_ALEPH/
 ├── index.html                   # 메인 포트폴리오 웹페이지 (대표작 MediMatch 및 논문 뷰어 탑재)
-├── app/                         # 💡 [대표작] 학술 논문 반영 웹 애플리케이션 (MediMatch)
+├── MediMatch/                   # 💡 [대표작] 학술 논문 반영 웹 애플리케이션 (MediMatch)
 │   ├── index.html               # MediMatch 대시보드 (5단계 파이프라인, 모의 데이터 150건, 감사 리포트)
 │   ├── css/app.css              # 모던 미니멀 스타일시트 (다크/라이트 테마, 무이모지, SVG)
 │   ├── js/
