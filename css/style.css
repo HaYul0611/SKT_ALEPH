@@ -19,6 +19,7 @@
   --border: #ddd;
   --accent: #333;
   --link: #111;
+  --success: #059669;
   --transition: 0.3s ease;
 }
 
@@ -31,6 +32,8 @@
   --border: #333;
   --accent: #ccc;
   --link: #e8e8e6;
+  --success: #10b981;
+  --transition: 0.3s ease;
 }
 
 html {
@@ -154,25 +157,28 @@ img {
   transform: none;
 }
 
+.pulse-ring-dot,
 .nav-reading-status .reading-dot {
   position: relative;
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #059669;
+  background: var(--success);
   box-shadow: 0 0 6px rgba(5, 150, 105, 0.4);
   flex-shrink: 0;
   pointer-events: none;
 }
 
+.pulse-ring-dot::after,
 .nav-reading-status .reading-dot::after {
   content: '';
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  border: 2px solid #059669;
-  animation: pulse-ring 2.2s infinite ease-out;
+  border: 2px solid var(--success);
+  animation: pulse-ring 2s infinite ease-out;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 @keyframes pulse-ring {
@@ -180,6 +186,7 @@ img {
     transform: scale(0.8);
     opacity: 0.9;
   }
+
   100% {
     transform: scale(2.4);
     opacity: 0;
@@ -655,7 +662,8 @@ img {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #059669;
+.timeline-item.current .timeline-dot {
+  background: var(--success);
   top: 10px;
   left: 4px;
   z-index: 2;
@@ -669,9 +677,10 @@ img {
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  border: 2px solid #059669;
-  animation: pulse-ring 2.2s infinite ease-out;
+  border: 2px solid var(--success);
+  animation: pulse-ring 2s infinite ease-out;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .timeline-item.goal .timeline-dot {
@@ -1295,10 +1304,13 @@ img {
 }
 
 @keyframes lungBreathe {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scaleY(0.95);
     opacity: 0.9;
   }
+
   50% {
     transform: scaleY(1.06);
     opacity: 1;
@@ -5087,7 +5099,7 @@ body.modal-open {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #059669;
+  background: var(--success);
   display: inline-block;
   vertical-align: middle;
   margin-right: 6px;
@@ -5102,9 +5114,10 @@ body.modal-open {
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  border: 2px solid #059669;
-  animation: pulse-ring 2.2s infinite ease-out;
+  border: 2px solid var(--success);
+  animation: pulse-ring 2s infinite ease-out;
   pointer-events: none;
+  will-change: transform, opacity;
   transition: border-color 0.2s ease;
 }
 
