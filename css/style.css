@@ -145,34 +145,44 @@ img {
 }
 
 .nav-reading-status:hover {
-  transform: translateY(-1.5px);
   border-color: rgba(16, 185, 129, 0.45);
   background: rgba(16, 185, 129, 0.13);
-  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.16);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.16);
 }
 
 .nav-reading-status:active {
-  transform: translateY(0);
+  transform: none;
 }
 
 .nav-reading-status .reading-dot {
+  position: relative;
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  background: #059669;
+  box-shadow: 0 0 6px rgba(5, 150, 105, 0.4);
   flex-shrink: 0;
-  animation: gentleDotBreathe 3.6s ease-in-out infinite;
+  pointer-events: none;
 }
 
-@keyframes gentleDotBreathe {
-  0%, 100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
+.nav-reading-status .reading-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #059669;
+  animation: pulse-ring 2.2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
   }
-  50% {
-    transform: scale(1.08);
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.75);
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
 
@@ -616,7 +626,7 @@ img {
 }
 
 .timeline-item:hover {
-  transform: translateY(-4px);
+  /* Keep stable in place to prevent cursor flicker */
 }
 
 .timeline-item:focus {
@@ -633,6 +643,7 @@ img {
   left: 4px;
   z-index: 2;
   box-sizing: border-box;
+  pointer-events: none;
 }
 
 .timeline-item.done .timeline-dot {
@@ -640,18 +651,27 @@ img {
 }
 
 .timeline-item.current .timeline-dot {
-  background: #10b981;
-  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(16, 185, 129, 0.35);
-  animation: timelineDotBreathe 4s ease-in-out infinite;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #059669;
+  top: 10px;
+  left: 4px;
+  z-index: 2;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 3px var(--bg);
+  pointer-events: none;
 }
 
-@keyframes timelineDotBreathe {
-  0%, 100% {
-    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px rgba(16, 185, 129, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 0 3px var(--bg), 0 0 0 7px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.25);
-  }
+.timeline-item.current .timeline-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #059669;
+  animation: pulse-ring 2.2s infinite ease-out;
+  pointer-events: none;
 }
 
 .timeline-item.goal .timeline-dot {
@@ -3567,7 +3587,7 @@ body.modal-open {
 }
 
 .timeline-item:hover {
-  transform: translateY(-4px);
+  /* Keep stable in place */
 }
 
 .timeline-tags {
@@ -5063,24 +5083,39 @@ body.modal-open {
 }
 
 .live-dot {
+  position: relative;
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #10b981;
+  background: #059669;
   display: inline-block;
   vertical-align: middle;
   margin-right: 6px;
-  box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 5px rgba(5, 150, 105, 0.45);
   flex-shrink: 0;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  animation: gentleDotBreathe 3.6s ease-in-out infinite;
+  pointer-events: none;
+  transition: background-color 0.2s ease;
+}
+
+.live-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #059669;
+  animation: pulse-ring 2.2s infinite ease-out;
+  pointer-events: none;
+  transition: border-color 0.2s ease;
 }
 
 .proj-link-btn:hover .live-dot,
 .proj-action-link:hover .live-dot {
-  transform: scale(1.15);
   background: #8b5cf6;
-  box-shadow: 0 0 8px rgba(139, 92, 246, 0.8);
+}
+
+.proj-link-btn:hover .live-dot::after,
+.proj-action-link:hover .live-dot::after {
+  border-color: #8b5cf6;
 }
 
 
@@ -5633,15 +5668,9 @@ body.modal-open {
   border-color: rgba(167, 139, 250, 0.45);
 }
 
-/* 10. 타임라인 닷 호버 스케일 */
+/* 10. 타임라인 호버 안정화 */
 .timeline-item {
   transition: border-color 0.2s ease;
-}
-
-.timeline-item:hover .timeline-dot {
-  transform: scale(1.35);
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.65);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
 /* 11. 비전 노드 활성화 및 호버 효과 */
