@@ -349,6 +349,8 @@
     }
   ];
 
+  var visionStepTimer = null;
+
   function setActiveStep(idx) {
     nodes.forEach(function (n, i) {
       if (i === idx) {
@@ -365,9 +367,13 @@
 
     var card = document.getElementById('visionDetailCard');
     if (card) {
+      if (visionStepTimer) {
+        clearTimeout(visionStepTimer);
+        visionStepTimer = null;
+      }
       card.style.opacity = '0.4';
       card.style.transform = 'translateY(2px)';
-      setTimeout(function () {
+      visionStepTimer = setTimeout(function () {
         badge.textContent = data.badge;
         title.textContent = data.title;
         desc.textContent = data.desc;
@@ -376,6 +382,7 @@
         }).join('');
         card.style.opacity = '1';
         card.style.transform = 'translateY(0)';
+        visionStepTimer = null;
       }, 100);
     }
   }
@@ -615,12 +622,18 @@
   var topBtn = document.getElementById('backToTop');
   if (!topBtn) return;
 
+  var topRafId = null;
   window.addEventListener('scroll', function () {
-    if (window.scrollY > 400) {
-      topBtn.classList.add('visible');
-    } else {
-      topBtn.classList.remove('visible');
-    }
+    if (topRafId !== null) return;
+    topRafId = requestAnimationFrame(function () {
+      var scrollY = window.scrollY || window.pageYOffset || 0;
+      if (scrollY > 400) {
+        topBtn.classList.add('visible');
+      } else {
+        topBtn.classList.remove('visible');
+      }
+      topRafId = null;
+    });
   }, { passive: true });
 
   topBtn.addEventListener('click', function () {
@@ -1362,8 +1375,8 @@
 (function initScrollSpyAndProgress() {
   var progressBar = document.getElementById('scrollProgressBar');
   var navReadingTarget = document.getElementById('navReadingTarget');
+  var navReadingIndicator = document.getElementById('navReadingIndicator');
   var navLinks = document.querySelectorAll('.nav-link, .nav-right a');
-  var metricsSection = document.getElementById('metrics');
 
   var sectionData = [
     { id: 'timeline', title: '01 Timeline' },
@@ -1380,76 +1393,108 @@
     return {
       el: document.getElementById(item.id),
       title: item.title,
-      id: item.id
+      id: item.id,
+      top: 0
     };
   }).filter(function (item) {
     return !!item.el;
   });
 
-  function onScroll() {
-    // 1. 상단 스크롤 진행률 (0~100%)
+  // 1. 섹션 오프셋 사전 캐싱 (스크롤 이벤트 내 레이아웃 쓰레싱/강제 리플로우 원천 차단)
+  function cacheSectionOffsets() {
+    var scrollY = window.scrollY || window.pageYOffset || 0;
+    for (var i = 0; i < sections.length; i++) {
+      var rect = sections[i].el.getBoundingClientRect();
+      sections[i].top = rect.top + scrollY;
+    }
+  }
+
+  var rafId = null;
+  var navReadingTimer = null;
+  var lastActiveId = '';
+
+  function updateScrollState() {
+    var scrollY = window.scrollY || window.pageYOffset || 0;
+    var docHeight = document.documentElement.scrollHeight;
+    var winHeight = window.innerHeight;
+    var maxScroll = Math.max(1, docHeight - winHeight);
+
+    // 1. 선형 매핑(Linear Mapping) 기반 프로그레스 바 계산 (0% ~ 100% 엄격 고정)
     if (progressBar) {
-      var scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
-      var currentScroll = window.scrollY;
-      var pct = scrollTotal > 0 ? (currentScroll / scrollTotal) * 100 : 0;
-      progressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      var progress = Math.min(1, Math.max(0, scrollY / maxScroll));
+      var pct = (progress * 100).toFixed(2);
+      progressBar.style.width = pct + '%';
     }
 
-    // 2. 현재 활성 섹션 감지 (트리거 라인: 화면 상단 180px)
+    // 2. 현재 활성 섹션 탐색 (사전 캐시된 오프셋 사용으로 가속/폭주 방지)
     if (!sections.length) return;
 
-    var scrollPos = window.scrollY + 180;
+    var scrollPos = scrollY + 180;
     var currentItem = sections[0];
 
-    // 맨 아래 도달 체크
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+    if (winHeight + scrollY >= docHeight - 60) {
       currentItem = sections[sections.length - 1];
     } else {
-      for (var i = 0; i < sections.length; i++) {
-        var secTop = sections[i].el.offsetTop;
-        if (scrollPos >= secTop) {
-          currentItem = sections[i];
+      for (var j = 0; j < sections.length; j++) {
+        if (scrollPos >= sections[j].top) {
+          currentItem = sections[j];
         } else {
           break;
         }
       }
     }
 
-    // 상단 '현재 위치' 인디케이터 텍스트 및 가시성 갱신
-    var navReadingIndicator = document.getElementById('navReadingIndicator');
+    // 3. 상단 '현재 위치' 뱃지 가시성
     if (navReadingIndicator) {
-      if (window.scrollY > 300) {
+      if (scrollY > 300) {
         navReadingIndicator.classList.add('is-visible');
       } else {
         navReadingIndicator.classList.remove('is-visible');
       }
     }
 
-    if (navReadingTarget && navReadingTarget.textContent !== currentItem.title) {
-      navReadingTarget.style.opacity = '0.35';
-      navReadingTarget.style.transform = 'translateY(-2px)';
-      var nextTitle = currentItem.title;
-      setTimeout(function () {
-        navReadingTarget.textContent = nextTitle;
-        navReadingTarget.style.opacity = '1';
-        navReadingTarget.style.transform = 'translateY(0)';
-      }, 90);
+    // 4. 타이머 클린업(Clear-up) 보장 및 섹션 명칭 변경
+    if (navReadingTarget && currentItem.id !== lastActiveId) {
+      lastActiveId = currentItem.id;
+      if (navReadingTimer) {
+        clearTimeout(navReadingTimer);
+        navReadingTimer = null;
+      }
+      navReadingTarget.textContent = currentItem.title;
     }
 
-    // 상단 네비게이션 활성 링크 하이라이트
-    navLinks.forEach(function (link) {
-      var href = link.getAttribute('href');
+    // 5. 상단 네비게이션 활성 링크 하이라이트
+    for (var k = 0; k < navLinks.length; k++) {
+      var href = navLinks[k].getAttribute('href');
       if (href === '#' + currentItem.id) {
-        link.classList.add('is-active');
+        navLinks[k].classList.add('is-active');
       } else {
-        link.classList.remove('is-active');
+        navLinks[k].classList.remove('is-active');
       }
+    }
+  }
+
+  // 2. requestAnimationFrame 기반 스로틀링 (단일 프레임 보장 & 이전 요청 취소)
+  function requestTick() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    rafId = requestAnimationFrame(function () {
+      updateScrollState();
+      rafId = null;
     });
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll', requestTick, { passive: true });
+  window.addEventListener('resize', function () {
+    cacheSectionOffsets();
+    requestTick();
+  }, { passive: true });
+
+  // 초기 1회 실행
+  cacheSectionOffsets();
+  updateScrollState();
 
   // 상단 '현재 위치' 뱃지 클릭 시 해당 섹션으로 부드럽게 앵커 이동
   if (navReadingIndicator) {

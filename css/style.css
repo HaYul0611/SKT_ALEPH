@@ -83,8 +83,10 @@ img {
   left: 0;
   height: 2.5px;
   width: 0%;
-  background: #10b981;
+  background: #059669;
   z-index: 1001;
+  pointer-events: none;
+  transform: translateZ(0);
 }
 
 .nav {
@@ -171,6 +173,7 @@ img {
   border: 2px solid #059669;
   animation: pulse-ring 2.5s infinite ease-out;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 @keyframes pulse-ring {
@@ -661,6 +664,7 @@ img {
   border: 2px solid #059669;
   animation: pulse-ring 2.5s infinite ease-out;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .timeline-item.goal .timeline-dot {
@@ -1280,6 +1284,7 @@ img {
   display: block;
   transform-origin: 120px 25px;
   animation: lungBreathe 6s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes lungBreathe {
@@ -5093,6 +5098,7 @@ body.modal-open {
   animation: pulse-ring 2.5s infinite ease-out;
   pointer-events: none;
   transition: border-color 0.2s ease;
+  will-change: transform, opacity;
 }
 
 .proj-link-btn:hover .live-dot,
