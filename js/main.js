@@ -1415,9 +1415,25 @@
       }
     }
 
-    // 상단 '현재 위치' 인디케이터 텍스트 갱신
+    // 상단 '현재 위치' 인디케이터 텍스트 및 가시성 갱신
+    var navReadingIndicator = document.getElementById('navReadingIndicator');
+    if (navReadingIndicator) {
+      if (window.scrollY > 300) {
+        navReadingIndicator.classList.add('is-visible');
+      } else {
+        navReadingIndicator.classList.remove('is-visible');
+      }
+    }
+
     if (navReadingTarget && navReadingTarget.textContent !== currentItem.title) {
-      navReadingTarget.textContent = currentItem.title;
+      navReadingTarget.style.opacity = '0.35';
+      navReadingTarget.style.transform = 'translateY(-2px)';
+      var nextTitle = currentItem.title;
+      setTimeout(function () {
+        navReadingTarget.textContent = nextTitle;
+        navReadingTarget.style.opacity = '1';
+        navReadingTarget.style.transform = 'translateY(0)';
+      }, 90);
     }
 
     // 상단 네비게이션 활성 링크 하이라이트
@@ -1434,6 +1450,27 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+
+  // 상단 '현재 위치' 뱃지 클릭 시 해당 섹션으로 부드럽게 앵커 이동
+  if (navReadingIndicator) {
+    navReadingIndicator.setAttribute('title', '현재 읽고 있는 섹션으로 바로 이동');
+    navReadingIndicator.addEventListener('click', function () {
+      var activeLink = document.querySelector('.nav-link.is-active, .nav-right a.is-active');
+      if (activeLink) {
+        var href = activeLink.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          var targetEl = document.querySelector(href);
+          if (targetEl) {
+            var offset = targetEl.offsetTop - 65;
+            window.scrollTo({
+              top: Math.max(0, offset),
+              behavior: 'smooth'
+            });
+          }
+        }
+      }
+    });
+  }
 
   // 상단 내비게이션 클릭 시 헤더 높이를 감안한 부드러운 스크롤 이동
   navLinks.forEach(function (link) {
@@ -1452,49 +1489,4 @@
       }
     });
   });
-
-  // 숫자 카운트업 (Metrics 화면 진입 시 자연스럽게 1회 실행)
-  function animateVal(el, start, end, duration, formatFn) {
-    if (!el) return;
-    var startTime = null;
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      var easeProgress = 1 - Math.pow(1 - progress, 3);
-      var current = Math.floor(start + (end - start) * easeProgress);
-      el.textContent = formatFn ? formatFn(current) : current;
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        el.textContent = formatFn ? formatFn(end) : end;
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  function runMetricsCountUp() {
-    var nums = document.querySelectorAll('.metric-num');
-    nums.forEach(function (el) {
-      var raw = el.textContent.trim();
-      var numMatch = raw.match(/^([^\d]*)(\d+)(.*)$/);
-      if (numMatch) {
-        var prefix = numMatch[1];
-        var targetVal = parseInt(numMatch[2], 10);
-        var suffix = numMatch[3];
-        animateVal(el, 0, targetVal, 700, function (v) {
-          return prefix + v + suffix;
-        });
-      }
-    });
-  }
-
-  if ('IntersectionObserver' in window && metricsSection) {
-    var countObserver = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        runMetricsCountUp();
-        countObserver.disconnect();
-      }
-    }, { threshold: 0.15 });
-    countObserver.observe(metricsSection);
-  }
 })();
