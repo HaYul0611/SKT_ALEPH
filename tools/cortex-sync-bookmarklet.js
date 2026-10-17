@@ -106,7 +106,8 @@
         absent: 0,
         avgCheckIn: avgCheckIn,
         recentCheckIn: dailyLogs[0] ? dailyLogs[0].entryTime : avgCheckIn,
-        source: "리추얼 기록"
+        source: "리추얼 기록",
+        history: dailyLogs
       },
       ritual: {
         days: ritualTotal,
