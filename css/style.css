@@ -1686,32 +1686,31 @@ img {
 .subway-stepper-box {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 6px 0 2px 0;
+  gap: 12px;
+  padding: 4px 0 2px 0;
 }
 
 .subway-track-wrapper {
   position: relative;
   width: 100%;
-  padding: 34px 2px 8px 2px;
+  padding: 36px 4px 8px 4px;
 }
 
 /* 1~13 역을 관통하는 지하철 에메랄드(2호선) 레일 라인 */
 .subway-rail-line {
   position: absolute;
-  top: calc(34px + 10px);
-  left: 8px;
-  right: 8px;
-  height: 4.5px;
+  top: calc(36px + 11px - 2px);
+  left: 20px;
+  right: 20px;
+  height: 4px;
   background: #059669;
   border-radius: 999px;
   z-index: 1;
-  box-shadow: 0 1px 3px rgba(5, 150, 105, 0.25);
 }
 
 [data-theme="dark"] .subway-rail-line {
   background: #10b981;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.45);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
 }
 
 .subway-stations-container {
@@ -1721,8 +1720,11 @@ img {
   position: relative;
   z-index: 2;
   width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
+/* 1~13 모든 역 버튼의 크기를 완전히 통일 (크기 제각각 방지) */
 .subway-station {
   background: none;
   border: none;
@@ -1734,60 +1736,62 @@ img {
   justify-content: center;
   outline: none;
   user-select: none;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.subway-station:hover {
-  transform: scale(1.24);
-  z-index: 5;
-}
-
-.subway-station:active {
-  transform: scale(1.08);
-}
-
-/* 정갈한 지하철 역 노드 심볼 */
+/* 정갈한 지하철 역 노드 심볼 (1부터 13까지 100% 동일한 직경과 스타일) */
 .station-circle {
-  width: 21px;
-  height: 21px;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  max-width: 22px;
   border-radius: 50%;
   background: #059669;
   color: #ffffff;
   border: 2px solid #ffffff;
-  box-shadow: 0 0 0 1.5px #059669, 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 1.5px #059669;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.2px;
-  transition: all 0.2s ease;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
 }
 
 [data-theme="dark"] .station-circle {
   background: #10b981;
   color: #042f2e;
   border: 2px solid #111827;
-  box-shadow: 0 0 0 1.5px #10b981, 0 2px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 1.5px #10b981;
+}
+
+/* 호버 시 역 크기를 부풀리지 않고, 은은하고 정돈된 초록빛 링만 점등 */
+.subway-station:hover .station-circle {
+  box-shadow: 0 0 0 2px #059669, 0 0 6px rgba(5, 150, 105, 0.55);
 }
 
 .subway-station.is-current .station-circle {
-  box-shadow: 0 0 0 2px #059669, 0 0 8px rgba(5, 150, 105, 0.5);
+  box-shadow: 0 0 0 2px #059669;
 }
 
 [data-theme="dark"] .subway-station.is-current .station-circle {
-  box-shadow: 0 0 0 2px #10b981, 0 0 10px rgba(16, 185, 129, 0.7);
+  box-shadow: 0 0 0 2px #10b981;
 }
 
-/* 동적으로 1~13역을 달리는 귀여운 캐릭터 러너 (하드코딩 X, JS로 위치 제어) */
+/* 역 바로 위에 앙증맞게 발을 딛고 서 있는 캐릭터 러너 (허공 분리 완전 해소) */
 .subway-character-floater {
   position: absolute;
-  top: -30px;
+  top: 8px;
   left: 0;
   transform: translateX(-50%);
-  transition: left 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: left 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
   z-index: 10;
   display: flex;
@@ -1797,31 +1801,31 @@ img {
 }
 
 .subway-character-img {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
   display: block;
-  animation: characterHopDance 1.9s ease-in-out infinite;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.22));
+  animation: characterHopDance 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
 }
 
 [data-theme="dark"] .subway-character-img {
-  filter: drop-shadow(0 3px 8px rgba(255, 255, 255, 0.35));
+  filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.85)) drop-shadow(0 2px 6px rgba(255, 255, 255, 0.4));
 }
 
-/* 살아서 통통 뛰며 발을 구르는 귀여운 바운싱/댄싱 키프레임 */
+/* 역 바로 위에서 발을 딛고 통통 뛰는 자연스러운 바운싱 모션 */
 @keyframes characterHopDance {
   0%, 100% {
     transform: translateY(0) rotate(0deg) scale(1);
   }
   25% {
-    transform: translateY(-7px) rotate(-4deg) scale(1.06);
+    transform: translateY(-5px) rotate(-3deg) scale(1.04);
   }
   50% {
-    transform: translateY(-1.5px) rotate(1deg) scale(0.97);
+    transform: translateY(-1px) rotate(1deg) scale(0.98);
   }
   75% {
-    transform: translateY(-8px) rotate(4deg) scale(1.06);
+    transform: translateY(-6px) rotate(3deg) scale(1.04);
   }
 }
 
@@ -1868,23 +1872,34 @@ img {
 }
 
 @media (max-width: 640px) {
+  .subway-stations-container {
+    padding: 0 6px;
+  }
+  .subway-station {
+    width: 18px;
+    height: 18px;
+  }
   .station-circle {
-    width: 17.5px;
-    height: 17.5px;
-    font-size: 8.5px;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    max-width: 18px;
+    font-size: 8px;
     border-width: 1.5px;
     box-shadow: 0 0 0 1px #059669;
   }
   .subway-rail-line {
-    top: calc(34px + 8.5px);
-    height: 3.5px;
+    top: calc(36px + 9px - 1.5px);
+    left: 14px;
+    right: 14px;
+    height: 3px;
   }
   .subway-character-floater {
-    top: -26px;
+    top: 10px;
   }
   .subway-character-img {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 }
 

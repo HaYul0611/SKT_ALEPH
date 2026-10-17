@@ -815,8 +815,9 @@
   function updateFloaterPosition(index, animate) {
     if (index < 0 || index >= stations.length) return;
     var target = stations[index];
+    var circle = target.querySelector('.station-circle') || target;
     var wrapperRect = wrapper.getBoundingClientRect();
-    var targetRect = target.getBoundingClientRect();
+    var targetRect = circle.getBoundingClientRect();
     if (wrapperRect.width === 0) return;
 
     // 계산된 역의 중심 x 좌표 (wrapper 기준 상대 좌표)
@@ -825,9 +826,9 @@
     if (animate === false) {
       floater.style.transition = 'none';
     } else {
-      floater.style.transition = 'left 0.38s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      floater.style.transition = 'left 0.32s cubic-bezier(0.34, 1.56, 0.64, 1)';
     }
-    floater.style.left = centerX + 'px';
+    floater.style.left = centerX.toFixed(1) + 'px';
   }
 
   // 초기 위치 설정 (13번 역 안착)
