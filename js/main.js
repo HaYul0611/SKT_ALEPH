@@ -595,23 +595,85 @@
 })();
 
 /* ===========================
-   Metrics & Records Fetch Sync (안전한 정적/동적 데이터 렌더러)
+   Metrics & Records Fetch & Realtime Sync (페이지 로드 시 실시간 자동 동기화)
    =========================== */
 (function initMetricsSync() {
+  function applyRecordsData(data) {
+    if (!data) return;
+
+    var attendanceDays = data.attendance ? data.attendance.days : 43;
+    var ritualDays = data.ritual ? data.ritual.days : 43;
+    var practiceSuccess = data.practice ? data.practice.successDays : 39;
+    var practiceTotal = data.practice ? data.practice.totalDays : 43;
+    var practiceRate = data.practice ? data.practice.rate : 91;
+    var tasksCompleted = data.tasks ? data.tasks.completed : 13;
+    var tasksTotal = data.tasks ? data.tasks.total : 13;
+
+    // 실시간 날짜 포맷팅 (오늘 날짜와 records.json의 lastUpdated 동기화)
+    var today = new Date();
+    var currentMonth = String(today.getMonth() + 1).padStart(2, '0');
+    var currentDate = String(today.getDate()).padStart(2, '0');
+    var todayLabel = currentMonth + '.' + currentDate;
+    var todayRange = currentMonth + '-' + currentDate;
+
+    // 만약 records.json에 지정된 날짜가 유효하면 사용하되, 현재 접속일에 맞추어 연동
+    var dateLabel = data.lastUpdated ? (data.lastUpdated.split('-')[1] + '.' + data.lastUpdated.split('-')[2]) : todayLabel;
+    var dateRange = data.lastUpdated ? (data.lastUpdated.split('-')[1] + '-' + data.lastUpdated.split('-')[2]) : todayRange;
+
+    // 1. 상단 요약 프리뷰
+    var summaryEl = document.getElementById('recordsSectionSummary');
+    if (summaryEl) {
+      summaryEl.textContent = '출석 ' + attendanceDays + '일(100% 무결석) · 리추얼 ' + ritualDays + '일 연속 · 과제 마스터 승인 ' + tasksCompleted + '/' + tasksTotal + '개 (100% 완주)';
+    }
+
+    // 2. 출석 카드
+    var attDaysEl = document.getElementById('recordAttendanceDays');
+    var attRateEl = document.getElementById('recordAttendanceRate');
+    if (attDaysEl) attDaysEl.textContent = attendanceDays + '/' + attendanceDays + '일';
+    if (attRateEl) attRateEl.textContent = '(100%)';
+
+    // 3. 리추얼 일수 카드
+    var ritDaysEl = document.getElementById('recordRitualDays');
+    var ritRangeEl = document.getElementById('recordRitualDateRange');
+    var ritDateEl = document.getElementById('recordRitualCurrentDate');
+    if (ritDaysEl) ritDaysEl.textContent = ritualDays + '일';
+    if (ritRangeEl) ritRangeEl.textContent = '(2026-08-11 ~ ' + dateRange + ')';
+    if (ritDateEl) ritDateEl.textContent = dateLabel + ' (현재)';
+
+    // 4. 강점 실천율 카드
+    var pracDaysEl = document.getElementById('recordPracticeDays');
+    var pracRateEl = document.getElementById('recordPracticeRate');
+    var pracFillEl = document.getElementById('recordPracticeFill');
+    var pracTagEl = document.getElementById('recordPracticeTag');
+    if (pracDaysEl) pracDaysEl.textContent = practiceSuccess + '/' + practiceTotal + '일';
+    if (pracRateEl) pracRateEl.textContent = '(' + practiceRate + '%)';
+    if (pracFillEl) pracFillEl.style.width = practiceRate + '%';
+    if (pracTagEl) pracTagEl.textContent = '실천 ' + practiceSuccess + '일 (' + practiceRate + '%)';
+
+    // 5. 아침 호흡 루틴 실천 배지
+    var breatheBadgeEl = document.getElementById('recordBreatheBadge');
+    if (breatheBadgeEl) {
+      breatheBadgeEl.textContent = '오늘(' + dateLabel + ') 실천 완료 · 일관도 ' + (data.breathe ? data.breathe.consistency : 98) + '%';
+    }
+  }
+
   fetch('data/records.json')
     .then(function (res) {
-      if (!res.ok) throw new Error('Network response not ok');
+      if (!res.ok) throw new Error('records.json network response not ok');
       return res.json();
     })
     .then(function (data) {
-      if (!data) return;
-      var summaryEl = document.getElementById('recordsSectionSummary');
-      if (summaryEl && data.attendance && data.tasks) {
-        summaryEl.textContent = '출석 ' + data.attendance.days + '일(' + data.attendance.rate + '% 무결석) · 리추얼 ' + (data.ritual ? data.ritual.days : data.attendance.days) + '일 연속 · 과제 마스터 승인 ' + data.tasks.completed + '/' + data.tasks.total + '개 (100% 완주)';
-      }
+      applyRecordsData(data);
     })
     .catch(function () {
-      // Fetch 실패 시 HTML의 기본 마크업 유지
+      // 오프라인/로컬 실패 시 기본 43일 기준 동적 날짜 계산 적용
+      applyRecordsData({
+        attendance: { days: 43 },
+        ritual: { days: 43 },
+        practice: { successDays: 39, totalDays: 43, rate: 91 },
+        breathe: { consistency: 98 },
+        tasks: { completed: 13, total: 13 }
+      });
     });
 })();
 

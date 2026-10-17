@@ -1497,27 +1497,13 @@ img {
   overflow: visible;
   color: var(--text);
   display: block;
-  transform-origin: 120px 25px;
-  animation: lungBreathe 6s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-@keyframes lungBreathe {
-
-  0%,
-  100% {
-    transform: scaleY(0.95);
-    opacity: 0.9;
-  }
-
-  50% {
-    transform: scaleY(1.06);
-    opacity: 1;
-  }
 }
 
 .sparkline-area {
   fill: url(#breatheGrad);
+  transform-origin: 120px 25px;
+  animation: waveAreaMotion 3.8s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .sparkline-guide {
@@ -1532,21 +1518,82 @@ img {
   stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: opacity 0.3s ease;
+  transform-origin: 120px 25px;
+  animation: waveSineMotion 3.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .sparkline-point {
   fill: var(--bg);
   stroke: var(--text);
   stroke-width: 1.8;
-  transition: all 0.25s ease;
+  transform-origin: center;
+  animation: wavePointMotion 3.8s ease-in-out infinite;
+  will-change: transform;
+  transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+.sparkline-point:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.sparkline-point:nth-of-type(2) {
+  animation-delay: 0.25s;
+}
+
+.sparkline-point:nth-of-type(3) {
+  animation-delay: 0.5s;
+}
+
+.sparkline-point:nth-of-type(4) {
+  animation-delay: 0.75s;
 }
 
 .sparkline-point.active {
-  fill: var(--text);
-  stroke: var(--text);
+  fill: var(--success);
+  stroke: var(--success);
   stroke-width: 2.2;
-  filter: drop-shadow(0 0 3px rgba(5, 150, 105, 0.45));
+  filter: drop-shadow(0 0 4px rgba(5, 150, 105, 0.6));
+}
+
+/* 자연스러운 호흡 사인 파동 (위아래 들숨/날숨 모션) */
+@keyframes waveSineMotion {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  35% {
+    transform: translateY(-4.5px) scaleY(1.25);
+  }
+  68% {
+    transform: translateY(3px) scaleY(0.82);
+  }
+}
+
+@keyframes waveAreaMotion {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 0.85;
+  }
+  35% {
+    transform: translateY(-4.5px) scaleY(1.25);
+    opacity: 1;
+  }
+  68% {
+    transform: translateY(3px) scaleY(0.82);
+    opacity: 0.65;
+  }
+}
+
+@keyframes wavePointMotion {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-5px);
+  }
+  68% {
+    transform: translateY(2.5px);
+  }
 }
 
 .sparkline-meta {
