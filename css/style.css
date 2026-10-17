@@ -1682,62 +1682,160 @@ img {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* 6. Stepper Pipeline */
-.stepper-pipeline {
+/* 6. Cortex Task Stepper Pipeline (2번 이미지 실시간 봇 트래커) */
+.cortex-stepper-box {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  padding: 6px 0 2px 0;
 }
 
-.stepper-track {
+.cortex-track-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 28px 2px 6px 2px;
+}
+
+/* 1~13 노드를 관통하는 에메랄드 레일 선 */
+.cortex-rail-line {
+  position: absolute;
+  top: calc(28px + 10px);
+  left: 10px;
+  right: 10px;
+  height: 3.5px;
+  background: #0d9488;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+[data-theme="dark"] .cortex-rail-line {
+  background: #14b8a6;
+  box-shadow: 0 0 8px rgba(20, 184, 166, 0.4);
+}
+
+.cortex-nodes-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 4px;
-  padding: 4px 0;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
-.step-dot {
-  width: 18px;
-  height: 18px;
+.cortex-node {
+  position: relative;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+  background: #0f766e;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   flex-shrink: 0;
-  transition: all var(--transition);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  user-select: none;
 }
 
-.step-dot.completed {
-  background: var(--text);
-  color: var(--bg);
+[data-theme="dark"] .cortex-node {
+  background: #10b981;
+  color: #042f2e;
 }
 
-.step-dot.current {
-  background: transparent;
-  border: 2px solid var(--text);
-  color: var(--text);
-  position: relative;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+.cortex-node:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(13, 148, 136, 0.6);
+  z-index: 10;
 }
 
-[data-theme="dark"] .step-dot.current {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+/* 6번, 8번 집중 지원 특수 노드 */
+.cortex-node.is-special {
+  box-shadow: 0 0 0 2px #d97706, 0 1px 4px rgba(217, 119, 6, 0.35);
 }
 
-
-
-.step-dot.upcoming {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px dashed var(--border);
-  color: var(--text-light);
+.cortex-node-tag {
+  position: absolute;
+  top: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  font-weight: 700;
+  color: #d97706;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+  pointer-events: none;
 }
 
-[data-theme="dark"] .step-dot.upcoming {
-  background: rgba(255, 255, 255, 0.06);
+[data-theme="dark"] .cortex-node-tag {
+  color: #fbbf24;
+}
+
+/* 13번 최종 완주 노드 위의 살아 숨쉬는 마스터 봇 */
+.cortex-bot-floater {
+  position: absolute;
+  top: -27px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: botLivingBob 2.4s ease-in-out infinite;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 5px rgba(2, 132, 199, 0.45));
+  z-index: 5;
+}
+
+@keyframes botLivingBob {
+  0% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-50%) translateY(-4.5px) rotate(-3deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-1px) rotate(1deg);
+  }
+  75% {
+    transform: translateX(-50%) translateY(-5px) rotate(3deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+}
+
+/* 봇 눈 깜빡임 */
+@keyframes botEyeBlink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+.bot-eye {
+  transform-origin: center;
+  animation: botEyeBlink 3.8s infinite;
+}
+
+/* 봇 안테나 비콘 펄스 */
+@keyframes botBeaconGlow {
+  0%, 100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 2px #10b981);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #10b981);
+  }
+}
+
+.bot-antenna-dot {
+  animation: botBeaconGlow 1.8s infinite ease-in-out;
 }
 
 .stepper-meta {
@@ -1746,6 +1844,7 @@ img {
   align-items: center;
   font-size: 10.5px;
   color: var(--text-mid);
+  padding-top: 4px;
 }
 
 .stepper-status strong {
@@ -1763,6 +1862,41 @@ img {
 
 [data-theme="dark"] .stepper-badge {
   background: rgba(255, 255, 255, 0.08);
+}
+
+/* 출처 링크 (밑줄 완전 제거 및 깔끔한 호버 인터랙션) */
+.metric-source-link {
+  color: inherit;
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.metric-source-link:hover {
+  color: var(--text);
+  border-color: var(--text-mid);
+}
+
+@media (max-width: 640px) {
+  .cortex-node {
+    width: 17px;
+    height: 17px;
+    font-size: 8.5px;
+  }
+  .cortex-rail-line {
+    top: calc(28px + 8.5px);
+  }
+  .cortex-node-tag {
+    font-size: 7.5px;
+    top: -18px;
+  }
+  .cortex-bot-floater {
+    top: -25px;
+  }
+  .cortex-bot-svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .metric-source {

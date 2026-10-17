@@ -1021,24 +1021,53 @@
               <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag">전체 마스터 완주</span></p>
             </div>
 
-            <!-- 차트: 13단계 과제 로드맵 스테퍼 파이프라인 -->
+            <!-- 차트: 13단계 과제 로드맵 스테퍼 파이프라인 (2번 이미지 Cortex 태스크 트래커 형태) -->
             <div class="metric-chart-wrap" aria-label="13개 과제 진행 파이프라인">
-              <div class="stepper-pipeline">
-                <div class="stepper-track" aria-hidden="true">
-                  <span class="step-dot completed" title="1번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="2번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="3번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="4번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="5번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="6번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="7번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="8번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="9번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="10번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="11번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="12번 과제 완료">✓</span>
-                  <span class="step-dot completed" title="13번 과제 완료">✓</span>
+              <div class="cortex-stepper-box">
+                <div class="cortex-track-wrapper" aria-hidden="true">
+                  <!-- 1~13 노드를 관통하는 레일 선 -->
+                  <div class="cortex-rail-line"></div>
+
+                  <!-- 1~13단계 노드 및 살아 움직이는 봇 캐릭터 -->
+                  <div class="cortex-nodes-container">
+                    <div class="cortex-node completed" data-task="1" title="1번 과제 완료">1</div>
+                    <div class="cortex-node completed" data-task="2" title="2번 과제 완료">2</div>
+                    <div class="cortex-node completed" data-task="3" title="3번 과제 완료">3</div>
+                    <div class="cortex-node completed" data-task="4" title="4번 과제 완료">4</div>
+                    <div class="cortex-node completed" data-task="5" title="5번 과제 완료">5</div>
+                    <div class="cortex-node completed is-special" data-task="6" title="6번 과제 (집중 지원 완료)">
+                      <span class="cortex-node-tag">집중 지원</span>
+                      <span class="cortex-node-num">6</span>
+                    </div>
+                    <div class="cortex-node completed" data-task="7" title="7번 과제 완료">7</div>
+                    <div class="cortex-node completed is-special" data-task="8" title="8번 과제 (집중 지원 완료)">
+                      <span class="cortex-node-tag">집중 지원</span>
+                      <span class="cortex-node-num">8</span>
+                    </div>
+                    <div class="cortex-node completed" data-task="9" title="9번 과제 완료">9</div>
+                    <div class="cortex-node completed" data-task="10" title="10번 과제 완료">10</div>
+                    <div class="cortex-node completed" data-task="11" title="11번 과제 완료">11</div>
+                    <div class="cortex-node completed" data-task="12" title="12번 과제 완료">12</div>
+                    <div class="cortex-node completed is-final" data-task="13" title="13번 과제 (최종 마스터 완료)">
+                      <!-- 2번 이미지 상단의 살아 숨쉬는 봇 캐릭터 -->
+                      <div class="cortex-bot-floater" aria-label="살아 숨쉬는 마스터 봇">
+                        <svg class="cortex-bot-svg" viewBox="0 0 24 24" width="22" height="22">
+                          <rect x="3" y="3" width="18" height="13" rx="2.5" fill="#0284c7" stroke="#0369a1" stroke-width="1.2"/>
+                          <rect x="5.5" y="5.5" width="13" height="8" rx="1.5" fill="#e0f2fe"/>
+                          <circle cx="9" cy="9.5" r="1.3" fill="#0369a1" class="bot-eye"/>
+                          <circle cx="15" cy="9.5" r="1.3" fill="#0369a1" class="bot-eye"/>
+                          <path d="M 10 11.8 Q 12 13.2 14 11.8" stroke="#0369a1" stroke-width="1" fill="none" stroke-linecap="round"/>
+                          <rect x="10.5" y="16" width="3" height="3" fill="#0369a1"/>
+                          <path d="M 7 19 L 17 19" stroke="#0369a1" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="12" cy="1" r="1.2" fill="#10b981" class="bot-antenna-dot"/>
+                          <line x1="12" y1="3" x2="12" y2="1.5" stroke="#0284c7" stroke-width="1.2"/>
+                        </svg>
+                      </div>
+                      <span class="cortex-node-num">13</span>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="stepper-meta">
                   <span class="stepper-status">마스터 승인율 <strong>100.0%</strong></span>
                   <span class="stepper-badge">전체 마스터 완주</span>
@@ -1049,7 +1078,7 @@
             <div class="metric-source">
               <span class="metric-source-dot" aria-hidden="true"></span>
               <span>출처: <a href="https://aleph-omega.vercel.app/cortex?panel=tasks" target="_blank"
-                  rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">내 제출 현황</a></span>
+                  rel="noopener noreferrer" class="metric-source-link">내 제출 현황</a></span>
             </div>
           </div>
         </div>
