@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,7 @@
   <meta name="twitter:image" content="https://hayul0611.github.io/SKT_ALEPH/assets/profile.jpg">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <a href="#main" class="skip-link">본문 바로가기</a>
 
@@ -53,7 +55,8 @@
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드 전환" title="화면 모드 전환 (라이트/다크)">
         <span class="theme-icon" id="themeIcon"></span>
       </button>
-      <button class="nav-burger-btn" id="navBurgerBtn" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="navDropdownMenu">
+      <button class="nav-burger-btn" id="navBurgerBtn" type="button" aria-label="전체 메뉴 열기" aria-expanded="false"
+        aria-controls="navDropdownMenu">
         <span class="burger-bar" aria-hidden="true"></span>
         <span class="burger-bar" aria-hidden="true"></span>
         <span class="burger-bar" aria-hidden="true"></span>
@@ -69,7 +72,7 @@
       <nav class="nav-dropdown-links" aria-label="모바일 섹션 링크">
         <a href="#all" class="nav-dropdown-link nav-dropdown-all is-active" data-tab="all">
           <span class="nav-link-num">ALL</span>
-          <span class="nav-link-text">전체보기 (모든 서사 펼치기)</span>
+          <span class="nav-link-text">전체보기 (모두 펼치기)</span>
           <span class="nav-link-arrow">&rarr;</span>
         </a>
         <a href="#timeline" class="nav-dropdown-link" data-tab="timeline">
@@ -349,55 +352,55 @@
               <p class="metric-label">출석률, 결석 0</p>
             </div>
 
-            <!-- 차트: 100% 원형 도넛 게이지 + 39일 연속 출석 도트 스트릭 -->
-            <div class="metric-chart-wrap" aria-label="출석률 100% 시각화">
-              <div class="attendance-visual">
-                <div class="attendance-badge-icon" title="출석 무결석 달성 100%" aria-label="출석 100% 달성 배지">
-                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="1.8" />
-                    <polyline points="13 20 18 25 27 15" stroke="var(--primary, #0284c7)" stroke-width="2.5" />
-                  </svg>
+            <!-- 차트: 실시간 아날로그 시계 + 31일 미니 캘린더 그리드 (정시 입실 & 호버 툴팁) -->
+            <div class="metric-chart-wrap" aria-label="출석률 100% 실시간 시계 및 캘린더 시각화">
+              <div class="attendance-visual" id="attendanceVisual">
+                <!-- 좌측: 실시간 아날로그 크로노그래프 시계 & 정시 입실 상태 -->
+                <div class="attendance-clock-col">
+                  <div class="live-clock-box" id="liveClockBox" title="실시간 아날로그 시계 (성실한 시간 무브먼트)" aria-label="실시간 아날로그 시계">
+                    <svg class="analog-clock" viewBox="0 0 52 52" width="46" height="46" aria-hidden="true">
+                      <!-- 100% 완주 에메랄드 다이얼 링 -->
+                      <circle class="clock-dial-bg" cx="26" cy="26" r="23" />
+                      <circle class="clock-dial-progress" cx="26" cy="26" r="23" />
+                      <!-- 12, 3, 6, 9 인덱스 눈금 -->
+                      <line class="clock-tick tick-12" x1="26" y1="5" x2="26" y2="8.5" />
+                      <line class="clock-tick tick-3" x1="47" y1="26" x2="43.5" y2="26" />
+                      <line class="clock-tick tick-6" x1="26" y1="47" x2="26" y2="43.5" />
+                      <line class="clock-tick tick-9" x1="5" y1="26" x2="8.5" y2="26" />
+                      <!-- 시침, 분침, 초침 바늘 (JS로 실시간 회전) -->
+                      <g class="clock-hand hour-hand" id="analogHourHand">
+                        <line x1="26" y1="26" x2="26" y2="14" />
+                      </g>
+                      <g class="clock-hand minute-hand" id="analogMinuteHand">
+                        <line x1="26" y1="26" x2="26" y2="9.5" />
+                      </g>
+                      <g class="clock-hand second-hand" id="analogSecondHand">
+                        <line x1="26" y1="30" x2="26" y2="8" />
+                      </g>
+                      <circle class="clock-pivot" cx="26" cy="26" r="2.2" />
+                    </svg>
+                  </div>
+                  <div class="clock-status-tag" id="attendanceClockTag" title="실제 기록 기반 평균 입실 시간">
+                    <span class="clock-live-dot pulse-ring-dot" aria-hidden="true"></span>
+                    <span class="clock-status-text" id="attendanceClockText">평균 08:46 입실</span>
+                  </div>
                 </div>
-                <div class="attendance-cal-area" title="한 달 31일 무결석 연속 출석 기록">
+
+                <!-- 우측: 1~31일 실제 달력 형태 미니 캘린더 그리드 -->
+                <div class="attendance-calendar-col">
                   <div class="cal-days-header" aria-hidden="true">
                     <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>
                   </div>
-                  <div class="cal-days-matrix" aria-hidden="true">
-                    <span class="cal-cell done" title="Day 1 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 2 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 3 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 4 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 5 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 6 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 7 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 8 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 9 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 10 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 11 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 12 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 13 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 14 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 15 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 16 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 17 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 18 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 19 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 20 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 21 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 22 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 23 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 24 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 25 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 26 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 27 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 28 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 29 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 30 (출석 완료)"></span>
-                    <span class="cal-cell done" title="Day 31 (출석 완료)"></span>
+                  <div class="cal-month-grid" id="attendanceCalGrid" role="grid" aria-label="10월 31일 연속 출석 달력">
+                    <!-- JS로 data/records.json history 데이터 기반 동적 렌더링 -->
                   </div>
-                  <span class="streak-caption">한 달 31일 기준 완전 연속 출석 달성</span>
+                  <div class="cal-footer-meta">
+                    <span class="streak-caption" id="attendanceStreakCaption">한 달 31일 전일 정상 출석 달성 · 결석 0</span>
+                  </div>
                 </div>
+
+                <!-- 일자별 실제 입실 시간 호버 플로팅 툴팁 -->
+                <div class="cal-tooltip" id="calTooltip" role="tooltip" aria-hidden="true"></div>
               </div>
             </div>
             <div class="metric-source">
@@ -412,7 +415,8 @@
               <div class="metric-num-wrap">
                 <span class="metric-num" id="recordRitualDays">43일</span>
               </div>
-              <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range" id="recordRitualDateRange">(2026-08-11 ~ 10-15)</span></p>
+              <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range" id="recordRitualDateRange">(2026-08-11 ~
+                  10-15)</span></p>
             </div>
 
             <!-- 차트: 8주간 지속 누적 타임라인 트래커 -->
@@ -580,7 +584,8 @@
               <div class="metric-num-wrap">
                 <span class="metric-num" id="recordTasksCount">13/13개</span>
               </div>
-              <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag" id="recordTasksTag">전체 마스터 완주</span></p>
+              <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag" id="recordTasksTag">전체 마스터
+                  완주</span></p>
             </div>
 
             <!-- 차트: 13단계 과제 로드맵 지하철 노선도 트래커 (하드코딩 없는 동적 캐릭터 러너) -->
@@ -641,7 +646,8 @@
                   </div>
                 </div>
                 <div class="stepper-meta">
-                  <span class="stepper-status" id="subwayStationStatus">현재 <strong>13번 챕터</strong> 완주 · 승인율 <strong>100.0%</strong></span>
+                  <span class="stepper-status" id="subwayStationStatus">현재 <strong>13번 챕터</strong> 완주 · 승인율
+                    <strong>100.0%</strong></span>
                   <span class="stepper-badge" id="subwayBadge">전체 마스터 완주</span>
                 </div>
               </div>
@@ -3465,4 +3471,5 @@
     </div>
   </div>
 </body>
+
 </html>

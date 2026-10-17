@@ -254,192 +254,276 @@
   background: rgba(255, 255, 255, 0.025);
 }
 
-/* 1. Attendance: Circular Gauge + Streak Dots */
+/* 1. Attendance: Live Analog Chronograph Clock + 31-Day Interactive Calendar */
 .attendance-visual {
   display: flex;
   align-items: center;
-  gap: 14px;
-}
-
-.circular-chart-box {
+  gap: 12px;
   position: relative;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-}
-
-.circular-chart {
   width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
 }
 
-.circle-bg {
-  fill: none;
-  stroke: rgba(0, 0, 0, 0.08);
-  stroke-width: 3.2;
-}
-
-[data-theme="dark"] .circle-bg {
-  stroke: rgba(255, 255, 255, 0.1);
-}
-
-.circle-fill {
-  fill: none;
-  stroke: var(--text);
-  stroke-width: 3.2;
-  stroke-linecap: round;
-  transition: stroke-dasharray 0.8s ease;
-}
-
-.circle-inner-icon {
-  position: absolute;
-  inset: 0;
+/* 좌측: 실시간 아날로그 시계 컬럼 */
+.attendance-clock-col {
+  flex: 0 0 84px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--text);
+  gap: 5px;
 }
 
-/* 실시간 아날로그 시계 */
 .live-clock-box {
   position: relative;
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text);
+  cursor: pointer;
 }
 
 .analog-clock {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   display: block;
-  color: var(--text);
 }
 
-.clock-face {
-  stroke: var(--text);
-  opacity: 0.8;
+.clock-dial-bg {
+  fill: rgba(0, 0, 0, 0.02);
+  stroke: rgba(0, 0, 0, 0.08);
+  stroke-width: 2.2;
+}
+
+[data-theme="dark"] .clock-dial-bg {
+  fill: rgba(255, 255, 255, 0.02);
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.clock-dial-progress {
+  fill: none;
+  stroke: var(--success);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.35));
 }
 
 .clock-tick {
-  stroke: var(--text);
-  opacity: 0.55;
+  stroke: var(--text-mid);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.65;
 }
 
-#clockHourHand,
-#clockMinuteHand,
-#clockSecondHand {
-  transform-origin: 20px 20px;
+.clock-hand {
+  transform-origin: 26px 26px;
   transform-box: view-box;
 }
 
-#clockSecondHand {
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+.hour-hand line {
+  stroke: var(--text);
+  stroke-width: 2.4;
+  stroke-linecap: round;
 }
 
-#clockHourHand line,
-.hour-hand {
-  stroke: var(--text) !important;
-  stroke-width: 2.4 !important;
-  stroke-linecap: round !important;
+.minute-hand line {
+  stroke: var(--text);
+  stroke-width: 1.6;
+  stroke-linecap: round;
 }
 
-#clockMinuteHand line,
-.minute-hand {
-  stroke: var(--text) !important;
-  stroke-width: 1.6 !important;
-  stroke-linecap: round !important;
-}
-
-#clockSecondHand line,
-.second-hand {
-  stroke: #ef4444 !important;
-  stroke-width: 1.1 !important;
-  stroke-linecap: round !important;
+.second-hand line {
+  stroke: #ef4444;
+  stroke-width: 1.1;
+  stroke-linecap: round;
 }
 
 .clock-pivot {
-  fill: #ef4444 !important;
+  fill: #ef4444;
 }
 
-.attendance-cal-area,
-.streak-dots-area {
+/* 정시 입실 펄스 상태 뱃지 (records.json 동적 연동) */
+.clock-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  white-space: nowrap;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.clock-status-tag:hover {
+  transform: translateY(-1px);
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.16);
+}
+
+.clock-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--success);
+  flex-shrink: 0;
+}
+
+.clock-status-text {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--success);
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+}
+
+/* 우측: 1~31일 실제 달력 형태 미니 캘린더 그리드 */
+.attendance-calendar-col {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  min-width: 0;
+  gap: 4px;
 }
 
 .cal-days-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 3px;
+  gap: 3.5px;
   text-align: center;
 }
 
 .cal-days-header span {
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
   color: var(--text-dim);
   line-height: 1.1;
   letter-spacing: -0.2px;
 }
 
-.cal-days-matrix,
-.streak-grid {
+.cal-month-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 3px;
+  gap: 3.5px;
 }
 
-.cal-cell,
-.streak-dot {
+.cal-day-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1;
-  height: 7px;
-  border-radius: 1.5px;
-  background: rgba(0, 0, 0, 0.08);
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  min-height: 17px;
+  border-radius: 3px;
+  background: rgba(16, 185, 129, 0.09);
+  border: 0.5px solid rgba(16, 185, 129, 0.22);
+  color: var(--text-mid);
+  font-size: 9.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.16s ease;
+  position: relative;
+  user-select: none;
 }
 
-[data-theme="dark"] .cal-cell,
-[data-theme="dark"] .streak-dot {
-  background: rgba(255, 255, 255, 0.1);
+[data-theme="dark"] .cal-day-cell {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.28);
+  color: #e4e4e7;
 }
 
-.cal-cell.done,
-.streak-dot.active {
-  background: var(--text);
-  opacity: 0.88;
+/* 날짜 타일 자연스러운 호버 마이크로 인터랙션 */
+.cal-day-cell:hover {
+  transform: translateY(-2px) scale(1.18);
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+  z-index: 10;
 }
 
-.cal-cell.empty {
-  border: 1px dashed rgba(0, 0, 0, 0.18);
-  background: transparent;
-  opacity: 0.45;
+.cal-day-cell.is-today {
+  border-color: var(--success);
+  box-shadow: 0 0 0 1.5px rgba(16, 185, 129, 0.45);
 }
 
-[data-theme="dark"] .cal-cell.empty {
-  border: 1px dashed rgba(255, 255, 255, 0.22);
+.cal-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 3px;
+  width: 100%;
 }
-
-.cal-cell:hover,
-.streak-dot:hover {
-  transform: scale(1.15);
-  opacity: 1;
-}
-
 
 .streak-caption {
-  font-size: 10.5px;
+  font-size: 9px;
   color: var(--text-mid);
   font-weight: 500;
   letter-spacing: -0.2px;
-  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .attendance-visual {
+    gap: 8px;
+  }
+  .attendance-clock-col {
+    flex: 0 0 76px;
+  }
+  .live-clock-box,
+  .analog-clock {
+    width: 42px;
+    height: 42px;
+  }
+  .clock-status-tag {
+    padding: 1.5px 5px;
+  }
+  .clock-status-text {
+    font-size: 8.5px;
+  }
+  .cal-day-cell {
+    min-height: 15px;
+    font-size: 8.5px;
+  }
+  .cal-days-header span {
+    font-size: 8px;
+  }
+}
+
+/* 일자별 실제 입실 시간 호버 플로팅 툴팁 */
+.cal-tooltip {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -100%);
+  background: rgba(17, 17, 17, 0.94);
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  border: 0.5px solid rgba(255, 255, 255, 0.18);
+  z-index: 100;
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  margin-top: -6px;
+  letter-spacing: -0.2px;
+}
+
+.cal-tooltip.is-active {
+  opacity: 1;
+}
+
+[data-theme="dark"] .cal-tooltip {
+  background: rgba(28, 28, 30, 0.96);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
 /* 2. Timeline Bar Chart */
