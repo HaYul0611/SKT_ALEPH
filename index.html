@@ -41,13 +41,14 @@
     <a href="#main" class="nav-name" aria-label="메인 상단으로 이동">Ha Yul Oh</a>
     <div class="nav-right">
       <nav class="nav-links-desktop" aria-label="데스크톱 내비게이션">
-        <a href="#timeline" class="nav-link">Timeline</a>
-        <a href="#metrics" class="nav-link">Records</a>
-        <a href="#strengths" class="nav-link">Strengths</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#research" class="nav-link">Research</a>
-        <a href="#evidence" class="nav-link">Evidence</a>
-        <a href="#documents" class="nav-link">Docs</a>
+        <a href="#all" class="nav-link nav-link-all is-active" data-tab="all" title="모든 섹션 연속 보기">전체보기</a>
+        <a href="#timeline" class="nav-link" data-tab="timeline">Timeline</a>
+        <a href="#metrics" class="nav-link" data-tab="metrics">Records</a>
+        <a href="#strengths" class="nav-link" data-tab="strengths">Strengths</a>
+        <a href="#projects" class="nav-link" data-tab="projects">Projects</a>
+        <a href="#research" class="nav-link" data-tab="research">Research</a>
+        <a href="#evidence" class="nav-link" data-tab="evidence">Evidence</a>
+        <a href="#documents" class="nav-link" data-tab="documents">Docs</a>
       </nav>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드 전환" title="화면 모드 전환 (라이트/다크)">
         <span class="theme-icon" id="themeIcon"></span>
@@ -66,37 +67,42 @@
         <span class="dropdown-status-text">현재 위치: <strong id="navDropdownTarget">01 Timeline</strong></span>
       </div>
       <nav class="nav-dropdown-links" aria-label="모바일 섹션 링크">
-        <a href="#timeline" class="nav-dropdown-link">
+        <a href="#all" class="nav-dropdown-link nav-dropdown-all is-active" data-tab="all">
+          <span class="nav-link-num">ALL</span>
+          <span class="nav-link-text">전체보기 (모든 서사 펼치기)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+        <a href="#timeline" class="nav-dropdown-link" data-tab="timeline">
           <span class="nav-link-num">01</span>
           <span class="nav-link-text">Timeline (이력 &amp; 로드맵)</span>
           <span class="nav-link-arrow">&rarr;</span>
         </a>
-        <a href="#metrics" class="nav-dropdown-link">
+        <a href="#metrics" class="nav-dropdown-link" data-tab="metrics">
           <span class="nav-link-num">02</span>
           <span class="nav-link-text">Records (핵심 정량 지표)</span>
           <span class="nav-link-arrow">&rarr;</span>
         </a>
-        <a href="#strengths" class="nav-dropdown-link">
+        <a href="#strengths" class="nav-dropdown-link" data-tab="strengths">
           <span class="nav-link-num">03</span>
           <span class="nav-link-text">Strengths (기술 역량)</span>
           <span class="nav-link-arrow">&rarr;</span>
         </a>
-        <a href="#projects" class="nav-dropdown-link">
+        <a href="#projects" class="nav-dropdown-link" data-tab="projects">
           <span class="nav-link-num">04</span>
           <span class="nav-link-text">Projects (프로젝트 증적)</span>
           <span class="nav-link-arrow">&rarr;</span>
         </a>
-        <a href="#research" class="nav-dropdown-link">
+        <a href="#research" class="nav-dropdown-link" data-tab="research">
           <span class="nav-link-num">05</span>
           <span class="nav-link-text">Research (학술 &amp; 논문)</span>
           <span class="nav-link-arrow">&rarr;</span>
         </a>
-        <a href="#evidence" class="nav-dropdown-link">
+        <a href="#evidence" class="nav-dropdown-link" data-tab="evidence">
           <span class="nav-link-num">06</span>
           <span class="nav-link-text">Evidence (엔지니어링 증적)</span>
           <span class="nav-link-arrow">&rarr;</span>
         </a>
-        <a href="#documents" class="nav-dropdown-link">
+        <a href="#documents" class="nav-dropdown-link" data-tab="documents">
           <span class="nav-link-num">07</span>
           <span class="nav-link-text">Docs (공식 서류 &amp; 인증)</span>
           <span class="nav-link-arrow">&rarr;</span>
@@ -252,7 +258,7 @@
 
     <!-- 타임라인 섹션 -->
 
-    <section class="timeline-section" id="timeline" aria-label="경력 전환 타임라인">
+    <section class="timeline-section section-tab-pane" id="timeline" data-tab-id="timeline" aria-label="경력 전환 타임라인">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">01</span>
@@ -312,11 +318,11 @@
             </div>
           </div>
     </section>
-    <hr class="divider">
+    <hr class="divider section-divider">
 
     <!-- 숫자 칸 섹션 (Records) -->
 
-    <section class="metrics-section" id="metrics" aria-label="숫자로 증명하는 기록">
+    <section class="metrics-section section-tab-pane" id="metrics" data-tab-id="metrics" aria-label="숫자로 증명하는 기록">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">02</span>
@@ -648,11 +654,11 @@
           </div>
         </div>
     </section>
-    <hr class="divider">
+    <hr class="divider section-divider">
 
     <!-- 강점 SAR 섹션 -->
 
-    <section class="strengths" id="strengths" aria-label="핵심 강점">
+    <section class="strengths section-tab-pane" id="strengths" data-tab-id="strengths" aria-label="핵심 강점">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">03</span>
@@ -762,11 +768,11 @@
           </button>
         </div>
     </section>
-    <hr class="divider">
+    <hr class="divider section-divider">
 
     <!-- 프로젝트 섹션 -->
 
-    <section class="projects" id="projects" aria-label="프로젝트">
+    <section class="projects section-tab-pane" id="projects" data-tab-id="projects" aria-label="프로젝트">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">04</span>
@@ -1196,11 +1202,11 @@
         </div>
       </div>
     </section>
-    <hr class="divider">
+    <hr class="divider section-divider">
 
     <!-- 학술 연구 논문 섹션 -->
 
-    <section class="research-section" id="research" aria-label="학술 연구 및 전문성">
+    <section class="research-section section-tab-pane" id="research" data-tab-id="research" aria-label="학술 연구 및 전문성">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">05</span>
@@ -1300,11 +1306,11 @@
         </div>
       </div>
     </section>
-    <hr class="divider">
+    <hr class="divider section-divider">
 
     <!-- 목표 비전 섹션 -->
 
-    <section class="vision" id="vision" aria-label="목표 비전">
+    <section class="vision section-tab-pane" id="vision" data-tab-id="vision" aria-label="목표 비전">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">06</span>
@@ -1359,11 +1365,11 @@
           </div>
         </div>
     </section>
-    <hr class="divider">
+    <hr class="divider section-divider">
 
     <!-- 공개 근거 섹션 -->
 
-    <section class="evidence" id="evidence" aria-label="실무 근거">
+    <section class="evidence section-tab-pane" id="evidence" data-tab-id="evidence" aria-label="실무 근거">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">07</span>
@@ -1409,11 +1415,11 @@
         </div>
       </div>
     </section>
-    <hr class="divider">
+    <hr class="divider section-divider">
 
     <!-- 문서 다운로드 섹션 (Documents) -->
 
-    <section class="documents-section" id="documents" aria-label="문서 다운로드">
+    <section class="documents-section section-tab-pane" id="documents" data-tab-id="documents" aria-label="문서 다운로드">
       <div class="section-header-block">
         <div class="section-header-left">
           <span class="section-num-tag">08</span>

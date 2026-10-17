@@ -1,5 +1,13 @@
+/* ==========================================================================
+   Navigation & Tab View Controller (nav.js)
+   - 다크/라이트 테마 토글 (initTheme)
+   - 모바일 버거 메뉴 & 드롭다운 제어 (initMobileNav)
+   - 인터랙티브 단일 탭 모드 & 전체보기(All) 탭 시스템 (initTabSystem)
+   - 전역 스크롤스파이 및 프로그레스 바 (initScrollSpy)
+   ========================================================================== */
+
 /* ===========================
-   Theme Toggle (다크/라이트 모드)
+   1. Theme Toggle (다크/라이트 모드)
    =========================== */
 (function initTheme() {
   var toggle = document.getElementById('themeToggle');
@@ -35,67 +43,274 @@
 })();
 
 
+/* ===========================
+   2. Responsive Burger & Mobile Dropdown Controller
+   =========================== */
+var MobileNav = (function () {
+  var burgerBtn = document.getElementById('navBurgerBtn');
+  var dropdownMenu = document.getElementById('navDropdownMenu');
+
+  function openMenu() {
+    if (!burgerBtn || !dropdownMenu) return;
+    dropdownMenu.hidden = false;
+    requestAnimationFrame(function () {
+      burgerBtn.classList.add('is-active');
+      burgerBtn.setAttribute('aria-expanded', 'true');
+      burgerBtn.setAttribute('aria-label', '전체 메뉴 닫기');
+      dropdownMenu.classList.add('is-open');
+    });
+  }
+
+  function closeMenu() {
+    if (!burgerBtn || !dropdownMenu) return;
+    burgerBtn.classList.remove('is-active');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    burgerBtn.setAttribute('aria-label', '전체 메뉴 열기');
+    dropdownMenu.classList.remove('is-open');
+    setTimeout(function () {
+      if (!dropdownMenu.classList.contains('is-open')) {
+        dropdownMenu.hidden = true;
+      }
+    }, 220);
+  }
+
+  function toggleMenu() {
+    if (!dropdownMenu) return;
+    if (dropdownMenu.classList.contains('is-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  if (burgerBtn && dropdownMenu) {
+    burgerBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    document.addEventListener('click', function (e) {
+      if (dropdownMenu.classList.contains('is-open')) {
+        if (!dropdownMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+          closeMenu();
+        }
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && dropdownMenu.classList.contains('is-open')) {
+        closeMenu();
+        burgerBtn.focus();
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 960 && dropdownMenu.classList.contains('is-open')) {
+        closeMenu();
+      }
+    }, { passive: true });
+  }
+
+  return {
+    open: openMenu,
+    close: closeMenu,
+    toggle: toggleMenu
+  };
+})();
+
 
 /* ===========================
-   ScrollSpy & Top Progress Engine (자연스러운 전역 스크롤스파이 & 진행바)
+   3. Tab View & ScrollSpy Controller (단일 탭 모드 + 전체보기 시스템)
    =========================== */
-(function initScrollSpyAndProgress() {
+(function initTabViewAndScrollSpy() {
   var progressBar = document.getElementById('scrollProgressBar');
   var navReadingTarget = document.getElementById('navReadingTarget');
   var navReadingIndicator = document.getElementById('navReadingIndicator');
-  var navLinks = document.querySelectorAll('.nav-link, .nav-right a');
+  var navDropdownTarget = document.getElementById('navDropdownTarget');
+  var desktopNavLinks = document.querySelectorAll('.nav-links-desktop .nav-link');
+  var dropdownNavLinks = document.querySelectorAll('.nav-dropdown-links .nav-dropdown-link');
+  var tabPanes = document.querySelectorAll('.section-tab-pane');
 
-  var sectionData = [
-    { id: 'timeline', title: '01 Timeline' },
-    { id: 'metrics', title: '02 Records' },
-    { id: 'strengths', title: '03 Strengths' },
-    { id: 'projects', title: '04 Projects' },
-    { id: 'research', title: '05 Research' },
-    { id: 'vision', title: '06 Vision' },
-    { id: 'evidence', title: '07 Evidence' },
-    { id: 'documents', title: '08 Documents' }
-  ];
+  var tabMeta = {
+    all: { title: '전체보기', id: 'all' },
+    timeline: { title: '01 Timeline', id: 'timeline' },
+    metrics: { title: '02 Records', id: 'metrics' },
+    strengths: { title: '03 Strengths', id: 'strengths' },
+    projects: { title: '04 Projects', id: 'projects' },
+    research: { title: '05 Research', id: 'research' },
+    vision: { title: '06 Vision', id: 'vision' },
+    evidence: { title: '07 Evidence', id: 'evidence' },
+    documents: { title: '08 Documents', id: 'documents' }
+  };
 
-  var sections = sectionData.map(function (item) {
-    return {
-      el: document.getElementById(item.id),
-      title: item.title,
-      id: item.id,
-      top: 0
-    };
+  var currentTab = 'all';
+  var isSwitchingTab = false;
+
+  // 섹션 오프셋 캐싱 (전체보기 ScrollSpy 전용)
+  var sections = [
+    { id: 'timeline', title: '01 Timeline', top: 0 },
+    { id: 'metrics', title: '02 Records', top: 0 },
+    { id: 'strengths', title: '03 Strengths', top: 0 },
+    { id: 'projects', title: '04 Projects', top: 0 },
+    { id: 'research', title: '05 Research', top: 0 },
+    { id: 'vision', title: '06 Vision', top: 0 },
+    { id: 'evidence', title: '07 Evidence', top: 0 },
+    { id: 'documents', title: '08 Documents', top: 0 }
+  ].map(function (item) {
+    item.el = document.getElementById(item.id);
+    return item;
   }).filter(function (item) {
     return !!item.el;
   });
 
-  // 1. 섹션 오프셋 사전 캐싱 (스크롤 이벤트 내 레이아웃 쓰레싱/강제 리플로우 원천 차단)
   function cacheSectionOffsets() {
     var scrollY = window.scrollY || window.pageYOffset || 0;
     for (var i = 0; i < sections.length; i++) {
-      var rect = sections[i].el.getBoundingClientRect();
-      sections[i].top = rect.top + scrollY;
+      if (sections[i].el) {
+        var rect = sections[i].el.getBoundingClientRect();
+        sections[i].top = rect.top + scrollY;
+      }
     }
   }
 
-  var rafId = null;
-  var navReadingTimer = null;
-  var lastActiveId = '';
+  // 1. 탭 활성화 상태 UI 동기화
+  function syncNavActiveLinks(tabId) {
+    var targetHref = '#' + tabId;
 
+    desktopNavLinks.forEach(function (link) {
+      var href = link.getAttribute('href');
+      var linkTab = link.dataset.tab;
+      if (href === targetHref || linkTab === tabId) {
+        link.classList.add('is-active');
+      } else {
+        link.classList.remove('is-active');
+      }
+    });
+
+    dropdownNavLinks.forEach(function (link) {
+      var href = link.getAttribute('href');
+      var linkTab = link.dataset.tab;
+      if (href === targetHref || linkTab === tabId) {
+        link.classList.add('is-active');
+      } else {
+        link.classList.remove('is-active');
+      }
+    });
+
+    var meta = tabMeta[tabId] || tabMeta.all;
+    if (navReadingTarget) {
+      navReadingTarget.textContent = meta.title;
+    }
+    if (navDropdownTarget) {
+      navDropdownTarget.textContent = meta.title;
+    }
+  }
+
+  // 2. 탭 전환 메인 함수
+  function switchTab(tabId, shouldScroll) {
+    if (!tabMeta[tabId]) {
+      tabId = 'all';
+    }
+
+    currentTab = tabId;
+    isSwitchingTab = true;
+
+    // 모바일 드롭다운 메뉴가 열려 있다면 닫기
+    MobileNav.close();
+
+    if (tabId === 'all') {
+      // [전체보기 모드]: 모든 섹션 및 구분선 활성화
+      document.body.classList.remove('tab-mode-single');
+      tabPanes.forEach(function (pane) {
+        pane.classList.remove('is-tab-hidden');
+        pane.classList.remove('is-tab-active');
+      });
+
+      syncNavActiveLinks('all');
+      cacheSectionOffsets();
+
+      // 전체보기 클릭 시, 이미 스크롤이 내려가 있었다면 부드럽게 첫 번째 섹션 또는 상단으로
+      if (shouldScroll) {
+        var firstSec = document.getElementById('timeline');
+        if (firstSec) {
+          var targetTop = Math.max(0, firstSec.offsetTop - 65);
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        }
+      }
+
+      // URL 해시 업데이트
+      if (window.location.hash !== '#all') {
+        history.replaceState(null, '', '#all');
+      }
+    } else {
+      // [단일 탭 모드]: 선택된 섹션만 노출, 나머지는 숨김
+      document.body.classList.add('tab-mode-single');
+      var activePane = null;
+
+      tabPanes.forEach(function (pane) {
+        var paneId = pane.dataset.tabId || pane.id;
+        if (paneId === tabId) {
+          pane.classList.remove('is-tab-hidden');
+          pane.classList.add('is-tab-active');
+          activePane = pane;
+        } else {
+          pane.classList.add('is-tab-hidden');
+          pane.classList.remove('is-tab-active');
+        }
+      });
+
+      syncNavActiveLinks(tabId);
+
+      // 상단 읽기 뱃지 표시
+      if (navReadingIndicator) {
+        navReadingIndicator.classList.add('is-visible');
+      }
+
+      // 프로그레스 바: 단일 탭일 때는 깔끔하게 100% 안착
+      if (progressBar) {
+        progressBar.style.width = '100%';
+      }
+
+      // 해당 섹션 상단(헤더 높이 65px 고려)으로 자연스럽게 스크롤 안착
+      if (shouldScroll && activePane) {
+        var topPos = Math.max(0, activePane.offsetTop - 65);
+        window.scrollTo({ top: topPos, behavior: 'smooth' });
+      }
+
+      // URL 해시 업데이트
+      if (window.location.hash !== '#' + tabId) {
+        history.replaceState(null, '', '#' + tabId);
+      }
+    }
+
+    setTimeout(function () {
+      isSwitchingTab = false;
+      if (tabId === 'all') {
+        cacheSectionOffsets();
+        updateScrollState();
+      }
+    }, 350);
+  }
+
+  // 3. 전체보기 전용 ScrollSpy & Progress Engine
+  var rafId = null;
   function updateScrollState() {
+    if (currentTab !== 'all' || isSwitchingTab) return;
+
     var scrollY = window.scrollY || window.pageYOffset || 0;
     var docHeight = document.documentElement.scrollHeight;
     var winHeight = window.innerHeight;
     var maxScroll = Math.max(1, docHeight - winHeight);
 
-    // 1. 선형 매핑(Linear Mapping) 기반 프로그레스 바 계산 (0% ~ 100% 엄격 고정)
+    // 1. 프로그레스 바 계산
     if (progressBar) {
       var progress = Math.min(1, Math.max(0, scrollY / maxScroll));
       var pct = (progress * 100).toFixed(2);
       progressBar.style.width = pct + '%';
     }
 
-    // 2. 현재 활성 섹션 탐색 (사전 캐시된 오프셋 사용으로 가속/폭주 방지)
+    // 2. 현재 읽고 있는 섹션 탐색
     if (!sections.length) return;
-
     var scrollPos = scrollY + 180;
     var currentItem = sections[0];
 
@@ -111,7 +326,7 @@
       }
     }
 
-    // 3. 상단 '현재 위치' 뱃지 가시성
+    // 3. '현재 위치' 뱃지 가시성
     if (navReadingIndicator) {
       if (scrollY > 300) {
         navReadingIndicator.classList.add('is-visible');
@@ -120,16 +335,7 @@
       }
     }
 
-  var navDropdownTarget = document.getElementById('navDropdownTarget');
-  var dropdownLinks = document.querySelectorAll('.nav-dropdown-link');
-
-  // 4. 타이머 클린업(Clear-up) 보장 및 섹션 명칭 변경
-  if (currentItem.id !== lastActiveId) {
-    lastActiveId = currentItem.id;
-    if (navReadingTimer) {
-      clearTimeout(navReadingTimer);
-      navReadingTimer = null;
-    }
+    // 4. 뱃지 텍스트 갱신 (전체보기일 때 실시간 추종)
     if (navReadingTarget) {
       navReadingTarget.textContent = currentItem.title;
     }
@@ -138,171 +344,82 @@
     }
   }
 
-  // 5. 상단 네비게이션 활성 링크 하이라이트 (데스크톱 및 모바일 드롭다운 동기화)
-  for (var k = 0; k < navLinks.length; k++) {
-    var href = navLinks[k].getAttribute('href');
-    if (href === '#' + currentItem.id) {
-      navLinks[k].classList.add('is-active');
-    } else {
-      navLinks[k].classList.remove('is-active');
+  function requestTick() {
+    if (currentTab !== 'all' || isSwitchingTab) return;
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
     }
-  }
-  for (var m = 0; m < dropdownLinks.length; m++) {
-    var dHref = dropdownLinks[m].getAttribute('href');
-    if (dHref === '#' + currentItem.id) {
-      dropdownLinks[m].classList.add('is-active');
-    } else {
-      dropdownLinks[m].classList.remove('is-active');
-    }
-  }
-}
-
-// 2. requestAnimationFrame 기반 스로틀링 (단일 프레임 보장 & 이전 요청 취소)
-function requestTick() {
-  if (rafId !== null) {
-    cancelAnimationFrame(rafId);
-    rafId = null;
-  }
-  rafId = requestAnimationFrame(function () {
-    updateScrollState();
-    rafId = null;
-  });
-}
-
-window.addEventListener('scroll', requestTick, { passive: true });
-window.addEventListener('resize', function () {
-  cacheSectionOffsets();
-  requestTick();
-}, { passive: true });
-
-// 초기 1회 실행
-cacheSectionOffsets();
-updateScrollState();
-
-// 상단 '현재 위치' 뱃지 클릭 시 해당 섹션으로 부드럽게 앵커 이동
-if (navReadingIndicator) {
-  navReadingIndicator.setAttribute('title', '현재 읽고 있는 섹션으로 바로 이동');
-  navReadingIndicator.addEventListener('click', function () {
-    var activeLink = document.querySelector('.nav-link.is-active, .nav-links-desktop a.is-active');
-    if (activeLink) {
-      var href = activeLink.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        var targetEl = document.querySelector(href);
-        if (targetEl) {
-          var offset = targetEl.offsetTop - 65;
-          window.scrollTo({
-            top: Math.max(0, offset),
-            behavior: 'smooth'
-          });
-        }
-      }
-    }
-  });
-}
-
-// 상단 데스크톱 내비게이션 클릭 시 헤더 높이를 감안한 부드러운 스크롤 이동
-navLinks.forEach(function (link) {
-  link.addEventListener('click', function (e) {
-    var href = link.getAttribute('href');
-    if (href && href.startsWith('#')) {
-      var targetEl = document.querySelector(href);
-      if (targetEl) {
-        e.preventDefault();
-        var offset = targetEl.offsetTop - 65;
-        window.scrollTo({
-          top: Math.max(0, offset),
-          behavior: 'smooth'
-        });
-      }
-    }
-  });
-});
-})();
-
-/* ===========================
-   Responsive Mobile/Tablet Burger Menu Controller
-   =========================== */
-(function initMobileNav() {
-  var burgerBtn = document.getElementById('navBurgerBtn');
-  var dropdownMenu = document.getElementById('navDropdownMenu');
-  var dropdownLinks = document.querySelectorAll('.nav-dropdown-link');
-  var header = document.getElementById('mainHeader');
-
-  if (!burgerBtn || !dropdownMenu) return;
-
-  function openMenu() {
-    dropdownMenu.hidden = false;
-    // 브라우저 렌더링 프레임 확보 후 클래스 추가 (부드러운 슬라이드다운 트랜지션)
-    requestAnimationFrame(function () {
-      burgerBtn.classList.add('is-active');
-      burgerBtn.setAttribute('aria-expanded', 'true');
-      burgerBtn.setAttribute('aria-label', '전체 메뉴 닫기');
-      dropdownMenu.classList.add('is-open');
+    rafId = requestAnimationFrame(function () {
+      updateScrollState();
+      rafId = null;
     });
   }
 
-  function closeMenu() {
-    burgerBtn.classList.remove('is-active');
-    burgerBtn.setAttribute('aria-expanded', 'false');
-    burgerBtn.setAttribute('aria-label', '전체 메뉴 열기');
-    dropdownMenu.classList.remove('is-open');
-    // 애니메이션 종료 후 hidden 설정으로 접근성 보장
-    setTimeout(function () {
-      if (!dropdownMenu.classList.contains('is-open')) {
-        dropdownMenu.hidden = true;
-      }
-    }, 220);
-  }
-
-  burgerBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (dropdownMenu.classList.contains('is-open')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  // 드롭다운 링크 클릭 시 부드러운 스크롤 이동 및 메뉴 자동 닫기
-  dropdownLinks.forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        var targetEl = document.querySelector(href);
-        if (targetEl) {
-          e.preventDefault();
-          closeMenu();
-          var offset = targetEl.offsetTop - 60;
-          window.scrollTo({
-            top: Math.max(0, offset),
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
-  });
-
-  // 메뉴 바깥 클릭 시 자동 닫기
-  document.addEventListener('click', function (e) {
-    if (dropdownMenu.classList.contains('is-open')) {
-      if (!dropdownMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
-        closeMenu();
-      }
-    }
-  });
-
-  // ESC 키 누를 때 메뉴 닫기 및 포커스 복원
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && dropdownMenu.classList.contains('is-open')) {
-      closeMenu();
-      burgerBtn.focus();
-    }
-  });
-
-  // 뷰포트 크기가 커져 데스크톱 레이아웃(> 960px)으로 복귀 시 드롭다운 닫기
+  window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 960 && dropdownMenu.classList.contains('is-open')) {
-      closeMenu();
+    if (currentTab === 'all') {
+      cacheSectionOffsets();
+      requestTick();
     }
   }, { passive: true });
+
+  // 4. 클릭 이벤트 바인딩 (데스크톱 & 모바일)
+  function handleLinkClick(e) {
+    var link = e.currentTarget;
+    var tabId = link.dataset.tab;
+    if (!tabId) {
+      var href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        tabId = href.substring(1);
+      }
+    }
+
+    if (tabId && tabMeta[tabId]) {
+      e.preventDefault();
+      switchTab(tabId, true);
+    }
+  }
+
+  desktopNavLinks.forEach(function (link) {
+    link.addEventListener('click', handleLinkClick);
+  });
+
+  dropdownNavLinks.forEach(function (link) {
+    link.addEventListener('click', handleLinkClick);
+  });
+
+  // 상단 '현재 위치' 뱃지 클릭 시 현재 탭으로 부드럽게 스크롤
+  if (navReadingIndicator) {
+    navReadingIndicator.setAttribute('title', '현재 읽고 있는 섹션으로 바로 이동');
+    navReadingIndicator.addEventListener('click', function () {
+      if (currentTab === 'all') {
+        var activeSec = document.querySelector('.section-tab-pane:not(.is-tab-hidden)');
+        if (activeSec) {
+          window.scrollTo({ top: Math.max(0, activeSec.offsetTop - 65), behavior: 'smooth' });
+        }
+      } else {
+        var pane = document.querySelector('.section-tab-pane[data-tab-id="' + currentTab + '"]');
+        if (pane) {
+          window.scrollTo({ top: Math.max(0, pane.offsetTop - 65), behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  // 5. 브라우저 뒤로가기 / 앞으로가기 (hashchange) 지원
+  window.addEventListener('hashchange', function () {
+    var hash = window.location.hash.replace('#', '');
+    if (hash && tabMeta[hash] && hash !== currentTab) {
+      switchTab(hash, true);
+    }
+  });
+
+  // 6. 초기 페이지 로드 시 해시 확인 및 탭 설정
+  var initialHash = window.location.hash.replace('#', '');
+  if (initialHash && tabMeta[initialHash]) {
+    switchTab(initialHash, false);
+  } else {
+    switchTab('all', false);
+  }
 })();

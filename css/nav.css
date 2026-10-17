@@ -211,6 +211,58 @@
   border-radius: 2px;
 }
 
+/* 전체보기 (All) 전용 스타일 */
+.nav-link.nav-link-all {
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.nav-dropdown-link.nav-dropdown-all {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+  padding-bottom: 10px;
+}
+
+.nav-dropdown-link.nav-dropdown-all .nav-link-num {
+  font-size: 10px;
+  font-weight: 800;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--success);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Tab View System (단일 탭 모드 & 전체보기 모드 제어)
+   ========================================================================== */
+.section-tab-pane {
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-tab-pane.is-tab-hidden {
+  display: none !important;
+}
+
+.section-tab-pane.is-tab-active {
+  animation: tabSectionFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes tabSectionFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 단일 탭 모드일 때 메인 섹션 간 구분선(hr) 숨김 */
+body.tab-mode-single .section-divider {
+  display: none !important;
+}
+
 /* 햄버거 토글 버튼 (기본 데스크톱에서는 숨김) */
 .nav-burger-btn {
   display: none;
