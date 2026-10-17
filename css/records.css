@@ -289,23 +289,16 @@
   display: block;
 }
 
-.clock-dial-bg {
+/* 시계 테두리: 모던 블랙 다이얼 링 */
+.clock-dial-frame {
   fill: rgba(0, 0, 0, 0.02);
-  stroke: rgba(0, 0, 0, 0.08);
+  stroke: #18181b;
   stroke-width: 2.2;
 }
 
-[data-theme="dark"] .clock-dial-bg {
-  fill: rgba(255, 255, 255, 0.02);
-  stroke: rgba(255, 255, 255, 0.1);
-}
-
-.clock-dial-progress {
-  fill: none;
-  stroke: var(--success);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.35));
+[data-theme="dark"] .clock-dial-frame {
+  fill: rgba(255, 255, 255, 0.03);
+  stroke: #f4f4f5;
 }
 
 .clock-tick {
@@ -315,24 +308,20 @@
   opacity: 0.65;
 }
 
-.clock-hand {
-  transform-origin: 26px 26px;
-  transform-box: view-box;
-}
-
-.hour-hand line {
-  stroke: var(--text);
+/* 바늘: CSS transform-origin 삭제하여 피벗 이탈 원천 차단 */
+.hour-hand {
+  stroke: var(--text, #18181b);
   stroke-width: 2.4;
   stroke-linecap: round;
 }
 
-.minute-hand line {
-  stroke: var(--text);
+.minute-hand {
+  stroke: var(--text, #18181b);
   stroke-width: 1.6;
   stroke-linecap: round;
 }
 
-.second-hand line {
+.second-hand {
   stroke: #ef4444;
   stroke-width: 1.1;
   stroke-linecap: round;
@@ -342,69 +331,132 @@
   fill: #ef4444;
 }
 
-/* 정시 입실 펄스 상태 뱃지 (records.json 동적 연동) */
+/* 단정하고 자연스러운 입실 시간 태그 (펄스 애니메이션 배제) */
 .clock-status-tag {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 2px 7px;
+  padding: 2.5px 7px;
   border-radius: 999px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.28);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   white-space: nowrap;
   transition: transform var(--transition), border-color var(--transition);
 }
 
-.clock-status-tag:hover {
-  transform: translateY(-1px);
-  border-color: rgba(16, 185, 129, 0.5);
-  background: rgba(16, 185, 129, 0.16);
+[data-theme="dark"] .clock-status-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-.clock-live-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--success);
-  flex-shrink: 0;
+.clock-status-tag:hover {
+  transform: translateY(-1px);
+  border-color: var(--text-mid);
+}
+
+.clock-icon-mini {
+  font-size: 9px;
+  line-height: 1;
+  opacity: 0.85;
 }
 
 .clock-status-text {
-  font-size: 9.5px;
-  font-weight: 700;
-  color: var(--success);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-mid);
   letter-spacing: -0.2px;
   line-height: 1.2;
 }
 
-/* 우측: 1~31일 실제 달력 형태 미니 캘린더 그리드 */
+[data-theme="dark"] .clock-status-text {
+  color: #d4d4d8;
+}
+
+/* 우측: 8~11월 미니 캘린더 그리드 */
 .attendance-calendar-col {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
+}
+
+/* 상단 8월~11월 월 전환 네비게이터 */
+.cal-month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.cal-month-tabs {
+  display: flex;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 1.5px;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .cal-month-tabs {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cal-month-tab {
+  border: none;
+  background: transparent;
+  padding: 1.5px 5px;
+  border-radius: 3px;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+}
+
+.cal-month-tab:hover {
+  color: var(--text);
+}
+
+.cal-month-tab.active {
+  background: #18181b;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .cal-month-tab.active {
+  background: #ffffff;
+  color: #18181b;
+}
+
+.cal-current-label {
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--text-mid);
+  letter-spacing: -0.2px;
 }
 
 .cal-days-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 3.5px;
+  gap: 2.5px;
   text-align: center;
+  margin-bottom: 1.5px;
 }
 
 .cal-days-header span {
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
   color: var(--text-dim);
   line-height: 1.1;
   letter-spacing: -0.2px;
 }
 
-.cal-month-grid {
+/* 콤팩트 미니 달력 그리드 */
+.cal-month-grid.mini-cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 3.5px;
+  gap: 2.5px;
 }
 
 .cal-day-cell {
@@ -413,41 +465,98 @@
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
-  min-height: 17px;
-  border-radius: 3px;
-  background: rgba(16, 185, 129, 0.09);
-  border: 0.5px solid rgba(16, 185, 129, 0.22);
+  min-height: 14px;
+  border-radius: 2.5px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
   color: var(--text-mid);
-  font-size: 9.5px;
+  font-size: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
-    background-color 0.15s ease,
-    color 0.15s ease,
-    box-shadow 0.16s ease;
+  transition: transform 0.14s ease, background-color 0.14s ease, color 0.14s ease, box-shadow 0.14s ease;
   position: relative;
   user-select: none;
 }
 
 [data-theme="dark"] .cal-day-cell {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.28);
-  color: #e4e4e7;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #d4d4d8;
 }
 
-/* 날짜 타일 자연스러운 호버 마이크로 인터랙션 */
-.cal-day-cell:hover {
-  transform: translateY(-2px) scale(1.18);
-  background: #10b981 !important;
-  color: #ffffff !important;
-  border-color: #10b981 !important;
-  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
-  z-index: 10;
+/* 빈칸 셀 (시작 요일 오프셋) */
+.cal-day-cell.is-empty {
+  background: transparent !important;
+  border-color: transparent !important;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Cortex 동기화 타입별 스타일링 */
+.cal-day-cell.type-attended {
+  background: rgba(16, 185, 129, 0.13);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #047857;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .cal-day-cell.type-attended {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #34d399;
+}
+
+.cal-day-cell.type-weekend {
+  background: rgba(0, 0, 0, 0.015);
+  border-color: rgba(0, 0, 0, 0.04);
+  color: var(--text-dim);
+  opacity: 0.65;
+}
+
+[data-theme="dark"] .cal-day-cell.type-weekend {
+  background: rgba(255, 255, 255, 0.015);
+  border-color: rgba(255, 255, 255, 0.04);
+  opacity: 0.5;
+}
+
+.cal-day-cell.type-holiday {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.22);
+  color: #ef4444;
+}
+
+.cal-day-cell.type-pre_course {
+  background: transparent;
+  border-color: rgba(0, 0, 0, 0.06);
+  color: var(--text-dim);
+  border-style: dashed;
+  opacity: 0.55;
+}
+
+.cal-day-cell.type-scheduled {
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: var(--text-dim);
+  opacity: 0.7;
 }
 
 .cal-day-cell.is-today {
-  border-color: var(--success);
-  box-shadow: 0 0 0 1.5px rgba(16, 185, 129, 0.45);
+  border-color: #10b981;
+  box-shadow: 0 0 0 1.2px rgba(16, 185, 129, 0.45);
+}
+
+/* 날짜 타일 자연스러운 호버 마이크로 인터랙션 */
+.cal-day-cell:not(.is-empty):hover {
+  transform: translateY(-1.5px) scale(1.15);
+  z-index: 10;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.cal-day-cell.type-attended:hover {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.45);
 }
 
 .cal-footer-meta {
@@ -459,7 +568,7 @@
 }
 
 .streak-caption {
-  font-size: 9px;
+  font-size: 8.5px;
   color: var(--text-mid);
   font-weight: 500;
   letter-spacing: -0.2px;
@@ -484,14 +593,14 @@
     padding: 1.5px 5px;
   }
   .clock-status-text {
-    font-size: 8.5px;
+    font-size: 8px;
   }
   .cal-day-cell {
-    min-height: 15px;
-    font-size: 8.5px;
+    min-height: 12.5px;
+    font-size: 7.5px;
   }
   .cal-days-header span {
-    font-size: 8px;
+    font-size: 7.5px;
   }
 }
 

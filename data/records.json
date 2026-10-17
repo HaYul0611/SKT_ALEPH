@@ -13,38 +13,1579 @@
     "monthlyStreak": 31,
     "source": "내 출석 기록 (실시간 연동)",
     "history": [
-      { "day": 1, "date": "10-01", "dow": "화", "time": "08:44", "status": "정시 입실" },
-      { "day": 2, "date": "10-02", "dow": "수", "time": "08:38", "status": "정시 입실" },
-      { "day": 3, "date": "10-03", "dow": "목", "time": "08:47", "status": "정시 입실" },
-      { "day": 4, "date": "10-04", "dow": "금", "time": "08:41", "status": "정시 입실" },
-      { "day": 5, "date": "10-05", "dow": "토", "time": "08:50", "status": "정시 입실" },
-      { "day": 6, "date": "10-06", "dow": "일", "time": "08:36", "status": "정시 입실" },
-      { "day": 7, "date": "10-07", "dow": "월", "time": "08:43", "status": "정시 입실" },
-      { "day": 8, "date": "10-08", "dow": "화", "time": "08:48", "status": "정시 입실" },
-      { "day": 9, "date": "10-09", "dow": "수", "time": "08:42", "status": "정시 입실" },
-      { "day": 10, "date": "10-10", "dow": "목", "time": "08:39", "status": "정시 입실" },
-      { "day": 11, "date": "10-11", "dow": "금", "time": "08:45", "status": "정시 입실" },
-      { "day": 12, "date": "10-12", "dow": "토", "time": "08:52", "status": "정시 입실" },
-      { "day": 13, "date": "10-13", "dow": "일", "time": "08:40", "status": "정시 입실" },
-      { "day": 14, "date": "10-14", "dow": "월", "time": "08:46", "status": "정시 입실" },
-      { "day": 15, "date": "10-15", "dow": "화", "time": "08:43", "status": "정시 입실" },
-      { "day": 16, "date": "10-16", "dow": "수", "time": "08:47", "status": "정시 입실" },
-      { "day": 17, "date": "10-17", "dow": "목", "time": "08:41", "status": "정시 입실" },
-      { "day": 18, "date": "10-18", "dow": "금", "time": "08:37", "status": "정시 입실" },
-      { "day": 19, "date": "10-19", "dow": "토", "time": "08:51", "status": "정시 입실" },
-      { "day": 20, "date": "10-20", "dow": "일", "time": "08:44", "status": "정시 입실" },
-      { "day": 21, "date": "10-21", "dow": "월", "time": "08:42", "status": "정시 입실" },
-      { "day": 22, "date": "10-22", "dow": "화", "time": "08:49", "status": "정시 입실" },
-      { "day": 23, "date": "10-23", "dow": "수", "time": "08:38", "status": "정시 입실" },
-      { "day": 24, "date": "10-24", "dow": "목", "time": "08:46", "status": "정시 입실" },
-      { "day": 25, "date": "10-25", "dow": "금", "time": "08:40", "status": "정시 입실" },
-      { "day": 26, "date": "10-26", "dow": "토", "time": "08:53", "status": "정시 입실" },
-      { "day": 27, "date": "10-27", "dow": "일", "time": "08:45", "status": "정시 입실" },
-      { "day": 28, "date": "10-28", "dow": "월", "time": "08:42", "status": "정시 입실" },
-      { "day": 29, "date": "10-29", "dow": "화", "time": "08:48", "status": "정시 입실" },
-      { "day": 30, "date": "10-30", "dow": "수", "time": "08:39", "status": "정시 입실" },
-      { "day": 31, "date": "10-31", "dow": "목", "time": "08:43", "status": "정시 입실" }
-    ]
+      {
+        "day": 1,
+        "date": "10-01",
+        "fullDate": "2026-10-01",
+        "dow": "목",
+        "type": "attended",
+        "time": "08:45",
+        "seq": 34,
+        "label": "34회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 2,
+        "date": "10-02",
+        "fullDate": "2026-10-02",
+        "dow": "금",
+        "type": "attended",
+        "time": "08:42",
+        "seq": 35,
+        "label": "35회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 3,
+        "date": "10-03",
+        "fullDate": "2026-10-03",
+        "dow": "토",
+        "type": "holiday",
+        "time": null,
+        "seq": null,
+        "label": "개천절 (휴강)"
+      },
+      {
+        "day": 4,
+        "date": "10-04",
+        "fullDate": "2026-10-04",
+        "dow": "일",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      },
+      {
+        "day": 5,
+        "date": "10-05",
+        "fullDate": "2026-10-05",
+        "dow": "월",
+        "type": "attended",
+        "time": "08:44",
+        "seq": 36,
+        "label": "36회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 6,
+        "date": "10-06",
+        "fullDate": "2026-10-06",
+        "dow": "화",
+        "type": "attended",
+        "time": "08:39",
+        "seq": 37,
+        "label": "37회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 7,
+        "date": "10-07",
+        "fullDate": "2026-10-07",
+        "dow": "수",
+        "type": "attended",
+        "time": "08:46",
+        "seq": 38,
+        "label": "38회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 8,
+        "date": "10-08",
+        "fullDate": "2026-10-08",
+        "dow": "목",
+        "type": "attended",
+        "time": "08:41",
+        "seq": 39,
+        "label": "39회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 9,
+        "date": "10-09",
+        "fullDate": "2026-10-09",
+        "dow": "금",
+        "type": "holiday",
+        "time": null,
+        "seq": null,
+        "label": "한글날 (휴강)"
+      },
+      {
+        "day": 10,
+        "date": "10-10",
+        "fullDate": "2026-10-10",
+        "dow": "토",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      },
+      {
+        "day": 11,
+        "date": "10-11",
+        "fullDate": "2026-10-11",
+        "dow": "일",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      },
+      {
+        "day": 12,
+        "date": "10-12",
+        "fullDate": "2026-10-12",
+        "dow": "월",
+        "type": "attended",
+        "time": "08:43",
+        "seq": 40,
+        "label": "40회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 13,
+        "date": "10-13",
+        "fullDate": "2026-10-13",
+        "dow": "화",
+        "type": "attended",
+        "time": "08:45",
+        "seq": 41,
+        "label": "41회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 14,
+        "date": "10-14",
+        "fullDate": "2026-10-14",
+        "dow": "수",
+        "type": "attended",
+        "time": "08:40",
+        "seq": 42,
+        "label": "42회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 15,
+        "date": "10-15",
+        "fullDate": "2026-10-15",
+        "dow": "목",
+        "type": "attended",
+        "time": "08:44",
+        "seq": 43,
+        "label": "43회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+      },
+      {
+        "day": 16,
+        "date": "10-16",
+        "fullDate": "2026-10-16",
+        "dow": "금",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 17,
+        "date": "10-17",
+        "fullDate": "2026-10-17",
+        "dow": "토",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      },
+      {
+        "day": 18,
+        "date": "10-18",
+        "fullDate": "2026-10-18",
+        "dow": "일",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      },
+      {
+        "day": 19,
+        "date": "10-19",
+        "fullDate": "2026-10-19",
+        "dow": "월",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 20,
+        "date": "10-20",
+        "fullDate": "2026-10-20",
+        "dow": "화",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 21,
+        "date": "10-21",
+        "fullDate": "2026-10-21",
+        "dow": "수",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 22,
+        "date": "10-22",
+        "fullDate": "2026-10-22",
+        "dow": "목",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 23,
+        "date": "10-23",
+        "fullDate": "2026-10-23",
+        "dow": "금",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 24,
+        "date": "10-24",
+        "fullDate": "2026-10-24",
+        "dow": "토",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      },
+      {
+        "day": 25,
+        "date": "10-25",
+        "fullDate": "2026-10-25",
+        "dow": "일",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      },
+      {
+        "day": 26,
+        "date": "10-26",
+        "fullDate": "2026-10-26",
+        "dow": "월",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 27,
+        "date": "10-27",
+        "fullDate": "2026-10-27",
+        "dow": "화",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 28,
+        "date": "10-28",
+        "fullDate": "2026-10-28",
+        "dow": "수",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 29,
+        "date": "10-29",
+        "fullDate": "2026-10-29",
+        "dow": "목",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 30,
+        "date": "10-30",
+        "fullDate": "2026-10-30",
+        "dow": "금",
+        "type": "scheduled",
+        "time": null,
+        "seq": null,
+        "label": "교육 일정 진행 예정"
+      },
+      {
+        "day": 31,
+        "date": "10-31",
+        "fullDate": "2026-10-31",
+        "dow": "토",
+        "type": "weekend",
+        "time": null,
+        "seq": null,
+        "label": "주말 (수업 없음)"
+      }
+    ],
+    "months": {
+      "2026-08": {
+        "monthName": "8월",
+        "year": 2026,
+        "month": 8,
+        "totalDays": 31,
+        "startOffset": 5,
+        "firstDow": "토",
+        "days": [
+          {
+            "day": 1,
+            "date": "08-01",
+            "fullDate": "2026-08-01",
+            "dow": "토",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 2,
+            "date": "08-02",
+            "fullDate": "2026-08-02",
+            "dow": "일",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 3,
+            "date": "08-03",
+            "fullDate": "2026-08-03",
+            "dow": "월",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 4,
+            "date": "08-04",
+            "fullDate": "2026-08-04",
+            "dow": "화",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 5,
+            "date": "08-05",
+            "fullDate": "2026-08-05",
+            "dow": "수",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 6,
+            "date": "08-06",
+            "fullDate": "2026-08-06",
+            "dow": "목",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 7,
+            "date": "08-07",
+            "fullDate": "2026-08-07",
+            "dow": "금",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 8,
+            "date": "08-08",
+            "fullDate": "2026-08-08",
+            "dow": "토",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 9,
+            "date": "08-09",
+            "fullDate": "2026-08-09",
+            "dow": "일",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 10,
+            "date": "08-10",
+            "fullDate": "2026-08-10",
+            "dow": "월",
+            "type": "pre_course",
+            "time": null,
+            "seq": null,
+            "label": "개강 전 준비 기간 (수업 없음)"
+          },
+          {
+            "day": 11,
+            "date": "08-11",
+            "fullDate": "2026-08-11",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:42",
+            "seq": 1,
+            "label": "1회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 12,
+            "date": "08-12",
+            "fullDate": "2026-08-12",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:38",
+            "seq": 2,
+            "label": "2회차 정상 출석 · 08:38 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 13,
+            "date": "08-13",
+            "fullDate": "2026-08-13",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:45",
+            "seq": 3,
+            "label": "3회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 14,
+            "date": "08-14",
+            "fullDate": "2026-08-14",
+            "dow": "금",
+            "type": "attended",
+            "time": "08:41",
+            "seq": 4,
+            "label": "4회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 15,
+            "date": "08-15",
+            "fullDate": "2026-08-15",
+            "dow": "토",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "광복절 (휴강)"
+          },
+          {
+            "day": 16,
+            "date": "08-16",
+            "fullDate": "2026-08-16",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 17,
+            "date": "08-17",
+            "fullDate": "2026-08-17",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:39",
+            "seq": 5,
+            "label": "5회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 18,
+            "date": "08-18",
+            "fullDate": "2026-08-18",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:44",
+            "seq": 6,
+            "label": "6회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 19,
+            "date": "08-19",
+            "fullDate": "2026-08-19",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:47",
+            "seq": 7,
+            "label": "7회차 정상 출석 · 08:47 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 20,
+            "date": "08-20",
+            "fullDate": "2026-08-20",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:40",
+            "seq": 8,
+            "label": "8회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 21,
+            "date": "08-21",
+            "fullDate": "2026-08-21",
+            "dow": "금",
+            "type": "attended",
+            "time": "08:46",
+            "seq": 9,
+            "label": "9회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 22,
+            "date": "08-22",
+            "fullDate": "2026-08-22",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 23,
+            "date": "08-23",
+            "fullDate": "2026-08-23",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 24,
+            "date": "08-24",
+            "fullDate": "2026-08-24",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:43",
+            "seq": 10,
+            "label": "10회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 25,
+            "date": "08-25",
+            "fullDate": "2026-08-25",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:37",
+            "seq": 11,
+            "label": "11회차 정상 출석 · 08:37 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 26,
+            "date": "08-26",
+            "fullDate": "2026-08-26",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:48",
+            "seq": 12,
+            "label": "12회차 정상 출석 · 08:48 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 27,
+            "date": "08-27",
+            "fullDate": "2026-08-27",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:42",
+            "seq": 13,
+            "label": "13회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 28,
+            "date": "08-28",
+            "fullDate": "2026-08-28",
+            "dow": "금",
+            "type": "attended",
+            "time": "08:45",
+            "seq": 14,
+            "label": "14회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 29,
+            "date": "08-29",
+            "fullDate": "2026-08-29",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 30,
+            "date": "08-30",
+            "fullDate": "2026-08-30",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 31,
+            "date": "08-31",
+            "fullDate": "2026-08-31",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:39",
+            "seq": 15,
+            "label": "15회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+          }
+        ]
+      },
+      "2026-09": {
+        "monthName": "9월",
+        "year": 2026,
+        "month": 9,
+        "totalDays": 30,
+        "startOffset": 1,
+        "firstDow": "화",
+        "days": [
+          {
+            "day": 1,
+            "date": "09-01",
+            "fullDate": "2026-09-01",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:44",
+            "seq": 16,
+            "label": "16회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 2,
+            "date": "09-02",
+            "fullDate": "2026-09-02",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:41",
+            "seq": 17,
+            "label": "17회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 3,
+            "date": "09-03",
+            "fullDate": "2026-09-03",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:46",
+            "seq": 18,
+            "label": "18회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 4,
+            "date": "09-04",
+            "fullDate": "2026-09-04",
+            "dow": "금",
+            "type": "attended",
+            "time": "08:38",
+            "seq": 19,
+            "label": "19회차 정상 출석 · 08:38 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 5,
+            "date": "09-05",
+            "fullDate": "2026-09-05",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 6,
+            "date": "09-06",
+            "fullDate": "2026-09-06",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 7,
+            "date": "09-07",
+            "fullDate": "2026-09-07",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:47",
+            "seq": 20,
+            "label": "20회차 정상 출석 · 08:47 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 8,
+            "date": "09-08",
+            "fullDate": "2026-09-08",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:43",
+            "seq": 21,
+            "label": "21회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 9,
+            "date": "09-09",
+            "fullDate": "2026-09-09",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:40",
+            "seq": 22,
+            "label": "22회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 10,
+            "date": "09-10",
+            "fullDate": "2026-09-10",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:45",
+            "seq": 23,
+            "label": "23회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 11,
+            "date": "09-11",
+            "fullDate": "2026-09-11",
+            "dow": "금",
+            "type": "attended",
+            "time": "08:42",
+            "seq": 24,
+            "label": "24회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 12,
+            "date": "09-12",
+            "fullDate": "2026-09-12",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 13,
+            "date": "09-13",
+            "fullDate": "2026-09-13",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 14,
+            "date": "09-14",
+            "fullDate": "2026-09-14",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:48",
+            "seq": 25,
+            "label": "25회차 정상 출석 · 08:48 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 15,
+            "date": "09-15",
+            "fullDate": "2026-09-15",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:39",
+            "seq": 26,
+            "label": "26회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 16,
+            "date": "09-16",
+            "fullDate": "2026-09-16",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:44",
+            "seq": 27,
+            "label": "27회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 17,
+            "date": "09-17",
+            "fullDate": "2026-09-17",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:41",
+            "seq": 28,
+            "label": "28회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 18,
+            "date": "09-18",
+            "fullDate": "2026-09-18",
+            "dow": "금",
+            "type": "attended",
+            "time": "08:46",
+            "seq": 29,
+            "label": "29회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 19,
+            "date": "09-19",
+            "fullDate": "2026-09-19",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 20,
+            "date": "09-20",
+            "fullDate": "2026-09-20",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 21,
+            "date": "09-21",
+            "fullDate": "2026-09-21",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:43",
+            "seq": 30,
+            "label": "30회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 22,
+            "date": "09-22",
+            "fullDate": "2026-09-22",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:38",
+            "seq": 31,
+            "label": "31회차 정상 출석 · 08:38 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 23,
+            "date": "09-23",
+            "fullDate": "2026-09-23",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:47",
+            "seq": 32,
+            "label": "32회차 정상 출석 · 08:47 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 24,
+            "date": "09-24",
+            "fullDate": "2026-09-24",
+            "dow": "목",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "추석 연휴 (휴강)"
+          },
+          {
+            "day": 25,
+            "date": "09-25",
+            "fullDate": "2026-09-25",
+            "dow": "금",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "추석 당일 (휴강)"
+          },
+          {
+            "day": 26,
+            "date": "09-26",
+            "fullDate": "2026-09-26",
+            "dow": "토",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "추석 연휴 (휴강)"
+          },
+          {
+            "day": 27,
+            "date": "09-27",
+            "fullDate": "2026-09-27",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 28,
+            "date": "09-28",
+            "fullDate": "2026-09-28",
+            "dow": "월",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "추석 대체공휴일 (휴강)"
+          },
+          {
+            "day": 29,
+            "date": "09-29",
+            "fullDate": "2026-09-29",
+            "dow": "화",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "훈련기관 자율휴강 (추석 연계)"
+          },
+          {
+            "day": 30,
+            "date": "09-30",
+            "fullDate": "2026-09-30",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:40",
+            "seq": 33,
+            "label": "33회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+          }
+        ]
+      },
+      "2026-10": {
+        "monthName": "10월",
+        "year": 2026,
+        "month": 10,
+        "totalDays": 31,
+        "startOffset": 3,
+        "firstDow": "목",
+        "days": [
+          {
+            "day": 1,
+            "date": "10-01",
+            "fullDate": "2026-10-01",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:45",
+            "seq": 34,
+            "label": "34회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 2,
+            "date": "10-02",
+            "fullDate": "2026-10-02",
+            "dow": "금",
+            "type": "attended",
+            "time": "08:42",
+            "seq": 35,
+            "label": "35회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 3,
+            "date": "10-03",
+            "fullDate": "2026-10-03",
+            "dow": "토",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "개천절 (휴강)"
+          },
+          {
+            "day": 4,
+            "date": "10-04",
+            "fullDate": "2026-10-04",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 5,
+            "date": "10-05",
+            "fullDate": "2026-10-05",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:44",
+            "seq": 36,
+            "label": "36회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 6,
+            "date": "10-06",
+            "fullDate": "2026-10-06",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:39",
+            "seq": 37,
+            "label": "37회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 7,
+            "date": "10-07",
+            "fullDate": "2026-10-07",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:46",
+            "seq": 38,
+            "label": "38회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 8,
+            "date": "10-08",
+            "fullDate": "2026-10-08",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:41",
+            "seq": 39,
+            "label": "39회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 9,
+            "date": "10-09",
+            "fullDate": "2026-10-09",
+            "dow": "금",
+            "type": "holiday",
+            "time": null,
+            "seq": null,
+            "label": "한글날 (휴강)"
+          },
+          {
+            "day": 10,
+            "date": "10-10",
+            "fullDate": "2026-10-10",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 11,
+            "date": "10-11",
+            "fullDate": "2026-10-11",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 12,
+            "date": "10-12",
+            "fullDate": "2026-10-12",
+            "dow": "월",
+            "type": "attended",
+            "time": "08:43",
+            "seq": 40,
+            "label": "40회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 13,
+            "date": "10-13",
+            "fullDate": "2026-10-13",
+            "dow": "화",
+            "type": "attended",
+            "time": "08:45",
+            "seq": 41,
+            "label": "41회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 14,
+            "date": "10-14",
+            "fullDate": "2026-10-14",
+            "dow": "수",
+            "type": "attended",
+            "time": "08:40",
+            "seq": 42,
+            "label": "42회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 15,
+            "date": "10-15",
+            "fullDate": "2026-10-15",
+            "dow": "목",
+            "type": "attended",
+            "time": "08:44",
+            "seq": 43,
+            "label": "43회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+          },
+          {
+            "day": 16,
+            "date": "10-16",
+            "fullDate": "2026-10-16",
+            "dow": "금",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 17,
+            "date": "10-17",
+            "fullDate": "2026-10-17",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 18,
+            "date": "10-18",
+            "fullDate": "2026-10-18",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 19,
+            "date": "10-19",
+            "fullDate": "2026-10-19",
+            "dow": "월",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 20,
+            "date": "10-20",
+            "fullDate": "2026-10-20",
+            "dow": "화",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 21,
+            "date": "10-21",
+            "fullDate": "2026-10-21",
+            "dow": "수",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 22,
+            "date": "10-22",
+            "fullDate": "2026-10-22",
+            "dow": "목",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 23,
+            "date": "10-23",
+            "fullDate": "2026-10-23",
+            "dow": "금",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 24,
+            "date": "10-24",
+            "fullDate": "2026-10-24",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 25,
+            "date": "10-25",
+            "fullDate": "2026-10-25",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 26,
+            "date": "10-26",
+            "fullDate": "2026-10-26",
+            "dow": "월",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 27,
+            "date": "10-27",
+            "fullDate": "2026-10-27",
+            "dow": "화",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 28,
+            "date": "10-28",
+            "fullDate": "2026-10-28",
+            "dow": "수",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 29,
+            "date": "10-29",
+            "fullDate": "2026-10-29",
+            "dow": "목",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 30,
+            "date": "10-30",
+            "fullDate": "2026-10-30",
+            "dow": "금",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 31,
+            "date": "10-31",
+            "fullDate": "2026-10-31",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          }
+        ]
+      },
+      "2026-11": {
+        "monthName": "11월",
+        "year": 2026,
+        "month": 11,
+        "totalDays": 30,
+        "startOffset": 6,
+        "firstDow": "일",
+        "days": [
+          {
+            "day": 1,
+            "date": "11-01",
+            "fullDate": "2026-11-01",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 2,
+            "date": "11-02",
+            "fullDate": "2026-11-02",
+            "dow": "월",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 3,
+            "date": "11-03",
+            "fullDate": "2026-11-03",
+            "dow": "화",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 4,
+            "date": "11-04",
+            "fullDate": "2026-11-04",
+            "dow": "수",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 5,
+            "date": "11-05",
+            "fullDate": "2026-11-05",
+            "dow": "목",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 6,
+            "date": "11-06",
+            "fullDate": "2026-11-06",
+            "dow": "금",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 7,
+            "date": "11-07",
+            "fullDate": "2026-11-07",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 8,
+            "date": "11-08",
+            "fullDate": "2026-11-08",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 9,
+            "date": "11-09",
+            "fullDate": "2026-11-09",
+            "dow": "월",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 10,
+            "date": "11-10",
+            "fullDate": "2026-11-10",
+            "dow": "화",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 11,
+            "date": "11-11",
+            "fullDate": "2026-11-11",
+            "dow": "수",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 12,
+            "date": "11-12",
+            "fullDate": "2026-11-12",
+            "dow": "목",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 13,
+            "date": "11-13",
+            "fullDate": "2026-11-13",
+            "dow": "금",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 14,
+            "date": "11-14",
+            "fullDate": "2026-11-14",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 15,
+            "date": "11-15",
+            "fullDate": "2026-11-15",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 16,
+            "date": "11-16",
+            "fullDate": "2026-11-16",
+            "dow": "월",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 17,
+            "date": "11-17",
+            "fullDate": "2026-11-17",
+            "dow": "화",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 18,
+            "date": "11-18",
+            "fullDate": "2026-11-18",
+            "dow": "수",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 19,
+            "date": "11-19",
+            "fullDate": "2026-11-19",
+            "dow": "목",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 20,
+            "date": "11-20",
+            "fullDate": "2026-11-20",
+            "dow": "금",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 21,
+            "date": "11-21",
+            "fullDate": "2026-11-21",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 22,
+            "date": "11-22",
+            "fullDate": "2026-11-22",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 23,
+            "date": "11-23",
+            "fullDate": "2026-11-23",
+            "dow": "월",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 24,
+            "date": "11-24",
+            "fullDate": "2026-11-24",
+            "dow": "화",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 25,
+            "date": "11-25",
+            "fullDate": "2026-11-25",
+            "dow": "수",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 26,
+            "date": "11-26",
+            "fullDate": "2026-11-26",
+            "dow": "목",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 27,
+            "date": "11-27",
+            "fullDate": "2026-11-27",
+            "dow": "금",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          },
+          {
+            "day": 28,
+            "date": "11-28",
+            "fullDate": "2026-11-28",
+            "dow": "토",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 29,
+            "date": "11-29",
+            "fullDate": "2026-11-29",
+            "dow": "일",
+            "type": "weekend",
+            "time": null,
+            "seq": null,
+            "label": "주말 (수업 없음)"
+          },
+          {
+            "day": 30,
+            "date": "11-30",
+            "fullDate": "2026-11-30",
+            "dow": "월",
+            "type": "scheduled",
+            "time": null,
+            "seq": null,
+            "label": "교육 일정 진행 예정"
+          }
+        ]
+      }
+    }
   },
   "ritual": {
     "days": 43,
@@ -69,7 +1610,7 @@
   "feedback": {
     "currentWeek": 10,
     "count": 80,
-    "weeklyAvg": 8.0,
+    "weeklyAvg": 8,
     "source": "리추얼 기록"
   },
   "tasks": {
@@ -77,7 +1618,7 @@
     "currentStage": 13,
     "total": 13,
     "status": "전체 마스터 완주",
-    "rate": 100.0,
+    "rate": 100,
     "source": "내 제출 현황"
   }
 }

@@ -352,60 +352,66 @@
               <p class="metric-label">출석률, 결석 0</p>
             </div>
 
-            <!-- 차트: 실시간 아날로그 시계 + 31일 미니 캘린더 그리드 (정시 입실 & 호버 툴팁) -->
-            <div class="metric-chart-wrap" aria-label="출석률 100% 실시간 시계 및 캘린더 시각화">
+            <!-- 차트: 실시간 아날로그 시계 + 8~11월 미니 캘린더 그리드 (Cortex 동기화 & 요일 달력) -->
+            <div class="metric-chart-wrap" aria-label="출석률 100% 실시간 시계 및 8~11월 미니 캘린더 시각화">
               <div class="attendance-visual" id="attendanceVisual">
-                <!-- 좌측: 실시간 아날로그 크로노그래프 시계 & 정시 입실 상태 -->
+                <!-- 좌측: 실시간 블랙 아날로그 시계 & 단정한 입실 시간 뱃지 -->
                 <div class="attendance-clock-col">
                   <div class="live-clock-box" id="liveClockBox" title="실시간 아날로그 시계 (성실한 시간 무브먼트)" aria-label="실시간 아날로그 시계">
                     <svg class="analog-clock" viewBox="0 0 52 52" width="46" height="46" aria-hidden="true">
-                      <!-- 100% 완주 에메랄드 다이얼 링 -->
-                      <circle class="clock-dial-bg" cx="26" cy="26" r="23" />
-                      <circle class="clock-dial-progress" cx="26" cy="26" r="23" />
+                      <!-- 블랙 다이얼 외곽 테두리 링 -->
+                      <circle class="clock-dial-frame" cx="26" cy="26" r="23" />
                       <!-- 12, 3, 6, 9 인덱스 눈금 -->
-                      <line class="clock-tick tick-12" x1="26" y1="5" x2="26" y2="8.5" />
-                      <line class="clock-tick tick-3" x1="47" y1="26" x2="43.5" y2="26" />
-                      <line class="clock-tick tick-6" x1="26" y1="47" x2="26" y2="43.5" />
-                      <line class="clock-tick tick-9" x1="5" y1="26" x2="8.5" y2="26" />
-                      <!-- 시침, 분침, 초침 바늘 (JS로 실시간 회전) -->
-                      <g class="clock-hand hour-hand" id="analogHourHand">
-                        <line x1="26" y1="26" x2="26" y2="14" />
-                      </g>
-                      <g class="clock-hand minute-hand" id="analogMinuteHand">
-                        <line x1="26" y1="26" x2="26" y2="9.5" />
-                      </g>
-                      <g class="clock-hand second-hand" id="analogSecondHand">
-                        <line x1="26" y1="30" x2="26" y2="8" />
-                      </g>
+                      <line class="clock-tick tick-12" x1="26" y1="5.5" x2="26" y2="8.5" />
+                      <line class="clock-tick tick-3" x1="46.5" y1="26" x2="43.5" y2="26" />
+                      <line class="clock-tick tick-6" x1="26" y1="46.5" x2="26" y2="43.5" />
+                      <line class="clock-tick tick-9" x1="5.5" y1="26" x2="8.5" y2="26" />
+                      <!-- 시침, 분침, 초침 바늘 (피벗 26, 26 기준 JS 실시간 회전) -->
+                      <line class="clock-hand hour-hand" id="analogHourHand" x1="26" y1="26" x2="26" y2="15" stroke-linecap="round" />
+                      <line class="clock-hand minute-hand" id="analogMinuteHand" x1="26" y1="26" x2="26" y2="10" stroke-linecap="round" />
+                      <line class="clock-hand second-hand" id="analogSecondHand" x1="26" y1="29" x2="26" y2="7" stroke-linecap="round" />
                       <circle class="clock-pivot" cx="26" cy="26" r="2.2" />
                     </svg>
                   </div>
-                  <div class="clock-status-tag" id="attendanceClockTag" title="실제 기록 기반 평균 입실 시간">
-                    <span class="clock-live-dot pulse-ring-dot" aria-hidden="true"></span>
+                  <!-- 펄스 없는 단정하고 자연스러운 입실 시간 태그 -->
+                  <div class="clock-status-tag" id="attendanceClockTag" title="Cortex 실제 기록 기반 평균 입실 시간">
+                    <span class="clock-icon-mini" aria-hidden="true">⏱</span>
                     <span class="clock-status-text" id="attendanceClockText">평균 08:46 입실</span>
                   </div>
                 </div>
 
-                <!-- 우측: 1~31일 실제 달력 형태 미니 캘린더 그리드 -->
+                <!-- 우측: 8월~11월 요일 달력 형태 미니 캘린더 그리드 -->
                 <div class="attendance-calendar-col">
+                  <!-- 상단 8월~11월 월 선택 탭 -->
+                  <div class="cal-month-nav" aria-label="출석 기록 월 선택">
+                    <div class="cal-month-tabs" role="tablist" id="calMonthTabs">
+                      <button type="button" class="cal-month-tab" data-month="2026-08" role="tab" aria-selected="false">8월</button>
+                      <button type="button" class="cal-month-tab" data-month="2026-09" role="tab" aria-selected="false">9월</button>
+                      <button type="button" class="cal-month-tab active" data-month="2026-10" role="tab" aria-selected="true">10월</button>
+                      <button type="button" class="cal-month-tab" data-month="2026-11" role="tab" aria-selected="false">11월</button>
+                    </div>
+                    <span class="cal-current-label" id="calCurrentLabel">2026. 10</span>
+                  </div>
+
                   <div class="cal-days-header" aria-hidden="true">
                     <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>
                   </div>
-                  <div class="cal-month-grid" id="attendanceCalGrid" role="grid" aria-label="10월 31일 연속 출석 달력">
-                    <!-- JS로 data/records.json history 데이터 기반 동적 렌더링 -->
+                  <div class="cal-month-grid mini-cal-grid" id="attendanceCalGrid" role="grid" aria-label="8~11월 요일별 출석 달력">
+                    <!-- JS로 선택된 월의 시작 요일 오프셋 및 일자별 Cortex 동기화 데이터 렌더링 -->
                   </div>
                   <div class="cal-footer-meta">
-                    <span class="streak-caption" id="attendanceStreakCaption">한 달 31일 전일 정상 출석 달성 · 결석 0</span>
+                    <span class="streak-caption" id="attendanceStreakCaption">43회차 정상 출석 (100% 무결석) · 결석 0</span>
                   </div>
                 </div>
 
-                <!-- 일자별 실제 입실 시간 호버 플로팅 툴팁 -->
+                <!-- 일자별 Cortex 실제 입실 시간 호버 플로팅 툴팁 -->
                 <div class="cal-tooltip" id="calTooltip" role="tooltip" aria-hidden="true"></div>
               </div>
             </div>
             <div class="metric-source">
               <span class="metric-source-dot" aria-hidden="true"></span>
-              <span>출처: 내 출석 기록</span>
+              <span>출처: <a href="https://aleph-omega.vercel.app/cortex?panel=tasks" target="_blank"
+                  rel="noopener noreferrer" class="metric-source-link">내 출석 기록 (ALEPH Cortex 동기화)</a></span>
             </div>
           </div>
 

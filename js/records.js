@@ -362,10 +362,10 @@
 })();
 
 /* ==========================================================================
-   Realtime Chronograph Analog Clock & 31-Day Interactive Attendance Calendar
-   - 부드러운 실시간 초침/분침/시침 회전 애니메이션
-   - data/records.json의 일자별 실제 입실 시간 데이터셋 기반 31일 달력 렌더링
-   - 날짜 호버 시 실제 입실 시간(08:36~08:53) 및 정상 출석 툴팁 표시
+   Realtime Chronograph Analog Clock & 8~11 Multi-Month Attendance Calendar
+   - 중심 피벗(26, 26) 절대 이탈 없는 부드러운 실시간 초침/분침/시침 회전 엔진
+   - 8월, 9월, 10월, 11월 요일 달력 형태(시작 요일 빈칸 오프셋) 완벽 지원
+   - Cortex 실제 출석/리추얼/과제(총 43일) 및 주말·공휴일·개강전 무결 동기화 툴팁
    ========================================================================== */
 (function initLiveAnalogClockAndCalendar() {
   var hourHand = document.getElementById('analogHourHand');
@@ -376,8 +376,14 @@
   var calGrid = document.getElementById('attendanceCalGrid');
   var tooltip = document.getElementById('calTooltip');
   var visualBox = document.getElementById('attendanceVisual');
+  var monthTabs = document.querySelectorAll('.cal-month-tab');
+  var currentLabel = document.getElementById('calCurrentLabel');
+  var streakCaption = document.getElementById('attendanceStreakCaption');
 
-  // 1. 실시간 아날로그 시계 무브먼트 (Smooth Sweep Animation)
+  var currentMonthKey = '2026-10';
+  var cachedAttendanceData = null;
+
+  // 1. 실시간 아날로그 시계 무브먼트 (Smooth Sweep Animation, 피벗 26, 26 고정)
   function updateClockHands() {
     var now = new Date();
     var ms = now.getMilliseconds();
@@ -407,7 +413,7 @@
       var timeStr = String(now.getHours()).padStart(2, '0') + ':' +
                     String(now.getMinutes()).padStart(2, '0') + ':' +
                     String(now.getSeconds()).padStart(2, '0');
-      tooltip.innerHTML = '현재 시각: <strong>' + timeStr + '</strong> · 실시간 가동';
+      tooltip.innerHTML = '현재 시각: <strong>' + timeStr + '</strong> · 실시간 무브먼트';
       tooltip.classList.add('is-active');
       positionTooltip(e.clientX, e.clientY);
     });
@@ -430,39 +436,103 @@
     tooltip.style.top = y + 'px';
   }
 
-  // 2. 1~31일 미니 캘린더 그리드 렌더링 & 실제 일자별 입실 시간 툴팁 인터랙션
+  // 2. 월 선택 탭 이벤트 바인딩 (8월, 9월, 10월, 11월)
+  if (monthTabs && monthTabs.length > 0) {
+    monthTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var targetMonth = this.dataset.month;
+        if (!targetMonth || targetMonth === currentMonthKey) return;
+
+        monthTabs.forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
+
+        currentMonthKey = targetMonth;
+        if (currentLabel) {
+          var parts = targetMonth.split('-');
+          currentLabel.textContent = parts[0] + '. ' + parts[1];
+        }
+
+        renderAttendanceCalendar(cachedAttendanceData);
+      });
+    });
+  }
+
+  // 3. 요일 달력 형태 미니 캘린더 그리드 렌더링 (Cortex 동기화)
   function renderAttendanceCalendar(attData) {
     if (!calGrid) return;
+    if (attData) cachedAttendanceData = attData;
+
     calGrid.innerHTML = '';
 
-    // records.json의 평균 입실 시간 바인딩 (하드코딩 제거!)
+    // Cortex 기반 평균 입실 시간 바인딩
     if (clockTextEl && attData && attData.avgCheckIn) {
       clockTextEl.textContent = '평균 ' + attData.avgCheckIn + ' 입실';
     }
 
-    var history = (attData && attData.history && attData.history.length > 0)
-      ? attData.history
-      : generateDefaultHistory();
+    if (streakCaption && attData && attData.days) {
+      streakCaption.textContent = attData.days + '회차 정상 출석 (100% 무결석) · 결석 0';
+    }
+
+    var monthsData = (attData && attData.months) ? attData.months : null;
+    var monthInfo = monthsData ? monthsData[currentMonthKey] : null;
+
+    if (!monthInfo) {
+      // 폴백: 10월 기본 데이터
+      monthInfo = {
+        monthName: '10월',
+        year: 2026,
+        month: 10,
+        startOffset: 3, // 목요일 시작 (월, 화, 수 3칸 빈칸)
+        days: (attData && attData.history) ? attData.history : []
+      };
+    }
 
     var fragment = document.createDocumentFragment();
 
-    history.forEach(function (item) {
+    // 3-1. 시작 요일에 맞춘 빈 칸(오프셋) 채우기 (진짜 요일 달력 구조)
+    for (var b = 0; b < monthInfo.startOffset; b++) {
+      var emptyCell = document.createElement('div');
+      emptyCell.className = 'cal-day-cell is-empty';
+      emptyCell.setAttribute('aria-hidden', 'true');
+      fragment.appendChild(emptyCell);
+    }
+
+    // 3-2. 일자별 셀 생성 및 Cortex 동기화 데이터 바인딩
+    var daysList = monthInfo.days || [];
+    daysList.forEach(function (item) {
       var cell = document.createElement('div');
-      cell.className = 'cal-day-cell' + (item.day === 15 ? ' is-today' : '');
+      var typeClass = 'type-' + (item.type || 'attended');
+      var isToday = (currentMonthKey === '2026-10' && item.day === 15);
+
+      cell.className = 'cal-day-cell ' + typeClass + (isToday ? ' is-today' : '');
       cell.setAttribute('role', 'gridcell');
       cell.setAttribute('tabindex', '0');
-      cell.setAttribute('aria-label', item.date + ' (' + item.dow + ') ' + item.time + ' ' + item.status);
       cell.textContent = item.day;
 
-      cell.dataset.day = item.day;
-      cell.dataset.date = item.date;
-      cell.dataset.dow = item.dow;
-      cell.dataset.time = item.time;
-      cell.dataset.status = item.status || '정시 입실';
+      var fullDateText = (monthInfo.month || 10) + '월 ' + item.day + '일(' + item.dow + ')';
+      var tooltipHtml = '';
+
+      if (item.type === 'attended') {
+        tooltipHtml = fullDateText + ' · <strong>' + item.seq + '회차 출석</strong> · <strong>' + (item.time || '08:44') + '</strong> 입실';
+      } else if (item.type === 'weekend') {
+        tooltipHtml = fullDateText + ' · 주말 (수업 없음)';
+      } else if (item.type === 'holiday') {
+        tooltipHtml = fullDateText + ' · <strong>' + item.label + '</strong>';
+      } else if (item.type === 'pre_course') {
+        tooltipHtml = fullDateText + ' · 개강 전 준비 기간 (수업 없음)';
+      } else {
+        tooltipHtml = fullDateText + ' · 교육 일정 진행 예정';
+      }
+
+      cell.setAttribute('aria-label', tooltipHtml.replace(/<[^>]+>/g, ''));
 
       cell.addEventListener('mouseenter', function (e) {
         if (!tooltip || !visualBox) return;
-        tooltip.innerHTML = '10월 ' + item.day + '일(' + item.dow + ') · <strong>' + item.time + '</strong> 정상 입실';
+        tooltip.innerHTML = tooltipHtml;
         tooltip.classList.add('is-active');
         positionTooltip(e.clientX, e.clientY);
       });
@@ -481,25 +551,10 @@
     calGrid.appendChild(fragment);
   }
 
-  function generateDefaultHistory() {
-    var list = [];
-    var dows = ['화', '수', '목', '금', '토', '일', '월'];
-    for (var i = 1; i <= 31; i++) {
-      var min = 36 + ((i * 7) % 18);
-      list.push({
-        day: i,
-        date: '10-' + String(i).padStart(2, '0'),
-        dow: dows[(i - 1) % 7],
-        time: '08:' + String(min).padStart(2, '0'),
-        status: '정시 입실'
-      });
-    }
-    return list;
-  }
-
   window.renderAttendanceCalendar = renderAttendanceCalendar;
 
-  // DOM 로드 즉시 기본 렌더링 (깜빡임 방지)
-  renderAttendanceCalendar({ avgCheckIn: '08:46' });
+  // DOM 로드 즉시 기본 렌더링
+  renderAttendanceCalendar({ avgCheckIn: '08:46', days: 43 });
 })();
+
 
