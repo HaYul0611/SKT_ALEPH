@@ -11,7 +11,7 @@
     "avgCheckIn": "08:46",
     "recentCheckIn": "08:42",
     "monthlyStreak": 31,
-    "source": "내 출석 기록 (실시간 연동)",
+    "source": "리추얼 기록",
     "history": [
       {
         "day": 1,
@@ -19,9 +19,9 @@
         "fullDate": "2026-10-01",
         "dow": "목",
         "type": "attended",
-        "time": "08:45",
+        "time": "08:46",
         "seq": 34,
-        "label": "34회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+        "label": "34회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 2,
@@ -29,9 +29,9 @@
         "fullDate": "2026-10-02",
         "dow": "금",
         "type": "attended",
-        "time": "08:42",
+        "time": "08:46",
         "seq": 35,
-        "label": "35회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+        "label": "35회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 3,
@@ -59,9 +59,9 @@
         "fullDate": "2026-10-05",
         "dow": "월",
         "type": "attended",
-        "time": "08:44",
+        "time": "08:46",
         "seq": 36,
-        "label": "36회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+        "label": "36회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 6,
@@ -69,9 +69,9 @@
         "fullDate": "2026-10-06",
         "dow": "화",
         "type": "attended",
-        "time": "08:39",
+        "time": "08:46",
         "seq": 37,
-        "label": "37회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+        "label": "37회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 7,
@@ -89,9 +89,9 @@
         "fullDate": "2026-10-08",
         "dow": "목",
         "type": "attended",
-        "time": "08:41",
+        "time": "08:46",
         "seq": 39,
-        "label": "39회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+        "label": "39회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 9,
@@ -129,9 +129,9 @@
         "fullDate": "2026-10-12",
         "dow": "월",
         "type": "attended",
-        "time": "08:43",
+        "time": "08:46",
         "seq": 40,
-        "label": "40회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+        "label": "40회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 13,
@@ -139,9 +139,9 @@
         "fullDate": "2026-10-13",
         "dow": "화",
         "type": "attended",
-        "time": "08:45",
+        "time": "08:46",
         "seq": 41,
-        "label": "41회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+        "label": "41회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 14,
@@ -149,9 +149,9 @@
         "fullDate": "2026-10-14",
         "dow": "수",
         "type": "attended",
-        "time": "08:40",
+        "time": "08:46",
         "seq": 42,
-        "label": "42회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+        "label": "42회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 15,
@@ -159,9 +159,9 @@
         "fullDate": "2026-10-15",
         "dow": "목",
         "type": "attended",
-        "time": "08:44",
+        "time": "08:46",
         "seq": 43,
-        "label": "43회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+        "label": "43회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
       },
       {
         "day": 16,
@@ -439,9 +439,9 @@
             "fullDate": "2026-08-11",
             "dow": "화",
             "type": "attended",
-            "time": "08:42",
+            "time": "08:46",
             "seq": 1,
-            "label": "1회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+            "label": "1회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 12,
@@ -449,9 +449,9 @@
             "fullDate": "2026-08-12",
             "dow": "수",
             "type": "attended",
-            "time": "08:38",
+            "time": "08:46",
             "seq": 2,
-            "label": "2회차 정상 출석 · 08:38 입실 (Cortex 동기화)"
+            "label": "2회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 13,
@@ -459,9 +459,9 @@
             "fullDate": "2026-08-13",
             "dow": "목",
             "type": "attended",
-            "time": "08:45",
+            "time": "08:46",
             "seq": 3,
-            "label": "3회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+            "label": "3회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 14,
@@ -469,9 +469,9 @@
             "fullDate": "2026-08-14",
             "dow": "금",
             "type": "attended",
-            "time": "08:41",
+            "time": "08:46",
             "seq": 4,
-            "label": "4회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+            "label": "4회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 15,
@@ -499,9 +499,9 @@
             "fullDate": "2026-08-17",
             "dow": "월",
             "type": "attended",
-            "time": "08:39",
+            "time": "08:46",
             "seq": 5,
-            "label": "5회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+            "label": "5회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 18,
@@ -509,9 +509,9 @@
             "fullDate": "2026-08-18",
             "dow": "화",
             "type": "attended",
-            "time": "08:44",
+            "time": "08:46",
             "seq": 6,
-            "label": "6회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+            "label": "6회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 19,
@@ -519,9 +519,9 @@
             "fullDate": "2026-08-19",
             "dow": "수",
             "type": "attended",
-            "time": "08:47",
+            "time": "08:46",
             "seq": 7,
-            "label": "7회차 정상 출석 · 08:47 입실 (Cortex 동기화)"
+            "label": "7회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 20,
@@ -529,9 +529,9 @@
             "fullDate": "2026-08-20",
             "dow": "목",
             "type": "attended",
-            "time": "08:40",
+            "time": "08:46",
             "seq": 8,
-            "label": "8회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+            "label": "8회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 21,
@@ -569,9 +569,9 @@
             "fullDate": "2026-08-24",
             "dow": "월",
             "type": "attended",
-            "time": "08:43",
+            "time": "08:46",
             "seq": 10,
-            "label": "10회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+            "label": "10회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 25,
@@ -579,9 +579,9 @@
             "fullDate": "2026-08-25",
             "dow": "화",
             "type": "attended",
-            "time": "08:37",
+            "time": "08:46",
             "seq": 11,
-            "label": "11회차 정상 출석 · 08:37 입실 (Cortex 동기화)"
+            "label": "11회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 26,
@@ -589,9 +589,9 @@
             "fullDate": "2026-08-26",
             "dow": "수",
             "type": "attended",
-            "time": "08:48",
+            "time": "08:46",
             "seq": 12,
-            "label": "12회차 정상 출석 · 08:48 입실 (Cortex 동기화)"
+            "label": "12회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 27,
@@ -599,9 +599,9 @@
             "fullDate": "2026-08-27",
             "dow": "목",
             "type": "attended",
-            "time": "08:42",
+            "time": "08:46",
             "seq": 13,
-            "label": "13회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+            "label": "13회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 28,
@@ -609,9 +609,9 @@
             "fullDate": "2026-08-28",
             "dow": "금",
             "type": "attended",
-            "time": "08:45",
+            "time": "08:46",
             "seq": 14,
-            "label": "14회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+            "label": "14회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 29,
@@ -639,9 +639,9 @@
             "fullDate": "2026-08-31",
             "dow": "월",
             "type": "attended",
-            "time": "08:39",
+            "time": "08:46",
             "seq": 15,
-            "label": "15회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+            "label": "15회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           }
         ]
       },
@@ -659,9 +659,9 @@
             "fullDate": "2026-09-01",
             "dow": "화",
             "type": "attended",
-            "time": "08:44",
+            "time": "08:46",
             "seq": 16,
-            "label": "16회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+            "label": "16회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 2,
@@ -669,9 +669,9 @@
             "fullDate": "2026-09-02",
             "dow": "수",
             "type": "attended",
-            "time": "08:41",
+            "time": "08:46",
             "seq": 17,
-            "label": "17회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+            "label": "17회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 3,
@@ -689,9 +689,9 @@
             "fullDate": "2026-09-04",
             "dow": "금",
             "type": "attended",
-            "time": "08:38",
+            "time": "08:46",
             "seq": 19,
-            "label": "19회차 정상 출석 · 08:38 입실 (Cortex 동기화)"
+            "label": "19회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 5,
@@ -719,9 +719,9 @@
             "fullDate": "2026-09-07",
             "dow": "월",
             "type": "attended",
-            "time": "08:47",
+            "time": "08:46",
             "seq": 20,
-            "label": "20회차 정상 출석 · 08:47 입실 (Cortex 동기화)"
+            "label": "20회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 8,
@@ -729,9 +729,9 @@
             "fullDate": "2026-09-08",
             "dow": "화",
             "type": "attended",
-            "time": "08:43",
+            "time": "08:46",
             "seq": 21,
-            "label": "21회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+            "label": "21회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 9,
@@ -739,9 +739,9 @@
             "fullDate": "2026-09-09",
             "dow": "수",
             "type": "attended",
-            "time": "08:40",
+            "time": "08:46",
             "seq": 22,
-            "label": "22회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+            "label": "22회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 10,
@@ -749,9 +749,9 @@
             "fullDate": "2026-09-10",
             "dow": "목",
             "type": "attended",
-            "time": "08:45",
+            "time": "08:46",
             "seq": 23,
-            "label": "23회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+            "label": "23회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 11,
@@ -759,9 +759,9 @@
             "fullDate": "2026-09-11",
             "dow": "금",
             "type": "attended",
-            "time": "08:42",
+            "time": "08:46",
             "seq": 24,
-            "label": "24회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+            "label": "24회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 12,
@@ -789,9 +789,9 @@
             "fullDate": "2026-09-14",
             "dow": "월",
             "type": "attended",
-            "time": "08:48",
+            "time": "08:46",
             "seq": 25,
-            "label": "25회차 정상 출석 · 08:48 입실 (Cortex 동기화)"
+            "label": "25회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 15,
@@ -799,9 +799,9 @@
             "fullDate": "2026-09-15",
             "dow": "화",
             "type": "attended",
-            "time": "08:39",
+            "time": "08:46",
             "seq": 26,
-            "label": "26회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+            "label": "26회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 16,
@@ -809,9 +809,9 @@
             "fullDate": "2026-09-16",
             "dow": "수",
             "type": "attended",
-            "time": "08:44",
+            "time": "08:46",
             "seq": 27,
-            "label": "27회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+            "label": "27회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 17,
@@ -819,9 +819,9 @@
             "fullDate": "2026-09-17",
             "dow": "목",
             "type": "attended",
-            "time": "08:41",
+            "time": "08:46",
             "seq": 28,
-            "label": "28회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+            "label": "28회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 18,
@@ -859,9 +859,9 @@
             "fullDate": "2026-09-21",
             "dow": "월",
             "type": "attended",
-            "time": "08:43",
+            "time": "08:46",
             "seq": 30,
-            "label": "30회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+            "label": "30회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 22,
@@ -869,9 +869,9 @@
             "fullDate": "2026-09-22",
             "dow": "화",
             "type": "attended",
-            "time": "08:38",
+            "time": "08:46",
             "seq": 31,
-            "label": "31회차 정상 출석 · 08:38 입실 (Cortex 동기화)"
+            "label": "31회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 23,
@@ -879,9 +879,9 @@
             "fullDate": "2026-09-23",
             "dow": "수",
             "type": "attended",
-            "time": "08:47",
+            "time": "08:46",
             "seq": 32,
-            "label": "32회차 정상 출석 · 08:47 입실 (Cortex 동기화)"
+            "label": "32회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 24,
@@ -949,9 +949,9 @@
             "fullDate": "2026-09-30",
             "dow": "수",
             "type": "attended",
-            "time": "08:40",
+            "time": "08:46",
             "seq": 33,
-            "label": "33회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+            "label": "33회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           }
         ]
       },
@@ -969,9 +969,9 @@
             "fullDate": "2026-10-01",
             "dow": "목",
             "type": "attended",
-            "time": "08:45",
+            "time": "08:46",
             "seq": 34,
-            "label": "34회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+            "label": "34회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 2,
@@ -979,9 +979,9 @@
             "fullDate": "2026-10-02",
             "dow": "금",
             "type": "attended",
-            "time": "08:42",
+            "time": "08:46",
             "seq": 35,
-            "label": "35회차 정상 출석 · 08:42 입실 (Cortex 동기화)"
+            "label": "35회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 3,
@@ -1009,9 +1009,9 @@
             "fullDate": "2026-10-05",
             "dow": "월",
             "type": "attended",
-            "time": "08:44",
+            "time": "08:46",
             "seq": 36,
-            "label": "36회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+            "label": "36회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 6,
@@ -1019,9 +1019,9 @@
             "fullDate": "2026-10-06",
             "dow": "화",
             "type": "attended",
-            "time": "08:39",
+            "time": "08:46",
             "seq": 37,
-            "label": "37회차 정상 출석 · 08:39 입실 (Cortex 동기화)"
+            "label": "37회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 7,
@@ -1039,9 +1039,9 @@
             "fullDate": "2026-10-08",
             "dow": "목",
             "type": "attended",
-            "time": "08:41",
+            "time": "08:46",
             "seq": 39,
-            "label": "39회차 정상 출석 · 08:41 입실 (Cortex 동기화)"
+            "label": "39회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 9,
@@ -1079,9 +1079,9 @@
             "fullDate": "2026-10-12",
             "dow": "월",
             "type": "attended",
-            "time": "08:43",
+            "time": "08:46",
             "seq": 40,
-            "label": "40회차 정상 출석 · 08:43 입실 (Cortex 동기화)"
+            "label": "40회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 13,
@@ -1089,9 +1089,9 @@
             "fullDate": "2026-10-13",
             "dow": "화",
             "type": "attended",
-            "time": "08:45",
+            "time": "08:46",
             "seq": 41,
-            "label": "41회차 정상 출석 · 08:45 입실 (Cortex 동기화)"
+            "label": "41회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 14,
@@ -1099,9 +1099,9 @@
             "fullDate": "2026-10-14",
             "dow": "수",
             "type": "attended",
-            "time": "08:40",
+            "time": "08:46",
             "seq": 42,
-            "label": "42회차 정상 출석 · 08:40 입실 (Cortex 동기화)"
+            "label": "42회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 15,
@@ -1109,9 +1109,9 @@
             "fullDate": "2026-10-15",
             "dow": "목",
             "type": "attended",
-            "time": "08:44",
+            "time": "08:46",
             "seq": 43,
-            "label": "43회차 정상 출석 · 08:44 입실 (Cortex 동기화)"
+            "label": "43회차 정상 출석 · 08:46 입실 (Cortex 동기화)"
           },
           {
             "day": 16,
