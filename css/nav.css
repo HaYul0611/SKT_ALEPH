@@ -145,18 +145,21 @@
 }
 
 .nav-name {
-  position: static;
-  transform: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.2px;
-  text-align: left;
+  text-align: center;
   pointer-events: auto;
   white-space: nowrap;
-  font-size: 13.5px;
+  font-size: 14px;
   border-bottom: none;
   transition: opacity 0.2s ease;
-  margin-right: 12px;
+  z-index: 5;
+  margin: 0;
 }
 
 .nav-name:hover {
@@ -176,7 +179,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: clamp(10px, 1.1vw, 15px);
   line-height: 1;
 }
 
@@ -187,7 +190,7 @@
   padding: 6px 2px;
   position: relative;
   transition: color 0.18s ease;
-  font-size: 13.5px;
+  font-size: 13px;
   letter-spacing: -0.2px;
 }
 
@@ -450,10 +453,7 @@ body.tab-mode-single .section-divider {
   }
 
   .nav-name {
-    position: static;
-    transform: none;
     font-size: 13px;
-    margin-left: 6px;
   }
 
   .nav-left {
