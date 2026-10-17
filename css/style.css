@@ -246,34 +246,39 @@ img {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   line-height: 1;
 }
 
 .nav-link {
   border-bottom: none;
   font-weight: 500;
-  color: var(--text-mid);
-  padding: 4px 0;
+  color: var(--text-light);
+  padding: 6px 2px;
   position: relative;
-  transition: color 0.15s ease;
-  font-size: 12px;
+  transition: color 0.18s ease;
+  font-size: 13.5px;
+  letter-spacing: -0.2px;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--text);
+}
+
 .nav-link.is-active {
   color: var(--text);
+  font-weight: 700;
 }
 
 .nav-link.is-active::after {
   content: "";
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 2.5px;
   background: var(--success);
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 /* 햄버거 토글 버튼 (기본 데스크톱에서는 숨김) */
@@ -1502,14 +1507,14 @@ img {
 .sparkline-area {
   fill: url(#breatheGrad);
   transform-origin: 120px 25px;
-  animation: waveAreaMotion 3.8s ease-in-out infinite;
+  animation: ekgHeartbeatArea 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
   will-change: transform, opacity;
 }
 
 .sparkline-guide {
   stroke: var(--border);
   stroke-width: 0.8;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .sparkline-line {
@@ -1519,80 +1524,57 @@ img {
   stroke-linecap: round;
   stroke-linejoin: round;
   transform-origin: 120px 25px;
-  animation: waveSineMotion 3.8s ease-in-out infinite;
-  will-change: transform;
+  animation: ekgHeartbeatWave 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform, filter;
+  filter: drop-shadow(0 2px 4px rgba(5, 150, 105, 0.3));
 }
 
-.sparkline-point {
-  fill: var(--bg);
-  stroke: var(--text);
-  stroke-width: 1.8;
-  transform-origin: center;
-  animation: wavePointMotion 3.8s ease-in-out infinite;
-  will-change: transform;
-  transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-.sparkline-point:nth-of-type(1) {
-  animation-delay: 0s;
-}
-
-.sparkline-point:nth-of-type(2) {
-  animation-delay: 0.25s;
-}
-
-.sparkline-point:nth-of-type(3) {
-  animation-delay: 0.5s;
-}
-
-.sparkline-point:nth-of-type(4) {
-  animation-delay: 0.75s;
-}
-
-.sparkline-point.active {
-  fill: var(--success);
-  stroke: var(--success);
-  stroke-width: 2.2;
-  filter: drop-shadow(0 0 4px rgba(5, 150, 105, 0.6));
-}
-
-/* 자연스러운 호흡 사인 파동 (위아래 들숨/날숨 모션) */
-@keyframes waveSineMotion {
-  0%, 100% {
+/* 심장박동기(EKG / Heartbeat) 스타일의 자연스러운 위아래 상승/하강 파동 모션 */
+@keyframes ekgHeartbeatWave {
+  0% {
     transform: translateY(0) scaleY(1);
   }
-  35% {
-    transform: translateY(-4.5px) scaleY(1.25);
+  18% {
+    transform: translateY(-6px) scaleY(1.36);
   }
-  68% {
-    transform: translateY(3px) scaleY(0.82);
+  36% {
+    transform: translateY(4.5px) scaleY(0.76);
+  }
+  54% {
+    transform: translateY(-3.2px) scaleY(1.18);
+  }
+  72% {
+    transform: translateY(1.8px) scaleY(0.9);
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
   }
 }
 
-@keyframes waveAreaMotion {
-  0%, 100% {
+@keyframes ekgHeartbeatArea {
+  0% {
     transform: translateY(0) scaleY(1);
-    opacity: 0.85;
+    opacity: 0.75;
   }
-  35% {
-    transform: translateY(-4.5px) scaleY(1.25);
+  18% {
+    transform: translateY(-6px) scaleY(1.36);
     opacity: 1;
   }
-  68% {
-    transform: translateY(3px) scaleY(0.82);
-    opacity: 0.65;
+  36% {
+    transform: translateY(4.5px) scaleY(0.76);
+    opacity: 0.55;
   }
-}
-
-@keyframes wavePointMotion {
-  0%, 100% {
-    transform: translateY(0);
+  54% {
+    transform: translateY(-3.2px) scaleY(1.18);
+    opacity: 0.9;
   }
-  35% {
-    transform: translateY(-5px);
+  72% {
+    transform: translateY(1.8px) scaleY(0.9);
+    opacity: 0.7;
   }
-  68% {
-    transform: translateY(2.5px);
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 0.75;
   }
 }
 
