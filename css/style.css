@@ -205,25 +205,6 @@ img {
   border-color: rgba(16, 185, 129, 0.3);
 }
 
-@media (max-width: 860px) {
-  .nav-reading-status {
-    position: fixed;
-    top: 52px;
-    left: 16px;
-    margin-left: 0;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-    z-index: 890;
-  }
-
-  [data-theme="dark"] .nav-reading-status {
-    background: rgba(24, 24, 24, 0.94);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.36);
-  }
-}
-
 .nav-name {
   position: absolute;
   left: 50%;
@@ -234,9 +215,25 @@ img {
   text-align: center;
   pointer-events: auto;
   white-space: nowrap;
+  font-size: 13.5px;
+  border-bottom: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-name:hover {
+  opacity: 0.8;
 }
 
 .nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  line-height: 1;
+}
+
+/* 데스크톱 내비게이션 링크 래퍼 */
+.nav-links-desktop {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -266,8 +263,206 @@ img {
   left: 0;
   width: 100%;
   height: 2px;
-  background: #10b981;
+  background: var(--success);
   border-radius: 1px;
+}
+
+/* 햄버거 토글 버튼 (기본 데스크톱에서는 숨김) */
+.nav-burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4.5px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0.5px solid var(--border);
+  background: var(--bg);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+
+.nav-burger-btn:hover {
+  border-color: var(--text);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .nav-burger-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-burger-btn .burger-bar {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background-color: var(--text);
+  border-radius: 1px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transform-origin: center;
+}
+
+/* 햄버거 활성 상태 (X자 변형) */
+.nav-burger-btn.is-active .burger-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-burger-btn.is-active .burger-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-burger-btn.is-active .burger-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* 모바일/태블릿 드롭다운 메뉴 */
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(245, 245, 243, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease;
+  z-index: 899;
+}
+
+[data-theme="dark"] .nav-dropdown-menu {
+  background: rgba(18, 18, 18, 0.98);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.nav-dropdown-menu.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.nav-dropdown-status-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-mid);
+}
+
+.nav-dropdown-status-box strong {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.nav-dropdown-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-dropdown-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: none;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.nav-dropdown-link .nav-link-num {
+  font-size: 11px;
+  font-family: monospace;
+  color: var(--text-muted);
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.nav-dropdown-link .nav-link-text {
+  flex: 1;
+}
+
+.nav-dropdown-link .nav-link-arrow {
+  color: var(--text-muted);
+  font-size: 14px;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.nav-dropdown-link:hover,
+.nav-dropdown-link:focus-visible {
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateX(4px);
+}
+
+[data-theme="dark"] .nav-dropdown-link:hover,
+[data-theme="dark"] .nav-dropdown-link:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-dropdown-link.is-active {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.nav-dropdown-link.is-active .nav-link-arrow {
+  color: var(--success);
+  transform: translateX(2px);
+}
+
+/* 상단바 반응형 미디어 쿼리 */
+@media (max-width: 960px) {
+  .nav {
+    padding: 10px 24px;
+  }
+
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .nav-burger-btn {
+    display: inline-flex;
+  }
+
+  .nav-reading-status {
+    display: none; /* 태블릿/모바일에서는 드롭다운 내부 배지로 일원화하여 상단바 겹침 방지 */
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    padding: 8px 16px;
+  }
+
+  .nav-name {
+    position: static;
+    transform: none;
+    font-size: 13px;
+    margin-left: 6px;
+  }
+
+  .nav-left {
+    gap: 6px;
+  }
 }
 
 
@@ -662,6 +857,9 @@ img {
   width: 10px;
   height: 10px;
   border-radius: 50%;
+
+}
+
 .timeline-item.current .timeline-dot {
   background: var(--success);
   top: 10px;
@@ -702,10 +900,6 @@ img {
   background: repeating-linear-gradient(90deg, var(--text-muted) 0, var(--text-muted) 5px, transparent 5px, transparent 10px);
   background-size: 10px 100%;
 }
-
-
-
-
 
 .timeline-period {
   font-size: 11px;
@@ -3296,9 +3490,19 @@ body.modal-open {
   *,
   *::before,
   *::after {
-    transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .pulse-ring-dot::after,
+  .nav-reading-status .reading-dot::after,
+  .live-dot::after,
+  .timeline-item.current .timeline-dot::after {
+    animation: none !important;
+    opacity: 0.3 !important;
+    transform: none !important;
   }
 }
 
@@ -5510,22 +5714,53 @@ body.modal-open {
 }
 
 @media (max-width: 768px) {
-  .nav {
-    padding: 10px 20px;
-  }
-
-  .nav-right {
-    gap: 10px;
-    font-size: 11px;
-  }
-
   .view-controller-bar {
-    margin: 16px 20px 0;
+    margin: 14px 16px 0;
     padding: 10px 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .view-info-box {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .view-action-group {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 6px;
   }
 
   .section-summary-preview {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-word {
+    font-size: 2.2rem;
+  }
+
+  .hero-name {
+    font-size: 1.5rem;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    word-break: keep-all;
+  }
+
+  .proj-card-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .proj-link-btn {
+    flex: 1 1 auto;
+    min-width: 120px;
+    justify-content: center;
   }
 }
 

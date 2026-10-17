@@ -59,7 +59,7 @@
   <!-- 스크롤 진행률 인디케이터 (상단 2.5px 프로그레스 바) -->
   <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
 
-  <header class="nav" role="banner">
+  <header class="nav" role="banner" id="mainHeader">
     <div class="nav-left">
       <span class="nav-year">2026</span>
       <span class="nav-reading-status" id="navReadingIndicator" aria-live="polite">
@@ -68,18 +68,74 @@
         <strong class="reading-target" id="navReadingTarget">01 Timeline</strong>
       </span>
     </div>
-    <span class="nav-name">Ha Yul Oh</span>
+
+    <a href="#main" class="nav-name" aria-label="메인 상단으로 이동">Ha Yul Oh</a>
+
     <div class="nav-right">
-      <a href="#timeline" class="nav-link">Timeline</a>
-      <a href="#metrics" class="nav-link">Records</a>
-      <a href="#strengths" class="nav-link">Strengths</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#research" class="nav-link">Research</a>
-      <a href="#evidence" class="nav-link">Evidence</a>
-      <a href="#documents" class="nav-link">Docs</a>
+      <nav class="nav-links-desktop" aria-label="데스크톱 내비게이션">
+        <a href="#timeline" class="nav-link">Timeline</a>
+        <a href="#metrics" class="nav-link">Records</a>
+        <a href="#strengths" class="nav-link">Strengths</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#evidence" class="nav-link">Evidence</a>
+        <a href="#documents" class="nav-link">Docs</a>
+      </nav>
+
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드 전환" title="화면 모드 전환 (라이트/다크)">
         <span class="theme-icon" id="themeIcon"></span>
       </button>
+
+      <button class="nav-burger-btn" id="navBurgerBtn" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="navDropdownMenu">
+        <span class="burger-bar" aria-hidden="true"></span>
+        <span class="burger-bar" aria-hidden="true"></span>
+        <span class="burger-bar" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- 반응형 모바일/태블릿 드롭다운 메뉴 -->
+    <div class="nav-dropdown-menu" id="navDropdownMenu" role="region" aria-label="모바일 내비게이션" hidden>
+      <div class="nav-dropdown-status-box" id="navDropdownStatusBox">
+        <span class="reading-dot pulse-ring-dot" aria-hidden="true"></span>
+        <span class="dropdown-status-text">현재 위치: <strong id="navDropdownTarget">01 Timeline</strong></span>
+      </div>
+      <nav class="nav-dropdown-links" aria-label="모바일 섹션 링크">
+        <a href="#timeline" class="nav-dropdown-link">
+          <span class="nav-link-num">01</span>
+          <span class="nav-link-text">Timeline (이력 &amp; 로드맵)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+        <a href="#metrics" class="nav-dropdown-link">
+          <span class="nav-link-num">02</span>
+          <span class="nav-link-text">Records (핵심 정량 지표)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+        <a href="#strengths" class="nav-dropdown-link">
+          <span class="nav-link-num">03</span>
+          <span class="nav-link-text">Strengths (기술 역량)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+        <a href="#projects" class="nav-dropdown-link">
+          <span class="nav-link-num">04</span>
+          <span class="nav-link-text">Projects (프로젝트 증적)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+        <a href="#research" class="nav-dropdown-link">
+          <span class="nav-link-num">05</span>
+          <span class="nav-link-text">Research (학술 &amp; 논문)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+        <a href="#evidence" class="nav-dropdown-link">
+          <span class="nav-link-num">06</span>
+          <span class="nav-link-text">Evidence (엔지니어링 증적)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+        <a href="#documents" class="nav-dropdown-link">
+          <span class="nav-link-num">07</span>
+          <span class="nav-link-text">Docs (공식 서류 &amp; 인증)</span>
+          <span class="nav-link-arrow">&rarr;</span>
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -1258,7 +1314,8 @@
 
             <h3 class="project-name">
 
-              <a href="https://hayul0611.github.io/MediMatch/" target="_blank" rel="noopener noreferrer">MediMatch — 진료비 예외정산 &amp; 공공관리
+              <a href="https://hayul0611.github.io/MediMatch/" target="_blank" rel="noopener noreferrer">MediMatch — 진료비
+                예외정산 &amp; 공공관리
                 솔루션<svg class="project-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 
@@ -1280,12 +1337,14 @@
                   <span class="proj-accordion-badge">[앱 한 문장]</span>
                   <span class="proj-accordion-text">원무 행정 오지급 리스크 완화 검증 모형</span>
                 </div>
-                <svg class="proj-accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="proj-accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </summary>
               <div class="proj-accordion-content">
-                <p>병원 원무과 행정 담당자가 타인명의 송금이나 사망환자 진료비 환불금을 정산할 때, 이 앱이 논문에서 규명한 '5단계 다차원 교차검증 및 안심상속 공공연계 모형'을 통해 미식별 입금을 신속히 대조하고 적법 상속권자를 다각도로 검증하여 오지급 위험을 획기적으로 낮추고 실무 착오 리스크를 최소화해 줍니다.</p>
+                <p>병원 원무과 행정 담당자가 타인명의 송금이나 사망환자 진료비 환불금을 정산할 때, 이 앱이 논문에서 규명한 '5단계 다차원 교차검증 및 안심상속 공공연계 모형'을 통해 미식별 입금을
+                  신속히 대조하고 적법 상속권자를 다각도로 검증하여 오지급 위험을 획기적으로 낮추고 실무 착오 리스크를 최소화해 줍니다.</p>
               </div>
             </details>
 
@@ -2060,8 +2119,8 @@
 
             <div class="research-actions">
 
-              <a href="https://hayul0611.github.io/MediMatch/" target="_blank" rel="noopener noreferrer" class="research-btn"
-                style="background:#0284c7; color:#fff; border-color:#0284c7; font-weight:700;"
+              <a href="https://hayul0611.github.io/MediMatch/" target="_blank" rel="noopener noreferrer"
+                class="research-btn" style="background:#0284c7; color:#fff; border-color:#0284c7; font-weight:700;"
                 aria-label="논문 연계 웹 앱 MediMatch 새 탭에서 실행">
 
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -2316,7 +2375,8 @@
 
           </button>
 
-          <a href="https://hayul0611.github.io/MediMatch/" target="_blank" rel="noopener noreferrer" class="evidence-item" aria-label="논문 연계 웹 앱 MediMatch 새 탭에서 실행">
+          <a href="https://hayul0611.github.io/MediMatch/" target="_blank" rel="noopener noreferrer"
+            class="evidence-item" aria-label="논문 연계 웹 앱 MediMatch 새 탭에서 실행">
 
             <span class="evidence-label">논문 연계 앱</span>
 
