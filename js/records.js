@@ -88,7 +88,7 @@
       console.warn('records.json fetch failed, applying offline fallback', err);
       // 오프라인/로컬 실패 시 기본 13개 마스터 기준 데이터 적용
       applyRecordsData({
-        attendance: { days: 44, totalDays: 44, rate: 100, avgCheckIn: '09:03' },
+        attendance: { days: 44, totalDays: 44, rate: 100, avgCheckIn: '08:59' },
         ritual: { days: 44 },
         practice: { successDays: 40, totalDays: 44, rate: 91 },
         breathe: { consistency: 98 },
