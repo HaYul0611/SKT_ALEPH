@@ -799,6 +799,88 @@
 })();
 
 /* ===========================
+   Subway Task Stepper Dynamic Controller (하드코딩 없는 동적 노선도 & 귀여운 캐릭터 러너 모션)
+   =========================== */
+(function initSubwayTaskTracker() {
+  var wrapper = document.getElementById('subwayTrackWrapper');
+  var floater = document.getElementById('subwayCharFloater');
+  var container = document.getElementById('subwayStationsContainer');
+  var statusText = document.getElementById('subwayStationStatus');
+  if (!wrapper || !floater || !container) return;
+
+  var stations = container.querySelectorAll('.subway-station');
+  var currentStationIndex = 12; // 0-indexed (13번 역)
+  var activeHoverIndex = null;
+
+  function updateFloaterPosition(index, animate) {
+    if (index < 0 || index >= stations.length) return;
+    var target = stations[index];
+    var wrapperRect = wrapper.getBoundingClientRect();
+    var targetRect = target.getBoundingClientRect();
+    if (wrapperRect.width === 0) return;
+
+    // 계산된 역의 중심 x 좌표 (wrapper 기준 상대 좌표)
+    var centerX = (targetRect.left + targetRect.width / 2) - wrapperRect.left;
+
+    if (animate === false) {
+      floater.style.transition = 'none';
+    } else {
+      floater.style.transition = 'left 0.38s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    }
+    floater.style.left = centerX + 'px';
+  }
+
+  // 초기 위치 설정 (13번 역 안착)
+  function setInitialPosition() {
+    updateFloaterPosition(currentStationIndex, false);
+  }
+
+  // 각 챕터별 마우스 오버 / 터치 인터랙션 (노선을 따라 캐릭터가 이동하여 반응)
+  stations.forEach(function (btn, idx) {
+    btn.addEventListener('mouseenter', function () {
+      activeHoverIndex = idx;
+      updateFloaterPosition(idx, true);
+      if (statusText) {
+        var num = idx + 1;
+        statusText.innerHTML = '탐색: <strong>' + num + '번 챕터</strong> ' + (num === 13 ? '마스터 완주' : '승인 완료') + ' · 승인율 <strong>100.0%</strong>';
+      }
+    });
+
+    btn.addEventListener('mouseleave', function () {
+      activeHoverIndex = null;
+      updateFloaterPosition(currentStationIndex, true);
+      if (statusText) {
+        statusText.innerHTML = '현재 <strong>13번 챕터</strong> 완주 · 승인율 <strong>100.0%</strong>';
+      }
+    });
+
+    btn.addEventListener('click', function () {
+      currentStationIndex = idx;
+      stations.forEach(function (s, sIdx) {
+        if (sIdx === idx) s.classList.add('is-current');
+        else s.classList.remove('is-current');
+      });
+      updateFloaterPosition(idx, true);
+    });
+  });
+
+  // 리사이즈 시 캐릭터 위치 자동 보정
+  window.addEventListener('resize', function () {
+    var idx = (activeHoverIndex !== null) ? activeHoverIndex : currentStationIndex;
+    updateFloaterPosition(idx, false);
+  }, { passive: true });
+
+  // 폰트 및 DOM 렌더링 완료 후 첫 위치 계산
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      setTimeout(setInitialPosition, 50);
+    });
+  }
+  setTimeout(setInitialPosition, 300);
+  setTimeout(setInitialPosition, 1000);
+})();
+
+/* ===========================
    Floating Back to Top Handler
    =========================== */
 (function initBackToTop() {

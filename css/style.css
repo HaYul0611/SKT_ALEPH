@@ -1682,38 +1682,39 @@ img {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* 6. Cortex Task Stepper Pipeline (2번 이미지 실시간 봇 트래커) */
-.cortex-stepper-box {
+/* 6. Subway Metro Line Task Stepper (지하철 노선도 형태 & 동적 캐릭터 러너) */
+.subway-stepper-box {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   padding: 6px 0 2px 0;
 }
 
-.cortex-track-wrapper {
+.subway-track-wrapper {
   position: relative;
   width: 100%;
-  padding: 28px 2px 6px 2px;
+  padding: 34px 2px 8px 2px;
 }
 
-/* 1~13 노드를 관통하는 에메랄드 레일 선 */
-.cortex-rail-line {
+/* 1~13 역을 관통하는 지하철 에메랄드(2호선) 레일 라인 */
+.subway-rail-line {
   position: absolute;
-  top: calc(28px + 10px);
-  left: 10px;
-  right: 10px;
-  height: 3.5px;
-  background: #0d9488;
-  border-radius: 4px;
+  top: calc(34px + 10px);
+  left: 8px;
+  right: 8px;
+  height: 4.5px;
+  background: #059669;
+  border-radius: 999px;
   z-index: 1;
+  box-shadow: 0 1px 3px rgba(5, 150, 105, 0.25);
 }
 
-[data-theme="dark"] .cortex-rail-line {
-  background: #14b8a6;
-  box-shadow: 0 0 8px rgba(20, 184, 166, 0.4);
+[data-theme="dark"] .subway-rail-line {
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.45);
 }
 
-.cortex-nodes-container {
+.subway-stations-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1722,120 +1723,106 @@ img {
   width: 100%;
 }
 
-.cortex-node {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #0f766e;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
-  flex-shrink: 0;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+.subway-station {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  user-select: none;
-}
-
-[data-theme="dark"] .cortex-node {
-  background: #10b981;
-  color: #042f2e;
-}
-
-.cortex-node:hover {
-  transform: scale(1.25);
-  box-shadow: 0 0 10px rgba(13, 148, 136, 0.6);
-  z-index: 10;
-}
-
-/* 6번, 8번 집중 지원 특수 노드 */
-.cortex-node.is-special {
-  box-shadow: 0 0 0 2px #d97706, 0 1px 4px rgba(217, 119, 6, 0.35);
-}
-
-.cortex-node-tag {
-  position: absolute;
-  top: -19px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 8px;
-  font-weight: 700;
-  color: #d97706;
-  white-space: nowrap;
-  letter-spacing: -0.2px;
-  pointer-events: none;
-}
-
-[data-theme="dark"] .cortex-node-tag {
-  color: #fbbf24;
-}
-
-/* 13번 최종 완주 노드 위의 살아 숨쉬는 마스터 봇 */
-.cortex-bot-floater {
-  position: absolute;
-  top: -27px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: botLivingBob 2.4s ease-in-out infinite;
-  pointer-events: none;
-  filter: drop-shadow(0 2px 5px rgba(2, 132, 199, 0.45));
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.subway-station:hover {
+  transform: scale(1.24);
   z-index: 5;
 }
 
-@keyframes botLivingBob {
-  0% {
-    transform: translateX(-50%) translateY(0) rotate(0deg);
+.subway-station:active {
+  transform: scale(1.08);
+}
+
+/* 정갈한 지하철 역 노드 심볼 */
+.station-circle {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #059669;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1.5px #059669, 0 2px 4px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.2px;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .station-circle {
+  background: #10b981;
+  color: #042f2e;
+  border: 2px solid #111827;
+  box-shadow: 0 0 0 1.5px #10b981, 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.subway-station.is-current .station-circle {
+  box-shadow: 0 0 0 2px #059669, 0 0 8px rgba(5, 150, 105, 0.5);
+}
+
+[data-theme="dark"] .subway-station.is-current .station-circle {
+  box-shadow: 0 0 0 2px #10b981, 0 0 10px rgba(16, 185, 129, 0.7);
+}
+
+/* 동적으로 1~13역을 달리는 귀여운 캐릭터 러너 (하드코딩 X, JS로 위치 제어) */
+.subway-character-floater {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  transform: translateX(-50%);
+  transition: left 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: left, transform;
+}
+
+.subway-character-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  animation: characterHopDance 1.9s ease-in-out infinite;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.22));
+}
+
+[data-theme="dark"] .subway-character-img {
+  filter: drop-shadow(0 3px 8px rgba(255, 255, 255, 0.35));
+}
+
+/* 살아서 통통 뛰며 발을 구르는 귀여운 바운싱/댄싱 키프레임 */
+@keyframes characterHopDance {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
   }
   25% {
-    transform: translateX(-50%) translateY(-4.5px) rotate(-3deg);
+    transform: translateY(-7px) rotate(-4deg) scale(1.06);
   }
   50% {
-    transform: translateX(-50%) translateY(-1px) rotate(1deg);
+    transform: translateY(-1.5px) rotate(1deg) scale(0.97);
   }
   75% {
-    transform: translateX(-50%) translateY(-5px) rotate(3deg);
+    transform: translateY(-8px) rotate(4deg) scale(1.06);
   }
-  100% {
-    transform: translateX(-50%) translateY(0) rotate(0deg);
-  }
-}
-
-/* 봇 눈 깜빡임 */
-@keyframes botEyeBlink {
-  0%, 90%, 100% {
-    transform: scaleY(1);
-  }
-  95% {
-    transform: scaleY(0.1);
-  }
-}
-
-.bot-eye {
-  transform-origin: center;
-  animation: botEyeBlink 3.8s infinite;
-}
-
-/* 봇 안테나 비콘 펄스 */
-@keyframes botBeaconGlow {
-  0%, 100% {
-    opacity: 0.7;
-    filter: drop-shadow(0 0 2px #10b981);
-  }
-  50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 6px #10b981);
-  }
-}
-
-.bot-antenna-dot {
-  animation: botBeaconGlow 1.8s infinite ease-in-out;
 }
 
 .stepper-meta {
@@ -1844,7 +1831,7 @@ img {
   align-items: center;
   font-size: 10.5px;
   color: var(--text-mid);
-  padding-top: 4px;
+  padding-top: 2px;
 }
 
 .stepper-status strong {
@@ -1854,14 +1841,17 @@ img {
 .stepper-badge {
   font-size: 10px;
   font-weight: 600;
-  color: var(--text);
-  background: rgba(0, 0, 0, 0.05);
-  padding: 1px 6px;
-  border-radius: 3px;
+  color: #059669;
+  background: rgba(5, 150, 105, 0.08);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  padding: 2px 7px;
+  border-radius: 4px;
 }
 
 [data-theme="dark"] .stepper-badge {
-  background: rgba(255, 255, 255, 0.08);
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
 }
 
 /* 출처 링크 (밑줄 완전 제거 및 깔끔한 호버 인터랙션) */
@@ -1878,24 +1868,23 @@ img {
 }
 
 @media (max-width: 640px) {
-  .cortex-node {
-    width: 17px;
-    height: 17px;
+  .station-circle {
+    width: 17.5px;
+    height: 17.5px;
     font-size: 8.5px;
+    border-width: 1.5px;
+    box-shadow: 0 0 0 1px #059669;
   }
-  .cortex-rail-line {
-    top: calc(28px + 8.5px);
+  .subway-rail-line {
+    top: calc(34px + 8.5px);
+    height: 3.5px;
   }
-  .cortex-node-tag {
-    font-size: 7.5px;
-    top: -18px;
+  .subway-character-floater {
+    top: -26px;
   }
-  .cortex-bot-floater {
-    top: -25px;
-  }
-  .cortex-bot-svg {
-    width: 20px;
-    height: 20px;
+  .subway-character-img {
+    width: 32px;
+    height: 32px;
   }
 }
 
