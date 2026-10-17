@@ -757,21 +757,34 @@
   padding: 36px 4px 8px 4px;
 }
 
-/* 1~13 역을 관통하는 지하철 에메랄드(2호선) 레일 라인 */
+/* 1~13 역을 관통하는 지하철 레일 라인 (대기 트랙 베이스 + 동적 진행률 채움) */
 .subway-rail-line {
   position: absolute;
   top: calc(36px + 11px - 2px);
   left: 20px;
   right: 20px;
   height: 4px;
-  background: #059669;
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 999px;
   z-index: 1;
+  overflow: hidden;
 }
 
 [data-theme="dark"] .subway-rail-line {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.subway-rail-fill {
+  height: 100%;
+  width: 100%;
+  background: #059669;
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+[data-theme="dark"] .subway-rail-fill {
   background: #10b981;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.45);
 }
 
 .subway-stations-container {
@@ -791,7 +804,7 @@
   border: none;
   padding: 0;
   margin: 0;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -804,7 +817,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 정갈한 지하철 역 노드 심볼 (1부터 13까지 100% 동일한 직경과 스타일) */
+/* 정갈한 지하철 역 노드 심볼 (완료, 현재, 대기 상태별 무결한 동기화) */
 .station-circle {
   width: 22px;
   height: 22px;
@@ -822,7 +835,7 @@
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.2px;
-  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: all 0.25s ease;
   box-sizing: border-box;
 }
 
@@ -833,17 +846,54 @@
   box-shadow: 0 0 0 1.5px #10b981;
 }
 
-/* 호버 시 역 크기를 부풀리지 않고, 은은하고 정돈된 초록빛 링만 점등 */
-.subway-station:hover .station-circle {
-  box-shadow: 0 0 0 2px #059669, 0 0 6px rgba(5, 150, 105, 0.55);
+/* 미완료/대기(Pending) 역: 차분한 대기 상태 스타일 */
+.subway-station.is-pending .station-circle {
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 2px solid var(--border);
+  box-shadow: 0 0 0 1px var(--border);
 }
 
+[data-theme="dark"] .subway-station.is-pending .station-circle {
+  background: #1e293b;
+  color: #64748b;
+  border: 2px solid #334155;
+  box-shadow: 0 0 0 1px #334155;
+}
+
+/* 완료(Completed) 역: 에메랄드 초록 노드 */
+.subway-station.is-completed .station-circle {
+  background: #059669;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1.5px #059669;
+}
+
+[data-theme="dark"] .subway-station.is-completed .station-circle {
+  background: #10b981;
+  color: #042f2e;
+  border: 2px solid #111827;
+  box-shadow: 0 0 0 1.5px #10b981;
+}
+
+/* 현재(Current) 단계 역: 강조 링 점등 */
 .subway-station.is-current .station-circle {
-  box-shadow: 0 0 0 2px #059669;
+  background: #059669;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2.5px #059669, 0 0 8px rgba(5, 150, 105, 0.5);
 }
 
 [data-theme="dark"] .subway-station.is-current .station-circle {
-  box-shadow: 0 0 0 2px #10b981;
+  background: #10b981;
+  color: #042f2e;
+  border: 2px solid #111827;
+  box-shadow: 0 0 0 2.5px #10b981, 0 0 10px rgba(16, 185, 129, 0.65);
+}
+
+/* 호버 시 은은한 테두리 하이라이트 (캐릭터 위치는 절대 이동하지 않음) */
+.subway-station:hover .station-circle {
+  transform: translateY(-1px);
 }
 
 /* 역 바로 위에 앙증맞게 발을 딛고 서 있는 캐릭터 러너 (허공 분리 완전 해소) */

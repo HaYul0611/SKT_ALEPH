@@ -38,8 +38,10 @@
   },
   "tasks": {
     "completed": 13,
-    "inProgress": 13,
+    "currentStage": 13,
     "total": 13,
+    "status": "전체 마스터 완주",
+    "rate": 100.0,
     "source": "내 제출 현황"
   }
 }

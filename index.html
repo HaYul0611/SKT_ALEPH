@@ -572,17 +572,19 @@
           <div class="metric-card">
             <div class="metric-header-part">
               <div class="metric-num-wrap">
-                <span class="metric-num">13/13개</span>
+                <span class="metric-num" id="recordTasksCount">13/13개</span>
               </div>
-              <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag">전체 마스터 완주</span></p>
+              <p class="metric-label">핵심 과제 마스터 승인 완료 <span class="metric-progress-tag" id="recordTasksTag">전체 마스터 완주</span></p>
             </div>
 
             <!-- 차트: 13단계 과제 로드맵 지하철 노선도 트래커 (하드코딩 없는 동적 캐릭터 러너) -->
             <div class="metric-chart-wrap" aria-label="13개 과제 지하철 노선도 트래커">
               <div class="subway-stepper-box" id="subwayStepperBox">
                 <div class="subway-track-wrapper" id="subwayTrackWrapper">
-                  <!-- 지하철 노선 관통 레일 선 -->
-                  <div class="subway-rail-line"></div>
+                  <!-- 지하철 노선 관통 레일 선 (베이스 트랙 + 활성 구간 채움) -->
+                  <div class="subway-rail-line" id="subwayRailLine">
+                    <div class="subway-rail-fill" id="subwayRailFill"></div>
+                  </div>
 
                   <!-- 동적으로 이동하는 귀여운 러너 캐릭터 (하드코딩 X, JS로 위치 및 모션 제어) -->
                   <div class="subway-character-floater" id="subwayCharFloater" aria-label="현재 위치 챕터 러너">
