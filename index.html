@@ -858,15 +858,29 @@
 
               <div class="sparkline-chart-box">
 
-                <svg class="sparkline-svg" viewBox="0 0 240 56">
+                <svg class="sparkline-svg" id="sparklineSvg" viewBox="0 0 240 56">
 
                   <defs>
 
+                    <!-- 은은하고 청량한 푸른빛 호흡 그라디언트 -->
+
                     <linearGradient id="breatheGrad" x1="0" y1="0" x2="0" y2="1">
 
-                      <stop offset="0%" stop-color="currentColor" stop-opacity="0.25" />
+                      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.32" />
 
-                      <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />
+                      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.12" />
+
+                      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.0" />
+
+                    </linearGradient>
+
+                    <linearGradient id="breatheLineGrad" x1="0" y1="0" x2="1" y2="0">
+
+                      <stop offset="0%" stop-color="#0284c7" />
+
+                      <stop offset="50%" stop-color="#38bdf8" />
+
+                      <stop offset="100%" stop-color="#0284c7" />
 
                     </linearGradient>
 
@@ -876,14 +890,14 @@
 
                   <line x1="0" y1="25" x2="240" y2="25" class="sparkline-guide" stroke-dasharray="3,3" />
 
-                  <!-- 부드러운 호흡 그라디언트 영역 -->
+                  <!-- 부드러운 푸른빛 호흡 그라디언트 영역 -->
 
-                  <path class="sparkline-area"
-                    d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25 L 240,50 L 0,50 Z" />
+                  <path class="sparkline-area" id="sparklineWaveArea"
+                    d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25 L 240,54 L 0,54 Z" />
 
-                  <!-- 메인 호흡/심장박동기 파동 곡선 -->
+                  <!-- 메인 호흡 유기적 푸른빛 파동 곡선 -->
 
-                  <path class="sparkline-line"
+                  <path class="sparkline-line" id="sparklineWaveLine"
                     d="M 0,25 Q 15,10 30,25 T 60,25 T 90,25 T 120,25 T 150,25 T 180,25 T 210,25 T 240,25" />
 
                 </svg>

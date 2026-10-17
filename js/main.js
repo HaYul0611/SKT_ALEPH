@@ -678,6 +678,94 @@
 })();
 
 /* ===========================
+   Fluid Organic Breathing Wave Animator (진짜 물결치듯 유기적인 푸른빛 호흡 파동)
+   =========================== */
+(function initOrganicBreathingWave() {
+  var waveLine = document.getElementById('sparklineWaveLine');
+  var waveArea = document.getElementById('sparklineWaveArea');
+  var svg = document.getElementById('sparklineSvg');
+  if (!waveLine || !waveArea || !svg) return;
+
+  var width = 240;
+  var baseY = 25;
+  var segments = 12;
+  var step = width / segments;
+  var animId = null;
+  var startTime = null;
+  var isVisible = true;
+
+  // Catmull-Rom or Quadratic Bezier smooth curve builder
+  function buildPathData(points) {
+    if (points.length === 0) return '';
+    var d = 'M ' + points[0].x.toFixed(1) + ',' + points[0].y.toFixed(1);
+    for (var i = 0; i < points.length - 1; i++) {
+      var p0 = points[i];
+      var p1 = points[i + 1];
+      var midX = ((p0.x + p1.x) / 2).toFixed(1);
+      var midY = ((p0.y + p1.y) / 2).toFixed(1);
+      d += ' Q ' + p0.x.toFixed(1) + ',' + p0.y.toFixed(1) + ' ' + midX + ',' + midY;
+    }
+    var last = points[points.length - 1];
+    d += ' T ' + last.x.toFixed(1) + ',' + last.y.toFixed(1);
+    return d;
+  }
+
+  function render(timestamp) {
+    if (!startTime) startTime = timestamp;
+    var t = (timestamp - startTime) / 1000;
+
+    // 다중 사인파 합성: 실제 사람 호흡 리듬 + 자연스러운 높낮이 출렁임
+    var points = [];
+    for (var i = 0; i <= segments; i++) {
+      var x = i * step;
+      // 1차 주 호흡 파동 (들숨/날숨)
+      var wave1 = Math.sin(x * 0.042 - t * 2.1) * 7.5;
+      // 2차 유기적 잔물결 (자연스러운 높낮이 출렁임)
+      var wave2 = Math.cos(x * 0.085 + t * 1.3) * 3.2;
+      // 3차 전체 흉곽 팽창/수축 리듬
+      var breathePulse = Math.sin(t * 0.95) * 2.2;
+
+      var y = baseY + wave1 + wave2 + breathePulse;
+      y = Math.max(5, Math.min(46, y));
+      points.push({ x: x, y: y });
+    }
+
+    var linePath = buildPathData(points);
+    var areaPath = linePath + ' L 240,54 L 0,54 Z';
+
+    waveLine.setAttribute('d', linePath);
+    waveArea.setAttribute('d', areaPath);
+
+    if (isVisible) {
+      animId = requestAnimationFrame(render);
+    }
+  }
+
+  // IntersectionObserver로 화면에 보일 때만 렌더링 (CPU/배터리 효율 극대화)
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          isVisible = true;
+          if (!animId) {
+            animId = requestAnimationFrame(render);
+          }
+        } else {
+          isVisible = false;
+          if (animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(svg);
+  } else {
+    animId = requestAnimationFrame(render);
+  }
+})();
+
+/* ===========================
    Floating Back to Top Handler
    =========================== */
 (function initBackToTop() {
