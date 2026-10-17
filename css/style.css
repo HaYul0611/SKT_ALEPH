@@ -153,6 +153,15 @@ img {
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.16);
 }
 
+.nav-reading-status:hover .reading-dot {
+  background: #8b5cf6;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.55);
+}
+
+.nav-reading-status:hover .reading-dot::after {
+  border-color: #8b5cf6;
+}
+
 .nav-reading-status:active {
   transform: none;
 }
@@ -857,10 +866,6 @@ img {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-
-}
-
-.timeline-item.current .timeline-dot {
   background: var(--success);
   top: 10px;
   left: 4px;
@@ -3486,23 +3491,8 @@ body.modal-open {
    =========================== */
 
 @media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .pulse-ring-dot::after,
-  .nav-reading-status .reading-dot::after,
-  .live-dot::after,
-  .timeline-item.current .timeline-dot::after {
-    animation: none !important;
-    opacity: 0.3 !important;
-    transform: none !important;
+  html {
+    scroll-behavior: auto;
   }
 }
 
