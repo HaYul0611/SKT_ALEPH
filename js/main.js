@@ -688,45 +688,60 @@
 
   var width = 240;
   var baseY = 25;
-  var segments = 12;
+  var segments = 24;
   var step = width / segments;
   var animId = null;
-  var startTime = null;
+  var startTime = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
   var isVisible = true;
 
-  // Catmull-Rom or Quadratic Bezier smooth curve builder
+  // 부드러운 3차 베지어 스플라인 (모든 계산된 피크와 골의 굴곡을 100% 온전히 통과)
   function buildPathData(points) {
     if (points.length === 0) return '';
     var d = 'M ' + points[0].x.toFixed(1) + ',' + points[0].y.toFixed(1);
     for (var i = 0; i < points.length - 1; i++) {
       var p0 = points[i];
       var p1 = points[i + 1];
-      var midX = ((p0.x + p1.x) / 2).toFixed(1);
-      var midY = ((p0.y + p1.y) / 2).toFixed(1);
-      d += ' Q ' + p0.x.toFixed(1) + ',' + p0.y.toFixed(1) + ' ' + midX + ',' + midY;
+      var dx = p1.x - p0.x;
+      var cp1x = (p0.x + dx * 0.45).toFixed(1);
+      var cp1y = p0.y.toFixed(1);
+      var cp2x = (p0.x + dx * 0.55).toFixed(1);
+      var cp2y = p1.y.toFixed(1);
+      d += ' C ' + cp1x + ',' + cp1y + ' ' + cp2x + ',' + cp2y + ' ' + p1.x.toFixed(1) + ',' + p1.y.toFixed(1);
     }
-    var last = points[points.length - 1];
-    d += ' T ' + last.x.toFixed(1) + ',' + last.y.toFixed(1);
     return d;
   }
 
   function render(timestamp) {
-    if (!startTime) startTime = timestamp;
-    var t = (timestamp - startTime) / 1000;
+    var now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : (timestamp || Date.now());
+    var t = (now - startTime) / 1000;
 
-    // 다중 사인파 합성: 실제 사람 호흡 리듬 + 자연스러운 높낮이 출렁임
+    // 실제 생체 호흡 주기: 약 4.2초 주기의 깊은 들숨(Inhale) ↔ 날숨(Exhale) 팽창/수축 리듬
+    var inhaleCycle = Math.sin(t * 1.5);
+    var chestExpansion = 1.05 + 0.35 * inhaleCycle; // 0.70 ~ 1.40배 다이내믹 팽창
+
+    // 다중 고조파 생체 호흡 파형 합성 (위치별 고저차 굴곡이 살아있는 엔벨로프)
     var points = [];
     for (var i = 0; i <= segments; i++) {
       var x = i * step;
-      // 1차 주 호흡 파동 (들숨/날숨)
-      var wave1 = Math.sin(x * 0.042 - t * 2.1) * 7.5;
-      // 2차 유기적 잔물결 (자연스러운 높낮이 출렁임)
-      var wave2 = Math.cos(x * 0.085 + t * 1.3) * 3.2;
-      // 3차 전체 흉곽 팽창/수축 리듬
-      var breathePulse = Math.sin(t * 0.95) * 2.2;
+      var normX = x / width; // 0.0 ~ 1.0
 
-      var y = baseY + wave1 + wave2 + breathePulse;
-      y = Math.max(5, Math.min(46, y));
+      // 공간 엔벨로프: 균일한 기계식 사인파를 탈피하여 높은 마루, 깊은 골, 완만한 구간이 교차
+      var spatialEnvelope = 0.55 +
+        0.50 * Math.sin(normX * Math.PI * 2 - 0.3) +
+        0.28 * Math.cos(normX * Math.PI * 3.2);
+
+      // 1차 주 호흡 팽창 파동 (높은 피크와 깊은 골 형성)
+      var primaryWave = Math.sin(x * 0.038 - t * 1.8) * 13.5 * spatialEnvelope * chestExpansion;
+
+      // 2차 생체 고조파 (마루마다 다른 높낮이 굴곡 부여)
+      var secondaryWave = Math.sin(x * 0.072 - t * 2.5 + 1.1) * 4.2 * chestExpansion;
+
+      // 3차 흉곽 기저 유동
+      var chestDrift = Math.sin(t * 1.2 + normX * 1.5) * 2.0;
+
+      var y = baseY + primaryWave + secondaryWave + chestDrift;
+      // SVG viewBox(0 0 240 56) 내부에서 테두리 클리핑 없이 최대 굴곡(고저차 ~33px) 보장
+      y = Math.max(6.5, Math.min(47.5, y));
       points.push({ x: x, y: y });
     }
 
@@ -741,27 +756,45 @@
     }
   }
 
-  // IntersectionObserver로 화면에 보일 때만 렌더링 (CPU/배터리 효율 극대화)
+  // 살아 숨쉬는 생체 호흡 시작
+  function startWave() {
+    isVisible = true;
+    if (!animId) {
+      animId = requestAnimationFrame(render);
+    }
+  }
+
+  function stopWave() {
+    isVisible = false;
+    if (animId) {
+      cancelAnimationFrame(animId);
+      animId = null;
+    }
+  }
+
+  startWave();
+
+  // 탭 전환 시 CPU/배터리 절전 (현재 탭 보고 있을 때는 항상 유기적으로 살아 숨쉼)
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      stopWave();
+    } else {
+      startWave();
+    }
+  });
+
+  // 여유 있는 400px 마진의 IntersectionObserver (스크롤 진입 전부터 이미 자연스럽게 호흡)
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          isVisible = true;
-          if (!animId) {
-            animId = requestAnimationFrame(render);
-          }
-        } else {
-          isVisible = false;
-          if (animId) {
-            cancelAnimationFrame(animId);
-            animId = null;
-          }
+        if (entry.isIntersecting && !document.hidden) {
+          startWave();
+        } else if (!entry.isIntersecting) {
+          stopWave();
         }
       });
-    }, { threshold: 0.1 });
+    }, { rootMargin: '400px 0px 400px 0px', threshold: 0 });
     observer.observe(svg);
-  } else {
-    animId = requestAnimationFrame(render);
   }
 })();
 

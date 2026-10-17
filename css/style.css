@@ -214,19 +214,26 @@ img {
   border-color: rgba(16, 185, 129, 0.3);
 }
 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
 .nav-name {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
+  transform: none;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.2px;
-  text-align: center;
+  text-align: left;
   pointer-events: auto;
   white-space: nowrap;
   font-size: 13.5px;
   border-bottom: none;
   transition: opacity 0.2s ease;
+  margin-right: 12px;
 }
 
 .nav-name:hover {
@@ -1582,20 +1589,27 @@ img {
   align-items: center;
   font-size: 11px;
   color: var(--text-mid);
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .sparkline-badge {
   font-size: 10px;
   font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--text);
+  padding: 2.5px 8px;
+  border-radius: 4px;
+  background: rgba(2, 132, 199, 0.08);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.22);
   letter-spacing: -0.1px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 [data-theme="dark"] .sparkline-badge {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
 }
 
 /* 5. Mini Bar Chart */
