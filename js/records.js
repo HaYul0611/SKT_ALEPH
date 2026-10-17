@@ -5,10 +5,10 @@
   function applyRecordsData(data) {
     if (!data) return;
 
-    var attendanceDays = data.attendance ? data.attendance.days : 43;
-    var ritualDays = data.ritual ? data.ritual.days : 43;
-    var practiceSuccess = data.practice ? data.practice.successDays : 39;
-    var practiceTotal = data.practice ? data.practice.totalDays : 43;
+    var attendanceDays = data.attendance ? data.attendance.days : 44;
+    var ritualDays = data.ritual ? data.ritual.days : 44;
+    var practiceSuccess = data.practice ? data.practice.successDays : 40;
+    var practiceTotal = data.practice ? data.practice.totalDays : 44;
     var practiceRate = data.practice ? data.practice.rate : 91;
     var tasksCompleted = data.tasks ? data.tasks.completed : 13;
     var tasksTotal = data.tasks ? data.tasks.total : 13;
@@ -82,9 +82,9 @@
     .catch(function () {
       // 오프라인/로컬 실패 시 기본 13개 마스터 기준 데이터 적용
       applyRecordsData({
-        attendance: { days: 43 },
-        ritual: { days: 43 },
-        practice: { successDays: 39, totalDays: 43, rate: 91 },
+        attendance: { days: 44, avgCheckIn: '09:03' },
+        ritual: { days: 44 },
+        practice: { successDays: 40, totalDays: 44, rate: 91 },
         breathe: { consistency: 98 },
         tasks: { completed: 13, currentStage: 13, total: 13, status: "전체 마스터 완주", rate: 100.0 }
       });
@@ -436,32 +436,48 @@
     tooltip.style.top = y + 'px';
   }
 
-  // 2. 월 선택 탭 이벤트 바인딩 (8월, 9월, 10월, 11월)
-  if (monthTabs && monthTabs.length > 0) {
-    monthTabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var targetMonth = this.dataset.month;
-        if (!targetMonth || targetMonth === currentMonthKey) return;
+  // 2. 월 선택 화살표 네비게이션 (< 2026. 10 >, 8~11월 제한)
+  var allowedMonths = ['2026-08', '2026-09', '2026-10', '2026-11'];
+  var currentMonthIdx = 2; // 기본: 2026-10 (가장 최근 갱신된 월)
+  var currentMonthKey = allowedMonths[currentMonthIdx];
 
-        monthTabs.forEach(function (t) {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        this.classList.add('active');
-        this.setAttribute('aria-selected', 'true');
+  var prevBtn = document.getElementById('calPrevBtn');
+  var nextBtn = document.getElementById('calNextBtn');
 
-        currentMonthKey = targetMonth;
-        if (currentLabel) {
-          var parts = targetMonth.split('-');
-          currentLabel.textContent = parts[0] + '. ' + parts[1];
-        }
+  function updateNavButtons() {
+    if (prevBtn) prevBtn.disabled = (currentMonthIdx <= 0);
+    if (nextBtn) nextBtn.disabled = (currentMonthIdx >= allowedMonths.length - 1);
+    if (currentLabel) {
+      var parts = allowedMonths[currentMonthIdx].split('-');
+      currentLabel.textContent = parts[0] + '. ' + parts[1];
+    }
+  }
 
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      if (currentMonthIdx > 0) {
+        currentMonthIdx--;
+        currentMonthKey = allowedMonths[currentMonthIdx];
+        updateNavButtons();
         renderAttendanceCalendar(cachedAttendanceData);
-      });
+      }
     });
   }
 
-  // 3. 요일 달력 형태 미니 캘린더 그리드 렌더링 (Cortex 동기화)
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      if (currentMonthIdx < allowedMonths.length - 1) {
+        currentMonthIdx++;
+        currentMonthKey = allowedMonths[currentMonthIdx];
+        updateNavButtons();
+        renderAttendanceCalendar(cachedAttendanceData);
+      }
+    });
+  }
+
+  updateNavButtons();
+
+  // 3. 요일 달력 형태 미니 캘린더 그리드 렌더링 (일요일 시작 & Cortex 실제 기록 동기화)
   function renderAttendanceCalendar(attData) {
     if (!calGrid) return;
     if (attData) cachedAttendanceData = attData;
@@ -486,14 +502,14 @@
         monthName: '10월',
         year: 2026,
         month: 10,
-        startOffset: 3, // 목요일 시작 (월, 화, 수 3칸 빈칸)
+        startOffset: 4, // 2026년 10월 1일은 목요일 -> 일(0), 월(1), 화(2), 수(3) => 오프셋 4
         days: (attData && attData.history) ? attData.history : []
       };
     }
 
     var fragment = document.createDocumentFragment();
 
-    // 3-1. 시작 요일에 맞춘 빈 칸(오프셋) 채우기 (진짜 요일 달력 구조)
+    // 3-1. 일요일 시작 오프셋에 맞춘 빈 칸 채우기
     for (var b = 0; b < monthInfo.startOffset; b++) {
       var emptyCell = document.createElement('div');
       emptyCell.className = 'cal-day-cell is-empty';
@@ -506,9 +522,12 @@
     daysList.forEach(function (item) {
       var cell = document.createElement('div');
       var typeClass = 'type-' + (item.type || 'attended');
-      var isToday = (currentMonthKey === '2026-10' && item.day === 15);
+      var isToday = (currentMonthKey === '2026-10' && item.day === 16); // 가장 최근 출석일
 
-      cell.className = 'cal-day-cell ' + typeClass + (isToday ? ' is-today' : '');
+      // 일요일 빨간색, 토요일 파란색 클래스
+      var dowColorClass = (item.dowIdx === 0) ? ' dow-sun' : ((item.dowIdx === 6) ? ' dow-sat' : '');
+
+      cell.className = 'cal-day-cell ' + typeClass + (isToday ? ' is-today' : '') + dowColorClass;
       cell.setAttribute('role', 'gridcell');
       cell.setAttribute('tabindex', '0');
       cell.textContent = item.day;
@@ -517,7 +536,9 @@
       var tooltipHtml = '';
 
       if (item.type === 'attended') {
-        tooltipHtml = fullDateText + ' · <strong>' + item.seq + '회차 출석</strong> · <strong>' + (item.time || '08:44') + '</strong> 입실';
+        var entryStr = item.entryTime || item.time || '09:03';
+        var exitStr = item.exitTime || '18:00';
+        tooltipHtml = fullDateText + ' · <strong>' + item.seq + '회차 정상 출석</strong> · <strong>' + entryStr + '</strong> 입실 (' + exitStr + ' 퇴실)';
       } else if (item.type === 'weekend') {
         tooltipHtml = fullDateText + ' · 주말 (수업 없음)';
       } else if (item.type === 'holiday') {
@@ -553,8 +574,9 @@
 
   window.renderAttendanceCalendar = renderAttendanceCalendar;
 
-  // DOM 로드 즉시 기본 렌더링
-  renderAttendanceCalendar({ avgCheckIn: '08:46', days: 43 });
+  // DOM 로드 즉시 기본 렌더링 (최신 10월 갱신 데이터 기준)
+  renderAttendanceCalendar({ avgCheckIn: '09:03', days: 44 });
 })();
+
 
 

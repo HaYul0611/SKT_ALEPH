@@ -383,59 +383,60 @@
   gap: 2.5px;
 }
 
-/* 상단 8월~11월 월 전환 네비게이터 */
+/* 상단 < 2026. 10 > 월 전환 화살표 네비게이터 */
 .cal-month-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2px;
+  margin-bottom: 2.5px;
   width: 100%;
+  padding: 0 1px;
 }
 
-.cal-month-tabs {
-  display: flex;
-  gap: 1.5px;
-  background: rgba(0, 0, 0, 0.04);
-  padding: 1px;
+.cal-nav-btn {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--text-mid);
+  width: 16px;
+  height: 16px;
   border-radius: 3px;
-}
-
-[data-theme="dark"] .cal-month-tabs {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.cal-month-tab {
-  border: none;
-  background: transparent;
-  padding: 1px 3.5px;
-  border-radius: 2.5px;
-  font-size: 7.5px;
-  font-weight: 600;
-  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.15s ease;
-  line-height: 1.2;
+  padding: 0;
+  line-height: 1;
 }
 
-.cal-month-tab:hover {
-  color: var(--text);
+[data-theme="dark"] .cal-nav-btn {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: #d4d4d8;
 }
 
-.cal-month-tab.active {
+.cal-nav-btn:hover:not(:disabled) {
   background: #18181b;
   color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  border-color: #18181b;
 }
 
-[data-theme="dark"] .cal-month-tab.active {
+[data-theme="dark"] .cal-nav-btn:hover:not(:disabled) {
   background: #ffffff;
   color: #18181b;
+  border-color: #ffffff;
+}
+
+.cal-nav-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .cal-current-label {
-  font-size: 8px;
+  font-size: 8.5px;
   font-weight: 700;
-  color: var(--text-mid);
+  color: var(--text);
   letter-spacing: -0.2px;
 }
 
@@ -454,6 +455,17 @@
   color: var(--text-dim);
   line-height: 1.1;
   letter-spacing: -0.2px;
+}
+
+/* 일요일: 빨간색, 토요일: 파란색 */
+.cal-days-header .dow-sun,
+.cal-day-cell.dow-sun {
+  color: #ef4444 !important;
+}
+
+.cal-days-header .dow-sat,
+.cal-day-cell.dow-sat {
+  color: #3b82f6 !important;
 }
 
 /* 콤팩트 미니 달력 그리드 */

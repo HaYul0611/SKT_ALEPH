@@ -331,7 +331,7 @@
           <span class="section-num-tag">02</span>
           <div class="section-title-wrap">
             <h2 class="section-title">Records</h2>
-            <p class="section-summary-preview" id="recordsSectionSummary">출석 43일(100% 무결석) · 리추얼 43일 연속 · 과제 마스터 승인
+            <p class="section-summary-preview" id="recordsSectionSummary">출석 44일(100% 무결석) · 리추얼 44일 연속 · 과제 마스터 승인
               13/13개 (100% 완주)</p>
           </div>
         </div>
@@ -346,19 +346,19 @@
           <div class="metric-card">
             <div class="metric-header-part">
               <div class="metric-num-wrap">
-                <span class="metric-num" id="recordAttendanceDays">43/43일</span>
+                <span class="metric-num" id="recordAttendanceDays">44/44일</span>
                 <span class="metric-rate" id="recordAttendanceRate">(100%)</span>
               </div>
               <p class="metric-label">출석률, 결석 0</p>
             </div>
 
-            <!-- 차트: 실시간 아날로그 시계 + 8~11월 미니 캘린더 그리드 (Cortex 동기화 & 요일 달력) -->
+            <!-- 차트: 실시간 아날로그 시계 + 8~11월 미니 캘린더 그리드 (일요일 시작 & Cortex 동기화) -->
             <div class="metric-chart-wrap" aria-label="출석률 100% 실시간 시계 및 8~11월 미니 캘린더 시각화">
               <div class="attendance-visual" id="attendanceVisual">
                 <!-- 좌측: 실시간 블랙 아날로그 시계 & 단정한 입실 시간 뱃지 -->
                 <div class="attendance-clock-col">
                   <div class="live-clock-box" id="liveClockBox" title="실시간 아날로그 시계 (성실한 시간 무브먼트)" aria-label="실시간 아날로그 시계">
-                    <svg class="analog-clock" viewBox="0 0 52 52" width="46" height="46" aria-hidden="true">
+                    <svg class="analog-clock" viewBox="0 0 52 52" width="44" height="44" aria-hidden="true">
                       <!-- 블랙 다이얼 외곽 테두리 링 -->
                       <circle class="clock-dial-frame" cx="26" cy="26" r="23" />
                       <!-- 12, 3, 6, 9 인덱스 눈금 -->
@@ -376,31 +376,32 @@
                   <!-- 펄스 없는 단정하고 자연스러운 입실 시간 태그 -->
                   <div class="clock-status-tag" id="attendanceClockTag" title="Cortex 실제 기록 기반 평균 입실 시간">
                     <span class="clock-icon-mini" aria-hidden="true">⏱</span>
-                    <span class="clock-status-text" id="attendanceClockText">평균 08:46 입실</span>
+                    <span class="clock-status-text" id="attendanceClockText">평균 09:03 입실</span>
                   </div>
                 </div>
 
-                <!-- 우측: 8월~11월 요일 달력 형태 미니 캘린더 그리드 -->
+                <!-- 우측: 8월~11월 요일 달력 형태 미니 캘린더 그리드 (일요일 시작) -->
                 <div class="attendance-calendar-col">
-                  <!-- 상단 8월~11월 월 선택 탭 -->
+                  <!-- 상단 < 2026. 10 > 월 전환 화살표 네비게이터 (8~11월 제한) -->
                   <div class="cal-month-nav" aria-label="출석 기록 월 선택">
-                    <div class="cal-month-tabs" role="tablist" id="calMonthTabs">
-                      <button type="button" class="cal-month-tab" data-month="2026-08" role="tab" aria-selected="false">8월</button>
-                      <button type="button" class="cal-month-tab" data-month="2026-09" role="tab" aria-selected="false">9월</button>
-                      <button type="button" class="cal-month-tab active" data-month="2026-10" role="tab" aria-selected="true">10월</button>
-                      <button type="button" class="cal-month-tab" data-month="2026-11" role="tab" aria-selected="false">11월</button>
-                    </div>
+                    <button type="button" class="cal-nav-btn prev" id="calPrevBtn" aria-label="이전 달 (8월까지)" title="이전 달">
+                      <svg viewBox="0 0 16 16" width="9" height="9" aria-hidden="true"><path d="M10 12L4 8l6-4v8z" fill="currentColor"/></svg>
+                    </button>
                     <span class="cal-current-label" id="calCurrentLabel">2026. 10</span>
+                    <button type="button" class="cal-nav-btn next" id="calNextBtn" aria-label="다음 달 (11월까지)" title="다음 달">
+                      <svg viewBox="0 0 16 16" width="9" height="9" aria-hidden="true"><path d="M6 4l6 4-6 4V4z" fill="currentColor"/></svg>
+                    </button>
                   </div>
 
+                  <!-- 일 -> 월 순서 요일 헤더 (일: 빨강, 토: 파랑) -->
                   <div class="cal-days-header" aria-hidden="true">
-                    <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>
+                    <span class="dow-sun">일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span class="dow-sat">토</span>
                   </div>
                   <div class="cal-month-grid mini-cal-grid" id="attendanceCalGrid" role="grid" aria-label="8~11월 요일별 출석 달력">
                     <!-- JS로 선택된 월의 시작 요일 오프셋 및 일자별 Cortex 동기화 데이터 렌더링 -->
                   </div>
                   <div class="cal-footer-meta">
-                    <span class="streak-caption" id="attendanceStreakCaption">43회차 정상 출석 (100% 무결석) · 결석 0</span>
+                    <span class="streak-caption" id="attendanceStreakCaption">44회차 정상 출석 (100% 무결석) · 결석 0</span>
                   </div>
                 </div>
 
@@ -418,10 +419,10 @@
           <div class="metric-card">
             <div class="metric-header-part">
               <div class="metric-num-wrap">
-                <span class="metric-num" id="recordRitualDays">43일</span>
+                <span class="metric-num" id="recordRitualDays">44일</span>
               </div>
               <p class="metric-label">리추얼 작성 일수 <span class="metric-date-range" id="recordRitualDateRange">(2026-08-11 ~
-                  10-15)</span></p>
+                  10-17)</span></p>
             </div>
 
             <!-- 차트: 8주간 지속 누적 타임라인 트래커 -->
@@ -458,7 +459,7 @@
           <div class="metric-card highlight-card">
             <div class="metric-header-part">
               <div class="metric-num-wrap">
-                <span class="metric-num" id="recordPracticeDays">39/43일</span>
+                <span class="metric-num" id="recordPracticeDays">40/44일</span>
                 <span class="metric-rate" id="recordPracticeRate">(91%)</span>
               </div>
               <p class="metric-label">강점 행동 "실천했다" 비율</p>
@@ -468,11 +469,11 @@
             <div class="metric-chart-wrap" aria-label="강점 행동 실천율 90%">
               <div class="practice-gauge-box">
                 <div class="segmented-bar" aria-hidden="true">
-                  <div class="segmented-fill" id="recordPracticeFill" style="width: 90.7%;"></div>
-                  <div class="segmented-unfill" style="width: 9.3%;"></div>
+                  <div class="segmented-fill" id="recordPracticeFill" style="width: 90.9%;"></div>
+                  <div class="segmented-unfill" style="width: 9.1%;"></div>
                 </div>
                 <div class="gauge-meta-row">
-                  <span class="gauge-tag-success" id="recordPracticeTag">실천 39일 (91%)</span>
+                  <span class="gauge-tag-success" id="recordPracticeTag">실천 40일 (91%)</span>
                   <span class="gauge-tag-rest">재정비 4일</span>
                 </div>
               </div>
