@@ -406,4 +406,49 @@
   line-height: 1.6;
 }
 
+/* ==========================================================================
+   Responsive Mobile Timeline (모바일 세로 타임라인 점선 겹침 해소 & 정렬)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .timeline {
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 16px;
+    overflow-x: visible;
+  }
+
+  .timeline-item {
+    min-width: 100%;
+    padding-top: 0;
+    padding-left: 28px;
+    padding-right: 0;
+  }
+
+  .timeline-dot {
+    top: 3px;
+    left: 0;
+  }
+
+  .timeline-item.current .timeline-dot {
+    top: 3px;
+    left: 0;
+  }
+
+  .timeline-item:not(:last-child) {
+    padding-bottom: 28px;
+  }
+
+  .timeline-item:not(:last-child)::after {
+    left: 4.5px;
+    top: 17px;
+    width: 1px;
+    height: calc(100% - 13px);
+  }
+
+  .timeline-item.current::after {
+    background: repeating-linear-gradient(180deg, var(--text-muted) 0, var(--text-muted) 4px, transparent 4px, transparent 8px);
+    background-size: 1px 8px;
+  }
+}
+
 
