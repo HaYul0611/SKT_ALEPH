@@ -49,10 +49,14 @@
     var pracRateEl = document.getElementById('recordPracticeRate');
     var pracFillEl = document.getElementById('recordPracticeFill');
     var pracTagEl = document.getElementById('recordPracticeTag');
+    var restTagEl = document.querySelector('.gauge-tag-rest');
+    var restDays = Math.max(0, practiceTotal - practiceSuccess);
+
     if (pracDaysEl) pracDaysEl.textContent = practiceSuccess + '/' + practiceTotal + '일';
     if (pracRateEl) pracRateEl.textContent = '(' + practiceRate + '%)';
     if (pracFillEl) pracFillEl.style.width = practiceRate + '%';
     if (pracTagEl) pracTagEl.textContent = '실천 ' + practiceSuccess + '일 (' + practiceRate + '%)';
+    if (restTagEl) restTagEl.textContent = '재정비 ' + restDays + '일';
 
     // 5. 아침 호흡 루틴 실천 배지
     var breatheBadgeEl = document.getElementById('recordBreatheBadge');
@@ -65,13 +69,14 @@
       window.renderSubwayTracker(data.tasks);
     }
 
-    // 7. 출석 실시간 아날로그 시계 & 31일 달력 인터랙션 동기화 (하드코딩 제거)
+    // 7. 출석 실시간 아날로그 시계 & 4개월 달력 인터랙션 동기화 (하드코딩 제거)
     if (window.renderAttendanceCalendar && data.attendance) {
       window.renderAttendanceCalendar(data.attendance);
     }
   }
 
-  fetch('data/records.json')
+  // 브라우저 HTTP 캐시로 인한 구버전 표시 방지 (항상 최신 records.json 실시간 페치)
+  fetch('data/records.json?_t=' + Date.now(), { cache: 'no-cache' })
     .then(function (res) {
       if (!res.ok) throw new Error('records.json network response not ok');
       return res.json();
@@ -79,10 +84,11 @@
     .then(function (data) {
       applyRecordsData(data);
     })
-    .catch(function () {
+    .catch(function (err) {
+      console.warn('records.json fetch failed, applying offline fallback', err);
       // 오프라인/로컬 실패 시 기본 13개 마스터 기준 데이터 적용
       applyRecordsData({
-        attendance: { days: 44, avgCheckIn: '09:03' },
+        attendance: { days: 44, totalDays: 44, rate: 100, avgCheckIn: '09:03' },
         ritual: { days: 44 },
         practice: { successDays: 40, totalDays: 44, rate: 91 },
         breathe: { consistency: 98 },
@@ -481,30 +487,25 @@
   function renderAttendanceCalendar(attData) {
     if (!calGrid) return;
     if (attData) cachedAttendanceData = attData;
+    var activeData = cachedAttendanceData;
+    if (!activeData) return;
 
     calGrid.innerHTML = '';
 
     // Cortex 기반 평균 입실 시간 바인딩
-    if (clockTextEl && attData && attData.avgCheckIn) {
-      clockTextEl.textContent = '평균 ' + attData.avgCheckIn + ' 입실';
+    if (clockTextEl && activeData.avgCheckIn) {
+      clockTextEl.textContent = '평균 ' + activeData.avgCheckIn + ' 입실';
     }
 
-    if (streakCaption && attData && attData.days) {
-      streakCaption.textContent = attData.days + '회차 정상 출석 (100% 무결석) · 결석 0';
+    if (streakCaption && activeData.days) {
+      streakCaption.textContent = activeData.days + '회차 정상 출석 (100% 무결석) · 결석 0';
     }
 
-    var monthsData = (attData && attData.months) ? attData.months : null;
+    var monthsData = activeData.months || null;
     var monthInfo = monthsData ? monthsData[currentMonthKey] : null;
 
     if (!monthInfo) {
-      // 폴백: 10월 기본 데이터
-      monthInfo = {
-        monthName: '10월',
-        year: 2026,
-        month: 10,
-        startOffset: 4, // 2026년 10월 1일은 목요일 -> 일(0), 월(1), 화(2), 수(3) => 오프셋 4
-        days: (attData && attData.history) ? attData.history : []
-      };
+      return;
     }
 
     var fragment = document.createDocumentFragment();
@@ -536,9 +537,15 @@
       var tooltipHtml = '';
 
       if (item.type === 'attended') {
-        var entryStr = item.entryTime || item.time || '09:03';
+        var entryStr = item.entryTime || item.time;
         var exitStr = item.exitTime || '18:00';
-        tooltipHtml = fullDateText + ' · <strong>' + item.seq + '회차 정상 출석</strong> · <strong>' + entryStr + '</strong> 입실 (' + exitStr + ' 퇴실)';
+        if (entryStr) {
+          // Cortex에서 실제 수집된 세부 입퇴실 분 기록이 있는 경우 (10월 등)
+          tooltipHtml = fullDateText + ' · <strong>' + item.seq + '회차 정상 출석</strong> · <strong>' + entryStr + '</strong> 입실 (' + exitStr + ' 퇴실)';
+        } else {
+          // 세부 분 데이터 없이 100% 정상 출석으로 인정된 전달(8~9월) 기록
+          tooltipHtml = fullDateText + ' · <strong>' + item.seq + '회차 정상 출석</strong> · <strong>정시 입실</strong> (100% 무결석 인정)';
+        }
       } else if (item.type === 'weekend') {
         tooltipHtml = fullDateText + ' · 주말 (수업 없음)';
       } else if (item.type === 'holiday') {
@@ -573,9 +580,6 @@
   }
 
   window.renderAttendanceCalendar = renderAttendanceCalendar;
-
-  // DOM 로드 즉시 기본 렌더링 (최신 10월 갱신 데이터 기준)
-  renderAttendanceCalendar({ avgCheckIn: '09:03', days: 44 });
 })();
 
 

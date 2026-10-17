@@ -18,7 +18,9 @@
     let attDays = 39;
     let attTotalDays = 39;
     let attRate = 100;
+    let avgCheckIn = "09:03";
     const attMeBody = document.querySelector('#attendanceMeBody');
+    const dailyLogs = [];
     if (attMeBody) {
       const matchDays = attMeBody.innerText.match(/출석\s*(\d+)/);
       if (matchDays) attDays = parseInt(matchDays[1], 10);
@@ -26,6 +28,41 @@
       if (matchTotal) attTotalDays = parseInt(matchTotal[1], 10);
       const matchRate = attMeBody.innerText.match(/(\d+)%/);
       if (matchRate) attRate = parseInt(matchRate[1], 10);
+
+      // 출석 테이블 개별 행(입퇴실 시각 등) 상세 파싱
+      const attRows = attMeBody.querySelectorAll('.att-me-table tbody tr');
+      let entryMinsSum = 0;
+      let entryCount = 0;
+      attRows.forEach(row => {
+        const dateTd = row.querySelector('.att-me-date');
+        const markTd = row.querySelector('.att-me-mark');
+        const entryTd = row.querySelector('.att-me-time:nth-of-type(1)') || row.children[3];
+        const exitTd = row.children[4];
+        if (dateTd) {
+          const text = dateTd.textContent.trim();
+          const match = text.match(/(\d+)\/(\d+)\s*\((.+)\)/);
+          if (match) {
+            const entryStr = entryTd ? entryTd.textContent.trim() : '';
+            const exitStr = exitTd ? exitTd.textContent.trim() : '';
+            if (entryStr && entryStr.includes(':')) {
+              const [h, m] = entryStr.split(':').map(Number);
+              entryMinsSum += (h * 60 + m);
+              entryCount++;
+            }
+            dailyLogs.push({
+              date: match[1].padStart(2, '0') + '-' + match[2].padStart(2, '0'),
+              dow: match[3],
+              mark: markTd ? markTd.textContent.trim() : '○',
+              entryTime: entryStr || null,
+              exitTime: exitStr || null
+            });
+          }
+        }
+      });
+      if (entryCount > 0) {
+        const avgMin = Math.round(entryMinsSum / entryCount);
+        avgCheckIn = String(Math.floor(avgMin / 60)).padStart(2, '0') + ':' + String(avgMin % 60).padStart(2, '0');
+      }
     }
 
     // 과제 승인 데이터 탐색 (동적 N개 과제 자동 감지)
@@ -48,7 +85,7 @@
     }
 
     // 리추얼 누적 횟수 탐색
-    let ritualTotal = 42;
+    let ritualTotal = 44;
     const ritualTotalEl = document.querySelector('#ritualTotal');
     if (ritualTotalEl) {
       const parsed = parseInt(ritualTotalEl.textContent.trim(), 10);
@@ -59,13 +96,17 @@
     const syncData = {
       lastUpdated: todayStr,
       startDate: "2026-08-11",
+      endDate: "2026-11-12",
       autoSyncDate: true,
+      cohortName: "대전 B반",
       attendance: {
         days: attDays,
         totalDays: attTotalDays,
         rate: attRate,
         absent: 0,
-        source: "내 출석 기록"
+        avgCheckIn: avgCheckIn,
+        recentCheckIn: dailyLogs[0] ? dailyLogs[0].entryTime : avgCheckIn,
+        source: "리추얼 기록"
       },
       ritual: {
         days: ritualTotal,

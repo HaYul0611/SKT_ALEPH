@@ -158,11 +158,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 1,
-            "label": "1회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "1회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 12,
@@ -171,11 +171,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 2,
-            "label": "2회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "2회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 13,
@@ -184,11 +184,11 @@
             "dow": "목",
             "dowIdx": 4,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 3,
-            "label": "3회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "3회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 14,
@@ -197,11 +197,11 @@
             "dow": "금",
             "dowIdx": 5,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 4,
-            "label": "4회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "4회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 15,
@@ -236,11 +236,11 @@
             "dow": "월",
             "dowIdx": 1,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 5,
-            "label": "5회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "5회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 18,
@@ -249,11 +249,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 6,
-            "label": "6회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "6회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 19,
@@ -262,11 +262,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 7,
-            "label": "7회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "7회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 20,
@@ -275,11 +275,11 @@
             "dow": "목",
             "dowIdx": 4,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 8,
-            "label": "8회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "8회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 21,
@@ -288,11 +288,11 @@
             "dow": "금",
             "dowIdx": 5,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 9,
-            "label": "9회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "9회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 22,
@@ -327,11 +327,11 @@
             "dow": "월",
             "dowIdx": 1,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 10,
-            "label": "10회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "10회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 25,
@@ -340,11 +340,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 11,
-            "label": "11회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "11회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 26,
@@ -353,11 +353,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 12,
-            "label": "12회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "12회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 27,
@@ -366,11 +366,11 @@
             "dow": "목",
             "dowIdx": 4,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 13,
-            "label": "13회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "13회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 28,
@@ -379,11 +379,11 @@
             "dow": "금",
             "dowIdx": 5,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 14,
-            "label": "14회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "14회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 29,
@@ -418,11 +418,11 @@
             "dow": "월",
             "dowIdx": 1,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 15,
-            "label": "15회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "15회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           }
         ]
       },
@@ -441,11 +441,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 16,
-            "label": "16회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "16회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 2,
@@ -454,11 +454,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 17,
-            "label": "17회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "17회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 3,
@@ -467,11 +467,11 @@
             "dow": "목",
             "dowIdx": 4,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 18,
-            "label": "18회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "18회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 4,
@@ -480,11 +480,11 @@
             "dow": "금",
             "dowIdx": 5,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 19,
-            "label": "19회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "19회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 5,
@@ -519,11 +519,11 @@
             "dow": "월",
             "dowIdx": 1,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 20,
-            "label": "20회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "20회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 8,
@@ -532,11 +532,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 21,
-            "label": "21회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "21회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 9,
@@ -545,11 +545,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 22,
-            "label": "22회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "22회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 10,
@@ -558,11 +558,11 @@
             "dow": "목",
             "dowIdx": 4,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 23,
-            "label": "23회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "23회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 11,
@@ -571,11 +571,11 @@
             "dow": "금",
             "dowIdx": 5,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 24,
-            "label": "24회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "24회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 12,
@@ -610,11 +610,11 @@
             "dow": "월",
             "dowIdx": 1,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 25,
-            "label": "25회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "25회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 15,
@@ -623,11 +623,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 26,
-            "label": "26회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "26회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 16,
@@ -636,11 +636,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 27,
-            "label": "27회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "27회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 17,
@@ -649,11 +649,11 @@
             "dow": "목",
             "dowIdx": 4,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 28,
-            "label": "28회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "28회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 18,
@@ -662,11 +662,11 @@
             "dow": "금",
             "dowIdx": 5,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 29,
-            "label": "29회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "29회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 19,
@@ -701,11 +701,11 @@
             "dow": "월",
             "dowIdx": 1,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 30,
-            "label": "30회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "30회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 22,
@@ -714,11 +714,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 31,
-            "label": "31회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "31회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 23,
@@ -727,11 +727,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 32,
-            "label": "32회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "32회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 24,
@@ -805,11 +805,11 @@
             "dow": "화",
             "dowIdx": 2,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 33,
-            "label": "33회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "33회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           },
           {
             "day": 30,
@@ -818,11 +818,11 @@
             "dow": "수",
             "dowIdx": 3,
             "type": "attended",
-            "time": "09:03",
-            "entryTime": "09:03",
-            "exitTime": "18:00",
+            "time": null,
+            "entryTime": null,
+            "exitTime": null,
             "seq": 34,
-            "label": "34회차 정상 출석 · 09:03 입실 (18:00 퇴실)"
+            "label": "34회차 정상 출석 · 정시 입실 (100% 무결석 인정)"
           }
         ]
       },
