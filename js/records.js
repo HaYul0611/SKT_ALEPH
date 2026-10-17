@@ -411,17 +411,31 @@
   // 실시간 시계 가동
   requestAnimationFrame(updateClockHands);
 
-  // 시계 호버 시 실시간 현재 시각 안내 툴팁 피드백
+  // 시계 호버 시 실시간 현재 시각 안내 툴팁 피드백 (초 단위 실시간 자동 틱킹)
+  var clockTooltipTimer = null;
+
+  function updateClockTooltipText() {
+    if (!tooltip || !tooltip.classList.contains('is-active')) return;
+    var now = new Date();
+    var h = String(now.getHours()).padStart(2, '0');
+    var m = String(now.getMinutes()).padStart(2, '0');
+    var s = String(now.getSeconds()).padStart(2, '0');
+    var timeStr = h + ':' + m + ':' + s;
+    tooltip.innerHTML = '현재 시각: <strong>' + timeStr + '</strong>';
+  }
+
   if (clockBox) {
+    clockBox.removeAttribute('title'); // 브라우저 네이티브 흰색 title 툴팁 절대 중복 방지
+
     clockBox.addEventListener('mouseenter', function (e) {
       if (!tooltip || !visualBox) return;
-      var now = new Date();
-      var timeStr = String(now.getHours()).padStart(2, '0') + ':' +
-                    String(now.getMinutes()).padStart(2, '0') + ':' +
-                    String(now.getSeconds()).padStart(2, '0');
-      tooltip.innerHTML = '현재 시각: <strong>' + timeStr + '</strong> · 실시간 무브먼트';
+      clockBox.removeAttribute('title');
       tooltip.classList.add('is-active');
+      updateClockTooltipText();
       positionTooltip(e.clientX, e.clientY);
+
+      if (clockTooltipTimer) clearInterval(clockTooltipTimer);
+      clockTooltipTimer = setInterval(updateClockTooltipText, 250);
     });
 
     clockBox.addEventListener('mousemove', function (e) {
@@ -429,6 +443,10 @@
     });
 
     clockBox.addEventListener('mouseleave', function () {
+      if (clockTooltipTimer) {
+        clearInterval(clockTooltipTimer);
+        clockTooltipTimer = null;
+      }
       if (tooltip) tooltip.classList.remove('is-active');
     });
   }
@@ -559,6 +577,10 @@
       cell.setAttribute('aria-label', tooltipHtml.replace(/<[^>]+>/g, ''));
 
       cell.addEventListener('mouseenter', function (e) {
+        if (clockTooltipTimer) {
+          clearInterval(clockTooltipTimer);
+          clockTooltipTimer = null;
+        }
         if (!tooltip || !visualBox) return;
         tooltip.innerHTML = tooltipHtml;
         tooltip.classList.add('is-active');
