@@ -1806,7 +1806,7 @@ body.modal-open {
    =================================================== */
 
 .paper-modal-dialog {
-  max-width: 860px;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   max-height: 88vh;
@@ -1986,103 +1986,183 @@ body.modal-open {
   font-weight: 600;
 }
 
-/* 실제 학술 투고 논문 조판 규격 (문단 들여쓰기 1.5em, 양쪽 맞춤, 자간/행간) */
+/* 실제 학술 투고 논문 조판 규격 (가독·가시성 향상: 좌측 정렬, 편안한 행간 1.85, 선명한 폰트 15.2px) */
 .paper-article-section p {
-  text-indent: 1.5em;
-  text-align: justify;
-  line-height: 2.0;
-  margin-bottom: 15px;
+  text-indent: 1.2em;
+  text-align: left;
+  line-height: 1.85;
+  margin-bottom: 18px;
   word-break: keep-all;
+  overflow-wrap: break-word;
   color: var(--text);
-  font-size: 14.5px;
-  letter-spacing: -0.01em;
+  font-size: 15.2px;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .paper-abstract-box {
-  border-left: 3.5px solid var(--text);
-  background: rgba(0, 0, 0, 0.015);
-  border-radius: 0 4px 4px 0;
-  padding: 20px 24px;
-  margin-bottom: 20px;
+  border-left: 4px solid var(--accent, #0284c7);
+  background: rgba(0, 0, 0, 0.018);
+  border-radius: 0 6px 6px 0;
+  padding: 22px 28px;
+  margin-bottom: 24px;
   border-top: 0.5px solid var(--border);
   border-right: 0.5px solid var(--border);
   border-bottom: 0.5px solid var(--border);
 }
 
 [data-theme="dark"] .paper-abstract-box {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .paper-abstract-box p {
-  text-indent: 1.5em;
-  text-align: justify;
-  line-height: 1.95;
-  margin-bottom: 12px;
+  text-indent: 1.2em;
+  text-align: left;
+  line-height: 1.85;
+  margin-bottom: 14px;
   word-break: keep-all;
-  font-size: 14px;
+  overflow-wrap: break-word;
+  font-size: 14.8px;
+  color: var(--text);
+  letter-spacing: -0.012em;
 }
 
 .paper-abstract-box.english-box {
   border-left-color: var(--text-light);
   font-style: italic;
-  font-size: 13.5px;
-  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 18px;
 }
 
 .paper-article-heading {
-  font-size: 17.5px;
-  font-weight: 700;
-  margin: 44px 0 18px 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
+  font-size: 18.5px;
+  font-weight: 800;
+  margin: 48px 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid var(--border);
   color: var(--text);
   text-indent: 0;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
 .paper-article-section:first-child .paper-article-heading {
   margin-top: 0;
 }
 
-/* 이론적 고찰 하위 항목 블록 */
+/* 이론적 고찰 및 연구방법 하위 항목 블록 */
 .paper-theory-card {
-  margin-bottom: 18px;
-  padding: 16px 20px;
-  background: rgba(0, 0, 0, 0.015);
+  margin-bottom: 22px;
+  padding: 20px 24px;
+  background: rgba(0, 0, 0, 0.018);
   border: 0.5px solid var(--border);
-  border-radius: 4px;
-  transition: border-color var(--transition);
+  border-radius: 6px;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 [data-theme="dark"] .paper-theory-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .paper-theory-card:hover {
   border-color: var(--text-mid);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
 }
 
 .paper-theory-card .paper-sub-heading {
-  font-size: 14.5px;
+  font-size: 15.5px;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-indent: 0;
+  letter-spacing: -0.015em;
 }
 
 .paper-theory-card p {
+  margin-bottom: 12px;
+  font-size: 14.8px;
+  line-height: 1.85;
+  color: var(--text);
+  text-indent: 0;
+  letter-spacing: -0.012em;
+}
+
+.paper-theory-card p:last-child {
   margin-bottom: 0;
-  font-size: 14px;
-  line-height: 1.9;
-  color: var(--text-mid);
 }
 
 .paper-sub-heading {
-  font-size: 14px;
+  font-size: 15.5px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-top: 28px;
+  margin-bottom: 12px;
   text-indent: 0;
   color: var(--text);
+  letter-spacing: -0.015em;
+}
+
+/* 모달 본문 리스트 및 인용문 가독성 */
+.paper-modal-body ul,
+.paper-modal-body ol {
+  padding-left: 22px;
+  margin: 14px 0 20px 0;
+}
+
+.paper-modal-body li {
+  font-size: 14.8px;
+  line-height: 1.85;
+  margin-bottom: 8px;
+  color: var(--text);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  letter-spacing: -0.012em;
+}
+
+.paper-modal-body li strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.paper-modal-body blockquote {
+  margin: 16px 0 20px;
+  padding: 16px 22px;
+  background: rgba(2, 132, 199, 0.05);
+  border-left: 3.5px solid var(--accent, #0284c7);
+  font-size: 14.8px;
+  line-height: 1.85;
+  color: var(--text);
+  border-radius: 0 4px 4px 0;
+  word-break: keep-all;
+  letter-spacing: -0.012em;
+}
+
+[data-theme="dark"] .paper-modal-body blockquote {
+  background: rgba(2, 132, 199, 0.12);
+}
+
+.paper-modal-body .story-table th {
+  font-size: 13.5px;
+  padding: 11px 14px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text);
+}
+
+.paper-modal-body .story-table td {
+  font-size: 13.5px;
+  line-height: 1.75;
+  padding: 11px 14px;
+  color: var(--text);
+}
+
+.paper-modal-body .paper-table-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 14px 0 8px;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.01em;
 }
 
 /* 제목, 키워드, 표, 차트 등 들여쓰기 제외 대상 리셋 */
