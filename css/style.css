@@ -1079,7 +1079,8 @@ body.modal-open {
   flex-wrap: wrap;
 }
 
-.proj-chip {
+.proj-chip,
+.cert-tab-chip {
   background: transparent;
   border: 0.5px solid var(--border);
   padding: 5px 12px;
@@ -1091,12 +1092,14 @@ body.modal-open {
   transition: all var(--transition);
 }
 
-.proj-chip:hover {
+.proj-chip:hover,
+.cert-tab-chip:hover {
   border-color: var(--text);
   color: var(--text);
 }
 
-.proj-chip.active {
+.proj-chip.active,
+.cert-tab-chip.active {
   background: var(--text);
   color: var(--bg);
   border-color: var(--text);

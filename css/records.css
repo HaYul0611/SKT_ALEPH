@@ -550,6 +550,7 @@
   color: #ef4444;
 }
 
+.cal-day-cell.type-post_course,
 .cal-day-cell.type-pre_course {
   background: transparent;
   border-color: rgba(0, 0, 0, 0.06);

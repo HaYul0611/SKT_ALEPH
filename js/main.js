@@ -136,7 +136,7 @@
    Projects Filter (프로젝트 카테고리 필터)
    =========================== */
 (function initProjectFilters() {
-  var chips = document.querySelectorAll('.proj-chip');
+  var chips = document.querySelectorAll('.project-filter-bar .proj-chip');
   var items = document.querySelectorAll('#projectGrid .project-item');
   if (!chips.length || !items.length) return;
 

@@ -1,6 +1,30 @@
+# Dependencies
 node_modules/
 package-lock.json
 package.json
+
+# OS files
 .DS_Store
 Thumbs.db
-MediMatch/
+
+# Scratch / Temp
+scratch/
+temp/
+*.tmp
+*.temp
+
+# Environment / Secret
+.env
+.env.local
+*.secret
+
+# Build / Pack
+dist/
+build/
+
+# Private Submission Files & Packages (Author contact info & submission manuscripts protection)
+research_paper/submission_package/
+research_paper/*표지*
+research_paper/HIRA_Research_*
+research_paper/archive/
+research_paper/extracted_paper_text.txt

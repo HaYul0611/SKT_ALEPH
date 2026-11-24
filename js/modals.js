@@ -89,6 +89,37 @@
   openBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
 
+  // 수료증 탭 전환 로직
+  var tabAlephBtn = document.getElementById('tabAlephCertBtn');
+  var tabWebBtn = document.getElementById('tabWebCertBtn');
+  var viewAleph = document.getElementById('certAlephView');
+  var viewWeb = document.getElementById('certWebView');
+  var dlLink = document.getElementById('certModalDlLink');
+
+  if (tabAlephBtn && tabWebBtn && viewAleph && viewWeb) {
+    tabAlephBtn.addEventListener('click', function () {
+      tabAlephBtn.classList.add('active');
+      tabWebBtn.classList.remove('active');
+      viewAleph.hidden = false;
+      viewWeb.hidden = true;
+      if (dlLink) {
+        dlLink.href = 'docs/SKT_ALEPH_수료증.pdf';
+        dlLink.innerHTML = '<span>PDF 원본 다운로드</span> &darr;';
+      }
+    });
+
+    tabWebBtn.addEventListener('click', function () {
+      tabWebBtn.classList.add('active');
+      tabAlephBtn.classList.remove('active');
+      viewWeb.hidden = false;
+      viewAleph.hidden = true;
+      if (dlLink) {
+        dlLink.href = 'assets/certificate.jpg';
+        dlLink.innerHTML = '<span>이미지 원본 다운로드</span> &darr;';
+      }
+    });
+  }
+
   modal.addEventListener('click', function (e) {
     if (e.target === modal) {
       closeModal();
@@ -536,6 +567,209 @@
   var currentTab = 'arch';
 
   var PROJ_DATA = {
+    'infra-si': {
+      title: '보건복지부 산하기관 인프라 SI 구축',
+      badge: '팀 프로젝트 / 팀장',
+      category: 'Infra · Network & Security',
+      summary: '보건복지부 산하기관망 GNS3 가상 토폴로지 구축, 다중 서브넷 라우팅, Wazuh 보안관제 연동 및 IP 충돌 방지',
+      liveUrl: 'https://app.notion.com/p/420346571e15811189c2eccad3c017ea',
+      repoUrl: 'https://app.notion.com/p/420346571e15811189c2eccad3c017ea',
+      arch: {
+        flow: [
+          'GNS3 Virtual Network Topology',
+          '&rarr;',
+          'Cisco Core / Dist / Access Router (OSPF)',
+          '&rarr;',
+          'Wazuh SOC Monitoring Center',
+          '&rarr;',
+          'Linux Endpoint Wazuh Agents'
+        ],
+        specs: [
+          { title: '기관망 토폴로지 가상화', desc: '보건복지부 본부망, 지사망, 외부 SOC 관제센터를 분리하고 서브넷 간 보안 구역 설계' },
+          { title: '라우팅 및 통신 시험', desc: 'OSPF 동적 라우팅 및 BGP 피어링 구성 후 본부-지사 간 패킷 손실률 0% 통신 검증' },
+          { title: 'Wazuh 보안 에이전트 연동', desc: '가상 리눅스 엔드포인트에 Wazuh Agent를 배포하여 시스템 로그 및 무결성 실시간 수집' },
+          { title: 'IP 충돌 및 대역 관리', desc: '서브넷 마스킹 정밀화 및 DHCP 범위 분리로 망 내 IP 충돌 발생 방지' }
+        ]
+      },
+      diff: {
+        beforeTitle: '초기 단일 플랫 네트워크 망',
+        beforeDesc: '모든 부서와 단말이 동일 브로드캐스트 도메인에 묶여 트래픽 루핑 및 보안 침해 시 횡적이동 취약점 상존.',
+        afterTitle: '3계층 서브넷 분리 & Wazuh 엔드포인트 관제',
+        afterDesc: 'Core/Distribution/Access 3계층 모델 도입 및 VLAN 분리, Wazuh 엔드포인트 무결성 모니터링 연동 완료.',
+        metrics: [
+          { label: '패킷 라우팅 수렴 시간', value: '<250ms' },
+          { label: '보안 구역 격리도', value: '100%' },
+          { label: 'Wazuh Agent 동기화', value: '100%' }
+        ]
+      },
+      security: {
+        title: 'GNS3 라우팅 격리 및 Wazuh Agent 통신 시험 로그',
+        logs: [
+          { prompt: 'TEST', text: 'ping 10.10.20.1 -c 4 (Branch to Headquarter)', type: 'prompt' },
+          { prompt: 'ROUTING', text: '[PASS] 4 packets transmitted, 4 received, 0% packet loss, RTT avg = 1.2ms', type: 'pass' },
+          { prompt: 'TEST', text: 'systemctl status wazuh-agent', type: 'prompt' },
+          { prompt: 'SOC', text: '[PASS] Wazuh agent running (connected to 10.10.99.10:1514)', type: 'pass' },
+          { prompt: 'INFO', text: 'IP collision check: 0 duplicate IP conflicts detected in 10.10.0.0/16', type: 'muted' },
+          { prompt: 'STATUS', text: 'ALL SI INFRASTRUCTURE VALIDATION TESTS PASSED', type: 'pass' }
+        ]
+      },
+      code: {
+        file: 'gns3/cisco_router_ospf.conf',
+        snippet: 'router ospf 100\n network 10.10.10.0 0.0.0.255 area 0\n network 10.10.20.0 0.0.0.255 area 10\n passive-interface default\n no passive-interface GigabitEthernet0/0\n!\ninterface GigabitEthernet0/1\n description Connection to SOC Wazuh Manager\n ip address 10.10.99.1 255.255.255.0'
+      }
+    },
+    'lumos-agent': {
+      title: 'Lumos-Agent',
+      badge: '개인 프로젝트 / 100%',
+      category: 'Security · Endpoint Agent',
+      summary: '로컬 네트워크 인터페이스, 방화벽 정책, 프로세스별 CPU·메모리 상태를 실시간 센싱하는 Node.js 기반 엔드포인트 에이전트',
+      liveUrl: '',
+      repoUrl: 'https://github.com/HaYul0611/Lumos-Agent',
+      arch: {
+        flow: [
+          'OS Native System Metrics (os, netstat)',
+          '&rarr;',
+          'Lumos Agent Daemon Process',
+          '&rarr;',
+          'Local Express Metric API (:4500)',
+          '&rarr;',
+          'Monitoring Dashboard UI'
+        ],
+        specs: [
+          { title: '네트워크 인터페이스 센싱', desc: '활성 NIC 정보(IP, MAC, MTU, 트래픽 입출력) 실시간 파싱 및 감시' },
+          { title: '방화벽 & 리슨 포트 검사', desc: 'OS 방화벽 활성화 상태 및 현재 열려 있는 TCP/UDP 포트 매핑' },
+          { title: '시스템 리소스 추적', desc: '데몬 기반 CPU 사용률, 물리 메모리 점유율, 상위 부하 프로세스 목록 추적' },
+          { title: '모듈형 설계 (미구현 SDP 분리)', desc: '중앙 SDP/XDR 연동용 이벤트 표준화 (※ 중앙 서버 연동은 향후 로드맵으로 분리)' }
+        ]
+      },
+      diff: {
+        beforeTitle: '수동 CLI 개별 점검 방식',
+        beforeDesc: 'netstat, tasklist, firewall 명령을 수동으로 입력하고 결과를 취합해야 하는 관리적 피로 발생.',
+        afterTitle: '통합 데몬 자동 수집 & REST API 노출',
+        afterDesc: '단일 백그라운드 프로세스가 시스템 상태를 정형화된 JSON으로 변환하여 대시보드에 즉각 전달.',
+        metrics: [
+          { label: '에이전트 CPU 점유율', value: '<0.5%' },
+          { label: '메트릭 폴링 주기', value: '3s' },
+          { label: '시스템 지표 추출 속도', value: '45ms' }
+        ]
+      },
+      security: {
+        title: '에이전트 로컬 격리 및 리소스 모니터링 로그',
+        logs: [
+          { prompt: 'INIT', text: 'node agent/daemon.js --port 4500 --bind 127.0.0.1', type: 'prompt' },
+          { prompt: 'BIND', text: '[SECURE] Listening restricted to localhost:4500 (No external exposure)', type: 'pass' },
+          { prompt: 'TEST', text: 'GET /api/agent/system-metrics', type: 'prompt' },
+          { prompt: 'METRICS', text: '[PASS] CPU: 12.4%, Memory: 42.1%, Active NICs: 2, Open Ports: 8', type: 'pass' },
+          { prompt: 'INFO', text: 'Firewall Policy: Windows Defender Inbound Filtering Enabled', type: 'muted' },
+          { prompt: 'STATUS', text: 'AGENT DAEMON RUNNING NORMALLY', type: 'pass' }
+        ]
+      },
+      code: {
+        file: 'services/networkService.js',
+        snippet: 'const os = require("os");\nexports.getNetworkSnapshot = () => {\n  const interfaces = os.networkInterfaces();\n  const activeNics = [];\n  for (const [name, addrs] of Object.entries(interfaces)) {\n    for (const addr of addrs) {\n      if (!addr.internal && addr.family === "IPv4") {\n        activeNics.push({ name, address: addr.address, mac: addr.mac });\n      }\n    }\n  }\n  return { hostname: os.hostname(), activeNics, timestamp: Date.now() };\n};'
+      }
+    },
+    'eottae': {
+      title: 'eottae',
+      badge: '4인 팀 프로젝트 / 풀스택',
+      category: 'Platform · Full-Stack',
+      summary: '성향 매칭 온보딩 설문 및 추천 알고리즘 UI, 지역/관심사 기반 소모임 검색·필터링, 모바일 청첩장 커스텀 에디터 구현',
+      liveUrl: '',
+      repoUrl: 'https://github.com/sterran123/eottae',
+      arch: {
+        flow: [
+          'Client (Interactive Web / Mobile UI)',
+          '&rarr;',
+          'Express API Gateway (Auth & Routing)',
+          '&rarr;',
+          'Matching & Group Filter Service',
+          '&rarr;',
+          'MySQL Database (Indexed Query Engine)'
+        ],
+        specs: [
+          { title: '매칭 온보딩 & 추천 UI (PR #93)', desc: '가치관·라이프스타일 기반의 다단계 설문 흐름 및 카드 스와이프 추천 UI 개발' },
+          { title: '소모임 검색 & 필터링 (PR #97)', desc: '카테고리, 지역, 태그 복합 조건 기반의 동적 쿼리 필터링 및 페이징 최적화' },
+          { title: '청첩장 커스텀 에디터 (PR #102)', desc: '모바일 청첩장 문구, 갤러리 레이아웃, 오시는 길 지도 실시간 편집 및 미리보기' },
+          { title: '4인 팀 협업 Git 전략', desc: 'Feature Branch, Issue 트래킹 및 PR 코드 리뷰를 통한 체계적인 협업 진행' }
+        ]
+      },
+      diff: {
+        beforeTitle: '다중 조건 검색 시 N+1 쿼리 지연',
+        beforeDesc: '소모임 검색 시 참여자 수와 태그 목록을 개별 쿼리로 호출하여 목록 로딩이 800ms까지 지연.',
+        afterTitle: '복합 인덱스 & 단일 JOIN 집계 쿼리 최적화',
+        afterDesc: '카테고리·지역 컬럼 복합 인덱스 및 GROUP BY 단일 쿼리 튜닝으로 응답 속도 대폭 단축.',
+        metrics: [
+          { label: '검색 쿼리 응답 속도', value: '90ms (-88%)' },
+          { label: '청첩장 실시간 렌더링', value: '0ms 지연' },
+          { label: 'PR 리뷰 머지율', value: '100%' }
+        ]
+      },
+      security: {
+        title: '온보딩 입력값 검증 및 세션 인가 로그',
+        logs: [
+          { prompt: 'TEST', text: 'POST /api/matching/survey - payload with XSS vector', type: 'prompt' },
+          { prompt: 'SANITIZE', text: '[PASS] Input sanitized by DOMPurify - script tags neutralized', type: 'pass' },
+          { prompt: 'TEST', text: 'GET /api/groups/search?category=sports&region=seoul', type: 'prompt' },
+          { prompt: 'QUERY', text: '[PASS] Parameterized SQL executed in 88ms - 0 SQL injection risk', type: 'pass' },
+          { prompt: 'STATUS', text: 'ALL MODULE TESTS & SECURITY CHECKS PASSED', type: 'pass' }
+        ]
+      },
+      code: {
+        file: 'services/matchingService.js',
+        snippet: 'exports.calculateCompatibility = (userPref, candidatePref) => {\n  let score = 0;\n  const totalFactors = Object.keys(userPref).length;\n  if (totalFactors === 0) return 0;\n  for (const factor of Object.keys(userPref)) {\n    if (userPref[factor] === candidatePref[factor]) {\n      score += (100 / totalFactors);\n    }\n  }\n  return Math.round(score);\n};'
+      }
+    },
+    'festio': {
+      title: 'FESTIO',
+      badge: '팀 프로젝트 / 백엔드 & DB',
+      category: 'Platform · O2O',
+      summary: '대규모 축제 부스 실시간 대기열·예약 시스템, 동시성 트랜잭션 무결성 제어(FOR UPDATE), QR 입장 및 주문 픽업 데이터 모델링',
+      liveUrl: '',
+      repoUrl: 'https://github.com/HaYul0611/Fastival-management',
+      arch: {
+        flow: [
+          'Client (Web UI / QR Scanner)',
+          '&rarr;',
+          'Express API Gateway (Auth & Rate Limit)',
+          '&rarr;',
+          'Reservation & QR Pickup Worker',
+          '&rarr;',
+          'MySQL Connection Pool (Transaction)'
+        ],
+        specs: [
+          { title: 'QR 입장 & 픽업 데이터 모델링', desc: '방문객 QR 티켓 발급, 현장 입장 스캔, 부스 음식/물품 픽업 상태 전이 설계' },
+          { title: '트랜잭션 무결성 보장', desc: 'MySQL SELECT ... FOR UPDATE 비관적 락으로 다중 사용자 동시 예약 시 오버부킹 원천 차단' },
+          { title: '3계층 인가 (RBAC)', desc: '관리자(Admin), 부스 운영자(Manager), 방문객(User) 세션 권한 미들웨어 분리 설계' },
+          { title: 'RESTful API 명세', desc: '부스 상태 조회, 실시간 예약 대기 순번 발급, 취소 및 입장에 대한 멱등성 API 설계' }
+        ]
+      },
+      diff: {
+        beforeTitle: '초기 동시 예약 처리 방식',
+        beforeDesc: '단순 SELECT 후 잔여 수량이 1 이상일 때 INSERT 처리하여, 동시 요청 50건 발생 시 재고 10개 부스에서 초과 발권되는 Race Condition 발생.',
+        afterTitle: '비관적 락 & 트랜잭션 래퍼 적용',
+        afterDesc: 'START TRANSACTION &rarr; SELECT ... FOR UPDATE 로 레코드 락 획득 후 잔여 검증 및 차감 일괄 처리. 100건 부하에서도 초과 발권 0건 보장.',
+        metrics: [
+          { label: '동시성 충돌 오류율', value: '0.0%' },
+          { label: 'P99 응답 속도', value: '180ms' },
+          { label: '대기열 처리량', value: '+320%' }
+        ]
+      },
+      security: {
+        title: 'RBAC 권한 검증 및 세션 위변조 방어 로그',
+        logs: [
+          { prompt: 'TEST', text: 'curl -X POST /api/booth/99/admit -H "Cookie: user_role=visitor"', type: 'prompt' },
+          { prompt: 'AUTH', text: '[BLOCKED] 403 Forbidden - Role "visitor" cannot access Booth Management API', type: 'pass' },
+          { prompt: 'TEST', text: 'sqlmap -u "/api/booth/search?keyword=test" --batch', type: 'prompt' },
+          { prompt: 'INSPECT', text: '[PASS] Prepared Statements applied on all queries - 0 injectable parameters found', type: 'pass' },
+          { prompt: 'INFO', text: 'Session hijacking defense: HttpOnly, SameSite=Strict, Secure cookies enforced', type: 'muted' },
+          { prompt: 'STATUS', text: 'ALL RBAC & INJECTION TESTS PASSED (100% SECURE)', type: 'pass' }
+        ]
+      },
+      code: {
+        file: 'controllers/reservationController.js',
+        snippet: 'exports.reserveBooth = async (req, res) => {\n  const connection = await pool.getConnection();\n  try {\n    await connection.beginTransaction();\n    // 비관적 락으로 해당 부스의 현재 예약 잔여 수량 조회\n    const [rows] = await connection.query(\n      "SELECT max_capacity, current_reserved FROM booths WHERE id = ? FOR UPDATE",\n      [req.params.id]\n    );\n    if (rows[0].current_reserved >= rows[0].max_capacity) {\n      await connection.rollback();\n      return res.status(409).json({ error: "정원이 마감되었습니다." });\n    }\n    await connection.query(\n      "UPDATE booths SET current_reserved = current_reserved + 1 WHERE id = ?",\n      [req.params.id]\n    );\n    await connection.commit();\n    return res.status(200).json({ success: true, message: "예약 완료" });\n  } catch (err) {\n    await connection.rollback();\n    throw err;\n  } finally {\n    connection.release();\n  }\n};'
+      }
+    },
     'fastival': {
       title: 'Fastival-management',
       badge: '팀 프로젝트 / Full-Stack',
@@ -606,7 +840,7 @@
         ],
         specs: [
           { title: '청첩장 빌더 렌더러', desc: '모바일 반응형 뷰포트에 맞춘 CSS Grid/Flexbox 기반 라이브 미리보기 캔버스' },
-          { title: 'JWT 세션 관리', desc: 'Access Token(30분) 및 Refresh Token(7일) 로테이션 패턴으로 무중단 로그인 유지' },
+          { title: 'JWT 세션 관리', desc: 'Access Token(30분) 및 Refresh Token(7일) 로테이션 패턴으로 안정적인 세션 유지' },
           { title: '상담 스케줄러', desc: '타임슬롯 단위 예약 충돌 방지 로직 및 플래너-고객 캘린더 자동 연동' },
           { title: 'CRM 데이터 파이프라인', desc: '견적 문의, 상담 이력, 계약 상태를 단일 고객 여정(Journey) 테이블로 정규화' }
         ]

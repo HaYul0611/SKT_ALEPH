@@ -5,29 +5,22 @@
   function applyRecordsData(data) {
     if (!data) return;
 
-    var attendanceDays = data.attendance ? data.attendance.days : 44;
-    var ritualDays = data.ritual ? data.ritual.days : 44;
-    var practiceSuccess = data.practice ? data.practice.successDays : 40;
-    var practiceTotal = data.practice ? data.practice.totalDays : 44;
-    var practiceRate = data.practice ? data.practice.rate : 91;
+    var attendanceDays = data.attendance ? data.attendance.days : 63;
+    var ritualDays = data.ritual ? data.ritual.days : 63;
+    var practiceSuccess = data.practice ? data.practice.successDays : 58;
+    var practiceTotal = data.practice ? data.practice.totalDays : 63;
+    var practiceRate = data.practice ? data.practice.rate : 92;
     var tasksCompleted = data.tasks ? data.tasks.completed : 13;
     var tasksTotal = data.tasks ? data.tasks.total : 13;
 
-    // 실시간 날짜 포맷팅 (오늘 날짜와 records.json의 lastUpdated 동기화)
-    var today = new Date();
-    var currentMonth = String(today.getMonth() + 1).padStart(2, '0');
-    var currentDate = String(today.getDate()).padStart(2, '0');
-    var todayLabel = currentMonth + '.' + currentDate;
-    var todayRange = currentMonth + '-' + currentDate;
-
-    // 만약 records.json에 지정된 날짜가 유효하면 사용하되, 현재 접속일에 맞추어 연동
-    var dateLabel = data.lastUpdated ? (data.lastUpdated.split('-')[1] + '.' + data.lastUpdated.split('-')[2]) : todayLabel;
-    var dateRange = data.lastUpdated ? (data.lastUpdated.split('-')[1] + '-' + data.lastUpdated.split('-')[2]) : todayRange;
+    // 확정 수료일 동결 (2026-08-11 ~ 2026-11-12 전 과정 완주)
+    var dateLabel = '11.12';
+    var dateRange = '11-12';
 
     // 1. 상단 요약 프리뷰
     var summaryEl = document.getElementById('recordsSectionSummary');
     if (summaryEl) {
-      summaryEl.textContent = '출석 ' + attendanceDays + '일(100% 무결석) · 리추얼 ' + ritualDays + '일 연속 · 과제 마스터 승인 ' + tasksCompleted + '/' + tasksTotal + '개 (100% 완주)';
+      summaryEl.textContent = '출석 ' + attendanceDays + '일(100% 무결석) · 리추얼 ' + ritualDays + '일 연속 · 과제 마스터 승인 ' + tasksCompleted + '/' + tasksTotal + '개 (전 과정 100% 완주 수료)';
     }
 
     // 2. 출석 카드
@@ -41,8 +34,8 @@
     var ritRangeEl = document.getElementById('recordRitualDateRange');
     var ritDateEl = document.getElementById('recordRitualCurrentDate');
     if (ritDaysEl) ritDaysEl.textContent = ritualDays + '일';
-    if (ritRangeEl) ritRangeEl.textContent = '(2026-08-11 ~ ' + dateRange + ')';
-    if (ritDateEl) ritDateEl.textContent = dateLabel + ' (현재)';
+    if (ritRangeEl) ritRangeEl.textContent = '(2026-08-11 ~ 11-12)';
+    if (ritDateEl) ritDateEl.textContent = '11.12 (수료 완료)';
 
     // 4. 강점 실천율 카드
     var pracDaysEl = document.getElementById('recordPracticeDays');
@@ -61,7 +54,7 @@
     // 5. 아침 호흡 루틴 실천 배지
     var breatheBadgeEl = document.getElementById('recordBreatheBadge');
     if (breatheBadgeEl) {
-      breatheBadgeEl.textContent = '오늘(' + dateLabel + ') 실천 완료 · 일관도 ' + (data.breathe ? data.breathe.consistency : 98) + '%';
+      breatheBadgeEl.textContent = '전 과정 완주 · 일관도 ' + (data.breathe ? data.breathe.consistency : 98) + '%';
     }
 
     // 6. 13개 과제 지하철 노선도 실시간 무결 동기화
@@ -88,9 +81,9 @@
       console.warn('records.json fetch failed, applying offline fallback', err);
       // 오프라인/로컬 실패 시 기본 13개 마스터 기준 데이터 적용
       applyRecordsData({
-        attendance: { days: 44, totalDays: 44, rate: 100, avgCheckIn: '08:59' },
-        ritual: { days: 44 },
-        practice: { successDays: 40, totalDays: 44, rate: 91 },
+        attendance: { days: 63, totalDays: 63, rate: 100, avgCheckIn: '08:59' },
+        ritual: { days: 63 },
+        practice: { successDays: 58, totalDays: 63, rate: 92 },
         breathe: { consistency: 98 },
         tasks: { completed: 13, currentStage: 13, total: 13, status: "전체 마스터 완주", rate: 100.0 }
       });
@@ -462,7 +455,7 @@
 
   // 2. 월 선택 화살표 네비게이션 (< 2026. 10 >, 8~11월 제한)
   var allowedMonths = ['2026-08', '2026-09', '2026-10', '2026-11'];
-  var currentMonthIdx = 2; // 기본: 2026-10 (가장 최근 갱신된 월)
+  var currentMonthIdx = 3; // 기본: 2026-11 (수료 월)
   var currentMonthKey = allowedMonths[currentMonthIdx];
 
   var prevBtn = document.getElementById('calPrevBtn');
@@ -541,7 +534,7 @@
     daysList.forEach(function (item) {
       var cell = document.createElement('div');
       var typeClass = 'type-' + (item.type || 'attended');
-      var isToday = (currentMonthKey === '2026-10' && item.day === 16); // 가장 최근 출석일
+      var isToday = (currentMonthKey === '2026-11' && item.day === 12); // 과정 최종 수료일
 
       // 일요일 빨간색, 토요일 파란색 클래스
       var dowColorClass = (item.dowIdx === 0) ? ' dow-sun' : ((item.dowIdx === 6) ? ' dow-sat' : '');

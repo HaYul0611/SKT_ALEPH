@@ -1,16 +1,16 @@
 {
-  "lastUpdated": "2026-10-17",
+  "lastUpdated": "2026-11-12",
   "startDate": "2026-08-11",
   "endDate": "2026-11-12",
-  "autoSyncDate": true,
+  "autoSyncDate": false,
   "cohortName": "대전 B반",
   "attendance": {
-    "days": 44,
-    "totalDays": 44,
+    "days": 63,
+    "totalDays": 63,
     "rate": 100,
     "absent": 0,
     "avgCheckIn": "08:59",
-    "recentCheckIn": "09:03",
+    "recentCheckIn": "08:58",
     "source": "리추얼 기록",
     "months": {
       "2026-08": {
@@ -1074,12 +1074,12 @@
             "fullDate": "2026-10-19",
             "dow": "월",
             "dowIdx": 1,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:57",
+            "entryTime": "08:57",
+            "exitTime": "18:00",
+            "seq": 45,
+            "label": "45회차 정상 출석 · 08:57 입실 (18:00 퇴실)"
           },
           {
             "day": 20,
@@ -1087,12 +1087,12 @@
             "fullDate": "2026-10-20",
             "dow": "화",
             "dowIdx": 2,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:59",
+            "entryTime": "08:59",
+            "exitTime": "18:00",
+            "seq": 46,
+            "label": "46회차 정상 출석 · 08:59 입실 (18:00 퇴실)"
           },
           {
             "day": 21,
@@ -1100,12 +1100,12 @@
             "fullDate": "2026-10-21",
             "dow": "수",
             "dowIdx": 3,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:58",
+            "entryTime": "08:58",
+            "exitTime": "18:00",
+            "seq": 47,
+            "label": "47회차 정상 출석 · 08:58 입실 (18:00 퇴실)"
           },
           {
             "day": 22,
@@ -1113,12 +1113,12 @@
             "fullDate": "2026-10-22",
             "dow": "목",
             "dowIdx": 4,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "09:01",
+            "entryTime": "09:01",
+            "exitTime": "18:00",
+            "seq": 48,
+            "label": "48회차 정상 출석 · 09:01 입실 (18:00 퇴실)"
           },
           {
             "day": 23,
@@ -1126,12 +1126,12 @@
             "fullDate": "2026-10-23",
             "dow": "금",
             "dowIdx": 5,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:56",
+            "entryTime": "08:56",
+            "exitTime": "18:00",
+            "seq": 49,
+            "label": "49회차 정상 출석 · 08:56 입실 (18:00 퇴실)"
           },
           {
             "day": 24,
@@ -1165,12 +1165,12 @@
             "fullDate": "2026-10-26",
             "dow": "월",
             "dowIdx": 1,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:58",
+            "entryTime": "08:58",
+            "exitTime": "18:00",
+            "seq": 50,
+            "label": "50회차 정상 출석 · 08:58 입실 (18:00 퇴실)"
           },
           {
             "day": 27,
@@ -1178,12 +1178,12 @@
             "fullDate": "2026-10-27",
             "dow": "화",
             "dowIdx": 2,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "09:00",
+            "entryTime": "09:00",
+            "exitTime": "18:00",
+            "seq": 51,
+            "label": "51회차 정상 출석 · 09:00 입실 (18:00 퇴실)"
           },
           {
             "day": 28,
@@ -1191,12 +1191,12 @@
             "fullDate": "2026-10-28",
             "dow": "수",
             "dowIdx": 3,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:57",
+            "entryTime": "08:57",
+            "exitTime": "18:00",
+            "seq": 52,
+            "label": "52회차 정상 출석 · 08:57 입실 (18:00 퇴실)"
           },
           {
             "day": 29,
@@ -1204,12 +1204,12 @@
             "fullDate": "2026-10-29",
             "dow": "목",
             "dowIdx": 4,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:59",
+            "entryTime": "08:59",
+            "exitTime": "18:00",
+            "seq": 53,
+            "label": "53회차 정상 출석 · 08:59 입실 (18:00 퇴실)"
           },
           {
             "day": 30,
@@ -1217,12 +1217,12 @@
             "fullDate": "2026-10-30",
             "dow": "금",
             "dowIdx": 5,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "09:02",
+            "entryTime": "09:02",
+            "exitTime": "18:00",
+            "seq": 54,
+            "label": "54회차 정상 출석 · 09:02 입실 (18:00 퇴실)"
           },
           {
             "day": 31,
@@ -1266,12 +1266,12 @@
             "fullDate": "2026-11-02",
             "dow": "월",
             "dowIdx": 1,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:58",
+            "entryTime": "08:58",
+            "exitTime": "18:00",
+            "seq": 55,
+            "label": "55회차 정상 출석 · 08:58 입실 (18:00 퇴실)"
           },
           {
             "day": 3,
@@ -1279,12 +1279,12 @@
             "fullDate": "2026-11-03",
             "dow": "화",
             "dowIdx": 2,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:57",
+            "entryTime": "08:57",
+            "exitTime": "18:00",
+            "seq": 56,
+            "label": "56회차 정상 출석 · 08:57 입실 (18:00 퇴실)"
           },
           {
             "day": 4,
@@ -1292,12 +1292,12 @@
             "fullDate": "2026-11-04",
             "dow": "수",
             "dowIdx": 3,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:59",
+            "entryTime": "08:59",
+            "exitTime": "18:00",
+            "seq": 57,
+            "label": "57회차 정상 출석 · 08:59 입실 (18:00 퇴실)"
           },
           {
             "day": 5,
@@ -1305,12 +1305,12 @@
             "fullDate": "2026-11-05",
             "dow": "목",
             "dowIdx": 4,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "09:00",
+            "entryTime": "09:00",
+            "exitTime": "18:00",
+            "seq": 58,
+            "label": "58회차 정상 출석 · 09:00 입실 (18:00 퇴실)"
           },
           {
             "day": 6,
@@ -1318,12 +1318,12 @@
             "fullDate": "2026-11-06",
             "dow": "금",
             "dowIdx": 5,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:56",
+            "entryTime": "08:56",
+            "exitTime": "18:00",
+            "seq": 59,
+            "label": "59회차 정상 출석 · 08:56 입실 (18:00 퇴실)"
           },
           {
             "day": 7,
@@ -1357,12 +1357,12 @@
             "fullDate": "2026-11-09",
             "dow": "월",
             "dowIdx": 1,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:58",
+            "entryTime": "08:58",
+            "exitTime": "18:00",
+            "seq": 60,
+            "label": "60회차 정상 출석 · 08:58 입실 (18:00 퇴실)"
           },
           {
             "day": 10,
@@ -1370,12 +1370,12 @@
             "fullDate": "2026-11-10",
             "dow": "화",
             "dowIdx": 2,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:59",
+            "entryTime": "08:59",
+            "exitTime": "18:00",
+            "seq": 61,
+            "label": "61회차 정상 출석 · 08:59 입실 (18:00 퇴실)"
           },
           {
             "day": 11,
@@ -1383,12 +1383,12 @@
             "fullDate": "2026-11-11",
             "dow": "수",
             "dowIdx": 3,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "09:01",
+            "entryTime": "09:01",
+            "exitTime": "18:00",
+            "seq": 62,
+            "label": "62회차 정상 출석 · 09:01 입실 (18:00 퇴실)"
           },
           {
             "day": 12,
@@ -1396,12 +1396,12 @@
             "fullDate": "2026-11-12",
             "dow": "목",
             "dowIdx": 4,
-            "type": "scheduled",
-            "time": null,
-            "entryTime": null,
-            "exitTime": null,
-            "seq": null,
-            "label": "교육 일정 진행 예정"
+            "type": "attended",
+            "time": "08:58",
+            "entryTime": "08:58",
+            "exitTime": "18:00",
+            "seq": 63,
+            "label": "63회차 정상 출석 · 08:58 입실 (18:00 퇴실)"
           },
           {
             "day": 13,
@@ -1409,12 +1409,12 @@
             "fullDate": "2026-11-13",
             "dow": "금",
             "dowIdx": 5,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 14,
@@ -1448,12 +1448,12 @@
             "fullDate": "2026-11-16",
             "dow": "월",
             "dowIdx": 1,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 17,
@@ -1461,12 +1461,12 @@
             "fullDate": "2026-11-17",
             "dow": "화",
             "dowIdx": 2,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 18,
@@ -1474,12 +1474,12 @@
             "fullDate": "2026-11-18",
             "dow": "수",
             "dowIdx": 3,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 19,
@@ -1487,12 +1487,12 @@
             "fullDate": "2026-11-19",
             "dow": "목",
             "dowIdx": 4,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 20,
@@ -1500,12 +1500,12 @@
             "fullDate": "2026-11-20",
             "dow": "금",
             "dowIdx": 5,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 21,
@@ -1539,12 +1539,12 @@
             "fullDate": "2026-11-23",
             "dow": "월",
             "dowIdx": 1,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 24,
@@ -1552,12 +1552,12 @@
             "fullDate": "2026-11-24",
             "dow": "화",
             "dowIdx": 2,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 25,
@@ -1565,12 +1565,12 @@
             "fullDate": "2026-11-25",
             "dow": "수",
             "dowIdx": 3,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 26,
@@ -1578,12 +1578,12 @@
             "fullDate": "2026-11-26",
             "dow": "목",
             "dowIdx": 4,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 27,
@@ -1591,12 +1591,12 @@
             "fullDate": "2026-11-27",
             "dow": "금",
             "dowIdx": 5,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           },
           {
             "day": 28,
@@ -1630,12 +1630,12 @@
             "fullDate": "2026-11-30",
             "dow": "월",
             "dowIdx": 1,
-            "type": "scheduled",
+            "type": "post_course",
             "time": null,
             "entryTime": null,
             "exitTime": null,
             "seq": null,
-            "label": "교육 일정 진행 예정"
+            "label": "과정 수료 후"
           }
         ]
       }
@@ -2047,16 +2047,16 @@
     ]
   },
   "ritual": {
-    "days": 44,
+    "days": 63,
     "startDate": "2026-08-11",
-    "endDate": "2026-10-17",
-    "autoExtendToToday": true,
+    "endDate": "2026-11-12",
+    "autoExtendToToday": false,
     "source": "리추얼 기록"
   },
   "practice": {
-    "successDays": 40,
-    "totalDays": 44,
-    "rate": 91,
+    "successDays": 58,
+    "totalDays": 63,
+    "rate": 92,
     "quote": "번아웃 이후에도 멈추지 않고 매일 기록한 숫자",
     "source": "리추얼 기록"
   },
@@ -2067,8 +2067,8 @@
     "source": "리추얼 기록"
   },
   "feedback": {
-    "currentWeek": 10,
-    "count": 80,
+    "currentWeek": 14,
+    "count": 112,
     "weeklyAvg": 8,
     "source": "리추얼 기록"
   },
