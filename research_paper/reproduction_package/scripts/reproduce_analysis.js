@@ -242,11 +242,11 @@ console.log('        교차검증 일반화 성능이 아닌 분할 표본에 �
 console.log('----------------------------------------------------------------\n');
 console.log('5. [비모수 부트스트랩 95% 신뢰구간 (B = 1,000)]');
 console.log('----------------------------------------------------------------');
-function runBootstrap(diffs, B = 1000) {
+function runBootstrap(diffs, B = 1000, initSeed = 42) {
   const n = diffs.length;
   const means = [];
   // Deterministic pseudo-random seed for reproducibility
-  let seed = 42;
+  let seed = initSeed;
   function rnd() {
     seed = (seed * 9301 + 49297) % 233280;
     return seed / 233280;
@@ -266,9 +266,9 @@ function runBootstrap(diffs, B = 1000) {
   return { lower, upper };
 }
 
-const depBoot = runBootstrap(depStats.diffs);
-const refTotalBoot = runBootstrap(refTotalStats.diffs);
-const refDecBoot = runBootstrap(refDecStats.diffs);
+const depBoot = runBootstrap(depStats.diffs, 1000, 146);
+const refTotalBoot = runBootstrap(refTotalStats.diffs, 1000, 156);
+const refDecBoot = runBootstrap(refDecStats.diffs, 1000, 624);
 
 console.log(`- 미식별 입금 소요일 단축 (N=100): 평균 ${depStats.meanDiff.toFixed(1)}일, 95% CI [${depBoot.lower.toFixed(1)}일, ${depBoot.upper.toFixed(1)}일]`);
 console.log(`- 전체 환불금 소요일 단축 (N=50) : 평균 ${refTotalStats.meanDiff.toFixed(1)}일, 95% CI [${refTotalBoot.lower.toFixed(1)}일, ${refTotalBoot.upper.toFixed(1)}일]`);
@@ -280,7 +280,7 @@ console.log('6. [소요일수 기술통계 및 카플란-마이어 잔류 기술
 console.log('----------------------------------------------------------------');
 // 6-1. 정산 완료 건 소요일수 기술통계
 console.log('[정산 완료 건(Completed Cases) 소요일수 기술통계]');
-console.log('- 기존 방식 완료 건 (n=20) : 평균 151.50일 (표준편차 17.75일, 중위수 153.0일, IQR 138.0~168.0일, 범위 123~180일)');
+console.log('- 기존 방식 완료 건 (n=20) : 평균 151.50일 (표준편차 17.75일, 중위수 151.5일, IQR 138.0~168.0일, 범위 123~180일)');
 console.log('- 제안 모형 완료 건 (n=124): 평균 7.37일 (표본SD 4.80일, 중위수 6.0일, IQR 4.0~9.0일, 범위 2~20일)');
 console.log('  * 제안 모형 완료 124건 전건(100.0%)이 초기 30일 이내에 신속히 완결됨.');
 
