@@ -110,6 +110,7 @@
 - **연구 산출물 및 재현 패키지**:
   - **연구 기준표**: `research_paper/research_sync_reference.md` (MediMatch 전달용 SSOT 문서)
   - **원자료 및 재현 패키지**: `research_paper/reproduction_package/` (150건 원자료 및 Node.js & Python 재현 스크립트 수록)
+  - **공공 통계 데이터**: 건강보험심사평가원 공식 공시(2020~2025년) 비급여 진료비 확인신청 및 환불 처리 현황 수록 (병원 내부 잔류 모수와 구분 명시)
   - **공개 연구 초안 (역사적 공개본)**: `research_paper/` 내 수록된 논문 전문 및 PDF/DOCX는 SKT ALEPH 교육과정 중 작성한 이전 연구 초안입니다. (2026.11.24 HIRA Research 최종 제출 원고는 비공개 보존)
   - **연계 웹 시뮬레이터**: [MediMatch 라이브 데모](https://hayul0611.github.io/MediMatch/) | [MediMatch 저장소](https://github.com/HaYul0611/MediMatch)
 
